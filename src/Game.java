@@ -3,7 +3,7 @@ public class Game {
     private int playerCount;
     private int maxRounds;
     private int currentRound = 1;
-    private GameState gs = GameState.RUNNING;
+    private GameState gs = GameState.WAITING_FOR_NEXT_ROUND;
 
     public Game(int playerCount)
     {

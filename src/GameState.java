@@ -1,3 +1,3 @@
 public enum GameState {
-    RUNNING, OVER
+    RUNNING, OVER, WAITING_FOR_NEXT_ROUND
 }
