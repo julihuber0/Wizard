@@ -9,6 +9,14 @@ public class CardDeck {
         deck = getValidDeck();
     }
 
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+    public void setDeck(ArrayList<Card> deck) {
+        this.deck = deck;
+    }
+
     public ArrayList<Card> getValidDeck()
     {
         ArrayList<Card> newDeck = new ArrayList<>();
@@ -20,6 +28,16 @@ public class CardDeck {
             }
         }
         return newDeck;
+    }
+
+    public String toString()
+    {
+        String s = "";
+        for(Card c:deck)
+        {
+            s = s+c.getValue()+"_in_"+c.getColor()+"; ";
+        }
+        return s;
     }
 
 }
