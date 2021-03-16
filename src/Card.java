@@ -8,6 +8,7 @@ public class Card {
     public Card(String value, Color color) {
         this.value = value;
         this.color = color;
+        String fileName = value+"_in_"+color;
     }
 
     public String getValue() {

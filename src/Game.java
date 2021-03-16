@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class Game {
 
     private int playerCount;
     private int maxRounds;
     private int currentRound = 1;
     private GameState gs = GameState.WAITING_FOR_NEXT_ROUND;
+    private ArrayList<Player> players = new ArrayList<>();
 
     public Game(int playerCount)
     {
