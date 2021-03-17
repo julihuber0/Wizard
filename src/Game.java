@@ -2,20 +2,21 @@ import java.util.ArrayList;
 
 public class Game {
 
-    private int playerCount;
-    private int maxRounds;
-    private int currentRound = 0;
-    private GameState gs = GameState.WAITING_FOR_NEXT_ROUND;
-    private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<Card> stitch = new ArrayList<>();
-    private Color currentTrump = null;
-    private CardDeck deck = new CardDeck();
+    private int playerCount;        //Anzahl Mitspieler
+    private int maxRounds;      //Maximale Rundenzahl
+    private int currentRound = 0;       //aktuelle Runde
+    private GameState gs = GameState.WAITING_FOR_NEXT_ROUND;        //aktueller Spielzustand
+    private ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
+    private ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält
+    private Color currentTrump = null;      //aktuelle Trumpffarbe
+    private CardDeck deck = new CardDeck();     //Kardendeck
 
     public Game(int playerCount) {
         setPlayerCount(playerCount);
         setMaxRounds(playerCount);
     }
 
+    //legt fest, wie viele Spieler mitspielen
     public void setPlayerCount(int pc) {
         if (pc > 2 && pc < 7) {
             this.playerCount = pc;
@@ -24,6 +25,7 @@ public class Game {
         }
     }
 
+    //setzt abhängig von der Spielerzahl die maximale Rundenzahl
     public void setMaxRounds(int pc) {
         if (pc > 2 && pc < 7) {
             this.maxRounds = 60 / pc;
@@ -32,15 +34,16 @@ public class Game {
         }
     }
 
+    //schaltet den Rundenzähler auf die nächste Runde, setzt GameState auf OVER, wenn letzte Runde
     public void NextRound() {
         if (currentRound < maxRounds) {
-            gs = GameState.RUNNING;
             currentRound++;
         } else {
             gs = GameState.OVER;
         }
     }
 
+    //teilt rundenabhängig Karten an die Spieler aus
     public void distribute(int round)
     {
         for(Player p:players)
@@ -52,6 +55,7 @@ public class Game {
         }
     }
 
+    //startet die nächste Runde
     public void startRound()
     {
         NextRound();

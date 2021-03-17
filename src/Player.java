@@ -4,16 +4,15 @@ public class Player {
 
     private String name;
     private int points;
-    private int saidStitches;
-    private int currentStitches;
-    public ArrayList<Card> hand = new ArrayList<>();
+    private int saidStitches;   //angesagte Stiche
+    private int currentStitches;    //schon gemachte Stiche
+    public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
 
-    public Player(String name)
-    {
-        this.name=name;
+    public Player(String name) {
+        this.name = name;
         points = 0;
-        saidStitches=0;
-        currentStitches=0;
+        saidStitches = 0;
+        currentStitches = 0;
     }
 
     public int getPoints() {
@@ -40,63 +39,49 @@ public class Player {
         this.currentStitches = currentStitches;
     }
 
-    public void addCards(Card c)
-    {
+    public void addCards(Card c) {
         hand.add(c);
     }
 
-    public Color getBestColor()
-    {
-        int[] colors = new int[4];
-        for(Card c:hand)
-        {
-            if(c.getColor()==Color.GREEN)
-            {
+    //gibt die Farbe aus, von der der Spieler die meisten Karten hat
+    public Color getBestColor() {
+        int[] colors = new int[4]; //0: green; 1: yellow; 2: red; 3: blue
+        for (Card c : hand) {
+            if (c.getColor() == Color.GREEN) {
                 colors[0]++;
             }
         }
-        for(Card c:hand)
-        {
-            if(c.getColor()==Color.YELLOW)
-            {
+        for (Card c : hand) {
+            if (c.getColor() == Color.YELLOW) {
                 colors[1]++;
             }
         }
-        for(Card c:hand)
-        {
-            if(c.getColor()==Color.RED)
-            {
+        for (Card c : hand) {
+            if (c.getColor() == Color.RED) {
                 colors[2]++;
             }
         }
-        for(Card c:hand)
-        {
-            if(c.getColor()==Color.BLUE)
-            {
+        for (Card c : hand) {
+            if (c.getColor() == Color.BLUE) {
                 colors[3]++;
             }
         }
         int max = 0;
         int maxPos = 0;
-        for(int i = 0; i<4; i++)
-        {
-            if(colors[i]>max)
-            {
+        for (int i = 0; i < 4; i++) {
+            if (colors[i] > max) {
                 max = colors[i];
                 maxPos = i;
             }
         }
 
-        if(maxPos==0)
-        {
+        if (maxPos == 0) {
             return Color.GREEN;
         }
-        if(maxPos==1)
-        {
+        if (maxPos == 1) {
             return Color.YELLOW;
         }
-        if(maxPos==2)
-        {
+        if (maxPos == 2) {
             return Color.RED;
         }
         return Color.BLUE;

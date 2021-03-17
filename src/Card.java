@@ -8,7 +8,7 @@ public class Card {
     public Card(String value, Color color) {
         this.value = value;
         this.color = color;
-        String fileName = value+"_in_"+color;
+        String fileName = value+"_in_"+color;       //dient zur Zuweisung des richtigen Bildes zur Karte
     }
 
     public String getValue() {
@@ -27,6 +27,7 @@ public class Card {
         this.color = color;
     }
 
+    //gibt eine Liste mit allen möglichen Kartenwerten zurück
     public static ArrayList<String> getValidValues()
     {
         ArrayList<String> values = new ArrayList<>();
@@ -39,6 +40,7 @@ public class Card {
         return values;
     }
 
+    //gibt eine Liste mit allen möglichen Farben zurück
     public static ArrayList<Color> getValidColors()
     {
         ArrayList<Color> colors = new ArrayList<>();

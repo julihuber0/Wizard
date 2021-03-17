@@ -4,6 +4,7 @@ public class CardDeck {
 
     private ArrayList<Card> deck;
 
+    //erstellt ein Kartendeck mit allen validen Kombinationsmöglichkeiten
     public CardDeck()
     {
         deck = getValidDeck();
@@ -17,6 +18,7 @@ public class CardDeck {
         this.deck = deck;
     }
 
+    //gibt eine Liste zurück, die alle möglichen Kartenkombinationen enthält
     public ArrayList<Card> getValidDeck()
     {
         ArrayList<Card> newDeck = new ArrayList<>();
@@ -30,11 +32,13 @@ public class CardDeck {
         return newDeck;
     }
 
+    //entfert die erste Karte vom Deck und gibt diese zurück
     public Card removeCard()
     {
         return deck.remove(0);
     }
 
+    //Ausgabe des Kartendecks als String auf der Konsole
     public String toString()
     {
         String s = "";
