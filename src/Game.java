@@ -58,7 +58,15 @@ public class Game {
         if(gs != GameState.OVER)
         {
             distribute(currentRound);
-            currentTrump=deck.removeCard().getColor();
+            Card trump = deck.removeCard();
+            if(trump.getValue().equals("N"))
+            {
+                currentTrump = null;
+            }
+            else if(trump.getValue().equals("Z"))
+            {
+                trump = players.get()
+            }
         }
     }
 }
