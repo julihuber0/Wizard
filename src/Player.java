@@ -44,4 +44,61 @@ public class Player {
     {
         hand.add(c);
     }
+
+    public Color getBestColor()
+    {
+        int[] colors = new int[4];
+        for(Card c:hand)
+        {
+            if(c.getColor()==Color.GREEN)
+            {
+                colors[0]++;
+            }
+        }
+        for(Card c:hand)
+        {
+            if(c.getColor()==Color.YELLOW)
+            {
+                colors[1]++;
+            }
+        }
+        for(Card c:hand)
+        {
+            if(c.getColor()==Color.RED)
+            {
+                colors[2]++;
+            }
+        }
+        for(Card c:hand)
+        {
+            if(c.getColor()==Color.BLUE)
+            {
+                colors[3]++;
+            }
+        }
+        int max = 0;
+        int maxPos = 0;
+        for(int i = 0; i<4; i++)
+        {
+            if(colors[i]>max)
+            {
+                max = colors[i];
+                maxPos = i;
+            }
+        }
+
+        if(maxPos==0)
+        {
+            return Color.GREEN;
+        }
+        if(maxPos==1)
+        {
+            return Color.YELLOW;
+        }
+        if(maxPos==2)
+        {
+            return Color.RED;
+        }
+        return Color.BLUE;
+    }
 }
