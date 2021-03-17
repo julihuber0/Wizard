@@ -30,6 +30,11 @@ public class CardDeck {
         return newDeck;
     }
 
+    public Card removeCard()
+    {
+        return deck.remove(0);
+    }
+
     public String toString()
     {
         String s = "";

@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class Player {
 
     private String name;
     private int points;
     private int saidStitches;
     private int currentStitches;
+    public ArrayList<Card> hand = new ArrayList<>();
 
     public Player(String name)
     {
@@ -35,5 +38,10 @@ public class Player {
 
     public void setCurrentStitches(int currentStitches) {
         this.currentStitches = currentStitches;
+    }
+
+    public void addCards(Card c)
+    {
+        hand.add(c);
     }
 }
