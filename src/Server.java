@@ -1,7 +1,10 @@
-import java.util.ArrayList;
+import ea.*;
+import java.util.*;
 
-public class Server {
+public class Server  implements  Runnable{
 
+    private ea.Server server;
+    private ArrayList<ClientHandler> handlers = new ArrayList<ClientHandler>();
 
     /**
      * Bietet Broadcast (BC) Methoden an
@@ -25,9 +28,26 @@ public class Server {
         //broadcastet den an alle Spieler
 
         for (Player p:players) {
-
-
+            score = score + p.getName() + ";";
+            score = score + p.getPoints() + ";";
         }
+        server.sendeString(score);
     }
 
+    /**
+     * In dieser Run-Methode wartet ein eigener Thread nur auf neu andockende Clients,
+     * um diese dann durch einen eigenen ClientHandler zu bedienen.
+     */
+    @Override
+    public void run() {
+        //Dauerschleife
+        while(!Thread.interrupted()) {
+            //Gib mir die nächste Verbindung
+            //   (warte ggf. solange, bis eine neue Verbindung zustandekommt)
+            NetzwerkVerbindung verbindung = server.naechsteVerbindungAusgeben();
+
+
+            handlers.add(new ClientHandler(verbindung));
+        }
+    }
 }
