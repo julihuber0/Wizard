@@ -22,7 +22,7 @@ public class CardDeck {
     public ArrayList<Card> getValidDeck()
     {
         ArrayList<Card> newDeck = new ArrayList<>();
-        for(String s:Card.getValidValues())
+        for(Integer s:Card.getValidValues())
         {
             for(Color c:Card.getValidColors())
             {

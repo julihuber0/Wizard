@@ -2,20 +2,20 @@ import java.util.ArrayList;
 
 public class Card {
 
-    private String value;
+    private Integer value;
     private Color color;
 
-    public Card(String value, Color color) {
+    public Card(Integer value, Color color) {
         this.value = value;
         this.color = color;
         String fileName = value+"_in_"+color;       //dient zur Zuweisung des richtigen Bildes zur Karte
     }
 
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Integer value) {
         this.value = value;
     }
 
@@ -28,15 +28,13 @@ public class Card {
     }
 
     //gibt eine Liste mit allen möglichen Kartenwerten zurück
-    public static ArrayList<String> getValidValues()
+    public static ArrayList<Integer> getValidValues()
     {
-        ArrayList<String> values = new ArrayList<>();
-        values.add("N");
-        for(int i = 1; i<=13; i++)
+        ArrayList<Integer> values = new ArrayList<>();
+        for(int i = 0; i<=14; i++)
         {
-            values.add(Integer.toString(i));
+            values.add(i);
         }
-        values.add("Z");
         return values;
     }
 
