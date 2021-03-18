@@ -43,9 +43,9 @@ public class Server  implements  Runnable{
 
         String saidStitches = "SS|";
 
-        for(int i = 0; i<players.size();i++) {
-            saidStitches = saidStitches + i + ";";
-            saidStitches = saidStitches + players.get(i).getSaidStitches() + "|";
+        for(Player p:players) {
+            saidStitches = saidStitches + p.getId() + ";";
+            saidStitches = saidStitches + p.getSaidStitches() + "|";
         }
         server.sendeString(saidStitches);
     }
