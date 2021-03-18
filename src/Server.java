@@ -11,27 +11,56 @@ public class Server  implements  Runnable{
      *
      * Methoden, die allgemein für alle Spieler zählen z.B. Trumpffarbe, Scoreboard etc.
      *
+     * Unerlaubte Zeichen Spielername ; |
+     *
      */
 
     /**
      * Sendet immer ein zweistelliges Kürzel gefolgt von einem Strichpunkt an die Clients zur Identifikation
      *
-     * SC: Scoreboard
-     *
+     * SB: Scoreboard
+     * SS: Said Stitches
+     * CS: Current Stiches
      */
 
     public void bcScoreboard(ArrayList<Player> players) {
         //zieht sich den Playername und den zugehörigen Score
-        //formatiert ihn zu einem String (wird später in den Clients wieder decoded
-        String score = "SC;";
+        //formatiert ihn zu einem String (wird später in den Clients wieder decoded)
+        String score = "SB;";
 
         for (Player p:players) {
             score = score + p.getName() + ";";
-            score = score + p.getPoints() + ";";
+            score = score + p.getPoints() + "|";
         }
 
         //broadcastet den an alle Spieler
         server.sendeString(score);
+    }
+
+    public void bcSaidStitches(ArrayList<Player> players) {
+        //Schlüssel ist die Position in der ArrayList
+        //SC|1;3|2;0| -> Said Stichtes Player1 - 3 Stiche; Player2 - 0 Stiche
+
+        String saidStitches = "SS|";
+
+        for(int i = 0; i<players.size();i++) {
+            saidStitches = saidStitches + i + ";";
+            saidStitches = saidStitches + players.get(i).getSaidStitches() + "|";
+        }
+        server.sendeString(saidStitches);
+    }
+
+    public void bcCurrentStitches(ArrayList<Player> players) {
+        //Schlüssel ist die Position in der ArrayList
+        //SC|1;3|2;0| -> Current Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
+
+        String currentStitches = "SS|";
+
+        for(int i = 0; i<players.size();i++) {
+            currentStitches = currentStitches + i + ";";
+            currentStitches = currentStitches + players.get(i).getCurrentStitches() + "|";
+        }
+        server.sendeString(currentStitches);
     }
 
     /**
