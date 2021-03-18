@@ -63,7 +63,7 @@ public class Game {
 
     public Player calculateStitch()
     {
-        Player p = players.get(0);
+        Player p = players.get(0);      //Hier: player(0) kommt raus
         Card highestCard = stitch.get(0);
         int highCardPos = 0;
         for(int i = 1; i<playerCount; i++)
@@ -94,7 +94,28 @@ public class Game {
                 continue;
             }
         }
-        return null;
+        return players.get(highCardPos);
+    }
+
+    public Color getAllowed()
+    {
+        Color allowed = null;
+        if(stitch.get(0)!=null)
+        {
+            if(stitch.get(0).getValue()==14)
+            {
+                return null;
+            }
+            for(int i = 0; i<playerCount&&stitch.get(i)!=null; i++)
+            {
+                if(stitch.get(i).getValue()!=0)
+                {
+                    allowed = stitch.get(i).getColor();
+                    break;
+                }
+            }
+        }
+        return allowed;
     }
 
     //startet die nächste Runde
