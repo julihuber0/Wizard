@@ -47,6 +47,10 @@ public class Player {
         hand.add(c);
     }
 
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
     //gibt die Farbe aus, von der der Spieler die meisten Karten hat
     public Color getBestColor() {
         int[] colors = new int[4]; //0: green; 1: yellow; 2: red; 3: blue

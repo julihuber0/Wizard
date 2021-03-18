@@ -118,6 +118,38 @@ public class Game {
         return allowed;
     }
 
+    public ArrayList<Card> getAllowedCards(Player p)
+    {
+        Color allowed = getAllowed();
+        ArrayList<Card> allowedCards = new ArrayList<>();
+        if(allowed==null)
+        {
+            return p.getHand();
+        }
+        else
+        {
+            for(Card c:p.getHand())
+            {
+                if(c.getColor()==allowed)
+                {
+                    allowedCards.add(c);
+                }
+            }
+        }
+        if(allowedCards.isEmpty())
+        {
+            return p.getHand();
+        }
+        for(Card c:p.getHand())
+        {
+            if(c.getValue()==0||c.getValue()==14)
+            {
+                allowedCards.add(c);
+            }
+        }
+        return allowedCards;
+    }
+
     //startet die nächste Runde
     public void startRound()
     {
