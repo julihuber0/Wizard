@@ -22,15 +22,15 @@ public class Server  implements  Runnable{
 
     public void bcScoreboard(ArrayList<Player> players) {
         //zieht sich den Playername und den zugehörigen Score
-
         //formatiert ihn zu einem String (wird später in den Clients wieder decoded
         String score = "SC;";
-        //broadcastet den an alle Spieler
 
         for (Player p:players) {
             score = score + p.getName() + ";";
             score = score + p.getPoints() + ";";
         }
+
+        //broadcastet den an alle Spieler
         server.sendeString(score);
     }
 
@@ -46,8 +46,11 @@ public class Server  implements  Runnable{
             //   (warte ggf. solange, bis eine neue Verbindung zustandekommt)
             NetzwerkVerbindung verbindung = server.naechsteVerbindungAusgeben();
 
+            ClientHandler c = new ClientHandler(verbindung);
+            handlers.add(c);
 
-            handlers.add(new ClientHandler(verbindung));
+
+
         }
     }
 }

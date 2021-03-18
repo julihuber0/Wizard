@@ -20,6 +20,10 @@ public class ClientHandler implements Empfaenger {
     }
 
 
+    public void sendeString(String s) {
+        verbindung.sendeString(s);
+    }
+
     /* --- Empfaenger-Methoden --- */
 
     @Override
