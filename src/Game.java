@@ -7,7 +7,7 @@ public class Game {
     private int currentRound = 0;       //aktuelle Runde
     private GameState gs = GameState.WAITING_FOR_NEXT_ROUND;        //aktueller Spielzustand
     private ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
-    private ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält
+    private ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
     private Color currentTrump = null;      //aktuelle Trumpffarbe
     private CardDeck deck = new CardDeck();     //Kardendeck
 
