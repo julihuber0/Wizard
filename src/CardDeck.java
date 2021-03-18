@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import ea.ActionFigur;
 
 public class CardDeck {
 
@@ -33,6 +34,7 @@ public class CardDeck {
     }
 
     //entfert die erste Karte vom Deck und gibt diese zurück
+    //asdf
     public Card removeCard()
     {
         return deck.remove(0);
