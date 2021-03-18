@@ -78,6 +78,9 @@ public class Game {
                 highCardPos = i;
                 break;
             }
+            if(stitch.get(i).getValue()==0) {
+                continue;
+            }
             if(stitch.get(i).getValue()>highestCard.getValue()&&stitch.get(i).getColor()==highestCard.getColor())
             {
                 highestCard = stitch.get(i);
