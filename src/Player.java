@@ -15,6 +15,10 @@ public class Player {
         currentStitches = 0;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPoints() {
         return points;
     }
