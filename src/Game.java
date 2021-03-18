@@ -91,6 +91,7 @@ public class Game {
                 continue;
             }
         }
+        return null;
     }
 
     //startet die nächste Runde
