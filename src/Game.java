@@ -10,10 +10,16 @@ public class Game {
     private ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
     private Color currentTrump = null;      //aktuelle Trumpffarbe
     private CardDeck deck = new CardDeck();     //Kardendeck
+    private Player currentPlayer = null;
 
     public Game(int playerCount) {
         setPlayerCount(playerCount);
         setMaxRounds(playerCount);
+    }
+
+    public void addPlayer(Player p)
+    {
+        players.add(p);
     }
 
     //legt fest, wie viele Spieler mitspielen
@@ -55,6 +61,38 @@ public class Game {
         }
     }
 
+    public Player calculateStitch()
+    {
+        Player p = players.get(0);
+        Card highestCard = stitch.get(0);
+        int highCardPos = 0;
+        for(int i = 1; i<playerCount; i++)
+        {
+            if(stitch.get(0).getValue()==14)
+            {
+                break;
+            }
+            if(stitch.get(i).getValue()==14)
+            {
+                highestCard = stitch.get(i);
+                highCardPos = i;
+                break;
+            }
+            if(stitch.get(i).getValue()>highestCard.getValue()&&stitch.get(i).getColor()==highestCard.getColor())
+            {
+                highestCard = stitch.get(i);
+                highCardPos = i;
+                continue;
+            }
+            if(highestCard.getColor()!=currentTrump&&stitch.get(i).getColor()==currentTrump)
+            {
+                highestCard = stitch.get(i);
+                highCardPos = i;
+                continue;
+            }
+        }
+    }
+
     //startet die nächste Runde
     public void startRound()
     {
@@ -63,13 +101,13 @@ public class Game {
         {
             distribute(currentRound);
             Card trumpCard = deck.removeCard();
-            if(trumpCard.getValue().equals("N"))
+            if(trumpCard.getValue()==0)
             {
                 currentTrump = null;
             }
-            else if(trumpCard.getValue().equals("Z"))
+            else if(trumpCard.getValue()==14)
             {
-                currentTrump = players.get(0).getBestColor();
+                currentTrump = players.get((currentRound-1)%playerCount).getBestColor();
             }
             else
             {
