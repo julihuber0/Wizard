@@ -35,7 +35,7 @@ public class Game {
     }
 
     //schaltet den Rundenzähler auf die nächste Runde, setzt GameState auf OVER, wenn letzte Runde
-    public void NextRound() {
+    public void nextRound() {
         if (currentRound < maxRounds) {
             currentRound++;
         } else {
@@ -58,7 +58,7 @@ public class Game {
     //startet die nächste Runde
     public void startRound()
     {
-        NextRound();
+        nextRound();
         if(gs != GameState.OVER)
         {
             distribute(currentRound);
