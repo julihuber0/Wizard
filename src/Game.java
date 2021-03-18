@@ -61,6 +61,7 @@ public class Game {
         }
     }
 
+    //gibt den Spieler zurück, dem der Stich gehört
     public Player calculateStitch()
     {
         Player p = players.get(0);      //Hier: player(0) kommt raus
@@ -68,26 +69,26 @@ public class Game {
         int highCardPos = 0;
         for(int i = 1; i<playerCount; i++)
         {
-            if(stitch.get(0).getValue()==14)
+            if(stitch.get(0).getValue()==14)    //Erste Karte Zauberer: Höchste Karte sofort gefunden
             {
                 break;
             }
-            if(stitch.get(i).getValue()==14)
+            if(stitch.get(i).getValue()==14)    //sobald ein Zauberer auftritt: Höchste Karte gefunden
             {
                 highestCard = stitch.get(i);
                 highCardPos = i;
                 break;
             }
-            if(stitch.get(i).getValue()==0) {
+            if(stitch.get(i).getValue()==0) {   //Narren werden übergangen, bei nur Narren sticht der Erste
                 continue;
             }
             if(stitch.get(i).getValue()>highestCard.getValue()&&stitch.get(i).getColor()==highestCard.getColor())
             {
-                highestCard = stitch.get(i);
+                highestCard = stitch.get(i);    //Wenn Kartenwert größer, als der der aktuellen höchsten Karte und gleiche Farbe: Neue hächste Karte
                 highCardPos = i;
                 continue;
             }
-            if(highestCard.getColor()!=currentTrump&&stitch.get(i).getColor()==currentTrump)
+            if(highestCard.getColor()!=currentTrump&&stitch.get(i).getColor()==currentTrump)    //Trumpf sticht Nicht-Trumpf
             {
                 highestCard = stitch.get(i);
                 highCardPos = i;
@@ -97,6 +98,33 @@ public class Game {
         return players.get(highCardPos);
     }
 
+    //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
+    public ArrayList<Player> GetNewFirstPlayer(Player p)
+    {
+        ArrayList<Player> newPlayers = new ArrayList<>();
+        newPlayers.add(p);
+        boolean behind = false;
+        for(int i = 0; i<playerCount; i++)
+        {
+            if(p.getId()==players.get(i).getId())
+            {
+                behind = true;
+            }
+            if(behind == true)
+            {
+                newPlayers.add(players.get(i));
+            }
+        }
+        Player f = players.get(0);
+        for(int i = 1; f.getId()!=p.getId(); i++)
+        {
+            newPlayers.add(f);
+            f = players.get(i);
+        }
+        return newPlayers;
+    }
+
+    //gibt die in diesem Stich erlaubte Farbe zurück
     public Color getAllowed()
     {
         Color allowed = null;
@@ -118,6 +146,7 @@ public class Game {
         return allowed;
     }
 
+    //gibt eine Liste mit allen erlaubten/spielbaren Karten eines Spielers zurück
     public ArrayList<Card> getAllowedCards(Player p)
     {
         Color allowed = getAllowed();
