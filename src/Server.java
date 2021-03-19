@@ -83,13 +83,13 @@ public class Server  implements  Runnable{
             NetzwerkVerbindung verbindung = server.naechsteVerbindungAusgeben();
 
             ClientHandler c = new ClientHandler(verbindung);
-            handlers.add(c);
 
             //Namen erfragen
-            c.setId(handlers.size()+1);
+            c.setId(handlers.size());
             c.sendeString("NF|");
 
-
+            //hinzufügen
+            handlers.add(c);
         }
     }
 

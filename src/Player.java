@@ -75,8 +75,9 @@ public class Player {
         hand.add(c);
     }
 
-    public void requestCard() {
+    public Card requestCard() {
 
+        return new Card(1,Color.BLUE);
     }
 
     public ArrayList<Card> getHand() {
