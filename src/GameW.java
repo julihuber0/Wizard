@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class GameW{
 
-    private int playerCount;        //Anzahl Mitspieler
-    private int maxRounds;      //Maximale Rundenzahl
-    private int currentRound = 0;       //aktuelle Runde
-    private GameState gs = GameState.WAITING_FOR_NEXT_ROUND;        //aktueller Spielzustand
-    private ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
-    private ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
-    private Color currentTrump = null;      //aktuelle Trumpffarbe
-    private CardDeck deck = new CardDeck();     //Kardendeck
-    private Player currentPlayer = null;
+    public int playerCount;        //Anzahl Mitspieler
+    public int maxRounds;      //Maximale Rundenzahl
+    public int currentRound = 0;       //aktuelle Runde
+    public GameState gs = GameState.WAITING_FOR_NEXT_ROUND;        //aktueller Spielzustand
+    public ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
+    public ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
+    public Color currentTrump = null;      //aktuelle Trumpffarbe
+    public CardDeck deck = new CardDeck();     //Kardendeck
+    public Player currentPlayer = null;
 
     public GameW() {
 
@@ -209,45 +209,36 @@ public class GameW{
     {
         gs = GameState.RUNNING;
         nextRound();
-        if(gs != GameState.OVER)
-        {
+        if(gs != GameState.OVER) {
             distribute(currentRound);
             Card trumpCard = deck.removeCard();
-            if(trumpCard.getValue()==0)
-            {
+            if (trumpCard.getValue() == 0) {
                 currentTrump = null;
-            }
-            else if(trumpCard.getValue()==14)
-            {
-                currentTrump = players.get((currentRound-1)%playerCount).getBestColor();
-            }
-            else
-            {
+            } else if (trumpCard.getValue() == 14) {
+                currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
+            } else {
                 currentTrump = trumpCard.getColor();
             }
-        }
-        for(int i = 0; i<currentRound; i++)
-        {
-            for(int j = 0; j<playerCount; j++)
-            {
-                stitch.add(players.get(i).requestCard());
+
+            //Spielphase
+            for (int i = 0; i < currentRound; i++) {
+                for (int j = 0; j < playerCount; j++) {
+                    stitch.add(players.get(i).requestCard());
+                }
+                Player p = calculateStitch();
+                p.addStitch();
+                stitch.clear();
+                players = getNewFirstPlayer(p);
             }
-            Player p = calculateStitch();
-            p.addStitch();
-            stitch.clear();
-            players = getNewFirstPlayer(p);
-        }
-        for(int i = 0; i<playerCount; i++)
-        {
-            if(players.get(i).getSaidStitches()==players.get(i).getCurrentStitches())
-            {
-                players.get(i).addPoints(20+(players.get(i).getCurrentStitches()*10));
+            //Punkteberechnung
+            for (int i = 0; i < playerCount; i++) {
+                if (players.get(i).getSaidStitches() == players.get(i).getCurrentStitches()) {
+                    players.get(i).addPoints(20 + (players.get(i).getCurrentStitches() * 10));
+                } else {
+                    players.get(i).addPoints(-(10 * Math.abs((players.get(i).getSaidStitches() - players.get(i).getCurrentStitches()))));
+                }
             }
-            else
-            {
-                players.get(i).addPoints(-(10*Math.abs((players.get(i).getSaidStitches()-players.get(i).getCurrentStitches()))));
-            }
+            gs = GameState.WAITING_FOR_NEXT_ROUND;
         }
-        gs = GameState.WAITING_FOR_NEXT_ROUND;
     }
 }
