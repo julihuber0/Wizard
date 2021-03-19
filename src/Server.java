@@ -31,6 +31,7 @@ public class Server  implements  Runnable{
      * GO: Game over
      * AR: Aktuelle Runde
      * AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
+     * AT: Aktueller Trumpf
      */
 
     public void update() {
@@ -102,7 +103,7 @@ public class Server  implements  Runnable{
     }
 
     public void bcCurrentTrump(Color c) {
-        String currentTrump = "CT|" + c;
+        String currentTrump = "AT|" + c;
         server.sendeString(currentTrump);
     }
 
