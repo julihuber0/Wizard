@@ -11,6 +11,8 @@ public class ClientHandler implements Empfaenger {
      * Der Name des Client, um den sich dieser Handler kümmert.
      */
     private String clientname = "";
+    private Server server;
+    private Player player;
 
     public ClientHandler(NetzwerkVerbindung verbindung) {
         this.verbindung = verbindung;
@@ -19,6 +21,13 @@ public class ClientHandler implements Empfaenger {
         verbindung.empfaengerHinzufuegen(this);
     }
 
+    public void setServer(Server server) {
+        this.server = server;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     public void sendeString(String s) {
         verbindung.sendeString(s);
@@ -43,6 +52,20 @@ public class ClientHandler implements Empfaenger {
             //Der Client hat eine Frage. Besser schnell was ausdenken.
             verbindung.sendeString("Nun " + clientname +", ich schätze die Antwort ist 42.");
         }
+        String key = string.substring(0,2);
+        String inhalt = string.substring(3);
+        switch (key) {
+            case "NA":
+                //Namen setzen
+
+
+                break;
+
+            default:
+                break;
+
+        }
+
     }
 
     @Override
@@ -71,6 +94,14 @@ public class ClientHandler implements Empfaenger {
 
     @Override
     public void empfangeBoolean (boolean b) {
+    }
+
+    public static void main(String[] args) {
+        String s = "0123456";
+        String key = s.substring(0,2);
+        System.out.println(key);
+        key = s.substring(3);
+        System.out.println(key);
     }
 
 }

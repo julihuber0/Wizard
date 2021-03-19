@@ -21,6 +21,8 @@ public class Server  implements  Runnable{
      * SB: Scoreboard
      * SS: Said Stitches
      * CS: Current Stiches
+     * NF: Namen fragen
+     * NA: Namen angeben
      */
 
     public void bcScoreboard(ArrayList<Player> players) {
@@ -78,6 +80,8 @@ public class Server  implements  Runnable{
             ClientHandler c = new ClientHandler(verbindung);
             handlers.add(c);
 
+            //Namen erfragen
+            c.sendeString("NF|");
 
 
         }
