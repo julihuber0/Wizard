@@ -28,6 +28,7 @@ public class Server  implements  Runnable{
      * CS: Current Stiches
      * NF: Namen fragen
      * NA: Namen angeben
+     * GO: Game over
      */
 
     public void update() {
@@ -74,6 +75,10 @@ public class Server  implements  Runnable{
             currentStitches = currentStitches + players.get(i).getCurrentStitches() + "|";
         }
         server.sendeString(currentStitches);
+    }
+
+    public void gameOver(String nameWinner) {
+        server.sendeString("GO|");
     }
 
     /**
