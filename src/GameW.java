@@ -226,12 +226,11 @@ public class GameW{
                 currentTrump = trumpCard.getColor();
             }
         }
-        //TODO: Stichlogik implementieren
         for(int i = 0; i<currentRound; i++)
         {
             for(int j = 0; j<playerCount; j++)
             {
-                //stitch.add(players.get(i).requestCard());
+                stitch.add(players.get(i).requestCard());
             }
             Player p = calculateStitch();
             p.addStitch();
@@ -250,9 +249,5 @@ public class GameW{
             }
         }
         gs = GameState.WAITING_FOR_NEXT_ROUND;
-    }
-
-    public void cardPlayed(int id, Card c) {
-
     }
 }
