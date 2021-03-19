@@ -4,6 +4,7 @@ public class Player {
 
     private String name;
     private int id;
+    private ArrayList<StitchHistory> hs = new ArrayList<>();
     private int points;
     private int saidStitches;   //angesagte Stiche
     private int currentStitches;    //schon gemachte Stiche
@@ -50,6 +51,7 @@ public class Player {
     public void addPoints(int i)
     {
         points = points + i;
+        hs.add(new StitchHistory(saidStitches, points));
     }
 
     public int getPoints() {
