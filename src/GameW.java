@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import ea.*;
 
-public class Game {
+public class GameW extends Game implements KlickReagierbar{
 
     private int playerCount;        //Anzahl Mitspieler
     private int maxRounds;      //Maximale Rundenzahl
@@ -11,10 +12,37 @@ public class Game {
     private Color currentTrump = null;      //aktuelle Trumpffarbe
     private CardDeck deck = new CardDeck();     //Kardendeck
     private Player currentPlayer = null;
+    private Maus maus;
 
-    public Game(int playerCount) {
+    public GameW(int playerCount) {
+        super(500,500);
+
         setPlayerCount(playerCount);
         setMaxRounds(playerCount);
+
+        maus = new Maus(
+
+                new Bild(0,0, "./src/images/fadenkreuz.gif"),
+
+                new Punkt(11, 11));
+        mausAnmelden(maus);
+
+        maus.klickReagierbarAnmelden(this);
+    }
+
+    @Override
+    public void klickReagieren(Punkt punkt) {
+
+        //Erstelle ein neues Rechteck (Maße: 30 x 50 px). Die Position ist hier egal.
+        Rechteck rechteck = new Rechteck(0,0, 30, 50);
+        //setze die Farbe auf Rot
+        rechteck.farbeSetzen("Rot");
+
+        //setze den Mittelpunkt des Kreises auf den Klick-Punkt
+        rechteck.mittelpunktSetzen(punkt);
+
+        //Mache das Rechteck sichtbar: An Wurzel anmelden.
+        wurzel.add(rechteck);
     }
 
     public void addPlayer(Player p)
@@ -96,6 +124,25 @@ public class Game {
             }
         }
         return players.get(highCardPos);
+    }
+
+    public Player getWinner()
+    {
+        if(gs==GameState.OVER)
+        {
+            int maxPoints = Integer.MIN_VALUE;
+            int bestPlayer = 0;
+            for(int i = 0; i<playerCount; i++)
+            {
+                if(players.get(i).getPoints()>maxPoints)
+                {
+                    maxPoints = players.get(i).getPoints();
+                    bestPlayer = i;
+                }
+            }
+            return players.get(bestPlayer);
+        }
+        return null;
     }
 
     //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
@@ -200,5 +247,10 @@ public class Game {
                 currentTrump = trumpCard.getColor();
             }
         }
+    }
+
+    public void tasteReagieren(int i)
+    {
+        System.out.println(i);
     }
 }
