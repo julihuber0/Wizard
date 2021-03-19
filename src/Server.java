@@ -5,6 +5,11 @@ public class Server  implements  Runnable{
 
     private ea.Server server;
     private ArrayList<ClientHandler> handlers = new ArrayList<ClientHandler>();
+    private GameW game;
+
+    public Server(GameW game) {
+        this.game = game;
+    }
 
     /**
      * Bietet Broadcast (BC) Methoden an
@@ -81,9 +86,15 @@ public class Server  implements  Runnable{
             handlers.add(c);
 
             //Namen erfragen
+            c.setId(handlers.size()+1);
             c.sendeString("NF|");
 
 
         }
+    }
+
+    public void addPlayer(String name, int id) {
+        Player p = new Player(name, id);
+        game.addPlayer(p);
     }
 }

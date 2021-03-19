@@ -251,4 +251,8 @@ public class GameW{
         }
         gs = GameState.WAITING_FOR_NEXT_ROUND;
     }
+
+    public void cardPlayed(int id, Card c) {
+
+    }
 }

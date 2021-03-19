@@ -11,6 +11,7 @@ public class ClientHandler implements Empfaenger {
      * Der Name des Client, um den sich dieser Handler kümmert.
      */
     private String clientname = "";
+    private int id;
     private Server server;
     private Player player;
 
@@ -27,6 +28,10 @@ public class ClientHandler implements Empfaenger {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void sendeString(String s) {

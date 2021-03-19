@@ -75,6 +75,10 @@ public class Player {
         hand.add(c);
     }
 
+    public void requestCard() {
+
+    }
+
     public ArrayList<Card> getHand() {
         return hand;
     }
