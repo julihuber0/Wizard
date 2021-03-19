@@ -92,6 +92,7 @@ public class ClientHandler implements Empfaenger {
     public void empfangeBoolean (boolean b) {
     }
 
+    //Nur um schnell was zu testen falls nötig
     public static void main(String[] args) {
         String s = "0123456";
         String key = s.substring(0,2);

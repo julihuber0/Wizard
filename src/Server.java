@@ -30,6 +30,12 @@ public class Server  implements  Runnable{
      * NA: Namen angeben
      */
 
+    public void update() {
+        bcScoreboard(game.players);
+        bcSaidStitches(game.players);
+        bcCurrentStitches(game.players);
+    }
+
     public void bcScoreboard(ArrayList<Player> players) {
         //zieht sich den Playername und den zugehörigen Score
         //formatiert ihn zu einem String (wird später in den Clients wieder decoded)
