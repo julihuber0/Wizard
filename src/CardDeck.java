@@ -50,6 +50,7 @@ public class CardDeck {
         return s;
     }
 
+    //Mischt das Kartendeck
     public void shuffleDeck()
     {
         Collections.shuffle(deck);

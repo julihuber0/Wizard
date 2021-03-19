@@ -55,6 +55,7 @@ public class Player {
         hs.add(new StitchHistory(saidStitches, points));
     }
 
+    //Sortiert die Hand des Spielers
     public void sortHand()
     {
         Collections.sort(hand);

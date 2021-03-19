@@ -66,6 +66,7 @@ public class Card implements Comparable<Card>{
         return 4;
     }
 
+    //Gibt die entsprechenden Sortierregeln für Karten vor
     public int compareTo(Card c)
     {
        if(c.getValue()==14)
