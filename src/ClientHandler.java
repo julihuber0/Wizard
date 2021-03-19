@@ -43,27 +43,18 @@ public class ClientHandler implements Empfaenger {
     @Override
     public void empfangeString (String string) {
         System.out.println("[Server hat empfangen:] " + string);
-        if(string.startsWith("Hallo, ich bin ")) {
-            //Client stellt sich vor => Namen übernehmen
 
-            //Der neue Clientname ist das, was nach "Hallo, ich bin " kommt.
-            this.clientname = string.substring(15);
-
-            //Zurückgrüßen
-            verbindung.sendeString("Hallo " + clientname
-                    + ", schön dich kennenzulernen. Ich kümmere mich heute nur um dich.");
-        }
-        if(string.startsWith("Was ist die Antwort?")) {
-            //Der Client hat eine Frage. Besser schnell was ausdenken.
-            verbindung.sendeString("Nun " + clientname +", ich schätze die Antwort ist 42.");
-        }
         String key = string.substring(0,2);
-        String inhalt = string.substring(3);
+        String content = string.substring(3);
         switch (key) {
             case "NA":
                 //Namen setzen
-
-
+                if(content.contains("|") || content.contains(";") ) {
+                    sendeString("NF|");
+                }
+                else {
+                    server.addPlayer(content,id);
+                }
                 break;
 
             default:

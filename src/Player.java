@@ -8,6 +8,7 @@ public class Player {
     private int saidStitches;   //angesagte Stiche
     private int currentStitches;    //schon gemachte Stiche
     public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
+    private ClientHandler ch;
 
     public Player(String name, int id) {
         this.name = name;
@@ -15,6 +16,10 @@ public class Player {
         points = 0;
         saidStitches = 0;
         currentStitches = 0;
+    }
+
+    public void setCh(ClientHandler ch) {
+        this.ch = ch;
     }
 
     public String getName() {

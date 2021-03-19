@@ -86,6 +86,7 @@ public class Server  implements  Runnable{
 
             //Namen erfragen
             c.setId(handlers.size());
+            c.setServer(this);
             c.sendeString("NF|");
 
             //hinzufügen
@@ -95,6 +96,8 @@ public class Server  implements  Runnable{
 
     public void addPlayer(String name, int id) {
         Player p = new Player(name, id);
+        p.setCh(handlers.get(id));
+        handlers.get(id).setPlayer(p);
         game.addPlayer(p);
     }
 }
