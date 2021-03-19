@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Player {
 
@@ -52,6 +53,11 @@ public class Player {
     {
         points = points + i;
         hs.add(new StitchHistory(saidStitches, points));
+    }
+
+    public void sortHand()
+    {
+        Collections.sort(hand);
     }
 
     public int getPoints() {

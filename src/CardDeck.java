@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CardDeck {
 
@@ -47,6 +48,11 @@ public class CardDeck {
             s = s+c.getValue()+"_in_"+c.getColor()+"; ";
         }
         return s;
+    }
+
+    public void shuffleDeck()
+    {
+        Collections.shuffle(deck);
     }
 
 }

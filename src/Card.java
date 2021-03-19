@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Card {
+public class Card implements Comparable<Card>{
 
     private Integer value;
     private Color color;
@@ -47,5 +47,51 @@ public class Card {
         colors.add(Color.GREEN);
         colors.add(Color.YELLOW);
         return colors;
+    }
+
+    public int getColorOrder()
+    {
+        if(this.color==Color.GREEN)
+        {
+            return 1;
+        }
+        if(this.color==Color.BLUE)
+        {
+            return 2;
+        }
+        if(this.color==Color.RED)
+        {
+            return 3;
+        }
+        return 4;
+    }
+
+    public int compareTo(Card c)
+    {
+       if(c.getValue()==14)
+       {
+           return 1;
+       }
+       if(c.getValue()==0)
+       {
+           return -1;
+       }
+       if(c.getValue()>this.getValue()&&c.getColorOrder()==this.getColorOrder())
+       {
+           return 1;
+       }
+       if(c.getValue()<this.getValue()&&c.getColorOrder()==this.getColorOrder())
+       {
+           return -1;
+       }
+       if(c.getColorOrder()<this.getColorOrder())
+       {
+           return -1;
+       }
+       if(c.getColorOrder()>this.getColorOrder())
+       {
+           return 1;
+       }
+       return -1;
     }
 }
