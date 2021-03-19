@@ -78,7 +78,9 @@ public class Server  implements  Runnable{
     }
 
     public void gameOver(String nameWinner) {
-        server.sendeString("GO|");
+        update();
+        String winner = "GO|" + nameWinner;
+        server.sendeString(winner);
     }
 
     /**

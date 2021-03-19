@@ -13,6 +13,7 @@ public class GameW{
     public Player currentPlayer = null;
     private Server server;
 
+    //ToDo nach jeder Änderung server.update asuführen
     public GameW() {
         server = new Server(this);
     }
