@@ -117,7 +117,7 @@ public class GameW{
     }
 
     //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
-    public ArrayList<Player> GetNewFirstPlayer(Player p)
+    public ArrayList<Player> getNewFirstPlayer(Player p)
     {
         ArrayList<Player> newPlayers = new ArrayList<>();
         newPlayers.add(p);
@@ -226,5 +226,29 @@ public class GameW{
                 currentTrump = trumpCard.getColor();
             }
         }
+        //TODO: Stichlogik implementieren
+        for(int i = 0; i<currentRound; i++)
+        {
+            for(int j = 0; j<playerCount; j++)
+            {
+                //stitch.add(players.get(i).requestCard());
+            }
+            Player p = calculateStitch();
+            p.addStitch();
+            stitch.clear();
+            players = getNewFirstPlayer(p);
+        }
+        for(int i = 0; i<playerCount; i++)
+        {
+            if(players.get(i).getSaidStitches()==players.get(i).getCurrentStitches())
+            {
+                players.get(i).addPoints(20+(players.get(i).getCurrentStitches()*10));
+            }
+            else
+            {
+                players.get(i).addPoints(-(10*Math.abs((players.get(i).getSaidStitches()-players.get(i).getCurrentStitches()))));
+            }
+        }
+        gs = GameState.WAITING_FOR_NEXT_ROUND;
     }
 }

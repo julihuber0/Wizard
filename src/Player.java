@@ -37,6 +37,16 @@ public class Player {
         this.hand = hand;
     }
 
+    public void addStitch()
+    {
+        currentStitches++;
+    }
+
+    public void addPoints(int i)
+    {
+        points = points + i;
+    }
+
     public int getPoints() {
         return points;
     }
