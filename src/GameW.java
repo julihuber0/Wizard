@@ -11,9 +11,10 @@ public class GameW{
     public Color currentTrump = null;      //aktuelle Trumpffarbe
     public CardDeck deck = new CardDeck();     //Kardendeck
     public Player currentPlayer = null;
+    private Server server;
 
     public GameW() {
-
+        server = new Server(this);
     }
 
     public void addPlayer(Player p)
@@ -240,5 +241,6 @@ public class GameW{
             }
             gs = GameState.WAITING_FOR_NEXT_ROUND;
         }
+        server.gameOver(getWinner().getName());
     }
 }
