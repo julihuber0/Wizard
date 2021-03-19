@@ -1,5 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        GameW g = new GameW(3);
+        GameW g = new GameW();
     }
 }
