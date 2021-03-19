@@ -25,13 +25,18 @@ public class Server  implements  Runnable{
      *
      * SB: Scoreboard
      * SS: Said Stitches
-     * CS: Current Stiches
+     * CS: Current Stiches (die Stiche, die bereits gemacht wurden in der Runde)
      * NF: Namen fragen
      * NA: Namen angeben
      * GO: Game over
+     * AR: Aktuelle Runde
+     * AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
      */
 
     public void update() {
+        bcCurrentRound(game.currentRound);
+        bcCurrentStitch(game.stitch);
+        bcCurrentTrump(game.currentTrump);
         bcScoreboard(game.players);
         bcSaidStitches(game.players);
         bcCurrentStitches(game.players);
@@ -81,6 +86,24 @@ public class Server  implements  Runnable{
         update();
         String winner = "GO|" + nameWinner;
         server.sendeString(winner);
+    }
+
+    public void bcCurrentRound(int round) {
+        String currentRound = "AR|" + round;
+        server.sendeString(currentRound);
+    }
+
+    public void bcCurrentStitch(ArrayList<Card> stitch) {
+        String currentStitch = "AS|";
+        for(Card c:stitch) {
+            currentStitch = currentStitch + c.getValue() + ";" + c.getColor() + "|";
+        }
+        server.sendeString(currentStitch);
+    }
+
+    public void bcCurrentTrump(Color c) {
+        String currentTrump = "CT|" + c;
+        server.sendeString(currentTrump);
     }
 
     /**
