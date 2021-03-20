@@ -29,12 +29,13 @@ public class CClient extends Client {
 
         String key = string.substring(0,2);
         String content = string.substring(3);
+        String[] lines;
         switch (key) {
             /*
              *  Broadcasts
              */
             case "SB":
-                String[] lines = content.split("/");
+                lines = content.split("/");
                 for(String line:lines) {
                     String[] s = line.split(";");
                     //erste Stelle ist die PlayerID
@@ -54,18 +55,25 @@ public class CClient extends Client {
                 break;
 
             case "SS":
-                String[] linesa = content.split("/");
-                for(String line:linesa) {
-
+                lines = content.split("/");
+                for(String line:lines) {
+                    String[] s = line.split(";");
+                    Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
+                    p.setSaidStitches(Integer.parseInt(s[1]));
                 }
                 break;
 
             case "CS":
-
+                lines = content.split("/");
+                for(String line:lines) {
+                    String[] s = line.split(";");
+                    Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
+                    p.setCurrentStitches(Integer.parseInt(s[1]));
+                }
                 break;
 
             case "AR":
-
+                gClient.currentRound = Integer.parseInt(content);
                 break;
 
             case "AS":
