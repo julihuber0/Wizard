@@ -42,6 +42,7 @@ public class Server  implements  Runnable{
 
         for (Player p:players) {
             score = score + p.getName() + ";";
+            ArrayList<StitchHistory> sh = p.getSh();
             score = score + p.getPoints() + "|";
         }
 
