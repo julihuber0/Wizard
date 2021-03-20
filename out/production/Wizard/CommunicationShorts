@@ -2,7 +2,6 @@
  Sendet immer ein zweistelliges Kürzel gefolgt von einem Strichpunkt an die Clients zur Identifikation
 
 Broadcasts:
- CP: CurrentPoints
  SB: Scoreboard
  SS: Said Stitches
  CS: Current Stiches (die Stiche, die bereits gemacht wurden in der Runde)
@@ -14,23 +13,14 @@ Broadcasts:
 
 Server zu Clients:
  NF: Namen fragen
+ ID: ID des eignen Spielers
+ HA: Hand des Spielers
+ HS: Spielbare Karten auf der Hand des Spielers
 
 
 Clients zu Server
  NA: Namen angeben
-
-
-
-
- GO: Game over
-
-
-Server zu Clients:
- NF: Namen fragen
-
-
-Clients zu Server
- NA: Namen angeben
+ GK: Gespielte Karte
 
 
 
