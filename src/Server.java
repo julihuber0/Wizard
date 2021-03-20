@@ -99,7 +99,7 @@ public class Server  implements  Runnable{
         server.sendeString(currentStitch);
     }
 
-    public void bcCurrentTrump(Color c) {
+    public void bcCurrentTrump(ColorW c) {
         String currentTrump = "AT/" + c;
         server.sendeString(currentTrump);
     }

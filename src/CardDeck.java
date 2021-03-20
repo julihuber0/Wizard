@@ -25,7 +25,7 @@ public class CardDeck {
         ArrayList<Card> newDeck = new ArrayList<>();
         for(Integer s:Card.getValidValues())
         {
-            for(Color c:Card.getValidColors())
+            for(ColorW c:Card.getValidColors())
             {
                 newDeck.add(new Card(s,c));
             }

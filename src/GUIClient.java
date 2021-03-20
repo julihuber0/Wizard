@@ -1,6 +1,5 @@
 import ea.*;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 public class GUIClient extends Game implements MausReagierbar {
@@ -24,7 +23,7 @@ public class GUIClient extends Game implements MausReagierbar {
     public ArrayList<Player> players = new ArrayList<>(); //currentPoints, hand, clienthandler sind nicht ausgefüllt
     public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
     public ArrayList<Card> stitch = new ArrayList<>(); //Karten, die aktuell auf dem Tisch liegen
-    public Color currentTrump = null;      //aktuelle Trumpffarbe
+    public ColorW currentTrump = null;      //aktuelle Trumpffarbe
     public int currentRound = 0;       //aktuelle Runde
     public int idCurrentPlayer = 0; //ID des Spielers, der gerade an der Reihe ist
     public int idSelf = 0; //ID des Spielers, der man selbst ist
@@ -60,7 +59,7 @@ public class GUIClient extends Game implements MausReagierbar {
         l.sichtbarSetzen(false);
         maus.anmelden(this, l, 3);
 
-
+        //TODO: Schleifenbedingungen an Spielerzahl etc. anpassen
         //Avatare erzeugen
         for(int i = 0; i<5; i++)
         {
@@ -103,6 +102,33 @@ public class GUIClient extends Game implements MausReagierbar {
             ownHand[i].sichtbarSetzen(true);
             maus.anmelden(this, ownHand[i], 100+i);
         }
+    }
+
+    public String askForTrumpColor()
+    {
+        return eingabeFordern("Gewünschte Trumpffarbe eingeben (grün, blau, rot, gelb)");
+    }
+
+    public ColorW validateTrump()
+    {
+        String trumpColor = askForTrumpColor();
+        if(trumpColor.equals("grün"))
+        {
+            return ColorW.GREEN;
+        }
+        if(trumpColor.equals("blau"))
+        {
+            return ColorW.BLUE;
+        }
+        if(trumpColor.equals("rot"))
+        {
+            return ColorW.RED;
+        }
+        if(trumpColor.equals("gelb"))
+        {
+            return ColorW.YELLOW;
+        }
+        return validateTrump();
     }
 
     public Player getPlayerByID(int id)

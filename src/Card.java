@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Card implements Comparable<Card>{
 
     private Integer value;
-    private Color color;
+    private ColorW colorW;
 
-    public Card(Integer value, Color color) {
+    public Card(Integer value, ColorW colorW) {
         this.value = value;
-        this.color = color;
-        String fileName = value+"_in_"+color;       //dient zur Zuweisung des richtigen Bildes zur Karte
+        this.colorW = colorW;
+        String fileName = value+"_in_"+ colorW;       //dient zur Zuweisung des richtigen Bildes zur Karte
     }
 
     public Integer getValue() {
@@ -19,12 +19,12 @@ public class Card implements Comparable<Card>{
         this.value = value;
     }
 
-    public Color getColor() {
-        return color;
+    public ColorW getColor() {
+        return colorW;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(ColorW colorW) {
+        this.colorW = colorW;
     }
 
     //gibt eine Liste mit allen möglichen Kartenwerten zurück
@@ -39,27 +39,27 @@ public class Card implements Comparable<Card>{
     }
 
     //gibt eine Liste mit allen möglichen Farben zurück
-    public static ArrayList<Color> getValidColors()
+    public static ArrayList<ColorW> getValidColors()
     {
-        ArrayList<Color> colors = new ArrayList<>();
-        colors.add(Color.BLUE);
-        colors.add(Color.RED);
-        colors.add(Color.GREEN);
-        colors.add(Color.YELLOW);
-        return colors;
+        ArrayList<ColorW> colorWS = new ArrayList<>();
+        colorWS.add(ColorW.BLUE);
+        colorWS.add(ColorW.RED);
+        colorWS.add(ColorW.GREEN);
+        colorWS.add(ColorW.YELLOW);
+        return colorWS;
     }
 
     public int getColorOrder()
     {
-        if(this.color==Color.GREEN)
+        if(this.colorW == ColorW.GREEN)
         {
             return 1;
         }
-        if(this.color==Color.BLUE)
+        if(this.colorW == ColorW.BLUE)
         {
             return 2;
         }
-        if(this.color==Color.RED)
+        if(this.colorW == ColorW.RED)
         {
             return 3;
         }

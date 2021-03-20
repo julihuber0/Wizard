@@ -103,7 +103,7 @@ public class Player {
 
     public Card requestCard() {
 
-        return new Card(1,Color.BLUE);
+        return new Card(1, ColorW.BLUE);
     }
 
     public ArrayList<Card> getHand() {
@@ -111,25 +111,25 @@ public class Player {
     }
 
     //gibt die Farbe aus, von der der Spieler die meisten Karten hat
-    public Color getBestColor() {
+    public ColorW getBestColor() {
         int[] colors = new int[4]; //0: green; 1: yellow; 2: red; 3: blue
         for (Card c : hand) {
-            if (c.getColor() == Color.GREEN) {
+            if (c.getColor() == ColorW.GREEN) {
                 colors[0]++;
             }
         }
         for (Card c : hand) {
-            if (c.getColor() == Color.YELLOW) {
+            if (c.getColor() == ColorW.YELLOW) {
                 colors[1]++;
             }
         }
         for (Card c : hand) {
-            if (c.getColor() == Color.RED) {
+            if (c.getColor() == ColorW.RED) {
                 colors[2]++;
             }
         }
         for (Card c : hand) {
-            if (c.getColor() == Color.BLUE) {
+            if (c.getColor() == ColorW.BLUE) {
                 colors[3]++;
             }
         }
@@ -143,14 +143,14 @@ public class Player {
         }
 
         if (maxPos == 0) {
-            return Color.GREEN;
+            return ColorW.GREEN;
         }
         if (maxPos == 1) {
-            return Color.YELLOW;
+            return ColorW.YELLOW;
         }
         if (maxPos == 2) {
-            return Color.RED;
+            return ColorW.RED;
         }
-        return Color.BLUE;
+        return ColorW.BLUE;
     }
 }

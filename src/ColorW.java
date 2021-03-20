@@ -1,3 +1,3 @@
-public enum Color {
+public enum ColorW {
     GREEN, BLUE, RED, YELLOW;
 }

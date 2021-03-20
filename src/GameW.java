@@ -8,7 +8,7 @@ public class GameW{
     public GameState gs = GameState.WAITING_FOR_NEXT_ROUND;        //aktueller Spielzustand
     public ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
     public ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
-    public Color currentTrump = null;      //aktuelle Trumpffarbe
+    public ColorW currentTrump = null;      //aktuelle Trumpffarbe
     public CardDeck deck = new CardDeck();     //Kardendeck
     public Player currentPlayer = null;
     private Server server;
@@ -149,9 +149,9 @@ public class GameW{
     }
 
     //gibt die in diesem Stich erlaubte Farbe zurück
-    public Color getAllowed()
+    public ColorW getAllowed()
     {
-        Color allowed = null;
+        ColorW allowed = null;
         if(stitch.get(0)!=null)
         {
             if(stitch.get(0).getValue()==14)
@@ -173,7 +173,7 @@ public class GameW{
     //gibt eine Liste mit allen erlaubten/spielbaren Karten eines Spielers zurück
     public ArrayList<Card> getAllowedCards(Player p)
     {
-        Color allowed = getAllowed();
+        ColorW allowed = getAllowed();
         ArrayList<Card> allowedCards = new ArrayList<>();
         if(allowed==null)
         {
