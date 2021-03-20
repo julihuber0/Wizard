@@ -23,6 +23,10 @@ public class GameW{
     public void addPlayer(Player p)
     {
         players.add(p);
+        for (Player player: players) {
+            String toSend = "PN|" + player.getName() + ";" + player.getId();
+            server.sendString(toSend);
+        }
     }
 
     //legt fest, wie viele Spieler mitspielen
