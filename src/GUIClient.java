@@ -13,11 +13,7 @@ public class GUIClient extends Game implements MausReagierbar {
     {
         super(700,700, "Wizard");
 
-        maus = new Maus(
-
-                new Bild(0,0, "./src/images/fadenkreuz.gif"),
-
-                new Punkt(11, 11));
+        maus = new Maus(new Bild(0,0, "./src/images/fadenkreuz.gif"), new Punkt(11, 11), false);
         mausAnmelden(maus);
 
         joinButton = new Text("Beitreten", 200, 200, 20);
