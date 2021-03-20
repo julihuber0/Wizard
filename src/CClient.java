@@ -3,14 +3,15 @@ import ea.Client;
 public class CClient extends Client {
 
     private String name;
+    private GUIClient gClient;
 
-    public CClient(String ipAdress) {
+    public CClient(String ipAdress, GUIClient gClient) {
         //Verbinde dich mit der übergebenen IP-Adresse und Port 7654.
         //Port 7654 ist willkürlich gewählt. Wichtig ist,
         //  - dass die Portnummer größer als 1024 ist.
         //  - dass der Client dieselbe Portnummer hat.
         super(ipAdress, 7654);
-        this.name = name;
+        this.gClient = gClient;
 
         //Warten, bis die Verbindung zum Server steht:
         //   Achtung: Wenn kein Server gefunden werden kann,
@@ -30,6 +31,8 @@ public class CClient extends Client {
         String content = string.substring(3);
         switch (key) {
             case "NF":
+                //Eingabe Namen auffordern
+                name = gClient.getInputName();
                 //Namen zurücksenden
                 String send = "NA|" + name;
                 super.sendeString(send);
