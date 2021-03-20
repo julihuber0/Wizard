@@ -77,10 +77,18 @@ public class CClient extends Client {
                 break;
 
             case "AS":
-
+                lines = content.split("/");
+                for(String line:lines) {
+                    String[] s = line.split(";");
+                    gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.valueOf(s[1])));
+                }
                 break;
 
             case "AT":
+                gClient.currentTrump = ColorW.valueOf(content);
+                break;
+
+            case "PN":
 
                 break;
 

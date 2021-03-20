@@ -138,5 +138,7 @@ public class Server  implements  Runnable{
         p.setCh(handlers.get(id));
         handlers.get(id).setPlayer(p);
         game.addPlayer(p);
+        String toSend = "PN|" + name + id;
+        server.sendeString(toSend);
     }
 }
