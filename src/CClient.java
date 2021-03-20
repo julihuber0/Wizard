@@ -30,6 +30,38 @@ public class CClient extends Client {
         String key = string.substring(0,2);
         String content = string.substring(3);
         switch (key) {
+            case "CP":
+
+                break;
+
+            case "SB":
+
+                break;
+
+            case "SS":
+
+                break;
+
+            case "CS":
+
+                break;
+
+            case "AR":
+
+                break;
+
+            case "AS":
+
+                break;
+
+            case "AT":
+
+                break;
+
+            case "GO":
+
+                break;
+
             case "NF":
                 //Eingabe Namen auffordern
                 name = gClient.getInputName();
