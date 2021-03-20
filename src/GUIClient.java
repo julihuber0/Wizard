@@ -35,6 +35,16 @@ public class GUIClient extends Game implements MausReagierbar {
         wurzel.add(m);
     }
 
+    public String getInputName()
+    {
+        return eingabeFordern("Name eingeben:");
+    }
+
+    public String getInputIP()
+    {
+        return eingabeFordern("Server-IP-Adresse:");
+    }
+
     @Override
     public void mausReagieren(int code)
     {
@@ -43,6 +53,8 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             case 0:
                 joinButton.sichtbarSetzen(false);
+                getInputName();
+                getInputIP();
                 backButton.sichtbarSetzen(true);
                 break;
             case 1:
