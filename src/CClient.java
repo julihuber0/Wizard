@@ -39,7 +39,9 @@ public class CClient extends Client {
                     String[] s = line.split(";");
                     //erste Stelle ist die PlayerID
                     Player p = gClient.getPlayerByID(Integer.getInteger(s[0]));
-                    for (int i = 1;i<s.length)
+                    for (int i = 1;i<s.length; i++) {
+
+                    }
                 }
                 break;
 
