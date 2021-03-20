@@ -10,6 +10,8 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text backButton;
     private Rechteck table;
     public Bild bg;
+    public Bild[] s = new Bild[5];
+    public Bild test;
 
     private CClient cClient;
 
@@ -45,10 +47,17 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, playButton, 2);
 
         //Game-GUI
+        //test = new Bild(50, 50, "./src/images")
         table = new Rechteck(200, 200, 200, 200);
         table.farbeSetzen(Color.GRAY);
         sichtbarMachen(table);
         table.sichtbarSetzen(false);
+        for(int i = 0; i<5; i++)
+        {
+            s[i] = new Bild(50+i*50, 20, "./src/images/avatar.png");
+            wurzel.add(s[i]);
+            s[i].sichtbarSetzen(false);
+        }
     }
 
     @Override
@@ -90,6 +99,10 @@ public class GUIClient extends Game implements MausReagierbar {
                 joinButton.sichtbarSetzen(false);
                 playButton.sichtbarSetzen(false);
                 table.sichtbarSetzen(true);
+                for(int i = 0; i<5; i++)
+                {
+                    s[i].sichtbarSetzen(true);
+                }
             default:
                 break;
         }
