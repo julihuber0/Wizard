@@ -2,9 +2,6 @@ import ea.Client;
 
 public class CClient extends Client {
 
-    /**
-     * Der Name des Clients, z.B. "Herbert".
-     */
     private String name;
 
     public CClient(String ipAdress, String name) {
@@ -34,7 +31,8 @@ public class CClient extends Client {
         switch (key) {
             case "NF":
                 //Namen zurücksenden
-
+                String send = "NA|" + name;
+                super.sendeString(send);
                 break;
 
             default:
