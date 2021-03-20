@@ -56,7 +56,7 @@ public class Player {
     public void addPoints(int i)
     {
         points = points + i;
-        hs.add(new StitchHistory(saidStitches, points));
+        sh.add(new StitchHistory(saidStitches, points));
     }
 
     //Sortiert die Hand des Spielers

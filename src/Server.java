@@ -31,6 +31,7 @@ public class Server  implements  Runnable{
         bcCurrentStitch(game.stitch);
         bcCurrentTrump(game.currentTrump);
         bcScoreboard(game.players);
+        bcCurrentPoints(game.players);
         bcSaidStitches(game.players);
         bcCurrentStitches(game.players);
     }
@@ -38,15 +39,27 @@ public class Server  implements  Runnable{
     public void bcScoreboard(ArrayList<Player> players) {
         //zieht sich den Playername und den zugehörigen Score
         //formatiert ihn zu einem String (wird später in den Clients wieder decoded)
-        String score = "SB;";
+        String score = "SB|";
 
         for (Player p:players) {
             score = score + p.getName() + ";";
             ArrayList<StitchHistory> sh = p.getSh();
-            score = score + p.getPoints() + "|";
+            for (StitchHistory stitchHistory:sh) {
+                score = score + stitchHistory.getStitches() + ";" + stitchHistory.getPoints() + ";";
+            }
+            score = score + "|";
         }
 
         //broadcastet den an alle Spieler
+        server.sendeString(score);
+    }
+
+    public void bcCurrentPoints(ArrayList<Player> players) {
+        //CP|Julian;50|Luca;100|
+        String score = "CP|";
+        for (Player p: players) {
+            score = score + p.getName() + ";" + p.getPoints() + "|";
+        }
         server.sendeString(score);
     }
 
