@@ -88,6 +88,10 @@ public class CClient extends Client {
                 gClient.currentTrump = ColorW.valueOf(content);
                 break;
 
+            case "AP":
+                gClient.currentPlayerID = Integer.parseInt(content);
+                break;
+
             case "PN":
                 String[] s = content.split(";");
                 gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));

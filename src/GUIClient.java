@@ -27,7 +27,7 @@ public class GUIClient extends Game implements MausReagierbar {
     public ArrayList<Card> stitch = new ArrayList<>(); //Karten, die aktuell auf dem Tisch liegen
     public ColorW currentTrump = null;      //aktuelle Trumpffarbe
     public int currentRound = 0;       //aktuelle Runde
-    public int idCurrentPlayer = 0; //ID des Spielers, der gerade an der Reihe ist
+    public int currentPlayerID = 0; //ID des Spielers, der gerade an der Reihe ist
     public int idSelf = 0; //ID des Spielers, der man selbst ist
 
 
