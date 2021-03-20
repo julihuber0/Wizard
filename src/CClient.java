@@ -54,7 +54,10 @@ public class CClient extends Client {
                 break;
 
             case "SS":
+                String[] linesa = content.split("/");
+                for(String line:linesa) {
 
+                }
                 break;
 
             case "CS":
