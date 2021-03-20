@@ -117,6 +117,7 @@ public class Server  implements  Runnable{
         while(!Thread.interrupted()) {
             //Gib mir die nächste Verbindung
             //   (warte ggf. solange, bis eine neue Verbindung zustandekommt)
+            System.out.println("Verbindung reingekommen");
             NetzwerkVerbindung verbindung = server.naechsteVerbindungAusgeben();
 
             ClientHandler c = new ClientHandler(verbindung);
