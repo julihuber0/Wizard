@@ -34,10 +34,10 @@ public class GUIClient extends Game implements MausReagierbar {
     {
         super(1200,650, "Wizard");
 
-        maus = new Maus(new Bild(0,0, "./Resources/pointer.png"), new Punkt(0, 0));
+        maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
 
-        bg = new Bild(0,0,"./Resources/BG2.jpg");
+        bg = new Bild(0,0,"Resources/BG2.jpg");
         sichtbarMachen(bg);
 
         //Main Menu
@@ -51,7 +51,7 @@ public class GUIClient extends Game implements MausReagierbar {
         playButton = new Text("Start", 200, 250, 20);
         sichtbarMachen(playButton);
         maus.anmelden(this, playButton, 2);
-        logo = new Bild(700, 100, "./Resources/wizardgame.png");
+        logo = new Bild(700, 100, "Resources/wizardgame.png");
         sichtbarMachen(logo);
 
         //Game-GUI
@@ -72,7 +72,7 @@ public class GUIClient extends Game implements MausReagierbar {
         //Avatare erzeugen
         for(int i = 0; i<5; i++)
         {
-            s[i] = new Bild(100+i*200, 20, "./Resources/avatar.png");
+            s[i] = new Bild(100+i*200, 20, "Resources/avatar.png");
             sichtbarMachen(s[i]);
             s[i].sichtbarSetzen(false);
         }
@@ -106,7 +106,7 @@ public class GUIClient extends Game implements MausReagierbar {
     {
         for(int i = 0; i<currentRound; i++)
         {
-            ownHand[i] = new Bild(50, 500, "./Resources/"+hand.get(i).getValue()+"_in_"+hand.get(i).getColor());
+            ownHand[i] = new Bild(50, 500, "Resources/"+hand.get(i).getValue()+"_in_"+hand.get(i).getColor());
             sichtbarMachen(ownHand[i]);
             ownHand[i].sichtbarSetzen(true);
             maus.anmelden(this, ownHand[i], 100+i);
