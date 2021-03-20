@@ -37,12 +37,12 @@ public class Server  implements  Runnable{
     }
 
     public void bcScoreboard(ArrayList<Player> players) {
-        //zieht sich den Playername und den zugehörigen Score
+        //zieht sich die PlayerID und den zugehörigen Score
         //formatiert ihn zu einem String (wird später in den Clients wieder decoded)
         String score = "SB|";
 
         for (Player p:players) {
-            score = score + p.getName() + ";";
+            score = score + p.getId() + ";";
             ArrayList<StitchHistory> sh = p.getSh();
             for (StitchHistory stitchHistory:sh) {
                 score = score + stitchHistory.getStitches() + ";" + stitchHistory.getPoints() + ";";
@@ -55,16 +55,16 @@ public class Server  implements  Runnable{
     }
 
     public void bcCurrentPoints(ArrayList<Player> players) {
-        //CP|Julian;50|Luca;100|
+        //CP|0;50|1;100|
         String score = "CP|";
         for (Player p: players) {
-            score = score + p.getName() + ";" + p.getPoints() + "|";
+            score = score + p.getId() + ";" + p.getPoints() + "|";
         }
         server.sendeString(score);
     }
 
     public void bcSaidStitches(ArrayList<Player> players) {
-        //Schlüssel ist die Position in der ArrayList
+        //Schlüssel ist die PlayerID
         //SC|1;3|2;0| -> Said Stichtes Player1 - 3 Stiche; Player2 - 0 Stiche
 
         String saidStitches = "SS|";
@@ -77,14 +77,13 @@ public class Server  implements  Runnable{
     }
 
     public void bcCurrentStitches(ArrayList<Player> players) {
-        //Schlüssel ist die Position in der ArrayList
+        //Schlüssel ist die PlayerID
         //SC|1;3|2;0| -> Current Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
 
         String currentStitches = "SS|";
 
-        for(int i = 0; i<players.size();i++) {
-            currentStitches = currentStitches + i + ";";
-            currentStitches = currentStitches + players.get(i).getCurrentStitches() + "|";
+        for(Player p: players) {
+            currentStitches = currentStitches + p.getId() + ";" + p.getCurrentStitches() + "|";
         }
         server.sendeString(currentStitches);
     }

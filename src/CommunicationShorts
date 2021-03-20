@@ -14,10 +14,14 @@ Broadcasts:
 
 Server zu Clients:
  NF: Namen fragen
+ ID: ID des eignen Spielers
+ HA: Hand des Spielers
+ HS: Spielbare Karten auf der Hand des Spielers
 
 
 Clients zu Server
  NA: Namen angeben
+ GK: Gespielte Karte
 
 
 
