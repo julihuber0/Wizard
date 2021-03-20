@@ -10,6 +10,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Bild bg;
     private Bild logo;
     private Bild[] s = new Bild[5];
+    private Rechteck[] marker = new Rechteck[5];
     private Text[] names = new Text[5];
     private Text[] saidStitches = new Text[5];
     private Text[] points = new Text[5];
@@ -60,6 +61,14 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, l, 3);
 
         //TODO: Schleifenbedingungen an Spielerzahl etc. anpassen
+
+        //Marker erzeugen
+        for(int i = 0; i<5; i++)
+        {
+            marker[i] = new Rechteck(100+i*200, 20, 150, 150);
+            sichtbarMachen(marker[i]);
+            marker[i].sichtbarSetzen(false);
+        }
         //Avatare erzeugen
         for(int i = 0; i<5; i++)
         {
@@ -213,6 +222,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 {
                     points[i].sichtbarSetzen(true);
                 }
+                marker[0].sichtbarSetzen(true);
                 l.sichtbarSetzen(true);
                 break;
             case 3:
