@@ -38,16 +38,16 @@ public class CClient extends Client {
                 for(String line:lines) {
                     String[] s = line.split(";");
                     //erste Stelle ist die PlayerID
-                    Player p = gClient.getPlayerByID(Integer.getInteger(s[0]));
+                    Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     //SH wird ganz geupdatet -> aktuelle Einträge löschen
                     p.clearSH();
                     int saidStitches = 0;
                     for (int i = 1;i<s.length; i++) {
                         if(i%2 != 0) {//ungerade -> angesagte Stiche
-                            saidStitches = Integer.getInteger(s[i]);
+                            saidStitches = Integer.parseInt(s[i]);
                         }
                         else {
-                            p.addToSH(saidStitches, Integer.getInteger(s[i]));
+                            p.addToSH(saidStitches, Integer.parseInt(s[i]));
                         }
                     }
                 }
@@ -89,7 +89,7 @@ public class CClient extends Client {
                 break;
 
             case "ID":
-                gClient.idSelf = Integer.getInteger(content);
+                gClient.idSelf = Integer.parseInt(content);
                 break;
 
             case "HA":

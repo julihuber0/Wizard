@@ -100,15 +100,16 @@ public class ClientHandler implements Empfaenger {
             String[] s = line.split(";");
             //erste Stelle ist die PlayerID
             //Player p = gClient.getPlayerByID(Integer.getInteger(s[0]));
+            System.out.println("Player: " + Integer.parseInt(s[0]));
             //SH wird ganz geupdatet -> aktuelle Einträge löschen
             //p.clearSH();
             int saidStitches = 0;
             for (int i = 1;i<s.length; i++) {
                 if(i%2 != 0) {//ungerade -> angesagte Stiche
-                    saidStitches = Integer.getInteger(s[i]);
+                    saidStitches = Integer.parseInt(s[i]);
                 }
                 else {
-                    System.out.println("Stitches: " + saidStitches + " Points: " + Integer.getInteger(s[i]));
+                    System.out.println("Stitches: " + saidStitches + " Points: " + Integer.parseInt(s[i]));
                     //p.addToSH(saidStitches, Integer.getInteger(s[i]));
                 }
             }
