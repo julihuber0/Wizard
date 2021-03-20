@@ -8,6 +8,9 @@ public class Server  implements  Runnable{
     private GameW game;
 
     public Server(GameW game) {
+        server = new ea.Server(7654);
+        new Thread(this).start();
+
         this.game = game;
     }
 
