@@ -16,7 +16,7 @@ public class Server  implements  Runnable{
      *
      * Methoden, die allgemein für alle Spieler zählen z.B. Trumpffarbe, Scoreboard etc.
      *
-     * Unerlaubte Zeichen Spielername ; |
+     * Unerlaubte Zeichen Spielername ; /
      *
      */
 
@@ -38,8 +38,8 @@ public class Server  implements  Runnable{
     public void bcScoreboard(ArrayList<Player> players) {
         //zieht sich die PlayerID und den zugehörigen Score
         //formatiert ihn zu einem String (wird später in den Clients wieder decoded)
-        //SB|0;2;30;3;10|1;1;-10;2;20|
-        //SB|PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte|PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte|
+        //SB/0;2;30;3;10/1;1;-10;2;20/
+        //SB/PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte/PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte/
         String score = "SB/";
 
         for (Player p:players) {
@@ -57,7 +57,7 @@ public class Server  implements  Runnable{
 
     public void bcSaidStitches(ArrayList<Player> players) {
         //Schlüssel ist die PlayerID
-        //SC|1;3|2;0| -> Said Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
+        //SC/1;3/2;0/ -> Said Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
 
         String saidStitches = "SS/";
 
@@ -70,7 +70,7 @@ public class Server  implements  Runnable{
 
     public void bcCurrentStitches(ArrayList<Player> players) {
         //Schlüssel ist die PlayerID
-        //SC|1;3|2;0| -> Current Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
+        //SC/1;3/2;0/ -> Current Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
 
         String currentStitches = "CS/";
 
@@ -121,7 +121,7 @@ public class Server  implements  Runnable{
             //Namen erfragen
             c.setId(handlers.size());
             c.setServer(this);
-            c.sendeString("NF|");
+            c.sendeString("NF/");
 
             //hinzufügen
             handlers.add(c);
