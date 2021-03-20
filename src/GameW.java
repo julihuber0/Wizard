@@ -62,7 +62,7 @@ public class GameW{
         }
     }
 
-    //gibt den Spieler zurück, dem der Stich gehört
+    //gibt den Spieler zurück, dem der aktuelle Stich gehört
     public Player calculateStitch()
     {
         Player p = players.get(0);      //Hier: player(0) kommt raus
