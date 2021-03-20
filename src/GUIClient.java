@@ -16,6 +16,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text[] points = new Text[5];
     private Bild[] stitchImage = new Bild[6];
     private Bild[] ownHand = new Bild[20];
+    private Text[] playerList = new Text[6];
     private Text l;
 
     private CClient cClient;
@@ -53,6 +54,14 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, playButton, 2);
         logo = new Bild(700, 100, "Resources/wizardgame.png");
         sichtbarMachen(logo);
+
+        //Mitspieler-Liste
+        for(int i = 0; i<6; i++)
+        {
+            playerList[i] = new Text("empty", 700, 150+i*20, 15);
+            sichtbarMachen(playerList[i]);
+            playerList[i].sichtbarSetzen(false);
+        }
 
         //Game-GUI
         l = new Text("Karte legen", 10, 350, 20);
@@ -100,6 +109,12 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(points[i]);
             points[i].sichtbarSetzen(false);
         }
+    }
+
+    public void showPlayerInList(String name, int id)
+    {
+        playerList[id].setzeInhalt(name);
+        playerList[id].sichtbarSetzen(true);
     }
 
     public void showOwnHand()
