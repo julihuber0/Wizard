@@ -4,7 +4,7 @@ public class CClient extends Client {
 
     private String name;
 
-    public CClient(String ipAdress, String name) {
+    public CClient(String ipAdress) {
         //Verbinde dich mit der übergebenen IP-Adresse und Port 7654.
         //Port 7654 ist willkürlich gewählt. Wichtig ist,
         //  - dass die Portnummer größer als 1024 ist.

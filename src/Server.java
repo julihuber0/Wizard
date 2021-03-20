@@ -23,15 +23,7 @@ public class Server  implements  Runnable{
     /**
      * Sendet immer ein zweistelliges Kürzel gefolgt von einem Strichpunkt an die Clients zur Identifikation
      *
-     * SB: Scoreboard
-     * SS: Said Stitches
-     * CS: Current Stiches (die Stiche, die bereits gemacht wurden in der Runde)
-     * NF: Namen fragen
-     * NA: Namen angeben
-     * GO: Game over
-     * AR: Aktuelle Runde
-     * AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
-     * AT: Aktueller Trumpf
+     * siehe File CommunicationShorts
      */
 
     public void update() {
