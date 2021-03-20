@@ -34,7 +34,7 @@ public class CClient extends Client {
              *  Broadcasts
              */
             case "SB":
-                String[] lines = content.split("|");
+                String[] lines = content.split("/");
                 for(String line:lines) {
                     String[] s = line.split(";");
                     //erste Stelle ist die PlayerID
@@ -84,7 +84,7 @@ public class CClient extends Client {
                 //Eingabe Namen auffordern
                 name = gClient.getInputName();
                 //Namen zurücksenden
-                String send = "NA|" + name;
+                String send = "NA/" + name;
                 super.sendeString(send);
                 break;
 

@@ -40,7 +40,7 @@ public class Server  implements  Runnable{
         //formatiert ihn zu einem String (wird später in den Clients wieder decoded)
         //SB|0;2;30;3;10|1;1;-10;2;20|
         //SB|PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte|PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte|
-        String score = "SB|";
+        String score = "SB/";
 
         for (Player p:players) {
             score = score + p.getId() + ";";
@@ -48,7 +48,7 @@ public class Server  implements  Runnable{
             for (StitchHistory stitchHistory:sh) {
                 score = score + stitchHistory.getStitches() + ";" + stitchHistory.getPoints() + ";";
             }
-            score = score + "|";
+            score = score + "/";
         }
 
         //broadcastet den an alle Spieler
@@ -59,11 +59,11 @@ public class Server  implements  Runnable{
         //Schlüssel ist die PlayerID
         //SC|1;3|2;0| -> Said Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
 
-        String saidStitches = "SS|";
+        String saidStitches = "SS/";
 
         for(Player p:players) {
             saidStitches = saidStitches + p.getId() + ";";
-            saidStitches = saidStitches + p.getSaidStitches() + "|";
+            saidStitches = saidStitches + p.getSaidStitches() + "/";
         }
         server.sendeString(saidStitches);
     }
@@ -72,35 +72,35 @@ public class Server  implements  Runnable{
         //Schlüssel ist die PlayerID
         //SC|1;3|2;0| -> Current Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
 
-        String currentStitches = "CS|";
+        String currentStitches = "CS/";
 
         for(Player p: players) {
-            currentStitches = currentStitches + p.getId() + ";" + p.getCurrentStitches() + "|";
+            currentStitches = currentStitches + p.getId() + ";" + p.getCurrentStitches() + "/";
         }
         server.sendeString(currentStitches);
     }
 
     public void gameOver(String nameWinner) {
         update();
-        String winner = "GO|" + nameWinner;
+        String winner = "GO/" + nameWinner;
         server.sendeString(winner);
     }
 
     public void bcCurrentRound(int round) {
-        String currentRound = "AR|" + round;
+        String currentRound = "AR/" + round;
         server.sendeString(currentRound);
     }
 
     public void bcCurrentStitch(ArrayList<Card> stitch) {
-        String currentStitch = "AS|";
+        String currentStitch = "AS/";
         for(Card c:stitch) {
-            currentStitch = currentStitch + c.getValue() + ";" + c.getColor() + "|";
+            currentStitch = currentStitch + c.getValue() + ";" + c.getColor() + "/";
         }
         server.sendeString(currentStitch);
     }
 
     public void bcCurrentTrump(Color c) {
-        String currentTrump = "AT|" + c;
+        String currentTrump = "AT/" + c;
         server.sendeString(currentTrump);
     }
 
