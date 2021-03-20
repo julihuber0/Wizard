@@ -47,6 +47,7 @@ public class GameW{
     public void nextRound() {
         if (currentRound < maxRounds) {
             currentRound++;
+            server.update();
         } else {
             gs = GameState.OVER;
         }
@@ -66,6 +67,7 @@ public class GameW{
         {
             p.sortHand();
         }
+        server.update();
     }
 
     //gibt den Spieler zurück, dem der aktuelle Stich gehört
@@ -220,35 +222,45 @@ public class GameW{
         if(gs != GameState.OVER) {
             distribute(currentRound);
             Card trumpCard = deck.removeCard();
+            server.update();
             if (trumpCard.getValue() == 0) {
                 currentTrump = null;
+                server.update();
             } else if (trumpCard.getValue() == 14) {
                 currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
+                server.update();
             } else {
                 currentTrump = trumpCard.getColor();
+                server.update();
             }
 
             //Spielphase
             for (int i = 0; i < currentRound; i++) {
                 for (int j = 0; j < playerCount; j++) {
                     stitch.add(players.get(i).requestCard());
+                    server.update();
                 }
                 Player p = calculateStitch();
                 p.addStitch();
+                server.update();
                 stitch.clear();
                 players = getNewFirstPlayer(p);
+                server.update();
             }
             //Punkteberechnung
             for (int i = 0; i < playerCount; i++) {
                 if (players.get(i).getSaidStitches() == players.get(i).getCurrentStitches()) {
                     players.get(i).addPoints(20 + (players.get(i).getCurrentStitches() * 10));
+                    server.update();
                 } else {
                     players.get(i).addPoints(-(10 * Math.abs((players.get(i).getSaidStitches() - players.get(i).getCurrentStitches()))));
+                    server.update();
                 }
             }
             gs = GameState.WAITING_FOR_NEXT_ROUND;
         }
         server.gameOver(getWinner().getName());
+        server.update();
     }
 
     public static void main(String[] args) throws UnknownHostException {

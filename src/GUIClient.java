@@ -201,9 +201,9 @@ public class GUIClient extends Game implements MausReagierbar {
         switch (code)
         {
             case 0:
-                getInputIP();
+                String ipAdress = getInputIP();
+                cClient = new CClient(ipAdress, this);
                 joinButton.sichtbarSetzen(false);
-                backButton.sichtbarSetzen(true);
                 logo.sichtbarSetzen(false);
                 break;
             case 1:
