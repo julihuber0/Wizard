@@ -1,6 +1,7 @@
 import ea.*;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class GUIClient extends Game implements MausReagierbar {
     private Maus maus;
@@ -9,6 +10,17 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text backButton;
     private Rechteck table;
     public Bild bg;
+
+    private CClient cClient;
+
+    //Nur zur Datenhaltung
+    public ArrayList<Player> players = new ArrayList<>();
+    public ArrayList<Card> stitch = new ArrayList<>();
+    public Color currentTrump = null;      //aktuelle Trumpffarbe
+    public int currentRound = 0;       //aktuelle Runde
+    public int idCurrentPlayer = 0; //ID des Spielers, der gerade an der Reihe ist
+    public int idSelf = 0; //ID des Spielers, der man selbst ist
+
 
     public GUIClient()
     {
