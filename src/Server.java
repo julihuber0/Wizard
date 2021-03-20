@@ -27,18 +27,20 @@ public class Server  implements  Runnable{
      */
 
     public void update() {
-        bcCurrentRound(game.currentRound);
-        bcCurrentStitch(game.stitch);
-        bcCurrentTrump(game.currentTrump);
         bcScoreboard(game.players);
         bcCurrentPoints(game.players);
         bcSaidStitches(game.players);
         bcCurrentStitches(game.players);
+        bcCurrentRound(game.currentRound);
+        bcCurrentStitch(game.stitch);
+        bcCurrentTrump(game.currentTrump);
     }
 
     public void bcScoreboard(ArrayList<Player> players) {
         //zieht sich die PlayerID und den zugehörigen Score
         //formatiert ihn zu einem String (wird später in den Clients wieder decoded)
+        //SB|0;2;30;3;10|1;1;-10;2;20|
+        //SB|PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte|PlayerID;angesagteStiche;Punkte;angesagteStiche;Punkte|
         String score = "SB|";
 
         for (Player p:players) {

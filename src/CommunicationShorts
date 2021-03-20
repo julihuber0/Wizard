@@ -2,8 +2,8 @@
  Sendet immer ein zweistelliges Kürzel gefolgt von einem Strichpunkt an die Clients zur Identifikation
 
 Broadcasts:
- CP: CurrentPoints
  SB: Scoreboard
+ CP: CurrentPoints
  SS: Said Stitches
  CS: Current Stiches (die Stiche, die bereits gemacht wurden in der Runde)
  AR: Aktuelle Runde
