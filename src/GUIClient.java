@@ -8,13 +8,17 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text playButton;
     private Text backButton;
     private Rechteck table;
+    public Bild bg;
 
     public GUIClient()
     {
-        super(700,700, "Wizard");
+        super(1200,650, "Wizard");
 
-        maus = new Maus(new Bild(0,0, "./src/images/fadenkreuz.gif"), new Punkt(11, 11), false);
+        maus = new Maus(new Bild(0,0, "./src/images/fadenkreuz.gif"), new Punkt(11, 11));
         mausAnmelden(maus);
+
+        //bg = new Bild(0,0,"./src/images/BG.jpg");
+        //sichtbarMachen(bg);
 
         joinButton = new Text("Beitreten", 200, 200, 20);
         sichtbarMachen(joinButton);
@@ -61,8 +65,8 @@ public class GUIClient extends Game implements MausReagierbar {
         switch (code)
         {
             case 0:
-                joinButton.sichtbarSetzen(false);
                 getInputIP();
+                joinButton.sichtbarSetzen(false);
                 backButton.sichtbarSetzen(true);
                 break;
             case 1:
