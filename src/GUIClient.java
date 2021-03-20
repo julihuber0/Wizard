@@ -1,7 +1,9 @@
 import ea.*;
 
-public class GUIClient extends Game implements KlickReagierbar {
+public class GUIClient extends Game implements MausReagierbar {
     private Maus maus;
+    private Text joinButton;
+    private Text backButton;
 
     public GUIClient()
     {
@@ -14,7 +16,13 @@ public class GUIClient extends Game implements KlickReagierbar {
                 new Punkt(11, 11));
         mausAnmelden(maus);
 
-        maus.klickReagierbarAnmelden(this);
+        joinButton = new Text("Beitreten", 200, 200, 20);
+        sichtbarMachen(joinButton);
+        backButton = new Text("Zurück", 200, 300, 20);
+        sichtbarMachen(backButton);
+        backButton.sichtbarSetzen(false);
+        maus.mausReagierbarAnmelden(this, joinButton);
+        maus.mausReagierbarAnmelden(this, backButton);
     }
 
     @Override
@@ -22,18 +30,24 @@ public class GUIClient extends Game implements KlickReagierbar {
 
     }
 
+    public void sichtbarMachen(Raum m)
+    {
+        wurzel.add(m);
+    }
+
     @Override
-    public void klickReagieren(Punkt punkt) {
-
-        //Erstelle ein neues Rechteck (Maße: 30 x 50 px). Die Position ist hier egal.
-        Rechteck rechteck = new Rechteck(0,0, 30, 50);
-        //setze die Farbe auf Rot
-        rechteck.farbeSetzen("Rot");
-
-        //setze den Mittelpunkt des Kreises auf den Klick-Punkt
-        rechteck.mittelpunktSetzen(punkt);
-
-        //Mache das Rechteck sichtbar: An Wurzel anmelden.
-        wurzel.add(rechteck);
+    public void mausReagieren(int code)
+    {
+        System.out.println(code);
+        if(code == 0)
+        {
+            joinButton.sichtbarSetzen(false);
+            backButton.sichtbarSetzen(true);
+        }
+        if(code == 1)
+        {
+            joinButton.sichtbarSetzen(true);
+            backButton.sichtbarSetzen(false);
+        }
     }
 }
