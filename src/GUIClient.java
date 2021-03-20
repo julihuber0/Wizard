@@ -17,8 +17,8 @@ public class GUIClient extends Game implements MausReagierbar {
         maus = new Maus(new Bild(0,0, "./src/images/fadenkreuz.gif"), new Punkt(11, 11));
         mausAnmelden(maus);
 
-        //bg = new Bild(0,0,"./src/images/BG.jpg");
-        //sichtbarMachen(bg);
+        bg = new Bild(0,0,"./src/images/BG2.jpg");
+        sichtbarMachen(bg);
 
         joinButton = new Text("Beitreten", 200, 200, 20);
         sichtbarMachen(joinButton);
