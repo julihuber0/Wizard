@@ -1,3 +1,5 @@
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class GameW{
@@ -247,5 +249,10 @@ public class GameW{
             gs = GameState.WAITING_FOR_NEXT_ROUND;
         }
         server.gameOver(getWinner().getName());
+    }
+
+    public static void main(String[] args) throws UnknownHostException {
+        System.out.println(InetAddress.getLocalHost());
+        GameW gameW = new GameW();
     }
 }
