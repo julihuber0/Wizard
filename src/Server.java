@@ -28,7 +28,6 @@ public class Server  implements  Runnable{
 
     public void update() {
         bcScoreboard(game.players);
-        bcCurrentPoints(game.players);
         bcSaidStitches(game.players);
         bcCurrentStitches(game.players);
         bcCurrentRound(game.currentRound);
@@ -56,18 +55,9 @@ public class Server  implements  Runnable{
         server.sendeString(score);
     }
 
-    public void bcCurrentPoints(ArrayList<Player> players) {
-        //CP|0;50|1;100|
-        String score = "CP|";
-        for (Player p: players) {
-            score = score + p.getId() + ";" + p.getPoints() + "|";
-        }
-        server.sendeString(score);
-    }
-
     public void bcSaidStitches(ArrayList<Player> players) {
         //Schlüssel ist die PlayerID
-        //SC|1;3|2;0| -> Said Stichtes Player1 - 3 Stiche; Player2 - 0 Stiche
+        //SC|1;3|2;0| -> Said Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
 
         String saidStitches = "SS|";
 
@@ -82,7 +72,7 @@ public class Server  implements  Runnable{
         //Schlüssel ist die PlayerID
         //SC|1;3|2;0| -> Current Stitches Player1 - 3 Stiche; Player2 - 0 Stiche
 
-        String currentStitches = "SS|";
+        String currentStitches = "CS|";
 
         for(Player p: players) {
             currentStitches = currentStitches + p.getId() + ";" + p.getCurrentStitches() + "|";

@@ -30,12 +30,17 @@ public class CClient extends Client {
         String key = string.substring(0,2);
         String content = string.substring(3);
         switch (key) {
-            case "CP":
-
-                break;
-
+            /*
+             *  Broadcasts
+             */
             case "SB":
-
+                String[] lines = content.split("|");
+                for(String line:lines) {
+                    String[] s = line.split(";");
+                    //erste Stelle ist die PlayerID
+                    Player p = gClient.getPlayerByID(Integer.getInteger(s[0]));
+                    for (int i = 1;i<s.length)
+                }
                 break;
 
             case "SS":
@@ -62,6 +67,9 @@ public class CClient extends Client {
 
                 break;
 
+            /*
+            *  Clientspezifisches
+            */
             case "NF":
                 //Eingabe Namen auffordern
                 name = gClient.getInputName();
@@ -70,6 +78,17 @@ public class CClient extends Client {
                 super.sendeString(send);
                 break;
 
+            case "ID":
+                gClient.idSelf = Integer.getInteger(content);
+                break;
+
+            case "HA":
+                //ToDo zwei Fälle
+                break;
+
+            case "HS":
+
+                break;
             default:
                 break;
 
