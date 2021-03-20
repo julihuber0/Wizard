@@ -5,6 +5,7 @@
       <element id="module-output" name="Wizard" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../engine-alpha.jar" path-in-jar="/" />
       <element id="dir-copy" path="$PROJECT_DIR$/Resources" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src" />
     </root>
   </artifact>
 </component>

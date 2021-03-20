@@ -186,6 +186,15 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    public void markPlayer(int p)
+    {
+        for(int i = 0; i<5; i++)
+        {
+            marker[i].sichtbarSetzen(false);
+        }
+        marker[p].sichtbarSetzen(true);
+    }
+
     @Override
     public void mausReagieren(int code)
     {
@@ -226,7 +235,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 l.sichtbarSetzen(true);
                 break;
             case 3:
-                karteLegen();
+                markPlayer(1);
                 break;
             default:
                 break;
