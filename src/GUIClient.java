@@ -14,7 +14,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private CClient cClient;
 
     //Nur zur Datenhaltung
-    public ArrayList<Player> players = new ArrayList<>(); //hand, clienthandler sind nicht ausgefüllt
+    public ArrayList<Player> players = new ArrayList<>(); //currentPoints, hand, clienthandler sind nicht ausgefüllt
     public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
     public ArrayList<Card> stitch = new ArrayList<>(); //Karten, die aktuell auf dem Tisch liegen
     public Color currentTrump = null;      //aktuelle Trumpffarbe
