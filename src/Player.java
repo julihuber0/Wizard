@@ -24,6 +24,14 @@ public class Player {
         return sh;
     }
 
+    public void addToSH(int stitches, int points) {
+        sh.add(new StitchHistory(stitches, points));
+    }
+
+    public void clearSH() {
+        sh.clear();
+    }
+
     public void setCh(ClientHandler ch) {
         this.ch = ch;
     }

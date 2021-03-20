@@ -39,8 +39,16 @@ public class CClient extends Client {
                     String[] s = line.split(";");
                     //erste Stelle ist die PlayerID
                     Player p = gClient.getPlayerByID(Integer.getInteger(s[0]));
+                    //SH wird ganz geupdatet -> aktuelle Einträge löschen
+                    p.clearSH();
+                    int saidStitches = 0;
                     for (int i = 1;i<s.length; i++) {
-
+                        if(i%2 != 0) {//ungerade -> angesagte Stiche
+                            saidStitches = Integer.getInteger(s[i]);
+                        }
+                        else {
+                            p.addToSH(saidStitches, Integer.getInteger(s[i]));
+                        }
                     }
                 }
                 break;
