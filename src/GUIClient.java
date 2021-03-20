@@ -21,8 +21,8 @@ public class GUIClient extends Game implements MausReagierbar {
         backButton = new Text("Zurück", 200, 300, 20);
         sichtbarMachen(backButton);
         backButton.sichtbarSetzen(false);
-        maus.mausReagierbarAnmelden(this, joinButton);
-        maus.mausReagierbarAnmelden(this, backButton);
+        maus.anmelden(this, joinButton, 0);
+        maus.anmelden(this, backButton, 1);
     }
 
     @Override
@@ -39,15 +39,18 @@ public class GUIClient extends Game implements MausReagierbar {
     public void mausReagieren(int code)
     {
         System.out.println(code);
-        if(code == 0)
+        switch (code)
         {
-            joinButton.sichtbarSetzen(false);
-            backButton.sichtbarSetzen(true);
-        }
-        if(code == 1)
-        {
-            joinButton.sichtbarSetzen(true);
-            backButton.sichtbarSetzen(false);
+            case 0:
+                joinButton.sichtbarSetzen(false);
+                backButton.sichtbarSetzen(true);
+                break;
+            case 1:
+                joinButton.sichtbarSetzen(true);
+                backButton.sichtbarSetzen(false);
+                break;
+            default:
+                break;
         }
     }
 }
