@@ -180,7 +180,6 @@ public class GUIClient extends Game implements MausReagierbar {
     @Override
     public void mausReagieren(int code)
     {
-        System.out.println(code);
         switch (code)
         {
             case 0:
