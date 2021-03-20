@@ -89,7 +89,8 @@ public class CClient extends Client {
                 break;
 
             case "PN":
-
+                String[] s = content.split(";");
+                gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
                 break;
 
             case "GO":
