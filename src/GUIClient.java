@@ -11,7 +11,8 @@ public class GUIClient extends Game implements MausReagierbar {
     private Bild bg;
     private Bild[] s = new Bild[5];
     private Text[] names = new Text[5];
-    private Bild[] stitchImage = new Bild[5];
+    private Bild[] stitchImage = new Bild[6];
+    private Text l;
 
     private CClient cClient;
 
@@ -47,6 +48,10 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, playButton, 2);
 
         //Game-GUI
+        l = new Text("Karte legen", 10, 350, 20);
+        sichtbarMachen(l);
+        l.sichtbarSetzen(false);
+        maus.anmelden(this, l, 3);
 
 
         //Avatare erzeugen
@@ -98,6 +103,20 @@ public class GUIClient extends Game implements MausReagierbar {
         return eingabeFordern("Server-IP-Adresse:");
     }
 
+    public void karteLegen()
+    {
+        for(int i = 0; i<6; i++)
+        {
+            if(stitchImage[i]==null)
+            {
+                System.out.println("1");
+                stitchImage[i] = new Bild(200+i*50, 200, "./src/images/king.png");
+                sichtbarMachen(stitchImage[i]);
+                break;
+            }
+        }
+    }
+
     @Override
     public void mausReagieren(int code)
     {
@@ -124,6 +143,11 @@ public class GUIClient extends Game implements MausReagierbar {
                 {
                     names[i].sichtbarSetzen(true);
                 }
+                l.sichtbarSetzen(true);
+                break;
+            case 3:
+                karteLegen();
+                break;
             default:
                 break;
         }
