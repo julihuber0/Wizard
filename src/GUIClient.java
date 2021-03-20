@@ -1,13 +1,17 @@
 import ea.*;
 
+import java.awt.Color;
+
 public class GUIClient extends Game implements MausReagierbar {
     private Maus maus;
     private Text joinButton;
+    private Text playButton;
     private Text backButton;
+    private Rechteck table;
 
     public GUIClient()
     {
-        super(500,500, "Wizard");
+        super(700,700, "Wizard");
 
         maus = new Maus(
 
@@ -23,6 +27,15 @@ public class GUIClient extends Game implements MausReagierbar {
         backButton.sichtbarSetzen(false);
         maus.anmelden(this, joinButton, 0);
         maus.anmelden(this, backButton, 1);
+        playButton = new Text("Start", 200, 250, 20);
+        sichtbarMachen(playButton);
+        maus.anmelden(this, playButton, 2);
+
+        //Game-GUI
+        table = new Rechteck(200, 200, 200, 200);
+        table.farbeSetzen(Color.GRAY);
+        sichtbarMachen(table);
+        table.sichtbarSetzen(false);
     }
 
     @Override
@@ -53,7 +66,6 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             case 0:
                 joinButton.sichtbarSetzen(false);
-                getInputName();
                 getInputIP();
                 backButton.sichtbarSetzen(true);
                 break;
@@ -61,6 +73,10 @@ public class GUIClient extends Game implements MausReagierbar {
                 joinButton.sichtbarSetzen(true);
                 backButton.sichtbarSetzen(false);
                 break;
+            case 2:
+                joinButton.sichtbarSetzen(false);
+                playButton.sichtbarSetzen(false);
+                table.sichtbarSetzen(true);
             default:
                 break;
         }
