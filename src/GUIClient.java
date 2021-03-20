@@ -9,9 +9,13 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text playButton;
     private Text backButton;
     private Bild bg;
+    private Bild logo;
     private Bild[] s = new Bild[5];
     private Text[] names = new Text[5];
+    private Text[] saidStitches = new Text[5];
+    private Text[] points = new Text[5];
     private Bild[] stitchImage = new Bild[6];
+    private Bild[] ownHand = new Bild[20];
     private Text l;
 
     private CClient cClient;
@@ -36,6 +40,7 @@ public class GUIClient extends Game implements MausReagierbar {
         bg = new Bild(0,0,"./src/images/BG2.jpg");
         sichtbarMachen(bg);
 
+        //Main Menu
         joinButton = new Text("Beitreten", 200, 200, 20);
         sichtbarMachen(joinButton);
         backButton = new Text("Zurück", 200, 300, 20);
@@ -46,6 +51,8 @@ public class GUIClient extends Game implements MausReagierbar {
         playButton = new Text("Start", 200, 250, 20);
         sichtbarMachen(playButton);
         maus.anmelden(this, playButton, 2);
+        logo = new Bild(700, 100, "./src/images/wizardgame.png");
+        sichtbarMachen(logo);
 
         //Game-GUI
         l = new Text("Karte legen", 10, 350, 20);
@@ -68,6 +75,33 @@ public class GUIClient extends Game implements MausReagierbar {
             names[i] = new Text("Spieler"+(i+2), 110+i*200, 180, 15);
             sichtbarMachen(names[i]);
             names[i].sichtbarSetzen(false);
+        }
+
+        //Angesagte Stiche anzeigen
+        for(int i = 0 ; i<5; i++)
+        {
+            saidStitches[i] = new Text("Angesagt: ", 110+i*200, 200, 15);
+            sichtbarMachen(saidStitches[i]);
+            saidStitches[i].sichtbarSetzen(false);
+        }
+
+        //Punkte anzeigen
+        for(int i = 0; i<5; i++)
+        {
+            points[i] = new Text("Punkte: ", 110+i*200, 220, 15);
+            sichtbarMachen(points[i]);
+            points[i].sichtbarSetzen(false);
+        }
+    }
+
+    public void showOwnHand()
+    {
+        for(int i = 0; i<currentRound; i++)
+        {
+            ownHand[i] = new Bild(50, 500, "./src/images/"+hand.get(i).getValue()+"_in_"+hand.get(i).getColor());
+            sichtbarMachen(ownHand[i]);
+            ownHand[i].sichtbarSetzen(true);
+            maus.anmelden(this, ownHand[i], 100+i);
         }
     }
 
@@ -110,7 +144,7 @@ public class GUIClient extends Game implements MausReagierbar {
             if(stitchImage[i]==null)
             {
                 System.out.println("1");
-                stitchImage[i] = new Bild(200+i*50, 200, "./src/images/king.png");
+                stitchImage[i] = new Bild(200+i*50, 300, "./src/images/king.png");
                 sichtbarMachen(stitchImage[i]);
                 break;
             }
@@ -127,14 +161,17 @@ public class GUIClient extends Game implements MausReagierbar {
                 getInputIP();
                 joinButton.sichtbarSetzen(false);
                 backButton.sichtbarSetzen(true);
+                logo.sichtbarSetzen(false);
                 break;
             case 1:
                 joinButton.sichtbarSetzen(true);
                 backButton.sichtbarSetzen(false);
+                logo.sichtbarSetzen(true);
                 break;
             case 2:
                 joinButton.sichtbarSetzen(false);
                 playButton.sichtbarSetzen(false);
+                logo.sichtbarSetzen(false);
                 for(int i = 0; i<5; i++)
                 {
                     s[i].sichtbarSetzen(true);
@@ -142,6 +179,14 @@ public class GUIClient extends Game implements MausReagierbar {
                 for(int i = 0; i<5; i++)
                 {
                     names[i].sichtbarSetzen(true);
+                }
+                for(int i = 0; i<5; i++)
+                {
+                    saidStitches[i].sichtbarSetzen(true);
+                }
+                for(int i = 0; i<5; i++)
+                {
+                    points[i].sichtbarSetzen(true);
                 }
                 l.sichtbarSetzen(true);
                 break;

@@ -60,6 +60,10 @@ public class GameW{
                 p.addCards(deck.removeCard());
             }
         }
+        for(Player p:players)
+        {
+            p.sortHand();
+        }
     }
 
     //gibt den Spieler zurück, dem der aktuelle Stich gehört
