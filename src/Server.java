@@ -10,7 +10,7 @@ public class Server  implements  Runnable{
     public Server(GameW game) {
         server = new ea.Server(7654);
         new Thread(this).start();
-
+        System.out.println("Heeeeerree");
         this.game = game;
     }
 
