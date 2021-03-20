@@ -33,7 +33,7 @@ public class GUIClient extends Game implements MausReagierbar {
     {
         super(1200,650, "Wizard");
 
-        maus = new Maus(new Bild(0,0, "./src/images/fadenkreuz.gif"), new Punkt(11, 11));
+        maus = new Maus(new Bild(0,0, "./src/images/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
 
         bg = new Bild(0,0,"./src/images/BG2.jpg");
