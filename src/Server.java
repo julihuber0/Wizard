@@ -36,6 +36,7 @@ public class Server  implements  Runnable{
         bcCurrentRound(game.currentRound);
         bcCurrentStitch(game.stitch);
         bcCurrentTrump(game.currentTrump);
+        bcCurrentPlayerID(game.currentPlayerID);
     }
 
     public void bcScoreboard(ArrayList<Player> players) {
@@ -105,6 +106,11 @@ public class Server  implements  Runnable{
     public void bcCurrentTrump(ColorW c) {
         String currentTrump = "AT/" + c;
         server.sendeString(currentTrump);
+    }
+
+    public void bcCurrentPlayerID (int playerID) {
+        String currentPlayerID = "AP|" + playerID;
+        server.sendeString(currentPlayerID);
     }
 
     /**
