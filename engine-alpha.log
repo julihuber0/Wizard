@@ -1,1 +1,1 @@
-[Sat Mar 20 18:12:58 CET 2021][ERROR] Das Bild konnte nicht geladen werden: ./src/images/avatar (ImageLoader.java:51)
+[Sun Mar 21 01:22:07 CET 2021][ERROR] Es gab Input/Output - Schwierigkeiten. Sind ausreichende Rechte fuer Internet etc. vorhanden? Das System könnte die Netzwerkanfrage ablehnen. (Client.java:131)
