@@ -266,6 +266,7 @@ public class GameW extends Game implements MausReagierbar {
             //Spielphase
             for (int i = 0; i < currentRound; i++) {
                 for (int j = 0; j < playerCount; j++) {
+                    currentPlayerID = players.get(i).getId();
                     stitch.add(players.get(i).requestCard());
                     server.update();
                 }
