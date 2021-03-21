@@ -1,6 +1,7 @@
 import ea.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GUIClient extends Game implements MausReagierbar {
     private Maus maus;
@@ -47,9 +48,9 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(bg);
 
         //Test
-        hand.add(new Card(14, ColorW.YELLOW));
-        hand.add(new Card(12, ColorW.RED));
-        hand.add(new Card(2, ColorW.GREEN));
+        hand.add(new Card(3, ColorW.YELLOW));
+        hand.add(new Card(2, ColorW.YELLOW));
+        hand.add(new Card(1, ColorW.YELLOW));
         hand.add(new Card(0, ColorW.BLUE));
 
         //Main Menu
@@ -145,6 +146,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void showOwnHand()
     {
+        Collections.sort(hand);
         for(int i = 0; i<4; i++)
         {
             ownHand[i] = new Bild(200+i*95, 500, "Resources/"+hand.get(i).getValue()+"_in_"+hand.get(i).getColor()+".png");
