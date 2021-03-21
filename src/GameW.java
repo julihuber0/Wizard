@@ -1,8 +1,10 @@
+import ea.*;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-public class GameW{
+public class GameW extends Game implements MausReagierbar {
 
     public int playerCount;        //Anzahl Mitspieler
     public int maxRounds;      //Maximale Rundenzahl
@@ -12,12 +14,33 @@ public class GameW{
     public ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
     public ColorW currentTrump = null;      //aktuelle Trumpffarbe
     public CardDeck deck = new CardDeck();     //Kardendeck
-    public Player currentPlayer = null;
+    public int currentPlayerID = 0;
     private Server server;
+
+    //GUI Elements
+    private Maus maus;
+    private Text startButton;
 
     //ToDo nach jeder Änderung server.update asuführen
     public GameW() {
+        super(200, 200, "Wizard-Serer");
         server = new Server(this);
+        maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
+        mausAnmelden(maus);
+        startButton = new Text("Starte Spiel", 100, 100, 20);
+        wurzel.add(startButton);
+        startButton.sichtbarSetzen(true);
+        maus.anmelden(this, startButton, 0);
+    }
+
+    public void mausReagieren(int code)
+    {
+        switch (code)
+        {
+            case 0: start();
+            default:
+                System.out.println("lel");
+        }
     }
 
     public void addPlayer(Player p)
@@ -28,6 +51,8 @@ public class GameW{
             server.sendString(toSend);
         }
     }
+
+    public void tasteReagieren(int code){}
 
     //legt fest, wie viele Spieler mitspielen
     public void setPlayerCount(int pc) {
