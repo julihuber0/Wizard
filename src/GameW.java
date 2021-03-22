@@ -1,6 +1,9 @@
 import ea.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
@@ -293,8 +296,18 @@ public class GameW extends Game implements MausReagierbar {
         server.update();
     }
 
-    public static void main(String[] args) throws UnknownHostException {
-        System.out.println(InetAddress.getLocalHost());
+    public static void main(String[] args){
+        try {
+            URL myIP = new URL("http://myip.dnsomatic.com/");
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(myIP.openStream())
+            );
+            System.out.println(in.readLine());
+        } catch (Exception e){
+            System.out.println("Fehler beim Anzeigen der eigenen IP-Adresse. Der Server startet ganz normal.");
+        }
+
+
         GameW gameW = new GameW();
     }
 }
