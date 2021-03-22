@@ -69,7 +69,7 @@ public class ClientHandler implements Empfaenger {
 
     @Override
     public void verbindungBeendet () {
-        //ToDo @Tobi
+        server.disconnected(player.getName());
     }
 
     // Info: Diese Methoden müssen implementiert werden.

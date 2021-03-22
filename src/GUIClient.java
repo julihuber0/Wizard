@@ -271,6 +271,11 @@ public class GUIClient extends Game implements MausReagierbar {
 
     }
 
+    public void disconnected(String name) {
+        //ToDo @Julian Fehlermeldung anzeigen, dass ein Spieler disconnected ist
+
+    }
+
     @Override
     public void mausReagieren(int code)
     {

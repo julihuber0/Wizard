@@ -21,7 +21,6 @@ public class CClient extends Client {
     }
 
 
-
     @Override
     public void empfangeString(String string) {
         //empfangenen String einfach an der Konsole ausgeben
@@ -101,6 +100,10 @@ public class CClient extends Client {
             case "GO":
                 s = content.split(";");
                 gClient.gameOver(s[0],Integer.parseInt(s[1]));
+                break;
+
+            case "DC":
+                gClient.disconnected(content);
                 break;
 
             /*

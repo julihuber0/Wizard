@@ -144,6 +144,12 @@ public class Server  implements  Runnable{
         handlers.get(id).setPlayer(p);
         game.addPlayer(p);
     }
+
+    public void disconnected(String name) {
+        String dc = "DC|" + name;
+        sendString(dc);
+    }
+
     public void sendString(String s) {
         server.sendeString(s);
     }

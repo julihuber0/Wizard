@@ -11,6 +11,7 @@ Broadcasts:
  AP: Aktueller Player
  PN: Player Namen (nur in dem Wartescreen relevant)
  GO: Game over
+ DC: Player disconnected
 
 
 Server zu Clients:
