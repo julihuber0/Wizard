@@ -141,9 +141,8 @@ public class CClient extends Client {
                 break;
 
             case "KS":
-                Card c = gClient.requestCard();
-                String ks = "GK/" + c.getValue() + ";" + c.getColor();
-                super.sendeString(ks);
+                //springt er rein, wenn er eine Karte spielen muss
+                gClient.requestCard();
                 break;
 
             default:
@@ -154,5 +153,9 @@ public class CClient extends Client {
         //ToDo @Julian in der Methode haben können sich Trumpf, Hand, spielbare Karten etc. ändern -> Gibt es eine update Methode, die hier ausgeführt werden soll?
     }
 
+    public void playCard(Card c) {
+        String ks = "GK/" + c.getValue() + ";" + c.getColor();
+        super.sendeString(ks);
+    }
 
 }
