@@ -263,6 +263,7 @@ public class GUIClient extends Game implements MausReagierbar {
     public Card requestCard() {
         //ToDo @Julian bitte implementieren -> soll die Kartenauswahl des Spielers zurückgeben
 
+
         return null;
     }
 
