@@ -27,7 +27,7 @@ public class GameW extends Game implements MausReagierbar {
 
     //ToDo @Julian nach jeder Änderung server.update asuführen
     public GameW() {
-        super(200, 200, "Wizard-Serer");
+        super(200, 200, "Wizard-Serer", false, false);
         server = new Server(this);
         maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);

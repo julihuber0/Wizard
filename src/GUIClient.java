@@ -41,7 +41,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public GUIClient()
     {
-        super(1200,650, "Wizard");
+        super(1200,650, "Wizard", false, false);
 
         maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
