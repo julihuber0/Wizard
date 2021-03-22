@@ -19,6 +19,7 @@ public class GameW extends Game implements MausReagierbar {
     public CardDeck deck = new CardDeck();     //Kardendeck
     public int currentPlayerID = 0;
     private Server server;
+    private String ipadress;
 
     //GUI Elements
     private Maus maus;
@@ -34,6 +35,17 @@ public class GameW extends Game implements MausReagierbar {
         wurzel.add(startButton);
         startButton.sichtbarSetzen(true);
         maus.anmelden(this, startButton, 0);
+
+        //IP-Adresse ausgeben
+        try {
+            URL myIP = new URL("http://myip.dnsomatic.com/");
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(myIP.openStream())
+            );
+            ipadress = in.readLine();
+        } catch (Exception e){
+           ipadress = "Fehler beim Anzeigen der eigenen IP-Adresse. Der Server startet ganz normal.";
+        }
     }
 
     public void mausReagieren(int code)
@@ -307,17 +319,6 @@ public class GameW extends Game implements MausReagierbar {
     }
 
     public static void main(String[] args){
-        try {
-            URL myIP = new URL("http://myip.dnsomatic.com/");
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(myIP.openStream())
-            );
-            System.out.println(in.readLine());
-        } catch (Exception e){
-            System.out.println("Fehler beim Anzeigen der eigenen IP-Adresse. Der Server startet ganz normal.");
-        }
-
-
         GameW gameW = new GameW();
     }
 }
