@@ -1,5 +1,6 @@
 import ea.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -24,6 +25,9 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text ownSaidStitches;
     private Text ownPoints;
     private Text l;
+    private Rechteck sbBG;
+    private Text winner;
+    private Text[] scoreboard = new Text[6];
 
     private boolean inputAllowed = false;
 
@@ -138,6 +142,18 @@ public class GUIClient extends Game implements MausReagierbar {
         ownPoints = new Text("Punkte: ", 20, 630, 15);
         sichtbarMachen(ownPoints);
         ownPoints.sichtbarSetzen(false);
+
+        //Scoreboard (Endscreen)
+        for(int i = 0; i<5; i++)
+        {
+            sbBG = new Rechteck(250, 250, 300, 300);
+            sichtbarMachen(sbBG);
+            sbBG.farbeSetzen(Color.GRAY);
+            sbBG.sichtbarSetzen(false);
+            scoreboard[i] = new Text(players.get(i).getName()+": "+players.get(i).getPoints(), 260, 300+i*20, 15);
+            sichtbarMachen(scoreboard[i]);
+            scoreboard[i].sichtbarSetzen(false);
+        }
     }
 
     public void showPlayerInList(String name, int id)
@@ -263,19 +279,32 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void requestCard() {
-        //ToDo @Julian bitte implementieren -> soll die Kartenauswahl des Spielers zurückgeben
-
         inputAllowed = true;
     }
 
     public void gameOver(String nameWinner, int playerID) {
-        //ToDo @Julian Gewinner anzeigen, scoreboard anzeigen, andere interessante Informationen
-
+        sbBG.sichtbarSetzen(true);
+        int winningPoints = 0;
+        for(Player p:players)
+        {
+            if(p.getId() == playerID)
+            {
+                winningPoints = p.getPoints();
+            }
+        }
+        winner = new Text("Gewinner: "+nameWinner+", Punkte: "+winningPoints, 260, 260, 30);
+        for(int i = 0; i<players.size(); i++)
+        {
+            scoreboard[i].inhaltSetzen(players.get(i).getName()+": "+players.get(i).getPoints());
+            scoreboard[i].sichtbarSetzen(true);
+        }
     }
 
     public void disconnected(String name) {
-        //ToDo @Julian Fehlermeldung anzeigen, dass ein Spieler disconnected ist
-
+        Rechteck bg = new Rechteck(250, 250, 200, 40);
+        sichtbarMachen(bg);
+        Text t = new Text(name+" ist nicht mehr.", 260, 260, 20);
+        sichtbarMachen(t);
     }
 
     @Override
