@@ -25,6 +25,8 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text ownPoints;
     private Text l;
 
+    private boolean inputAllowed = false;
+
     private CClient cClient;
 
     //Nur zur Datenhaltung
@@ -260,11 +262,10 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    public Card requestCard() {
+    public void requestCard() {
         //ToDo @Julian bitte implementieren -> soll die Kartenauswahl des Spielers zurückgeben
 
-
-        return null;
+        inputAllowed = true;
     }
 
     public void gameOver(String nameWinner, int playerID) {
@@ -280,132 +281,129 @@ public class GUIClient extends Game implements MausReagierbar {
     @Override
     public void mausReagieren(int code)
     {
-        switch (code)
-        {
-            case 0:     //Beitreten-Button
-                String ipAdress = getInputIP();
-                cClient = new CClient(ipAdress, this);
-                joinButton.sichtbarSetzen(false);
-                logo.sichtbarSetzen(false);
-                break;
-            case 1:     //Zurück-Button
-                joinButton.sichtbarSetzen(true);
-                backButton.sichtbarSetzen(false);
-                logo.sichtbarSetzen(true);
-                break;
-            case 2:     //Start-Button
-                joinButton.sichtbarSetzen(false);
-                playButton.sichtbarSetzen(false);
-                logo.sichtbarSetzen(false);
-                for(int i = 0; i<5; i++)
-                {
-                    s[i].sichtbarSetzen(true);
-                }
-                for(int i = 0; i<5; i++)
-                {
-                    names[i].sichtbarSetzen(true);
-                }
-                for(int i = 0; i<5; i++)
-                {
-                    saidStitches[i].sichtbarSetzen(true);
-                }
-                for(int i = 0; i<5; i++)
-                {
-                    points[i].sichtbarSetzen(true);
-                }
-                name.sichtbarSetzen(true);
-                ownAvatar.sichtbarSetzen(true);
-                ownSaidStitches.sichtbarSetzen(true);
-                ownPoints.sichtbarSetzen(true);
-                marker[0].sichtbarSetzen(true);
-                l.sichtbarSetzen(true);
-                showOwnHand();
-                break;
-            case 3:     //Karten legen Button
-                markPlayer(2);
-                break;
-            case 100:
-                ownHand[0].sichtbarSetzen(false);
-                karteLegen(hand.get(0));
-                break;
-            case 101:
-                ownHand[1].sichtbarSetzen(false);
-                karteLegen(hand.get(1));
-                break;
-            case 102:
-                ownHand[2].sichtbarSetzen(false);
-                karteLegen(hand.get(2));
-                break;
-            case 103:
-                ownHand[3].sichtbarSetzen(false);
-                karteLegen(hand.get(3));
-                break;
-            case 104:
-                ownHand[4].sichtbarSetzen(false);
-                karteLegen(hand.get(4));
-                break;
-            case 105:
-                ownHand[5].sichtbarSetzen(false);
-                karteLegen(hand.get(5));
-                break;
-            case 106:
-                ownHand[6].sichtbarSetzen(false);
-                karteLegen(hand.get(6));
-                break;
-            case 107:
-                ownHand[7].sichtbarSetzen(false);
-                karteLegen(hand.get(7));
-                break;
-            case 108:
-                ownHand[8].sichtbarSetzen(false);
-                karteLegen(hand.get(8));
-                break;
-            case 109:
-                ownHand[9].sichtbarSetzen(false);
-                karteLegen(hand.get(9));
-                break;
-            case 110:
-                ownHand[10].sichtbarSetzen(false);
-                karteLegen(hand.get(10));
-                break;
-            case 111:
-                ownHand[11].sichtbarSetzen(false);
-                karteLegen(hand.get(11));
-                break;
-            case 112:
-                ownHand[12].sichtbarSetzen(false);
-                karteLegen(hand.get(12));
-                break;
-            case 113:
-                ownHand[13].sichtbarSetzen(false);
-                karteLegen(hand.get(13));
-                break;
-            case 114:
-                ownHand[14].sichtbarSetzen(false);
-                karteLegen(hand.get(14));
-                break;
-            case 115:
-                ownHand[15].sichtbarSetzen(false);
-                karteLegen(hand.get(15));
-                break;
-            case 116:
-                ownHand[16].sichtbarSetzen(false);
-                karteLegen(hand.get(16));
-                break;
-            case 117:
-                ownHand[17].sichtbarSetzen(false);
-                karteLegen(hand.get(17));
-                break;
-            case 118:
-                ownHand[18].sichtbarSetzen(false);
-                karteLegen(hand.get(18));
-                break;
-            case 119:
-                ownHand[19].sichtbarSetzen(false);
-                karteLegen(hand.get(19));
-                break;
-            default:
-                break;
+        if(inputAllowed) {
+            switch (code) {
+                case 0:     //Beitreten-Button
+                    String ipAdress = getInputIP();
+                    cClient = new CClient(ipAdress, this);
+                    joinButton.sichtbarSetzen(false);
+                    logo.sichtbarSetzen(false);
+                    break;
+                case 1:     //Zurück-Button
+                    joinButton.sichtbarSetzen(true);
+                    backButton.sichtbarSetzen(false);
+                    logo.sichtbarSetzen(true);
+                    break;
+                case 2:     //Start-Button
+                    joinButton.sichtbarSetzen(false);
+                    playButton.sichtbarSetzen(false);
+                    logo.sichtbarSetzen(false);
+                    for (int i = 0; i < 5; i++) {
+                        s[i].sichtbarSetzen(true);
+                    }
+                    for (int i = 0; i < 5; i++) {
+                        names[i].sichtbarSetzen(true);
+                    }
+                    for (int i = 0; i < 5; i++) {
+                        saidStitches[i].sichtbarSetzen(true);
+                    }
+                    for (int i = 0; i < 5; i++) {
+                        points[i].sichtbarSetzen(true);
+                    }
+                    name.sichtbarSetzen(true);
+                    ownAvatar.sichtbarSetzen(true);
+                    ownSaidStitches.sichtbarSetzen(true);
+                    ownPoints.sichtbarSetzen(true);
+                    marker[0].sichtbarSetzen(true);
+                    l.sichtbarSetzen(true);
+                    showOwnHand();
+                    break;
+                case 3:     //Karten legen Button
+                    markPlayer(2);
+                    break;
+                case 100:
+                    ownHand[0].sichtbarSetzen(false);
+                    karteLegen(hand.get(0));
+                    break;
+                case 101:
+                    ownHand[1].sichtbarSetzen(false);
+                    karteLegen(hand.get(1));
+                    break;
+                case 102:
+                    ownHand[2].sichtbarSetzen(false);
+                    karteLegen(hand.get(2));
+                    break;
+                case 103:
+                    ownHand[3].sichtbarSetzen(false);
+                    karteLegen(hand.get(3));
+                    break;
+                case 104:
+                    ownHand[4].sichtbarSetzen(false);
+                    karteLegen(hand.get(4));
+                    break;
+                case 105:
+                    ownHand[5].sichtbarSetzen(false);
+                    karteLegen(hand.get(5));
+                    break;
+                case 106:
+                    ownHand[6].sichtbarSetzen(false);
+                    karteLegen(hand.get(6));
+                    break;
+                case 107:
+                    ownHand[7].sichtbarSetzen(false);
+                    karteLegen(hand.get(7));
+                    break;
+                case 108:
+                    ownHand[8].sichtbarSetzen(false);
+                    karteLegen(hand.get(8));
+                    break;
+                case 109:
+                    ownHand[9].sichtbarSetzen(false);
+                    karteLegen(hand.get(9));
+                    break;
+                case 110:
+                    ownHand[10].sichtbarSetzen(false);
+                    karteLegen(hand.get(10));
+                    break;
+                case 111:
+                    ownHand[11].sichtbarSetzen(false);
+                    karteLegen(hand.get(11));
+                    break;
+                case 112:
+                    ownHand[12].sichtbarSetzen(false);
+                    karteLegen(hand.get(12));
+                    break;
+                case 113:
+                    ownHand[13].sichtbarSetzen(false);
+                    karteLegen(hand.get(13));
+                    break;
+                case 114:
+                    ownHand[14].sichtbarSetzen(false);
+                    karteLegen(hand.get(14));
+                    break;
+                case 115:
+                    ownHand[15].sichtbarSetzen(false);
+                    karteLegen(hand.get(15));
+                    break;
+                case 116:
+                    ownHand[16].sichtbarSetzen(false);
+                    karteLegen(hand.get(16));
+                    break;
+                case 117:
+                    ownHand[17].sichtbarSetzen(false);
+                    karteLegen(hand.get(17));
+                    break;
+                case 118:
+                    ownHand[18].sichtbarSetzen(false);
+                    karteLegen(hand.get(18));
+                    break;
+                case 119:
+                    ownHand[19].sichtbarSetzen(false);
+                    karteLegen(hand.get(19));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
