@@ -24,7 +24,7 @@ public class GameW extends Game implements MausReagierbar {
     private Maus maus;
     private Text startButton;
 
-    //ToDo nach jeder Änderung server.update asuführen
+    //ToDo @Julian nach jeder Änderung server.update asuführen
     public GameW() {
         super(200, 200, "Wizard-Serer");
         server = new Server(this);
@@ -50,7 +50,7 @@ public class GameW extends Game implements MausReagierbar {
     {
         players.add(p);
         for (Player player: players) {
-            String toSend = "PN|" + player.getName() + ";" + player.getId();
+            String toSend = "PN/" + player.getName() + ";" + player.getId();
             server.sendString(toSend);
         }
     }
@@ -170,7 +170,7 @@ public class GameW extends Game implements MausReagierbar {
             {
                 behind = true;
             }
-            if(behind == true)
+            if(behind) //if (behind == true)
             {
                 newPlayers.add(players.get(i));
             }
@@ -271,6 +271,8 @@ public class GameW extends Game implements MausReagierbar {
                 for (int j = 0; j < playerCount; j++) {
                     currentPlayerID = players.get(i).getId();
                     //stitch.add(players.get(i).requestCard());
+                    //ToDo @Julian spielbare Karten senden
+                    // player.get(i).sendPlayableCards(...)
                     players.get(i).requestCard();
                     while (true) {
                         if(players.get(i).played != null) {
@@ -278,6 +280,7 @@ public class GameW extends Game implements MausReagierbar {
                         }
                     }
                     stitch.add(players.get(i).played);
+                    //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten
                     server.update();
                 }
                 Player p = calculateStitch();
@@ -299,7 +302,7 @@ public class GameW extends Game implements MausReagierbar {
             }
             gs = GameState.WAITING_FOR_NEXT_ROUND;
         }
-        server.gameOver(getWinner().getName());
+        server.gameOver(getWinner().getName(), getWinner().getId());
         server.update();
     }
 

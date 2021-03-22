@@ -21,6 +21,24 @@ public class Player {
         currentStitches = 0;
     }
 
+    //ToDo @Julian aufrufen an der richtigen Stelle
+    public void sendHand() {
+        //sendet die Arraylist hand an den zugehörigen Client
+        String cards = "HA/";
+        for(Card c:hand) {
+            cards = cards + c.getValue() + ";" + c.getColor() + "/";
+        }
+        ch.sendeString(cards);
+    }
+
+    public void sendPlayableCards(ArrayList<Card> playable) {
+        String cards = "HS/";
+        for(Card c:hand) {
+            cards = cards + c.getValue() + ";" + c.getColor() + "/";
+        }
+        ch.sendeString(cards);
+    }
+
     public ArrayList<StitchHistory> getSh() {
         return sh;
     }
@@ -109,7 +127,7 @@ public class Player {
 */
     public void requestCard() {
         played = null;
-        ch.sendeString("KS|");
+        ch.sendeString("KS/");
     }
 
     public ArrayList<Card> getHand() {

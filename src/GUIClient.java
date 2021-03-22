@@ -266,6 +266,11 @@ public class GUIClient extends Game implements MausReagierbar {
         return null;
     }
 
+    public void gameOver(String nameWinner, int playerID) {
+        //ToDo @Julian Gewinner anzeigen, scoreboard anzeigen, andere interessante Informationen
+
+    }
+
     @Override
     public void mausReagieren(int code)
     {

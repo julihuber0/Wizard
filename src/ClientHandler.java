@@ -49,8 +49,8 @@ public class ClientHandler implements Empfaenger {
         switch (key) {
             case "NA":
                 //Namen setzen
-                if(content.contains("|") || content.contains(";") ) {
-                    sendeString("NF|");
+                if(content.contains("/") || content.contains(";") ) {
+                    sendeString("NF/");
                 }
                 else {
                     server.addPlayer(content,id);
@@ -69,7 +69,7 @@ public class ClientHandler implements Empfaenger {
 
     @Override
     public void verbindungBeendet () {
-        //ToDo
+        //ToDo @Tobi
     }
 
     // Info: Diese Methoden müssen implementiert werden.

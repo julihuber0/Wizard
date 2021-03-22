@@ -1,5 +1,5 @@
 
- Sendet immer ein zweistelliges Kürzel gefolgt von einem Strichpunkt an die Clients zur Identifikation
+ Sendet immer ein zweistelliges Kürzel gefolgt von einem Slash an die Clients zur Identifikation
 
 Broadcasts:
  SB: Scoreboard

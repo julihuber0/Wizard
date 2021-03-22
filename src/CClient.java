@@ -30,6 +30,7 @@ public class CClient extends Client {
         String key = string.substring(0,2);
         String content = string.substring(3);
         String[] lines;
+        String[] s;
         switch (key) {
             /*
              *  Broadcasts
@@ -37,7 +38,7 @@ public class CClient extends Client {
             case "SB":
                 lines = content.split("/");
                 for(String line:lines) {
-                    String[] s = line.split(";");
+                    s = line.split(";");
                     //erste Stelle ist die PlayerID
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     //SH wird ganz geupdatet -> aktuelle Einträge löschen
@@ -57,7 +58,7 @@ public class CClient extends Client {
             case "SS":
                 lines = content.split("/");
                 for(String line:lines) {
-                    String[] s = line.split(";");
+                    s = line.split(";");
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     p.setSaidStitches(Integer.parseInt(s[1]));
                 }
@@ -66,7 +67,7 @@ public class CClient extends Client {
             case "CS":
                 lines = content.split("/");
                 for(String line:lines) {
-                    String[] s = line.split(";");
+                    s = line.split(";");
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     p.setCurrentStitches(Integer.parseInt(s[1]));
                 }
@@ -79,7 +80,7 @@ public class CClient extends Client {
             case "AS":
                 lines = content.split("/");
                 for(String line:lines) {
-                    String[] s = line.split(";");
+                    s = line.split(";");
                     gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.valueOf(s[1])));
                 }
                 break;
@@ -93,12 +94,13 @@ public class CClient extends Client {
                 break;
 
             case "PN":
-                String[] s = content.split(";");
+                s = content.split(";");
                 gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
                 break;
 
             case "GO":
-
+                s = content.split(";");
+                gClient.gameOver(s[0],Integer.parseInt(s[1]));
                 break;
 
             /*
@@ -117,16 +119,27 @@ public class CClient extends Client {
                 break;
 
             case "HA":
-                //ToDo zwei Fälle
+                gClient.hand.clear();
+                lines = content.split("/");
+                for(String line:lines) {
+                    s = line.split(";");
+                    gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
+                }
                 break;
 
             case "HS":
-
+                //ToDo @Julian wo werden die spielbaren Karten gespeichert
+                gClient.hand.clear();
+                lines = content.split("/");
+                for(String line:lines) {
+                    s = line.split(";");
+                    gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
+                }
                 break;
 
             case "KS":
                 Card c = gClient.requestCard();
-                String ks = "GK|" + c.getValue() + ";" + c.getColor();
+                String ks = "GK/" + c.getValue() + ";" + c.getColor();
                 super.sendeString(ks);
                 break;
 
@@ -135,6 +148,7 @@ public class CClient extends Client {
 
         }
 
+        //ToDo @Julian in der Methode haben können sich Trumpf, Hand, spielbare Karten etc. ändern -> Gibt es eine update Methode, die hier ausgeführt werden soll?
     }
 
 

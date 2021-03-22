@@ -83,9 +83,9 @@ public class Server  implements  Runnable{
         server.sendeString(currentStitches);
     }
 
-    public void gameOver(String nameWinner) {
+    public void gameOver(String nameWinner, int playerID) {
         update();
-        String winner = "GO/" + nameWinner;
+        String winner = "GO/" + nameWinner + ";" + playerID;
         server.sendeString(winner);
     }
 
@@ -108,7 +108,7 @@ public class Server  implements  Runnable{
     }
 
     public void bcCurrentPlayerID (int playerID) {
-        String currentPlayerID = "AP|" + playerID;
+        String currentPlayerID = "AP/" + playerID;
         server.sendeString(currentPlayerID);
     }
 
