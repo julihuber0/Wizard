@@ -9,7 +9,7 @@ Broadcasts:
  AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
  AT: Aktueller Trumpf
  AP: Aktueller Player
- PN: Player Namen (nur in dem Wartescreen relevant)
+ PN: Player Namen
  GO: Game over
  DC: Player disconnected
 

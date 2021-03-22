@@ -95,6 +95,7 @@ public class CClient extends Client {
             case "PN":
                 s = content.split(";");
                 gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
+                gClient.players.add(new Player(s[0], Integer.parseInt(s[1])));
                 break;
 
             case "GO":
