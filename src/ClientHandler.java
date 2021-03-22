@@ -56,7 +56,10 @@ public class ClientHandler implements Empfaenger {
                     server.addPlayer(content,id);
                 }
                 break;
-
+            case "GK":
+                String[] s = content.split(";");
+                player.played = new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1]));
+                break;
             default:
                 break;
 

@@ -18,6 +18,7 @@ Server zu Clients:
  ID: ID des eignen Spielers
  HA: Hand des Spielers
  HS: Spielbare Karten auf der Hand des Spielers
+ KS: Karte spielen
 
 
 Clients zu Server

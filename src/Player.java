@@ -11,6 +11,7 @@ public class Player {
     private int currentStitches;    //schon gemachte Stiche
     public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
     private ClientHandler ch;
+    public Card played;
 
     public Player(String name, int id) {
         this.name = name;
@@ -100,10 +101,15 @@ public class Player {
     public void addCards(Card c) {
         hand.add(c);
     }
-
+/*
     public Card requestCard() {
 
         return new Card(1, ColorW.BLUE);
+    }
+*/
+    public void requestCard() {
+        played = null;
+        ch.sendeString("KS|");
     }
 
     public ArrayList<Card> getHand() {

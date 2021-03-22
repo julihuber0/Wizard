@@ -123,6 +123,13 @@ public class CClient extends Client {
             case "HS":
 
                 break;
+
+            case "KS":
+                Card c = gClient.requestCard();
+                String ks = "GK|" + c.getValue() + ";" + c.getColor();
+                super.sendeString(ks);
+                break;
+
             default:
                 break;
 
