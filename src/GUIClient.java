@@ -81,7 +81,7 @@ public class GUIClient extends Game implements MausReagierbar {
         l.sichtbarSetzen(false);
         maus.anmelden(this, l, 3);
 
-        //TODO: Schleifenbedingungen an Spielerzahl etc. anpassen
+        //TODO: @Julian Schleifenbedingungen an Spielerzahl etc. anpassen
 
         //Marker erzeugen
         for(int i = 0; i<5; i++)
