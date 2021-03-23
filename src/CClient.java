@@ -151,7 +151,7 @@ public class CClient extends Client {
 
         }
 
-        //ToDo @Julian in der Methode haben können sich Trumpf, Hand, spielbare Karten etc. ändern -> Gibt es eine update Methode, die hier ausgeführt werden soll?
+        //ToDo @Julian in der Methode können sich Trumpf, Hand, spielbare Karten etc. ändern -> Gibt es eine update Methode, die hier ausgeführt werden soll?
     }
 
     public void playCard(Card c) {
