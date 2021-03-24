@@ -141,17 +141,6 @@ public class GUIClient extends Game implements MausReagierbar {
         ownPoints = new Text("Punkte: ", 20, 630, 15);
         sichtbarMachen(ownPoints);
         ownPoints.sichtbarSetzen(false);
-
-        //Scoreboard (Endscreen)
-        for (int i = 0; i < 5; i++) {
-            sbBG = new Rechteck(250, 250, 300, 300);
-            sichtbarMachen(sbBG);
-            sbBG.farbeSetzen(Color.GRAY);
-            sbBG.sichtbarSetzen(false);
-            scoreboard[i] = new Text(players.get(i).getName() + ": " + players.get(i).getPoints(), 260, 300 + i * 20, 15);
-            sichtbarMachen(scoreboard[i]);
-            scoreboard[i].sichtbarSetzen(false);
-        }
     }
 
     public void showPlayerInList(String name, int id) {
@@ -276,6 +265,17 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void gameOver(String nameWinner, int playerID) {
+        //Scoreboard (Endscreen)
+        for (int i = 0; i < 5; i++) {
+            sbBG = new Rechteck(250, 250, 300, 300);
+            sichtbarMachen(sbBG);
+            sbBG.farbeSetzen(Color.GRAY);
+            sbBG.sichtbarSetzen(false);
+            scoreboard[i] = new Text(players.get(i).getName() + ": " + players.get(i).getPoints(), 260, 300 + i * 20, 15);
+            sichtbarMachen(scoreboard[i]);
+            scoreboard[i].sichtbarSetzen(false);
+        }
+
         sbBG.sichtbarSetzen(true);
         int winningPoints = 0;
         for (Player p : players) {
