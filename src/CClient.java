@@ -122,7 +122,8 @@ public class CClient extends Client {
                 gClient.idSelf = Integer.parseInt(content);
                 break;
 
-            case "HA":
+            case "HA": //Hand des Spielers
+
                 gClient.hand.clear();
                 lines = content.split("/");
                 for(String line:lines) {
@@ -131,13 +132,13 @@ public class CClient extends Client {
                 }
                 break;
 
-            case "HS":
+            case "HS": // Spielbare Karten auf der Hand des Spielers
                 //ToDo @Julian wo werden die spielbaren Karten gespeichert
                 gClient.hand.clear();
                 lines = content.split("/");
                 for(String line:lines) {
                     s = line.split(";");
-                    gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
+                    //gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
                 }
                 break;
 
