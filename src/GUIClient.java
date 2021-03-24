@@ -298,43 +298,60 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     //TODO: Unsichtbare Objekte können angeklickt werden, wie beheben?
+    //ToDo: if Abfragen sind wahrscheinlich die beste Methode
+    //hab des mal umgesetzt, außer code 3, kenne ich nicht
+
     @Override
     public void mausReagieren(int code) {
+
+        //falls code einer Karte hier anstatt in dem switch immer abfragen
+        if (code >= 100 && code <=119 ) {
+            if (!ownHand[100-code].sichtbar()) {
+                return;
+            }
+        }
+
         switch (code) {
             case 0:     //Beitreten-Button
-                String ipAdress = getInputIP();
-                cClient = new CClient(ipAdress, this);
-                joinButton.sichtbarSetzen(false);
-                logo.sichtbarSetzen(false);
+                if (joinButton.sichtbar()) {
+                    String ipAdress = getInputIP();
+                    cClient = new CClient(ipAdress, this);
+                    joinButton.sichtbarSetzen(false);
+                    logo.sichtbarSetzen(false);
+                }
                 break;
             case 1:     //Zurück-Button
-                joinButton.sichtbarSetzen(true);
-                backButton.sichtbarSetzen(false);
-                logo.sichtbarSetzen(true);
+                if(backButton.sichtbar()) {
+                    joinButton.sichtbarSetzen(true);
+                    backButton.sichtbarSetzen(false);
+                    logo.sichtbarSetzen(true);
+                }
                 break;
             case 2:     //Start-Button
-                joinButton.sichtbarSetzen(false);
-                playButton.sichtbarSetzen(false);
-                logo.sichtbarSetzen(false);
-                for (int i = 0; i < 5; i++) {
-                    s[i].sichtbarSetzen(true);
+                if(playButton.sichtbar()) {
+                    joinButton.sichtbarSetzen(false);
+                    playButton.sichtbarSetzen(false);
+                    logo.sichtbarSetzen(false);
+                    for (int i = 0; i < 5; i++) {
+                        s[i].sichtbarSetzen(true);
+                    }
+                    for (int i = 0; i < 5; i++) {
+                        names[i].sichtbarSetzen(true);
+                    }
+                    for (int i = 0; i < 5; i++) {
+                        saidStitches[i].sichtbarSetzen(true);
+                    }
+                    for (int i = 0; i < 5; i++) {
+                        points[i].sichtbarSetzen(true);
+                    }
+                    name.sichtbarSetzen(true);
+                    ownAvatar.sichtbarSetzen(true);
+                    ownSaidStitches.sichtbarSetzen(true);
+                    ownPoints.sichtbarSetzen(true);
+                    marker[0].sichtbarSetzen(true);
+                    l.sichtbarSetzen(true);
+                    showOwnHand();
                 }
-                for (int i = 0; i < 5; i++) {
-                    names[i].sichtbarSetzen(true);
-                }
-                for (int i = 0; i < 5; i++) {
-                    saidStitches[i].sichtbarSetzen(true);
-                }
-                for (int i = 0; i < 5; i++) {
-                    points[i].sichtbarSetzen(true);
-                }
-                name.sichtbarSetzen(true);
-                ownAvatar.sichtbarSetzen(true);
-                ownSaidStitches.sichtbarSetzen(true);
-                ownPoints.sichtbarSetzen(true);
-                marker[0].sichtbarSetzen(true);
-                l.sichtbarSetzen(true);
-                showOwnHand();
                 break;
             case 3:     //Karten legen Button
                 markPlayer(2);
@@ -346,6 +363,7 @@ public class GUIClient extends Game implements MausReagierbar {
                     karteLegen(hand.get(0));
                     cClient.playCard(hand.get(0));
                 }
+
                 break;
             case 101:
                 if (allowedCards[code - 100] && inputAllowed) {
