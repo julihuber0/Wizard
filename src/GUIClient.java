@@ -306,7 +306,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
         //falls code einer Karte hier anstatt in dem switch immer abfragen
         if (code >= 100 && code <=119 ) {
-            if (!ownHand[100-code].sichtbar()) {
+            if (!ownHand[code-100].sichtbar()) {
                 return;
             }
         }
