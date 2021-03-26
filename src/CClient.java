@@ -1,5 +1,7 @@
 import ea.Client;
 
+import java.util.ArrayList;
+
 public class CClient extends Client {
 
     private String name;
@@ -133,13 +135,14 @@ public class CClient extends Client {
                 break;
 
             case "HS": // Spielbare Karten auf der Hand des Spielers
-                //ToDo @Julian wo werden die spielbaren Karten gespeichert
                 gClient.hand.clear();
                 lines = content.split("/");
+                ArrayList<Card> cards = new ArrayList<>();
                 for(String line:lines) {
                     s = line.split(";");
-                    //gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
+                    cards.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
                 }
+                gClient.setPlayableCards(cards);
                 break;
 
             case "KS":
