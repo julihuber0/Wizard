@@ -147,6 +147,11 @@ public class CClient extends Client {
                 gClient.requestCard();
                 break;
 
+            case "TF":
+                String ta = "TA/" + gClient.validateTrump();
+                sendeString(ta);
+                break;
+
             default:
                 break;
 

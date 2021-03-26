@@ -13,6 +13,8 @@ public class Player {
     private ClientHandler ch;
     public Card played;
 
+    public ColorW selectedTrump = null; //nur bei dem Sonderfall befüllt, dass der Spieler einen Farbe wählen kann
+
     public Player(String name, int id) {
         this.name = name;
         this.id = id;
@@ -37,6 +39,10 @@ public class Player {
             cards = cards + c.getValue() + ";" + c.getColor() + "/";
         }
         ch.sendeString(cards);
+    }
+
+    public void selectTrump() {
+        ch.sendeString("TF/");
     }
 
     public ArrayList<StitchHistory> getSh() {

@@ -271,7 +271,16 @@ public class GameW extends Game implements MausReagierbar {
                 currentTrump = null;
                 server.update();
             } else if (trumpCard.getValue() == 14) {
-                currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
+                Player p = players.get((currentRound - 1) % playerCount);
+                p.selectedTrump = null;
+                p.selectTrump();
+                while (true) {
+                    if(p.selectedTrump != null){
+                        currentTrump = p.selectedTrump;
+                        break;
+                    }
+                }
+               // currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
                 server.update();
             } else {
                 currentTrump = trumpCard.getColor();

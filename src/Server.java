@@ -146,7 +146,7 @@ public class Server  implements  Runnable{
     }
 
     public void disconnected(String name) {
-        String dc = "DC|" + name;
+        String dc = "DC/" + name;
         sendString(dc);
     }
 

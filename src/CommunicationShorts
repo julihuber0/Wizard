@@ -20,12 +20,13 @@ Server zu Clients:
  HA: Hand des Spielers
  HS: Spielbare Karten auf der Hand des Spielers
  KS: Karte spielen
+ TF: Trumpffarbe fragen
 
 
 Clients zu Server
  NA: Namen angeben
  GK: Gespielte Karte
-
+ TA: Trumpf ausgewählt
 
 
 

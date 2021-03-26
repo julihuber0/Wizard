@@ -177,7 +177,6 @@ public class GUIClient extends Game implements MausReagierbar {
         return eingabeFordern("Gewünschte Trumpffarbe eingeben (grün, blau, rot, gelb)");
     }
 
-    //ToDo @Tobi diesen Fall in die Kommunikation einbinden
     public ColorW validateTrump() {
         String trumpColor = askForTrumpColor();
         if (trumpColor.equals("grün")) {
@@ -296,7 +295,6 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    //ToDo @Tobi Linien
     public void getEScoreboard() {
         //Runde
         eScoreboard[0][0] = new Text("Runde",100,0,20);
@@ -384,8 +382,8 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     //TODO: Unsichtbare Objekte können angeklickt werden, wie beheben?
-    //ToDo: if Abfragen sind wahrscheinlich die beste Methode
-    //hab des mal umgesetzt, außer code 3, kenne ich nicht
+    // if Abfragen sind wahrscheinlich die beste Methode
+    // hab des mal umgesetzt, außer code 3, kenne ich nicht
 
     @Override
     public void mausReagieren(int code) {
