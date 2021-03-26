@@ -342,7 +342,6 @@ public class GUIClient extends Game implements MausReagierbar {
         int ypos = 50 + currentRound*30;
         eScoreboard_line1 = new Rechteck(70,40,xpos,1);
         eScoreboard_line2 = new Rechteck(175,0,1,ypos);
-        System.out.println("X: " + xpos + "  y: " + ypos);
     }
 
     //ToDo @Julian Button zum Anzeigen/Verbergen des Scoreboards, wenn nach Trumpffarbe gefragt wird auch automatisch ausblenden
