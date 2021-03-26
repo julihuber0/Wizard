@@ -20,19 +20,21 @@ public class GameW extends Game implements MausReagierbar {
     public int currentPlayerID = 0;
     private Server server;
     private String ipadress;
+    private String ipadress2 = "";
 
     //GUI Elements
     private Maus maus;
     private Text startButton;
     private Text displayIP;
+    private Text displayIP2;
 
     //ToDo @Julian nach jeder Änderung server.update asuführen
     public GameW() {
-        super(200, 200, "Wizard-Serer", false, false);
+        super(400, 300, "Wizard-Serer", false, false);
         server = new Server(this);
         maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
-        startButton = new Text("Starte Spiel", 40, 40, 20);
+        startButton = new Text("Starte Spiel", 100, 100, 20);
         wurzel.add(startButton);
         startButton.sichtbarSetzen(true);
         maus.anmelden(this, startButton, 0);
@@ -45,11 +47,19 @@ public class GameW extends Game implements MausReagierbar {
             );
             ipadress = in.readLine();
         } catch (Exception e){
-           ipadress = "Fehler beim Anzeigen der eigenen IP-Adresse. Der Server startet ganz normal.";
+           ipadress = "Fehler beim Anzeigen der eigenen IP-Adresse.";
+           ipadress2 = "Der Server startet ganz normal.";
         }
-        displayIP= new Text("IP: " + ipadress, 20, 120, 20);
+
+        displayIP= new Text("IP: " + ipadress, 40, 200, 20);
         wurzel.add(displayIP);
         displayIP.sichtbarSetzen(true);
+
+        if(!ipadress2.isEmpty()){
+            displayIP2= new Text(ipadress2, 40, 240, 20);
+            wurzel.add(displayIP2);
+            displayIP2.sichtbarSetzen(true);
+        }
     }
 
     public void mausReagieren(int code)
