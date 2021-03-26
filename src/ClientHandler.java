@@ -98,6 +98,12 @@ public class ClientHandler implements Empfaenger {
     //Nur um schnell was zu testen falls nötig
     public static void main(String[] args) {
         EngineAlpha.main(null);
+        for(int i = 1;i<13;i++) {
+            if (i % 2 != 0) {
+                int p = (i - 1) / 2;
+                System.out.println(p);
+            }
+        }
     }
 
 }

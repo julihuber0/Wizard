@@ -295,34 +295,40 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    //ToDo @Tobi oje
+    //ToDo @Tobi oje Linien, Format
     public void getEScoreboard() {
         //Runde
-        eScoreboard[0][0] = new Text("Runde",100,100,20);
+        eScoreboard[0][0] = new Text("Runde",98,100,20);
         for(int i = 1;i<21;i++) {
-            eScoreboard[0][i] = new Text(""+i,100,100+i*5);
-
+            eScoreboard[0][i] = new Text(""+i,98,100+i*30);
         }
 
-        for(int i = 1; i < 13;i = i+2){
-            eScoreboard[i][0] = new Text("Stiche",120 + i*10,100,20);
-        }
-        for(int i = 2;i<21;i = i+2){
-            int p = (i-2)/2;
-            if(players.size() > p) {
-                eScoreboard[i][0] = new Text(players.get(p).getName(), 130 + i * 10, 100, 20);
-                ArrayList<StitchHistory> sh = players.get(p).getSh();
-                for (int y = 1; y <= sh.size(); y++) {
-                    if (sh.size()>y) {
-                        StitchHistory s = sh.get(y - 1);
-                        eScoreboard[i - 1][y] = new Text("" + s.getStitches(), 120 + i * 10, 100 + y * 5, 20);
-                        eScoreboard[i - 1][y] = new Text("" + s.getPoints(), 130 + i * 10, 100 + y * 5, 20);
+        //for(int i = 1; i < 13;i = i+2){
+          //  eScoreboard[i][0] = new Text("Stiche",120 + i*10,100,20);
+        //}
+        Text t = new Text("999",0,0,20);
+        System.out.println(t.getBreite());
+        System.out.println(t.getHoehe());
+
+        for(int i = 1;i<13;i++) {
+            if (i % 2 != 0) {
+                int p = (i-1) / 2;
+                if (players.size() > p) {
+                    eScoreboard[i][0] = new Text(players.get(p).getName(), 130 + i * 10, 100, 20);
+                    ArrayList<StitchHistory> sh = players.get(p).getSh();
+                    for (int y = 1; y <= sh.size(); y++) {
+                        if (sh.size() > y) {
+                            StitchHistory s = sh.get(y - 1);
+                            eScoreboard[i - 1][y] = new Text("" + s.getStitches(), 120 + i * 10, 100 + y * 5, 20);
+                            eScoreboard[i - 1][y] = new Text("" + s.getPoints(), 130 + i * 10, 100 + y * 5, 20);
+                        }
                     }
                 }
             }
         }
     }
 
+    //ToDo @Julian Button zum Anzeigen/Verbergen des Scoreboards, wenn nach Trumpffarbe gefragt wird auch automatisch ausblenden
     public void setSichtbardEScoreboard(boolean b) {
         for(Text[] lines:eScoreboard){
             for (Text t:lines){
