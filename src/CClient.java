@@ -54,6 +54,7 @@ public class CClient extends Client {
                         }
                     }
                 }
+                gClient.updatePoints();
                 break;
 
             case "SS":
@@ -63,6 +64,7 @@ public class CClient extends Client {
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     p.setSaidStitches(Integer.parseInt(s[1]));
                 }
+                gClient.updateSaidStitches();
                 break;
 
             case "CS":
@@ -72,6 +74,7 @@ public class CClient extends Client {
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     p.setCurrentStitches(Integer.parseInt(s[1]));
                 }
+                gClient.updateMadeStitches();
                 break;
 
             case "AR":
@@ -98,6 +101,7 @@ public class CClient extends Client {
                 s = content.split(";");
                 gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
                 gClient.players.add(new Player(s[0], Integer.parseInt(s[1])));
+                gClient.updateNames();
                 break;
 
             case "GO":

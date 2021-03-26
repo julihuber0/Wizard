@@ -199,6 +199,25 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    public String askForStitches()
+    {
+        return eingabeFordern("Gewünschte Stichanzahl eingeben:");
+    }
+
+    public int validateStitches()
+    {
+        String stitchesCount = askForStitches();
+        int sCount = 0;
+        try {
+            sCount = Integer.parseInt(stitchesCount);
+        }
+        catch (Exception e)
+        {
+            validateStitches();
+        }
+        return sCount;
+    }
+
     public String askForTrumpColor() {
         return eingabeFordern("Gewünschte Trumpffarbe eingeben (grün, blau, rot, gelb)");
     }

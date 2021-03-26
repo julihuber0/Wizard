@@ -301,21 +301,28 @@ public class GameW extends Game implements MausReagierbar {
                 server.update();
             }
 
+            for(int i = 0; i < playerCount; i++)
+            {
+                currentPlayerID = players.get(i).getId();
+                //TODO: @Tobi requestStitches in Player implementieren
+                //players.get(i).requestStitches();
+            }
+
             //Spielphase
             for (int i = 0; i < currentRound; i++) {
                 for (int j = 0; j < playerCount; j++) {
-                    currentPlayerID = players.get(i).getId();
+                    currentPlayerID = players.get(j).getId();
                     //stitch.add(players.get(i).requestCard());
                     //ToDo @Julian spielbare Karten senden
                     // player.get(i).sendPlayableCards(...)
-                    getAllowedCards(players.get(i));
-                    players.get(i).requestCard();
+                    getAllowedCards(players.get(j));
+                    players.get(j).requestCard();
                     while (true) {
-                        if(players.get(i).played != null) {
+                        if(players.get(j).played != null) {
                             break;
                         }
                     }
-                    stitch.add(players.get(i).played);
+                    stitch.add(players.get(j).played);
                     //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten (wahrscheinlich erledigt)
                     server.update();
                 }
