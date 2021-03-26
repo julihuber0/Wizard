@@ -29,6 +29,10 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text winner;
     private Text[] scoreboard = new Text[6];
 
+
+    private Text[][] eScoreboard = new Text[13][21];
+
+
     private boolean inputAllowed = false;
     private boolean[] allowedCards = new boolean[20];
 
@@ -287,6 +291,33 @@ public class GUIClient extends Game implements MausReagierbar {
         for (int i = 0; i < players.size(); i++) {
             scoreboard[i].inhaltSetzen(players.get(i).getName() + ": " + players.get(i).getPoints());
             scoreboard[i].sichtbarSetzen(true);
+        }
+    }
+
+    //ToDo @Tobi oje
+    public void getEScoreboard() {
+        eScoreboard[0][0] = new Text("Runde",100,100,20);
+
+        for(int i = 1; i < 20;i = i+2){
+            eScoreboard[i][0] = new Text("Stiche",120 + i*10,100,20);
+        }
+        for(int i = 2;i<21;i = i+2){
+            int p = (i-2)/2;
+            eScoreboard[i][0] = new Text(players.get(p).getName(),130 + i*10,100,20);
+            ArrayList<StitchHistory> sh = players.get(p).getSh();
+            for(int y = 1; y<=sh.size();y++){
+                StitchHistory s = sh.get(y-1);
+                eScoreboard[i-1][y] = new Text(""+ s.getStitches(),120+i*10,100+y*5,20);
+                eScoreboard[i-1][y] = new Text(""+ s.getPoints(),130+i*10,100+y*5,20);
+            }
+        }
+    }
+
+    public void setSichtbardEScoreboard(boolean b) {
+        for(Text[] lines:eScoreboard){
+            for (Text t:lines){
+                t.sichtbarSetzen(b);
+            }
         }
     }
 
