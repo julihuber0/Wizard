@@ -50,6 +50,10 @@ public class Player {
         ch.sendeString("TF/");
     }
 
+    public void sayStitches() { //ToDo einbinden
+        ch.sendeString("SF/");
+    }
+
     public ArrayList<StitchHistory> getSh() {
         return sh;
     }

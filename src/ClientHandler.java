@@ -34,6 +34,10 @@ public class ClientHandler implements Empfaenger {
         this.id = id;
     }
 
+    public void sendID() {
+        sendeString("ID/" + id);
+    }
+
     public void sendeString(String s) {
         verbindung.sendeString(s);
     }
@@ -64,6 +68,10 @@ public class ClientHandler implements Empfaenger {
 
             case "TA":
                 player.selectedTrump = ColorW.valueOf(content);
+                break;
+
+            case "SA":
+
                 break;
 
             default:

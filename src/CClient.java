@@ -155,6 +155,11 @@ public class CClient extends Client {
                 sendeString(ta);
                 break;
 
+            case "SF":
+                String sa = "SA/"; //ToDo gClient.sayStitches();
+                sendeString(sa);
+                break;
+
             default:
                 break;
 

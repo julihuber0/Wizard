@@ -129,8 +129,10 @@ public class Server  implements  Runnable{
             System.out.println("CH erstellt");
             //Namen erfragen
             c.setId(handlers.size());
+            c.sendID();
             c.setServer(this);
             c.sendeString("NF/");
+
             System.out.println("Die Frage gestellt");
 
             //hinzufügen
