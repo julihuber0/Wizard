@@ -236,7 +236,7 @@ public class GUIClient extends Game implements MausReagierbar {
         for(Player p:players)
             if(p.getId()==idSelf)
             {
-                ownPoints.setzeInhalt("Punkte: "+p.getName());
+                name.setzeInhalt(p.getName());
             }
         for(int i = 0; i<players.size(); i++)
         {
@@ -244,7 +244,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getId()==(idSelf+i+1)%players.size())
                 {
-                    points[i].setzeInhalt("Punkte: "+p.getName());
+                    names[i].setzeInhalt(p.getName());
                 }
             }
         }
@@ -255,7 +255,7 @@ public class GUIClient extends Game implements MausReagierbar {
         for(Player p:players)
             if(p.getId()==idSelf)
             {
-                ownPoints.setzeInhalt("Punkte: "+p.getSaidStitches());
+                ownSaidStitches.setzeInhalt("Angesagt: "+p.getSaidStitches());
             }
         for(int i = 0; i<players.size(); i++)
         {
@@ -263,7 +263,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getId()==(idSelf+i+1)%players.size())
                 {
-                    points[i].setzeInhalt("Punkte: "+p.getSaidStitches());
+                    saidStitches[i].setzeInhalt("Angesagt: "+p.getSaidStitches());
                 }
             }
         }
@@ -274,7 +274,7 @@ public class GUIClient extends Game implements MausReagierbar {
         for(Player p:players)
             if(p.getId()==idSelf)
             {
-                ownPoints.setzeInhalt("Punkte: "+p.getCurrentStitches());
+                ownMadeStitches.setzeInhalt("Gemacht: "+p.getCurrentStitches());
             }
         for(int i = 0; i<players.size(); i++)
         {
@@ -282,7 +282,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getId()==(idSelf+i+1)%players.size())
                 {
-                    points[i].setzeInhalt("Punkte: "+p.getCurrentStitches());
+                    madeStitches[i].setzeInhalt("Gemacht: "+p.getCurrentStitches());
                 }
             }
         }
