@@ -231,6 +231,25 @@ public class GUIClient extends Game implements MausReagierbar {
         return null;
     }
 
+    public void updateNames()
+    {
+        for(Player p:players)
+            if(p.getId()==idSelf)
+            {
+                ownPoints.setzeInhalt("Punkte: "+p.getName());
+            }
+        for(int i = 0; i<players.size(); i++)
+        {
+            for(Player p:players)
+            {
+                if(p.getId()==(idSelf+i+1)%players.size())
+                {
+                    points[i].setzeInhalt("Punkte: "+p.getName());
+                }
+            }
+        }
+    }
+
     public void updateSaidStitches()
     {
         for(Player p:players)
