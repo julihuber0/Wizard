@@ -176,6 +176,7 @@ public class GUIClient extends Game implements MausReagierbar {
         return eingabeFordern("Gewünschte Trumpffarbe eingeben (grün, blau, rot, gelb)");
     }
 
+    //ToDo @Tobi diesen Fall in die Kommunikation einbinden
     public ColorW validateTrump() {
         String trumpColor = askForTrumpColor();
         if (trumpColor.equals("grün")) {
@@ -296,7 +297,12 @@ public class GUIClient extends Game implements MausReagierbar {
 
     //ToDo @Tobi oje
     public void getEScoreboard() {
+        //Runde
         eScoreboard[0][0] = new Text("Runde",100,100,20);
+        for(int i = 1;i<21;i++) {
+            eScoreboard[0][i] = new Text(""+i,100,100+i*5);
+
+        }
 
         for(int i = 1; i < 13;i = i+2){
             eScoreboard[i][0] = new Text("Stiche",120 + i*10,100,20);
@@ -320,7 +326,15 @@ public class GUIClient extends Game implements MausReagierbar {
     public void setSichtbardEScoreboard(boolean b) {
         for(Text[] lines:eScoreboard){
             for (Text t:lines){
-                t.sichtbarSetzen(b);
+                if(t != null) {
+                    if(b) {
+                        wurzel.add(t);
+                    }
+                    else {
+                        wurzel.entfernen(t);
+                    }
+                    t.sichtbarSetzen(b);
+                }
             }
         }
     }
