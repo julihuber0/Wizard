@@ -98,7 +98,7 @@ public class GUIClient extends Game implements MausReagierbar {
         l.sichtbarSetzen(false);
         maus.anmelden(this, l, 3);
 
-        //TODO: @Julian Schleifenbedingungen an Spielerzahl etc. anpassen
+        //TODO: @Julian Schleifenbedingungen an Spielerzahl etc. anpassen (nach Testphase)
 
         //Marker erzeugen
         for (int i = 0; i < 5; i++) {
@@ -120,6 +120,7 @@ public class GUIClient extends Game implements MausReagierbar {
         ownAvatar.sichtbarSetzen(false);
 
         //Namen erzeugen
+        //TODO: Namen durch die der angemeldeten Spieler ersetzen (nach Testphase)
         for (int i = 0; i < 5; i++) {
             names[i] = new Text("Spieler" + (i + 2), 110 + i * 200, 180, 15);
             sichtbarMachen(names[i]);
@@ -127,7 +128,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
         name = new Text("Spieler1", 20, 590, 15);
         sichtbarMachen(name);
-        name.sichtbarSetzen(true);
+        name.sichtbarSetzen(false);
 
         //Angesagte Stiche anzeigen
         for (int i = 0; i < 5; i++) {
@@ -154,7 +155,7 @@ public class GUIClient extends Game implements MausReagierbar {
         bg2.sichtbarSetzen(false);
 
         //Scoreboard-Button
-        scoreboardButton = new Text("Scoreboard", 1050, 10, 15);
+        scoreboardButton = new Text("Scoreboard", 1075, 10, 20);
         sichtbarMachen(scoreboardButton);
         scoreboardButton.sichtbarSetzen(false);
         maus.anmelden(this, scoreboardButton, 4);
@@ -190,6 +191,8 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public ColorW validateTrump() {
+        bg2.sichtbarSetzen(false);
+        setSichtbarEScoreboard(false);
         String trumpColor = askForTrumpColor();
         if (trumpColor.equals("grün")) {
             return ColorW.GREEN;
@@ -357,7 +360,7 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     //ToDo @Julian Button zum Anzeigen/Verbergen des Scoreboards, wenn nach Trumpffarbe gefragt wird auch automatisch ausblenden
-    public void setSichtbardEScoreboard(boolean b) {
+    public void setSichtbarEScoreboard(boolean b) {
         if(b)
         {
             sichtbarMachen(bg2);
@@ -368,20 +371,18 @@ public class GUIClient extends Game implements MausReagierbar {
             wurzel.entfernen(bg2);
             bg2.sichtbarSetzen(false);
         }
+        sichtbarMachen(scoreboardButton);
         for(Text[] lines:eScoreboard){
             for (Text t:lines){
                 if(t != null) {
                     if(b) {
-                        System.out.println("Sichtbar");
                         wurzel.add(t);
                         t.sichtbarSetzen(true);
                     }
                     else {
-                        System.out.println("Unsichtbar");
                         t.sichtbarSetzen(false);
                         wurzel.entfernen(t);
                     }
-                    //t.sichtbarSetzen(b);
                 }
             }
         }
@@ -467,14 +468,13 @@ public class GUIClient extends Game implements MausReagierbar {
                 {
                     if(bg2.sichtbar()) {
                         bg2.sichtbarSetzen(false);
-                        getEScoreboard();
-                        setSichtbardEScoreboard(false);
+                        setSichtbarEScoreboard(false);
                     }
                     else
                     {
                         bg2.sichtbarSetzen(true);
                         getEScoreboard();
-                        setSichtbardEScoreboard(true);
+                        setSichtbarEScoreboard(true);
                     }
                 }
                 break;
