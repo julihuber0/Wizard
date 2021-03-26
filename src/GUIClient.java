@@ -31,7 +31,8 @@ public class GUIClient extends Game implements MausReagierbar {
 
 
     private Text[][] eScoreboard = new Text[13][21];
-
+    private Rechteck eScoreboard_line1;
+    private Rechteck eScoreboard_line2;
 
     private boolean inputAllowed = false;
     private boolean[] allowedCards = new boolean[20];
@@ -295,37 +296,55 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    //ToDo @Tobi oje Linien, Format
+    //ToDo @Tobi Linien
     public void getEScoreboard() {
         //Runde
-        eScoreboard[0][0] = new Text("Runde",98,100,20);
-        for(int i = 1;i<21;i++) {
-            eScoreboard[0][i] = new Text(""+i,98,100+i*30);
+        eScoreboard[0][0] = new Text("Runde",100,0,20);
+        for(int i = 1;i<=currentRound;i++) {
+            eScoreboard[0][i] = new Text(""+i,100,20+i*30);
         }
 
-        //for(int i = 1; i < 13;i = i+2){
-          //  eScoreboard[i][0] = new Text("Stiche",120 + i*10,100,20);
-        //}
-        Text t = new Text("999",0,0,20);
-        System.out.println(t.getBreite());
-        System.out.println(t.getHoehe());
+        int xpos = 0;
 
         for(int i = 1;i<13;i++) {
             if (i % 2 != 0) {
                 int p = (i-1) / 2;
                 if (players.size() > p) {
-                    eScoreboard[i][0] = new Text(players.get(p).getName(), 130 + i * 10, 100, 20);
-                    ArrayList<StitchHistory> sh = players.get(p).getSh();
-                    for (int y = 1; y <= sh.size(); y++) {
-                        if (sh.size() > y) {
-                            StitchHistory s = sh.get(y - 1);
-                            eScoreboard[i - 1][y] = new Text("" + s.getStitches(), 120 + i * 10, 100 + y * 5, 20);
-                            eScoreboard[i - 1][y] = new Text("" + s.getPoints(), 130 + i * 10, 100 + y * 5, 20);
+                    if(i < 2) { //erster Playername, braucht nicht auf vorherigen Namen zu achten
+                        eScoreboard[i][0] = new Text(players.get(p).getName(), 200, 0, 20);
+                        ArrayList<StitchHistory> sh = players.get(p).getSh();
+                        for (int y = 0; y < sh.size(); y++) {
+                            StitchHistory s = sh.get(y);
+                            eScoreboard[i][y+1] = new Text("" + s.getStitches(), 200, 50 + y * 30, 20);
+                            eScoreboard[i+1][y+1] = new Text("" + s.getPoints(), 250, 50 + y * 30, 20);
+                        }
+                    }
+                    else {
+                        int breite = (int)(eScoreboard[i-2][0].getBreite())+30;
+                        if(breite < 150){
+                            breite = 150;
+                        }
+
+                        xpos = (int)(eScoreboard[i-2][0].getX() + breite);
+
+                        eScoreboard[i][0] = new Text(players.get(p).getName(), xpos, 0, 20);
+                        ArrayList<StitchHistory> sh = players.get(p).getSh();
+                        for (int y = 0; y < sh.size(); y++) {
+                            StitchHistory s = sh.get(y);
+                            eScoreboard[i ][y+1] = new Text("" + s.getStitches(), xpos, 50 + y * 30, 20);
+                            eScoreboard[i+1][y+1] = new Text("" + s.getPoints(), xpos + 50, 50 + y * 30, 20);
                         }
                     }
                 }
             }
         }
+
+        //Linie:
+        xpos = xpos + 30;
+        int ypos = 50 + currentRound*30;
+        eScoreboard_line1 = new Rechteck(70,40,xpos,1);
+        eScoreboard_line2 = new Rechteck(175,0,1,ypos);
+        System.out.println("X: " + xpos + "  y: " + ypos);
     }
 
     //ToDo @Julian Button zum Anzeigen/Verbergen des Scoreboards, wenn nach Trumpffarbe gefragt wird auch automatisch ausblenden
@@ -342,6 +361,18 @@ public class GUIClient extends Game implements MausReagierbar {
                     t.sichtbarSetzen(b);
                 }
             }
+        }
+        if (b) {
+            eScoreboard_line1.sichtbarSetzen(true);
+            eScoreboard_line2.sichtbarSetzen(true);
+            wurzel.add(eScoreboard_line1);
+            wurzel.add(eScoreboard_line2);
+        }
+        else {
+            eScoreboard_line1.sichtbarSetzen(false);
+            eScoreboard_line2.sichtbarSetzen(false);
+            wurzel.entfernen(eScoreboard_line1);
+            wurzel.entfernen(eScoreboard_line2);
         }
     }
 
