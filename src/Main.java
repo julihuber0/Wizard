@@ -20,7 +20,7 @@ public class Main {
         gui.players.get(5).getSh().add(new StitchHistory(3,100));
         gui.players.get(5).getSh().add(new StitchHistory(5,-10));
         gui.currentRound = 10;
-        gui.getEScoreboard();
-        gui.setSichtbardEScoreboard(true);
+        //gui.getEScoreboard();
+        //gui.setSichtbardEScoreboard(true);
     }
 }

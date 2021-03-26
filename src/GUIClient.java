@@ -28,6 +28,8 @@ public class GUIClient extends Game implements MausReagierbar {
     private Rechteck sbBG;
     private Text winner;
     private Text[] scoreboard = new Text[6];
+    private Text scoreboardButton;
+    private Bild bg2;
 
 
     private Text[][] eScoreboard = new Text[13][21];
@@ -146,6 +148,16 @@ public class GUIClient extends Game implements MausReagierbar {
         ownPoints = new Text("Punkte: ", 20, 630, 15);
         sichtbarMachen(ownPoints);
         ownPoints.sichtbarSetzen(false);
+
+        //Scoreboard-BG
+        bg2 = new Bild(0, 0, "Resources/BG2.jpg");
+        bg2.sichtbarSetzen(false);
+
+        //Scoreboard-Button
+        scoreboardButton = new Text("Scoreboard", 1050, 10, 15);
+        sichtbarMachen(scoreboardButton);
+        scoreboardButton.sichtbarSetzen(false);
+        maus.anmelden(this, scoreboardButton, 4);
     }
 
     public void showPlayerInList(String name, int id) {
@@ -346,16 +358,30 @@ public class GUIClient extends Game implements MausReagierbar {
 
     //ToDo @Julian Button zum Anzeigen/Verbergen des Scoreboards, wenn nach Trumpffarbe gefragt wird auch automatisch ausblenden
     public void setSichtbardEScoreboard(boolean b) {
+        if(b)
+        {
+            sichtbarMachen(bg2);
+            bg2.sichtbarSetzen(true);
+        }
+        else
+        {
+            wurzel.entfernen(bg2);
+            bg2.sichtbarSetzen(false);
+        }
         for(Text[] lines:eScoreboard){
             for (Text t:lines){
                 if(t != null) {
                     if(b) {
+                        System.out.println("Sichtbar");
                         wurzel.add(t);
+                        t.sichtbarSetzen(true);
                     }
                     else {
+                        System.out.println("Unsichtbar");
+                        t.sichtbarSetzen(false);
                         wurzel.entfernen(t);
                     }
-                    t.sichtbarSetzen(b);
+                    //t.sichtbarSetzen(b);
                 }
             }
         }
@@ -379,10 +405,6 @@ public class GUIClient extends Game implements MausReagierbar {
         Text t = new Text(name + " ist nicht mehr.", 260, 260, 20);
         sichtbarMachen(t);
     }
-
-    //TODO: Unsichtbare Objekte können angeklickt werden, wie beheben?
-    // if Abfragen sind wahrscheinlich die beste Methode
-    // hab des mal umgesetzt, außer code 3, kenne ich nicht
 
     @Override
     public void mausReagieren(int code) {
@@ -434,10 +456,27 @@ public class GUIClient extends Game implements MausReagierbar {
                     marker[0].sichtbarSetzen(true);
                     l.sichtbarSetzen(true);
                     showOwnHand();
+                    scoreboardButton.sichtbarSetzen(true);
                 }
                 break;
             case 3:     //Karten legen Button
                 markPlayer(2);
+                break;
+            case 4:
+                if(scoreboardButton.sichtbar())
+                {
+                    if(bg2.sichtbar()) {
+                        bg2.sichtbarSetzen(false);
+                        getEScoreboard();
+                        setSichtbardEScoreboard(false);
+                    }
+                    else
+                    {
+                        bg2.sichtbarSetzen(true);
+                        getEScoreboard();
+                        setSichtbardEScoreboard(true);
+                    }
+                }
                 break;
             case 100:
                 if (allowedCards[code - 100]) {
