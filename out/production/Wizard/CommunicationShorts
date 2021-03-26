@@ -4,7 +4,7 @@
 Broadcasts:
  SB: Scoreboard
  SS: Said Stitches
- CS: Current Stiches (die Stiche, die bereits gemacht wurden in der Runde)
+ CS: Current Stitches (die Stiche, die bereits gemacht wurden in der Runde)
  AR: Aktuelle Runde
  AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
  AT: Aktueller Trumpf
@@ -21,12 +21,14 @@ Server zu Clients:
  HS: Spielbare Karten auf der Hand des Spielers
  KS: Karte spielen
  TF: Trumpffarbe fragen
+ SF: Stiche fragen
 
 
 Clients zu Server
  NA: Namen angeben
  GK: Gespielte Karte
  TA: Trumpf ausgewählt
+ SA: Stiche angesagt
 
 
 
