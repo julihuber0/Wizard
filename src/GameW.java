@@ -294,6 +294,7 @@ public class GameW extends Game implements MausReagierbar {
                     //stitch.add(players.get(i).requestCard());
                     //ToDo @Julian spielbare Karten senden
                     // player.get(i).sendPlayableCards(...)
+                    getAllowedCards(players.get(i));
                     players.get(i).requestCard();
                     while (true) {
                         if(players.get(i).played != null) {
@@ -301,7 +302,7 @@ public class GameW extends Game implements MausReagierbar {
                         }
                     }
                     stitch.add(players.get(i).played);
-                    //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten
+                    //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten (wahrscheinlich erledigt)
                     server.update();
                 }
                 Player p = calculateStitch();
@@ -310,6 +311,11 @@ public class GameW extends Game implements MausReagierbar {
                 stitch.clear();
                 players = getNewFirstPlayer(p);
                 server.update();
+            }
+
+            for(Player pl:players)
+            {
+                pl.clearHand();
             }
             //Punkteberechnung
             for (int i = 0; i < playerCount; i++) {
@@ -322,6 +328,7 @@ public class GameW extends Game implements MausReagierbar {
                 }
             }
             gs = GameState.WAITING_FOR_NEXT_ROUND;
+            startNextRound();
         }
         server.gameOver(getWinner().getName(), getWinner().getId());
         server.update();

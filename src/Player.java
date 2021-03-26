@@ -41,6 +41,11 @@ public class Player {
         ch.sendeString(cards);
     }
 
+    public void clearHand()
+    {
+        hand.clear();
+    }
+
     public void selectTrump() {
         ch.sendeString("TF/");
     }

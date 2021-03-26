@@ -218,6 +218,25 @@ public class GUIClient extends Game implements MausReagierbar {
         return null;
     }
 
+    public void updatePoints()
+    {
+        for(Player p:players)
+            if(p.getId()==idSelf)
+            {
+                ownPoints.setzeInhalt("Punkte: "+p.getPoints());
+            }
+        for(int i = 1; i<players.size(); i++)
+        {
+            for(Player p:players)
+            {
+                if(p.getId()==(idSelf+i)%players.size())
+                {
+                    points[i].setzeInhalt("Punkte: "+p.getPoints());
+                }
+            }
+        }
+    }
+
     @Override
     public void tasteReagieren(int i) {
 
@@ -359,7 +378,6 @@ public class GUIClient extends Game implements MausReagierbar {
         eScoreboard_line2 = new Rechteck(175,0,1,ypos);
     }
 
-    //ToDo @Julian Button zum Anzeigen/Verbergen des Scoreboards, wenn nach Trumpffarbe gefragt wird auch automatisch ausblenden
     public void setSichtbarEScoreboard(boolean b) {
         if(b)
         {
