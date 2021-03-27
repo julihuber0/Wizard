@@ -300,7 +300,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 ownSaidStitches.setzeInhalt("Angesagt: "+p.getSaidStitches());
             }
-        for(int i = 0; i<players.size(); i++)
+        for(int i = 0; i<players.size()-1; i++)
         {
             for(Player p:players)
             {
@@ -319,7 +319,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 ownMadeStitches.setzeInhalt("Gemacht: "+p.getCurrentStitches());
             }
-        for(int i = 0; i<players.size(); i++)
+        for(int i = 0; i<players.size()-1; i++)
         {
             for(Player p:players)
             {
