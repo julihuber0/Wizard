@@ -104,7 +104,7 @@ public class CClient extends Client {
                 s = content.split(";");
                 gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
                 gClient.players.add(new Player(s[0], Integer.parseInt(s[1])));
-                gClient.updateNames();
+                //gClient.updateNames();
                 break;
 
             case "GO":
