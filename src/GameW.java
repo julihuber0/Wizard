@@ -2,9 +2,7 @@ import ea.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class GameW extends Game implements MausReagierbar {
