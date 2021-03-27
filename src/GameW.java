@@ -304,8 +304,9 @@ public class GameW extends Game implements MausReagierbar {
             for(int i = 0; i < playerCount; i++)
             {
                 currentPlayerID = players.get(i).getId();
-                //TODO: @Tobi requestStitches in Player implementieren
-                //players.get(i).requestStitches();
+                players.get(i).sayStitches();
+
+                //ToDo @Julian hier Update senden, dass der nächste Spieler dann sieht, was die Person davor gesagt hat
             }
 
             //Spielphase
