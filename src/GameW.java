@@ -67,8 +67,10 @@ public class GameW extends Game implements MausReagierbar {
             case 0:
                 start();
                 server.sendString("SG/");
+                break;
             default:
                 System.out.println("lel");
+                break;
         }
     }
 
