@@ -84,8 +84,10 @@ public class CClient extends Client {
             case "AS":
                 lines = content.split("/");
                 for(String line:lines) {
-                    s = line.split(";");
-                    gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.valueOf(s[1])));
+                    if(!line.isEmpty()) {
+                        s = line.split(";");
+                        gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.valueOf(s[1])));
+                    }
                 }
                 gClient.updateStitch();
                 break;
