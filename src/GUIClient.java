@@ -295,6 +295,10 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void updateSaidStitches()
     {
+        for(Player p:players){
+            System.out.println(p.getName() + "  " + p.getId());
+        }
+
         for(Player p:players)
             if(p.getId()==idSelf)
             {
