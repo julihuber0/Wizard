@@ -303,10 +303,15 @@ public class GameW extends Game implements MausReagierbar {
 
             for(int i = 0; i < playerCount; i++)
             {
+                players.get(i).saidStitches = - 1;
                 currentPlayerID = players.get(i).getId();
                 players.get(i).sayStitches();
 
-                //ToDo @Julian hier Update senden, dass der nächste Spieler dann sieht, was die Person davor gesagt hat
+                while (true) {
+                    if(players.get(i).saidStitches > -1) {
+                        break;
+                    }
+                }
                 server.update();
             }
 
