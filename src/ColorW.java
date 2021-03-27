@@ -1,7 +1,7 @@
 public enum ColorW {
     GREEN, BLUE, RED, YELLOW;
 
-    public ColorW toEnum(String s) {
+    public static ColorW toEnum(String s) {
         if(s.equals("GREEN")) {
             return ColorW.GREEN;
         }
@@ -11,8 +11,12 @@ public enum ColorW {
         if(s.equals("RED")) {
             return ColorW.RED;
         }
-        else {
+        if(s.equals("YELLOW"))
+        {
             return ColorW.YELLOW;
+        }
+        else {
+            return null;
         }
     }
 }
