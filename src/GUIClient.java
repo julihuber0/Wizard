@@ -640,6 +640,7 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             System.out.println(i);
         }
+        System.out.println("Current player: "+currentPlayerID);
     }
 
     @Override
