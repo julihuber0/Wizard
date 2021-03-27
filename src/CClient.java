@@ -116,6 +116,10 @@ public class CClient extends Client {
                 gClient.disconnected(content);
                 break;
 
+            case "SG":
+                gClient.startGame();
+                break;
+
             /*
             *  Clientspezifisches
             */
