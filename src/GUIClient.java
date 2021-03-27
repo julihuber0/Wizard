@@ -526,6 +526,11 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void startGame()
     {
+        for(Text t:playerList)
+        {
+            t.sichtbarSetzen(false);
+            wurzel.entfernen(t);
+        }
         //Marker erzeugen
         for (int i = 0; i < players.size()-1; i++) {
             marker[i] = new Rechteck(100 + i * 200, 20, 150, 150);
@@ -627,6 +632,10 @@ public class GUIClient extends Game implements MausReagierbar {
         System.out.println("Here1");
         scoreboardButton.sichtbarSetzen(true);
         System.out.println("Here2");
+        for(int i:relativeID)
+        {
+            System.out.println(i);
+        }
     }
 
     @Override
