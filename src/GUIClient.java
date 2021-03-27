@@ -516,13 +516,13 @@ public class GUIClient extends Game implements MausReagierbar {
 
     @Override
     public void mausReagieren(int code) {
-
         //falls code einer Karte hier anstatt in dem switch immer abfragen
         if (code >= 100 && code <=119 ) {
             if (!ownHand[code-100].sichtbar()) {
                 return;
             }
         }
+        System.out.println("Code: " + code);
 
         switch (code) {
             case 0:     //Beitreten-Button
@@ -569,7 +569,9 @@ public class GUIClient extends Game implements MausReagierbar {
                     marker[0].sichtbarSetzen(true);
                     l.sichtbarSetzen(true);
                     showOwnHand();
+                    System.out.println("Here1");
                     scoreboardButton.sichtbarSetzen(true);
+                    System.out.println("Here2");
                 }
                 break;
             case 3:     //Karten legen Button
@@ -603,7 +605,9 @@ public class GUIClient extends Game implements MausReagierbar {
                 if (allowedCards[code - 100] && inputAllowed) {
                     ownHand[1].sichtbarSetzen(false);
                     karteLegen(hand.get(1));
+                    System.out.println("beforeSend");
                     cClient.playCard(hand.get(1));
+                    System.out.println("after Send");
                 }
                 break;
             case 102:
@@ -737,6 +741,5 @@ public class GUIClient extends Game implements MausReagierbar {
             default:
                 break;
         }
-
     }
 }
