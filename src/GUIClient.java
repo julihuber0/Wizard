@@ -191,7 +191,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void showOwnHand() {
         Collections.sort(hand);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < currentRound; i++) {
             ownHand[i] = new Bild(200 + i * 95, 500, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
             sichtbarMachen(ownHand[i]);
             ownHand[i].sichtbarSetzen(true);
