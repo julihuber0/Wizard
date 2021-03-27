@@ -50,7 +50,7 @@ public class Player {
         ch.sendeString("TF/");
     }
 
-    public void sayStitches() { //ToDo einbinden
+    public void sayStitches() {
         ch.sendeString("SF/");
     }
 
