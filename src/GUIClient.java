@@ -526,6 +526,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void startGame()
     {
+        setRelativeIDs();
         for(Text t:playerList)
         {
             t.sichtbarSetzen(false);
@@ -635,7 +636,6 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             System.out.println(i);
         }
-        setRelativeIDs();
         System.out.println("Danach");
         for(int i:relativeID)
         {
