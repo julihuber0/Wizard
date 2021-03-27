@@ -328,7 +328,7 @@ public class GameW extends Game implements MausReagierbar {
                         }
                     }
                     stitch.add(players.get(j).played);
-                    //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten (wahrscheinlich erledigt)
+                    //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten (höchstwahrscheinlich erledigt)
                     server.update();
                 }
                 Player p = calculateStitch();
