@@ -600,7 +600,7 @@ public class GUIClient extends Game implements MausReagierbar {
         joinButton.sichtbarSetzen(false);
         playButton.sichtbarSetzen(false);
         logo.sichtbarSetzen(false);
-        for (int i = 0; i < players.size(); i++) {
+        for (int i = 0; i < players.size()-1; i++) {
             s[i].sichtbarSetzen(true);
         }
         for (int i = 0; i < players.size()-1; i++) {
