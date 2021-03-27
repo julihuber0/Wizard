@@ -634,6 +634,7 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             System.out.println(i);
         }
+        setRelativeIDs();
     }
 
     @Override
