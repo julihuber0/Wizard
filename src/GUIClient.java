@@ -518,6 +518,7 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void disconnected(String name) {
+        //Todo hier kein Rechteck, sondern das Bild wie beim Scoreboard einblenden
         Rechteck bg = new Rechteck(250, 250, 200, 40);
         sichtbarMachen(bg);
         Text t = new Text(name + " ist nicht mehr.", 260, 260, 20);
