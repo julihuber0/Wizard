@@ -23,7 +23,6 @@ public class Player {
         currentStitches = 0;
     }
 
-    //ToDo @Julian aufrufen an der richtigen Stelle
     public void sendHand() {
         //sendet die Arraylist hand an den zugehörigen Client
         String cards = "HA/";

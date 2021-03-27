@@ -122,6 +122,7 @@ public class GameW extends Game implements MausReagierbar {
         for(Player p:players)
         {
             p.sortHand();
+            p.sendHand();
         }
         server.update();
     }
