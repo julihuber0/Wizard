@@ -629,9 +629,7 @@ public class GUIClient extends Game implements MausReagierbar {
         marker[0].sichtbarSetzen(true);
         t.sichtbarSetzen(true);
         showOwnHand();
-        System.out.println("Here1");
         scoreboardButton.sichtbarSetzen(true);
-        System.out.println("Here2");
         for(int i:relativeID)
         {
             System.out.println(i);
