@@ -64,7 +64,7 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(bg);
 
         //Test
-        inputAllowed = true;
+        /*inputAllowed = true;
         hand.add(new Card(3, ColorW.YELLOW));
         hand.add(new Card(2, ColorW.YELLOW));
         hand.add(new Card(1, ColorW.YELLOW));
@@ -72,7 +72,7 @@ public class GUIClient extends Game implements MausReagierbar {
         allowedCards[0] = false;
         allowedCards[1] = true;
         allowedCards[2] = false;
-        allowedCards[3] = true;
+        allowedCards[3] = true;*/
 
         //Main Menu
         joinButton = new Text("Beitreten", 200, 200, 20);
@@ -103,7 +103,7 @@ public class GUIClient extends Game implements MausReagierbar {
         //TODO: @Julian Schleifenbedingungen an Spielerzahl etc. anpassen (nach Testphase)
 
         //Marker erzeugen
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < players.size(); i++) {
             marker[i] = new Rechteck(100 + i * 200, 20, 150, 150);
             sichtbarMachen(marker[i]);
             marker[i].sichtbarSetzen(false);
@@ -112,7 +112,7 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(ownMarker);
         ownMarker.sichtbarSetzen(false);
         //Avatare erzeugen
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < players.size(); i++) {
             s[i] = new Bild(100 + i * 200, 20, "Resources/avatar.png");
             sichtbarMachen(s[i]);
             s[i].sichtbarSetzen(false);
@@ -123,7 +123,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
         //Namen erzeugen
         //TODO: Namen durch die der angemeldeten Spieler ersetzen (nach Testphase)
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < players.size(); i++) {
             names[i] = new Text("Spieler" + (i + 2), 110 + i * 200, 180, 15);
             sichtbarMachen(names[i]);
             names[i].sichtbarSetzen(false);
@@ -133,7 +133,7 @@ public class GUIClient extends Game implements MausReagierbar {
         name.sichtbarSetzen(false);
 
         //Angesagte Stiche anzeigen
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < players.size(); i++) {
             saidStitches[i] = new Text("Angesagt: ", 110 + i * 200, 200, 15);
             sichtbarMachen(saidStitches[i]);
             saidStitches[i].sichtbarSetzen(false);
@@ -143,7 +143,7 @@ public class GUIClient extends Game implements MausReagierbar {
         ownSaidStitches.sichtbarSetzen(false);
 
         //Gemachte Stiche anzeigen
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < players.size(); i++)
         {
             madeStitches[i] = new Text("Gemacht: ", 110+i*200, 220, 15);
             sichtbarMachen(madeStitches[i]);
@@ -154,7 +154,7 @@ public class GUIClient extends Game implements MausReagierbar {
         ownMadeStitches.sichtbarSetzen(false);
 
         //Punkte anzeigen
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < players.size(); i++) {
             points[i] = new Text("Punkte: ", 110 + i * 200, 240, 15);
             sichtbarMachen(points[i]);
             points[i].sichtbarSetzen(false);
