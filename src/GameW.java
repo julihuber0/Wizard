@@ -16,7 +16,7 @@ public class GameW extends Game implements MausReagierbar {
     public ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
     public ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
     public ColorW currentTrump = null;      //aktuelle Trumpffarbe
-    public CardDeck deck = new CardDeck();     //Kardendeck
+    public CardDeck deck = new CardDeck();     //Kartendeck
     public int currentPlayerID = 0;
     private Server server;
     private String ipadress;
@@ -307,6 +307,7 @@ public class GameW extends Game implements MausReagierbar {
                 players.get(i).sayStitches();
 
                 //ToDo @Julian hier Update senden, dass der nächste Spieler dann sieht, was die Person davor gesagt hat
+                server.update();
             }
 
             //Spielphase
