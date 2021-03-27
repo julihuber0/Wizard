@@ -352,11 +352,11 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void updateStitch()
     {
-        for(int i = 0; i<players.size(); i++)
-        {
-            if(stitchImage[i]==null)
-            {
-                karteLegen(stitch.get(i));
+        if(!stitch.isEmpty()) {
+            for (int i = 0; i < players.size(); i++) {
+                if (stitchImage[i] == null) {
+                    karteLegen(stitch.get(i));
+                }
             }
         }
     }
