@@ -201,7 +201,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    public void updateNames() //ToDo Sollte unnötig sein nach Testphase entfernen
+    public void updateNames()
     {
         /*for(Player p:players)
             if(p.getId()==idSelf)
