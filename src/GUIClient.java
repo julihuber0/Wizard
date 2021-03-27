@@ -272,7 +272,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void updateNames() //ToDo Sollte unnötig sein nach Testphase entfernen
     {
-        for(Player p:players)
+        /*for(Player p:players)
             if(p.getId()==idSelf)
             {
                 name.setzeInhalt(p.getName());
@@ -286,6 +286,10 @@ public class GUIClient extends Game implements MausReagierbar {
                     names[i].setzeInhalt(p.getName());
                 }
             }
+        }*/
+        for(Player p:players)
+        {
+            showPlayerInList(p.getName(), p.getId());
         }
     }
 
