@@ -160,7 +160,7 @@ public class CClient extends Client {
                 break;
 
             case "SF":
-                String sa = "SA/"; //ToDo gClient.sayStitches();
+                String sa = "SA/" + gClient.validateStitches();
                 sendeString(sa);
                 break;
 
