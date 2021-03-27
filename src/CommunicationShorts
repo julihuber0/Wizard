@@ -9,10 +9,12 @@ Broadcasts:
  AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
  AT: Aktueller Trumpf
  AP: Aktueller Player
+ CP: Clear Players
  PN: Player Namen
  GO: Game over
  DC: Player disconnected
  SG: Starte Game
+
 
 
 Server zu Clients:

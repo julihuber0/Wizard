@@ -100,9 +100,13 @@ public class CClient extends Client {
                 gClient.updateCurrentPlayerMarker();
                 break;
 
+            case "CP":
+                gClient.players.clear();
+                break;
+
             case "PN":
                 s = content.split(";");
-                gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
+                //gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
                 gClient.players.add(new Player(s[0], Integer.parseInt(s[1])));
                 //gClient.updateNames();
                 break;

@@ -12,6 +12,7 @@ Broadcasts:
  PN: Player Namen
  GO: Game over
  DC: Player disconnected
+ SG: Starte Game
 
 
 Server zu Clients:

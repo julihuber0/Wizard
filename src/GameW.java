@@ -77,6 +77,7 @@ public class GameW extends Game implements MausReagierbar {
         players.add(p);
         for (Player player: players) {
             String toSend = "PN/" + player.getName() + ";" + player.getId();
+            System.out.println(toSend);
             server.sendString(toSend);
         }
     }
