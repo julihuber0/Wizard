@@ -28,7 +28,7 @@ public class GameW extends Game implements MausReagierbar {
     private Text displayIP;
     private Text displayIP2;
 
-    //ToDo @Julian nach jeder Änderung server.update asuführen
+    //ToDo @Julian nach jeder Änderung server.update asuführen (soweit erledigt)
     public GameW() {
         super(400, 300, "Wizard-Serer", false, false);
         server = new Server(this);
