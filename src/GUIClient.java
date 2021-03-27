@@ -581,6 +581,40 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(t);
     }
 
+    public void startGame()
+    {
+        joinButton.sichtbarSetzen(false);
+        playButton.sichtbarSetzen(false);
+        logo.sichtbarSetzen(false);
+        for (int i = 0; i < 5; i++) {
+            s[i].sichtbarSetzen(true);
+        }
+        for (int i = 0; i < 5; i++) {
+            names[i].sichtbarSetzen(true);
+        }
+        for (int i = 0; i < 5; i++) {
+            saidStitches[i].sichtbarSetzen(true);
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            madeStitches[i].sichtbarSetzen(true);
+        }
+        for (int i = 0; i < 5; i++) {
+            points[i].sichtbarSetzen(true);
+        }
+        name.sichtbarSetzen(true);
+        ownAvatar.sichtbarSetzen(true);
+        ownSaidStitches.sichtbarSetzen(true);
+        ownMadeStitches.sichtbarSetzen(true);
+        ownPoints.sichtbarSetzen(true);
+        marker[0].sichtbarSetzen(true);
+        t.sichtbarSetzen(true);
+        showOwnHand();
+        System.out.println("Here1");
+        scoreboardButton.sichtbarSetzen(true);
+        System.out.println("Here2");
+    }
+
     @Override
     public void mausReagieren(int code) {
         //falls code einer Karte hier anstatt in dem switch immer abfragen
