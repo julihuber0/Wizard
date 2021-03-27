@@ -553,11 +553,11 @@ public class GUIClient extends Game implements MausReagierbar {
         //Namen erzeugen
         //TODO: Namen durch die der angemeldeten Spieler ersetzen (nach Testphase)
         for (int i = 0; i < players.size()-1; i++) {
-            names[i] = new Text("Spieler" + (i + 2), 110 + i * 200, 180, 15);
+            names[i] = new Text(players.get(relativeID[i]).getName(), 110 + i * 200, 180, 15);
             sichtbarMachen(names[i]);
             names[i].sichtbarSetzen(false);
         }
-        name = new Text("Spieler1", 20, 570, 15);
+        name = new Text(players.get(idSelf).getName(), 20, 570, 15);
         sichtbarMachen(name);
         name.sichtbarSetzen(false);
 
