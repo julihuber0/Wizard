@@ -532,7 +532,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(marker[i]);
             marker[i].sichtbarSetzen(false);
         }
-        ownMarker = new Rechteck(10, 430, 150, 150);
+        ownMarker = new Rechteck(10, 410, 150, 150);
         sichtbarMachen(ownMarker);
         ownMarker.sichtbarSetzen(false);
         //Avatare erzeugen
