@@ -1,1 +1,1 @@
-[Sat Mar 27 22:20:39 CET 2021][ERROR] Es gab Input/Output - Schwierigkeiten. Sind ausreichende Rechte fuer Internet etc. vorhanden? Das System könnte die Netzwerkanfrage ablehnen. (Client.java:131)
+[Sat Mar 27 22:39:07 CET 2021][ERROR] Konnte nicht vom Kommunikationspartner einlesen. (NetzwerkInterpreter.java:105)

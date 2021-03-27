@@ -333,12 +333,12 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void updatePoints()
     {
-        for(Player p:players)
-            if(p.getId()==idSelf)
-            {
-                ownPoints.setzeInhalt("Punkte: "+p.getPoints());
+        for(Player p:players) {
+            if (p.getId() == idSelf) {
+                ownPoints.setzeInhalt("Punkte: " + p.getPoints());
             }
-        for(int i = 0; i<players.size(); i++)
+        }
+        for(int i = 0; i<players.size()-1; i++)
         {
             for(Player p:players)
             {
