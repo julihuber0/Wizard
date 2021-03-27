@@ -311,8 +311,8 @@ public class GUIClient extends Game implements MausReagierbar {
             }
         }
         else {
-            for (int i = 0; i < players.size() - 1; i++) {
-                if (relativeID[i] == currentPlayerID) {
+            for (int i = 0; i < players.size()-1; i++) {
+                if (relativeID[i+1] == currentPlayerID) {
                     marker[i].sichtbarSetzen(true);
                 } else {
                     marker[i].sichtbarSetzen(false);
