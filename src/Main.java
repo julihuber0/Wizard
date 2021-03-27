@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         GUIClient gui = new GUIClient();
+        /*
         gui.players.add(new Player("Tobias",0));
         gui.players.add(new Player("Julian",1));
         gui.players.add(new Player("Tobias",2));
@@ -22,5 +23,6 @@ public class Main {
         gui.currentRound = 10;
         //gui.getEScoreboard();
         //gui.setSichtbardEScoreboard(true);
+        */
     }
 }
