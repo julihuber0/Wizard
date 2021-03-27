@@ -86,14 +86,14 @@ public class CClient extends Client {
                 for(String line:lines) {
                     if(!line.isEmpty()) {
                         s = line.split(";");
-                        gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.valueOf(s[1])));
+                        gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1])));
                     }
                 }
                 gClient.updateStitch();
                 break;
 
             case "AT":
-                gClient.currentTrump = ColorW.valueOf(content);
+                gClient.currentTrump = ColorW.toEnum(content);
                 gClient.updateTrump();
                 break;
 
@@ -147,7 +147,7 @@ public class CClient extends Client {
                 lines = content.split("/");
                 for(String line:lines) {
                     s = line.split(";");
-                    gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
+                    gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.toEnum(s[1])));
                 }
                 gClient.showOwnHand();
                 break;
@@ -158,7 +158,7 @@ public class CClient extends Client {
                 ArrayList<Card> cards = new ArrayList<>();
                 for(String line:lines) {
                     s = line.split(";");
-                    cards.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
+                    cards.add(new Card(Integer.parseInt(s[0]),ColorW.toEnum(s[1])));
                 }
                 gClient.setPlayableCards(cards);
                 break;

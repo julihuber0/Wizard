@@ -15,6 +15,7 @@ public enum ColorW {
         {
             return ColorW.YELLOW;
         }
+
         else {
             return null;
         }

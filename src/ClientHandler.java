@@ -63,11 +63,11 @@ public class ClientHandler implements Empfaenger {
 
             case "GK":
                 String[] s = content.split(";");
-                player.played = new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1]));
+                player.played = new Card(Integer.parseInt(s[0]),ColorW.toEnum(s[1]));
                 break;
 
             case "TA":
-                player.selectedTrump = ColorW.valueOf(content);
+                player.selectedTrump = ColorW.toEnum(content);
                 break;
 
             case "SA":
