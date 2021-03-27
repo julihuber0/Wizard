@@ -87,14 +87,17 @@ public class CClient extends Client {
                     s = line.split(";");
                     gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.valueOf(s[1])));
                 }
+                gClient.updateStitch();
                 break;
 
             case "AT":
                 gClient.currentTrump = ColorW.valueOf(content);
+                gClient.updateTrump();
                 break;
 
             case "AP":
                 gClient.currentPlayerID = Integer.parseInt(content);
+                gClient.updateCurrentPlayerMarker();
                 break;
 
             case "PN":
@@ -136,6 +139,7 @@ public class CClient extends Client {
                     s = line.split(";");
                     gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.valueOf(s[1])));
                 }
+                gClient.showOwnHand();
                 break;
 
             case "HS": // Spielbare Karten auf der Hand des Spielers
@@ -168,8 +172,6 @@ public class CClient extends Client {
                 break;
 
         }
-
-        //ToDo @Julian in der Methode können sich Trumpf, Hand, spielbare Karten etc. ändern -> Gibt es eine update Methode, die hier ausgeführt werden soll?
     }
 
     public void playCard(Card c) {

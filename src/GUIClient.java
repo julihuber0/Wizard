@@ -26,7 +26,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text ownSaidStitches;
     private Text ownMadeStitches;
     private Text ownPoints;
-    private Text l;
+    private Text t;
     private Rechteck sbBG;
     private Text winner;
     private Text[] scoreboard = new Text[6];
@@ -40,6 +40,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     private boolean inputAllowed = false;
     private boolean[] allowedCards = new boolean[20];
+    private int relativeID[] = new int[6];
 
     private CClient cClient;
 
@@ -94,11 +95,10 @@ public class GUIClient extends Game implements MausReagierbar {
             playerList[i].sichtbarSetzen(false);
         }
 
-        //Game-GUI
-        l = new Text("Karte legen", 10, 350, 20);
-        sichtbarMachen(l);
-        l.sichtbarSetzen(false);
-        maus.anmelden(this, l, 3);
+        //Trumpfanzeige
+        t = new Text("Trumpf: ", 10, 350, 20);
+        sichtbarMachen(t);
+        t.sichtbarSetzen(false);
 
         //TODO: @Julian Schleifenbedingungen an Spielerzahl etc. anpassen (nach Testphase)
 
@@ -250,6 +250,26 @@ public class GUIClient extends Game implements MausReagierbar {
         return null;
     }
 
+    public void updateTrump()
+    {
+        if(currentTrump == ColorW.BLUE)
+        {
+            t.setzeInhalt("Trumpf: Blau");
+        }
+        if(currentTrump == ColorW.RED)
+        {
+            t.setzeInhalt("Trumpf: Rot");
+        }
+        if(currentTrump == ColorW.YELLOW)
+        {
+            t.setzeInhalt("Trumpf: Gelb");
+        }
+        if(currentTrump == ColorW.GREEN)
+        {
+            t.setzeInhalt("Trumpf: Grün");
+        }
+    }
+
     public void updateNames() //ToDo Sollte unnötig sein nach Testphase entfernen
     {
         for(Player p:players)
@@ -326,6 +346,52 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    public void updateStitch()
+    {
+        for(int i = 0; i<players.size(); i++)
+        {
+            if(stitchImage[i]==null)
+            {
+                karteLegen(stitch.get(i));
+            }
+        }
+    }
+
+    public void updateCurrentPlayerMarker()
+    {
+        if(currentPlayerID==idSelf)
+        {
+            ownMarker.sichtbarSetzen(true);
+            for(int i = 0; i < players.size()-1; i++)
+            {
+                marker[i].sichtbarSetzen(false);
+            }
+        }
+        else {
+            for (int i = 0; i < players.size() - 1; i++) {
+                if (relativeID[i] == currentPlayerID) {
+                    marker[i].sichtbarSetzen(true);
+                } else {
+                    marker[i].sichtbarSetzen(false);
+                }
+            }
+        }
+    }
+
+    public void setRelativeIDs() {
+        relativeID[0] = idSelf;
+        for(int i = 0; i<players.size()-1; i++)
+        {
+            relativeID[i+1]=(idSelf+1+i)%players.size();
+        }
+    }
+
+    public void clearStitchImage() {
+        for (int i = 0; i < 6; i++) {
+            stitchImage[i] = null;
+        }
+    }
+
     @Override
     public void tasteReagieren(int i) {
 
@@ -379,6 +445,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void requestCard() {
         greyOutCards();
+        for(int i = 0; i<currentRound; i++)
         inputAllowed = true;
     }
 
@@ -567,15 +634,12 @@ public class GUIClient extends Game implements MausReagierbar {
                     ownMadeStitches.sichtbarSetzen(true);
                     ownPoints.sichtbarSetzen(true);
                     marker[0].sichtbarSetzen(true);
-                    l.sichtbarSetzen(true);
+                    t.sichtbarSetzen(true);
                     showOwnHand();
                     System.out.println("Here1");
                     scoreboardButton.sichtbarSetzen(true);
                     System.out.println("Here2");
                 }
-                break;
-            case 3:     //Karten legen Button
-                markPlayer(2);
                 break;
             case 4:
                 if(scoreboardButton.sichtbar())
