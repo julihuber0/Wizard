@@ -117,6 +117,7 @@ public class GameW extends Game implements MausReagierbar {
     //teilt rundenabhängig Karten an die Spieler aus
     public void distribute(int round)
     {
+        deck.shuffleDeck();
         for(Player p:players)
         {
             for(int i = 0; i<round; i++)
