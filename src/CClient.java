@@ -82,6 +82,7 @@ public class CClient extends Client {
                 break;
 
             case "AS":
+                gClient.stitch.clear();
                 lines = content.split("/");
                 for(String line:lines) {
                     if(!line.isEmpty()) {
@@ -126,9 +127,6 @@ public class CClient extends Client {
                 gClient.startGame();
                 break;
 
-            case "CCS":
-                gClient.clearStitchImage();
-                break;
 
             /*
             *  Clientspezifisches
