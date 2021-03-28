@@ -71,7 +71,9 @@ public class ClientHandler implements Empfaenger {
                 break;
 
             case "SA":
+                System.out.println(Integer.parseInt(content) + " angesagt");
                 player.saidStitches = Integer.parseInt(content);
+                this.notifyAll();
                 break;
 
             default:

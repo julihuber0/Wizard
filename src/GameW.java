@@ -278,8 +278,7 @@ public class GameW extends Game implements MausReagierbar {
     }
 
     //startet die nächste Runde
-    public void startNextRound()
-    {
+    public void startNextRound() {
         gs = GameState.RUNNING;
         nextRound();
         if(gs != GameState.OVER) {
@@ -294,12 +293,17 @@ public class GameW extends Game implements MausReagierbar {
                 p.selectedTrump = null;
                 p.selectTrump();
                 //ToDo @Tobi
-                while (true) {
-                    if(p.selectedTrump != null){
-                        currentTrump = p.selectedTrump;
-                        break;
-                    }
+                System.out.println("eingeschläfert");
+                try { //einschläfern, wird dann durch den ClientHandler geweckt
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                System.out.println("Gutten Tag");
+                if(p.selectedTrump != null){
+                    currentTrump = p.selectedTrump;
+                }
+
                // currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
                 server.update();
             } else {
@@ -313,11 +317,15 @@ public class GameW extends Game implements MausReagierbar {
                 currentPlayerID = players.get(i).getId();
                 players.get(i).sayStitches();
                 //ToDo @Tobi
-                while (true) {
-                    if(players.get(i).saidStitches > -1) {
-                        break;
-                    }
+                System.out.println("eingeschläfert");
+                try { //einschläfern, wird dann durch den ClientHandler geweckt
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                System.out.println("Gutten Tag");
+
+
                 server.update();
             }
 
