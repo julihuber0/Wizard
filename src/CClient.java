@@ -150,8 +150,11 @@ public class CClient extends Client {
                 gClient.hand.clear();
                 lines = content.split("/");
                 for(String line:lines) {
-                    s = line.split(";");
-                    gClient.hand.add(new Card(Integer.parseInt(s[0]),ColorW.toEnum(s[1])));
+                    if (!line.isEmpty()) {
+                        s = line.split(";");
+                        System.out.println("Karte mit " + Integer.parseInt(s[0]) + "    " + ColorW.toEnum(s[1]) + " hinzugefügt");
+                        gClient.hand.add(new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1])));
+                    }
                 }
                 gClient.showOwnHand();
                 break;
