@@ -222,7 +222,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     public ColorW getAllowed()
     {
         ColorW allowed = null;
-        if(stitch.get(0)!=null)
+        if(!stitch.isEmpty())
         {
             if(stitch.get(0).getValue()==14)
             {
