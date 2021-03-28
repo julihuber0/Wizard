@@ -127,6 +127,10 @@ public class CClient extends Client {
                 gClient.startGame();
                 break;
 
+            case "NR":
+                gClient.stitch.clear();
+                gClient.clearStitchImage();
+                break;
 
             /*
             *  Clientspezifisches
