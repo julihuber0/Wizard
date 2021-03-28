@@ -342,6 +342,10 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void clearStitchImage() {
         for (int i = 0; i < 6; i++) {
+            if(stitchImage[i]!=null) {
+                stitchImage[i].sichtbarSetzen(false);
+                wurzel.entfernen(stitchImage[i]);
+            }
             stitchImage[i] = null;
         }
     }
@@ -376,12 +380,6 @@ public class GUIClient extends Game implements MausReagierbar {
     public void clearOnwHand() {
         for (int i = 0; i < currentRound; i++) {
             wurzel.entfernen(ownHand[i]);
-        }
-    }
-
-    public void clearCurrentStitch() {
-        for (int i = 0; i < players.size(); i++) {
-            wurzel.entfernen(stitchImage[i]);
         }
     }
 
