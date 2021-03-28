@@ -388,8 +388,9 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void requestCard() {
         greyOutCards();
-        for(int i = 0; i<currentRound; i++)
+        //for(int i = 0; i<currentRound; i++)
         inputAllowed = true;
+        System.out.println("Input für "+idSelf+" freigegeben.");
     }
 
     public void greyOutCards() {
