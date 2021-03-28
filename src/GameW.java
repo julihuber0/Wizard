@@ -278,7 +278,7 @@ public class GameW extends Game implements MausReagierbar {
     }
 
     //startet die nächste Runde
-    public void startNextRound() {
+    public synchronized void startNextRound() {
         gs = GameState.RUNNING;
         nextRound();
         if(gs != GameState.OVER) {

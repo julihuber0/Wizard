@@ -45,7 +45,7 @@ public class ClientHandler implements Empfaenger {
     /* --- Empfaenger-Methoden --- */
 
     @Override
-    public void empfangeString (String string) {
+    public synchronized void empfangeString (String string) {
         System.out.println("[Server hat empfangen:] " + string);
 
         String key = string.substring(0,2);
@@ -74,6 +74,7 @@ public class ClientHandler implements Empfaenger {
                 System.out.println(Integer.parseInt(content) + " angesagt");
                 player.saidStitches = Integer.parseInt(content);
                 this.notifyAll();
+                server.interruptGameW();
                 break;
 
             default:

@@ -155,4 +155,10 @@ public class Server  implements  Runnable{
     public void sendString(String s) {
         server.sendeString(s);
     }
+
+    public void interruptGameW() {
+        game.notifyAll();
+        game.notify();
+
+    }
 }
