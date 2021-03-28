@@ -552,7 +552,6 @@ public class GUIClient extends Game implements MausReagierbar {
         ownAvatar.sichtbarSetzen(false);
 
         //Namen erzeugen
-        //TODO: Namen durch die der angemeldeten Spieler ersetzen (nach Testphase)
         for (int i = 0; i < players.size()-1; i++) {
             names[i] = new Text(players.get(relativeID[i+1]).getName(), 110 + i * 200, 180, 15);
             System.out.println(names[i].gibInhalt());
