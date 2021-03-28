@@ -152,7 +152,6 @@ public class CClient extends Client {
                 for(String line:lines) {
                     if (!line.isEmpty()) {
                         s = line.split(";");
-                        System.out.println("Karte mit " + Integer.parseInt(s[0]) + "    " + ColorW.toEnum(s[1]) + " hinzugefügt");
                         gClient.hand.add(new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1])));
                     }
                 }
@@ -160,12 +159,13 @@ public class CClient extends Client {
                 break;
 
             case "HS": // Spielbare Karten auf der Hand des Spielers
-                gClient.hand.clear();
                 lines = content.split("/");
                 ArrayList<Card> cards = new ArrayList<>();
                 for(String line:lines) {
-                    s = line.split(";");
-                    cards.add(new Card(Integer.parseInt(s[0]),ColorW.toEnum(s[1])));
+                    if (!line.isEmpty()) {
+                        s = line.split(";");
+                        cards.add(new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1])));
+                    }
                 }
                 gClient.setPlayableCards(cards);
                 break;
