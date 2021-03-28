@@ -293,6 +293,7 @@ public class GameW extends Game implements MausReagierbar {
                 Player p = players.get((currentRound - 1) % playerCount);
                 p.selectedTrump = null;
                 p.selectTrump();
+                //ToDo @Tobi
                 while (true) {
                     if(p.selectedTrump != null){
                         currentTrump = p.selectedTrump;
@@ -311,7 +312,7 @@ public class GameW extends Game implements MausReagierbar {
                 players.get(i).saidStitches = - 1;
                 currentPlayerID = players.get(i).getId();
                 players.get(i).sayStitches();
-
+                //ToDo @Tobi
                 while (true) {
                     if(players.get(i).saidStitches > -1) {
                         break;
@@ -327,6 +328,7 @@ public class GameW extends Game implements MausReagierbar {
                     //stitch.add(players.get(i).requestCard());
                     players.get(j).sendPlayableCards(getAllowedCards(players.get(j)));
                     players.get(j).requestCard();
+                    //ToDo @Tobi
                     while (true) {
                         if(players.get(j).played != null) {
                             break;
