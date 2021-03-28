@@ -295,12 +295,15 @@ public class GameW extends Game implements MausReagierbar{
                 Player p = players.get((currentRound - 1) % playerCount);
                 p.selectedTrump = null;
                 p.selectTrump();
-                while (true) {
-                    if(p.selectedTrump != null){
+                //TODO: @Tobi Schleifen fixen
+                while (p.selectedTrump == null) {
+                    /*if(p.selectedTrump != null){
                         currentTrump = p.selectedTrump;
                         break;
-                    }
+                    }*/
+                    warten(20);
                 }
+                currentTrump = p.selectedTrump;
                // currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
                 server.update();
             } else {
@@ -314,10 +317,11 @@ public class GameW extends Game implements MausReagierbar{
                 currentPlayerID = players.get(i).getId();
                 players.get(i).sayStitches();
 
-                while (true) {
-                    if(players.get(i).saidStitches > -1) {
+                while (players.get(i).saidStitches < 0) {
+                    /*if(players.get(i).saidStitches > -1) {
                         break;
-                    }
+                    }*/
+                    warten(20);
                 }
                 server.update();
             }
@@ -329,10 +333,11 @@ public class GameW extends Game implements MausReagierbar{
                     //stitch.add(players.get(i).requestCard());
                     players.get(j).sendPlayableCards(getAllowedCards(players.get(j)));
                     players.get(j).requestCard();
-                    while (true) {
-                        if(players.get(j).played != null) {
+                    while (players.get(j).played == null) {
+                        /*if(players.get(j).played != null) {
                             break;
-                        }
+                        }*/
+                        warten(20);
                     }
                     stitch.add(players.get(j).played);
                     //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten (höchstwahrscheinlich erledigt)

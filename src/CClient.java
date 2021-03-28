@@ -126,6 +126,10 @@ public class CClient extends Client {
                 gClient.startGame();
                 break;
 
+            case "CCS":
+                gClient.clearStitchImage();
+                break;
+
             /*
             *  Clientspezifisches
             */
