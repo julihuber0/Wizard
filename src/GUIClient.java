@@ -117,10 +117,16 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 System.out.println("Eine Karte wurde gefunden.");
             }
-            if (cards.contains(hand.get(i))) {
-                allowedCards[i] = true;
-            } else {
-                allowedCards[i] = false;
+            for(Card c:cards)
+            {
+                if(c.isEqual(hand.get(i)))
+                {
+                    allowedCards[i] = true;
+                }
+                else
+                {
+                    allowedCards[i] = false;
+                }
             }
         }
     }
