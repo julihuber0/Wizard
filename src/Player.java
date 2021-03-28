@@ -191,4 +191,8 @@ public class Player {
         }
         return ColorW.BLUE;
     }
+
+    public void setThread(Thread t){
+        ch.setT(t);
+    }
 }

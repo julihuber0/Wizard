@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class GameW extends Game implements MausReagierbar {
+public class GameW extends Game implements MausReagierbar, Runnable{
 
     public int playerCount;        //Anzahl Mitspieler
     public int maxRounds;      //Maximale Rundenzahl
@@ -26,9 +26,12 @@ public class GameW extends Game implements MausReagierbar {
     private Text displayIP;
     private Text displayIP2;
 
+
     //ToDo @Julian nach jeder Änderung server.update asuführen (soweit erledigt)
     public GameW() {
         super(400, 300, "Wizard-Serer", false, false);
+        run();
+
         server = new Server(this);
         maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
@@ -317,6 +320,7 @@ public class GameW extends Game implements MausReagierbar {
                 currentPlayerID = players.get(i).getId();
                 players.get(i).sayStitches();
                 //ToDo @Tobi
+                players.get(i).setThread(Thread.currentThread());
                 System.out.println("eingeschläfert");
                 try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
@@ -373,6 +377,12 @@ public class GameW extends Game implements MausReagierbar {
         }
         server.gameOver(getWinner().getName(), getWinner().getId());
         server.update();
+    }
+
+
+    @Override
+    public void run() {
+        System.out.println("Fred läuft");
     }
 
     public static void main(String[] args){

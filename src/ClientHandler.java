@@ -6,6 +6,7 @@ public class ClientHandler implements Empfaenger {
      * Die Netzwerkverbindung, über die der Handler nachrichten senden und empfangen kann.
      */
     private NetzwerkVerbindung verbindung;
+    private Thread t;
 
     /**
      * Der Name des Client, um den sich dieser Handler kümmert.
@@ -42,6 +43,10 @@ public class ClientHandler implements Empfaenger {
         verbindung.sendeString(s);
     }
 
+    public void setT(Thread thread) {
+        this.t = thread;
+    }
+
     /* --- Empfaenger-Methoden --- */
 
     @Override
@@ -73,8 +78,9 @@ public class ClientHandler implements Empfaenger {
             case "SA":
                 System.out.println(Integer.parseInt(content) + " angesagt");
                 player.saidStitches = Integer.parseInt(content);
-                this.notifyAll();
-                server.interruptGameW();
+                //this.notifyAll();
+                //server.interruptGameW();
+                t.interrupt();
                 break;
 
             default:
