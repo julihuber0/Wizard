@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class GameW extends Game implements MausReagierbar{
+public class GameW extends Game implements MausReagierbar, Runnable{
 
     public int playerCount;        //Anzahl Mitspieler
     public int maxRounds;      //Maximale Rundenzahl
@@ -30,6 +30,7 @@ public class GameW extends Game implements MausReagierbar{
     //ToDo @Julian nach jeder Änderung server.update asuführen (soweit erledigt)
     public GameW() {
         super(400, 300, "Wizard-Serer", false, false);
+        run();
 
         server = new Server(this);
         maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
@@ -280,8 +281,7 @@ public class GameW extends Game implements MausReagierbar{
     }
 
     //startet die nächste Runde
-    public void startNextRound()
-    {
+    public synchronized void startNextRound() {
         gs = GameState.RUNNING;
         nextRound();
         if(gs != GameState.OVER) {
@@ -303,6 +303,11 @@ public class GameW extends Game implements MausReagierbar{
                     }*/
                     warten(20);
                 }
+                System.out.println("Falsches Gutten Tag");
+                if(p.selectedTrump != null){
+                    currentTrump = p.selectedTrump;
+                }
+
                 currentTrump = p.selectedTrump;
                // currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
                 server.update();
@@ -316,13 +321,17 @@ public class GameW extends Game implements MausReagierbar{
                 players.get(i).saidStitches = - 1;
                 currentPlayerID = players.get(i).getId();
                 players.get(i).sayStitches();
-
-                while (players.get(i).saidStitches < 0) {
-                    /*if(players.get(i).saidStitches > -1) {
-                        break;
-                    }*/
-                    warten(20);
+                //ToDo @Tobi
+                players.get(i).setThread(Thread.currentThread());
+                System.out.println(Thread.currentThread().getName() + " eingeschläfert");
+                try { //einschläfern, wird dann durch den ClientHandler geweckt
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+
+                this.run();
+                System.out.println("Gutten Tag");
                 server.update();
             }
 
@@ -371,6 +380,12 @@ public class GameW extends Game implements MausReagierbar{
         }
         server.gameOver(getWinner().getName(), getWinner().getId());
         server.update();
+    }
+
+
+    @Override
+    public void run() {
+        System.out.println("Fred läuft");
     }
 
     public static void main(String[] args){
