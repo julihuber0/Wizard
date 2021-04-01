@@ -143,7 +143,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public String askForStitches(int forbiddenNumber)
     {
-        if(forbiddenNumber == -1) {
+        if(forbiddenNumber <= -1) {
             return eingabeFordern("Gewünschte Stichanzahl eingeben:");
         }
         return eingabeFordern("Gewünschte Stichanzahl eingeben. Nicht: " + forbiddenNumber + ": ");
@@ -161,7 +161,7 @@ public class GUIClient extends Game implements MausReagierbar {
             validateStitches(forbiddenNumber);
         }
 
-        if(sCount == forbiddenNumber) {
+        if(sCount == forbiddenNumber || sCount < 0) {
             validateStitches(forbiddenNumber);
         }
         return sCount;
