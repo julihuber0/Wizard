@@ -406,18 +406,6 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    public void markPlayer(int p) {
-        for (int i = 0; i < 5; i++) {
-            marker[i].sichtbarSetzen(false);
-        }
-        ownMarker.sichtbarSetzen(false);
-        if (p != 0) {
-            marker[p - 1].sichtbarSetzen(true);
-        } else {
-            ownMarker.sichtbarSetzen(true);
-        }
-    }
-
     public void requestCard() {
         greyOutCards();
         //for(int i = 0; i<currentRound; i++)
@@ -750,9 +738,8 @@ public class GUIClient extends Game implements MausReagierbar {
                 }
                 break;
             case 100:
-                if (allowedCards[code - 100]) {
-                    //ownHand[0].sichtbarSetzen(false);
-                    wurzel.entfernen(ownHand[0]);
+                if (allowedCards[code - 100] && inputAllowed) {
+                    ownHand[0].sichtbarSetzen(false);
                     karteLegen(hand.get(0));
                     cClient.playCard(hand.get(0));
                 }
@@ -762,23 +749,19 @@ public class GUIClient extends Game implements MausReagierbar {
                 if (allowedCards[code - 100] && inputAllowed) {
                     ownHand[1].sichtbarSetzen(false);
                     karteLegen(hand.get(1));
-                    System.out.println("beforeSend");
                     cClient.playCard(hand.get(1));
-                    System.out.println("after Send");
                 }
                 break;
             case 102:
                 if (allowedCards[code - 100] && inputAllowed) {
-                    //ownHand[2].sichtbarSetzen(false);
-                    wurzel.entfernen(ownHand[2]);
+                    ownHand[2].sichtbarSetzen(false);
                     karteLegen(hand.get(2));
                     cClient.playCard(hand.get(2));
                 }
                 break;
             case 103:
                 if (allowedCards[code - 100] && inputAllowed) {
-                    //ownHand[3].sichtbarSetzen(false);
-                    wurzel.entfernen(ownHand[3]);
+                    ownHand[3].sichtbarSetzen(false);
                     karteLegen(hand.get(3));
                     cClient.playCard(hand.get(3));
                 }
