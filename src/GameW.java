@@ -296,14 +296,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 Player p = players.get((currentRound - 1) % playerCount);
                 p.selectedTrump = null;
                 p.selectTrump();
-                //TODO: @Tobi Schleifen fixen
-                while (p.selectedTrump == null) {
-                    /*if(p.selectedTrump != null){
-                        currentTrump = p.selectedTrump;
-                        break;
-                    }*/
-                    warten(20);
-                }
+                //TODO: Zauberer als Trumpf
                 System.out.println("Falsches Gutten Tag");
                 if(p.selectedTrump != null){
                     currentTrump = p.selectedTrump;
