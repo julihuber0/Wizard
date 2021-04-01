@@ -314,7 +314,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 server.update();
             }
 
-            int forbiddenNumber = 0;
+            int forbiddenNumber = currentRound;
             for(int i = 0; i < playerCount; i++)
             {
                 players.get(i).saidStitches = - 1;
@@ -337,7 +337,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
 
                 this.run();
                 System.out.println("Gutten Tag");
-                forbiddenNumber = forbiddenNumber + players.get(i).getSaidStitches();
+                forbiddenNumber = forbiddenNumber - players.get(i).getSaidStitches();
                 server.update();
             }
 
