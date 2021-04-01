@@ -98,7 +98,7 @@ public class Card implements Comparable<Card>{
 
     public boolean isEqual(Card c)
     {
-        if(c.getValue()==this.getValue()&&c.getColor()==this.getColor())
+        if(c.getValue().equals(this.getValue()) &&c.getColor()==this.getColor())
         {
             return true;
         }

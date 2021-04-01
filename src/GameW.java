@@ -374,15 +374,15 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 p.addStitch();
                 server.update();
                 server.sendString("TP/");
-                warten(500);
+                warten(2000);
                 stitch.clear();
                 players = getNewFirstPlayer(p);
-                for(Player pl:players)
-                {
-                    pl.saidStitches = -1;
-                    pl.setCurrentStitches(-1);
-                }
                 server.update();
+            }
+            for(Player pl:players)
+            {
+                pl.saidStitches = -1;
+                pl.setCurrentStitches(-1);
             }
 
             for(Player pl:players)

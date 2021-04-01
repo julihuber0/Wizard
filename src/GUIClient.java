@@ -111,6 +111,10 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void setPlayableCards(ArrayList<Card> cards) {
+        for(boolean b:allowedCards)
+        {
+            b = false;
+        }
         for (int i = 0; i < currentRound; i++) {
             System.out.println("Aktuelle Runde: "+currentRound);
             for(Card c: hand)
