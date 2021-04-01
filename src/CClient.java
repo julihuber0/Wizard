@@ -128,6 +128,14 @@ public class CClient extends Client {
                 break;
 
             case "NR":
+                lines = content.split("/");
+                for(String line:lines) {
+                    s = line.split(";");
+                    //erste Stelle ist die PlayerID
+                    Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
+                    p.setPoints(Integer.parseInt(s[1]));
+                }
+
                 gClient.hand.clear();
                 gClient.resetStats();
                 gClient.stitch.clear();

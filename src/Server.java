@@ -89,6 +89,15 @@ public class Server  implements  Runnable{
         server.sendeString(winner);
     }
 
+    public void startNextRound() {
+        String nr = "NR/";
+        for (Player p: game.players) {
+            nr = nr + p.getId() + ";" + p.getPoints() + "/";
+        }
+
+        sendString(nr);
+    }
+
     public void bcCurrentRound(int round) {
         String currentRound = "AR/" + round;
         server.sendeString(currentRound);

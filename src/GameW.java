@@ -291,7 +291,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
 
     //startet die nächste Runde
     public synchronized void startNextRound() {
-        server.sendString("NR/");
+        server.startNextRound();
         gs = GameState.RUNNING;
         nextRound();
         if(gs != GameState.OVER) {
