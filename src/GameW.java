@@ -195,6 +195,10 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
     public ArrayList<Player> getNewFirstPlayer(Player p)
     {
+        for(Player p:players)
+        {
+            System.out.println("Players-List: "+p.getName()+", "+p.getId());
+        }
         ArrayList<Player> newPlayers = new ArrayList<>();
         newPlayers.add(p);
         boolean behind = false;
