@@ -257,7 +257,7 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             for(Player p:players)
             {
-                if(p.getId()==(idSelf+i+1)%players.size())
+                if(p.getId()==relativeID[i+1])
                 {
                     saidStitches[i].setzeInhalt("Angesagt: "+p.getSaidStitches());
                 }
@@ -276,7 +276,7 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             for(Player p:players)
             {
-                if(p.getId()==(idSelf+i+1)%players.size())
+                if(p.getId()==relativeID[i+1])
                 {
                     madeStitches[i].setzeInhalt("Gemacht: "+p.getCurrentStitches());
                 }
@@ -295,7 +295,7 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             for(Player p:players)
             {
-                if(p.getId()==(idSelf+i+1)%players.size())
+                if(p.getId()==relativeID[i+1])
                 {
                     points[i].setzeInhalt("Punkte: "+p.getPoints());
                 }
