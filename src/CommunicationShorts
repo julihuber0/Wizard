@@ -15,7 +15,7 @@ Broadcasts:
  DC: Player disconnected
  SG: Starte Game
  NR: Neue Runde starten
-
+ TP: To Player (Animation, die letzte Karte wird reingelegt, kleine Pause -> Stich wird eingezogen)
 
 
 Server zu Clients:

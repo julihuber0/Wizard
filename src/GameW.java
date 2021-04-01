@@ -332,7 +332,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 }
                 //ToDo @Tobi wtf
                 players.get(i).setThread(Thread.currentThread());
-                System.out.println(Thread.currentThread().getName() + " eingeschläfert");
+                System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Stichabfrage");
                 try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
@@ -353,7 +353,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                     players.get(j).sendPlayableCards(getAllowedCards(players.get(j)));
                     players.get(i).setThread(Thread.currentThread());
                     players.get(j).requestCard();
-                    System.out.println(Thread.currentThread().getName() + " eingeschläfert");
+                    System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Kartenabfrage");
                     try { //einschläfern, wird dann durch den ClientHandler geweckt
                         this.wait();
                     } catch (InterruptedException e) {
