@@ -336,7 +336,7 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             marker[i].sichtbarSetzen(false);
         }
-        if((currentPlayerID+1)%players.size()-1==idSelf)
+        if((currentPlayerID+1)%(players.size()-1)==idSelf)
         {
             ownMarker.sichtbarSetzen(true);
             for(int i = 0; i < players.size()-1; i++)
@@ -347,7 +347,7 @@ public class GUIClient extends Game implements MausReagierbar {
         else {
             for (int i = 0; i < players.size()-1; i++) {
                 if (relativeID[i+1] == currentPlayerID) {
-                    marker[(i+1)%players.size()-1].sichtbarSetzen(true);
+                    marker[(i+1)%(players.size()-1)].sichtbarSetzen(true);
                 } else {
                     marker[i].sichtbarSetzen(false);
                 }
