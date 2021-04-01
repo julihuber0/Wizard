@@ -79,7 +79,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
 
     public void addPlayer(Player p)
     {
-        players.add(p);
+        players.add(p.getId(),p);
         server.sendString("CP/");
         for (Player player: players) {
             String toSend = "PN/" + player.getName() + ";" + player.getId();
@@ -195,9 +195,9 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
     public ArrayList<Player> getNewFirstPlayer(Player p)
     {
-        for(Player p:players)
+        for(Player pl:players)
         {
-            System.out.println("Players-List: "+p.getName()+", "+p.getId());
+            System.out.println("Players-List: "+pl.getName()+", "+pl.getId());
         }
         ArrayList<Player> newPlayers = new ArrayList<>();
         newPlayers.add(p);

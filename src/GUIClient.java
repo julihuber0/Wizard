@@ -158,11 +158,11 @@ public class GUIClient extends Game implements MausReagierbar {
         }
         catch (Exception e)
         {
-            validateStitches(forbiddenNumber);
+            return validateStitches(forbiddenNumber);
         }
 
         if(sCount == forbiddenNumber || sCount < 0) {
-            validateStitches(forbiddenNumber);
+           return validateStitches(forbiddenNumber);
         }
         return sCount;
     }
