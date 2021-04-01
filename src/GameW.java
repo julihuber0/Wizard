@@ -317,12 +317,19 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 server.update();
             }
 
+            int forbiddenNumber = 0;
             for(int i = 0; i < playerCount; i++)
             {
                 players.get(i).saidStitches = - 1;
                 currentPlayerID = players.get(i).getId();
-                players.get(i).sayStitches();
-                //ToDo @Tobi
+
+                if (i-1 == playerCount) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
+                    players.get(i).sayStitches(forbiddenNumber);
+                }
+                else {
+                    players.get(i).sayStitches(-1);
+                }
+                //ToDo @Tobi wtf
                 players.get(i).setThread(Thread.currentThread());
                 System.out.println(Thread.currentThread().getName() + " eingeschläfert");
                 try { //einschläfern, wird dann durch den ClientHandler geweckt
@@ -333,6 +340,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
 
                 this.run();
                 System.out.println("Gutten Tag");
+                forbiddenNumber = forbiddenNumber + players.get(i).getSaidStitches();
                 server.update();
             }
 

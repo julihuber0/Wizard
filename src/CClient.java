@@ -189,6 +189,10 @@ public class CClient extends Client {
                 sendeString(sa);
                 break;
 
+            case "VA":
+                //ToDo
+                break;
+
             default:
                 break;
 

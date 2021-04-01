@@ -49,8 +49,8 @@ public class Player {
         ch.sendeString("TF/");
     }
 
-    public void sayStitches() {
-        ch.sendeString("SF/");
+    public void sayStitches(int forbiddenNumber) {
+        ch.sendeString("SF/" + forbiddenNumber);
     }
 
     public ArrayList<StitchHistory> getSh() {
