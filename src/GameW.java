@@ -300,7 +300,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 Player p = players.get((currentRound - 1) % playerCount);
                 p.selectedTrump = null;
                 p.selectTrump();
-                //TODO: Zauberer als Trumpf
+                //TODO: @Tobi Zauberer als Trumpf
                 System.out.println("Falsches Gutten Tag");
                 if(p.selectedTrump != null){
                     currentTrump = p.selectedTrump;
@@ -320,7 +320,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 players.get(i).saidStitches = - 1;
                 currentPlayerID = players.get(i).getId();
 
-                if (i-1 == playerCount) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
+                if (i+1 == playerCount) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
                     players.get(i).sayStitches(forbiddenNumber);
                 }
                 else {
