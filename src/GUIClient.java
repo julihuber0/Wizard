@@ -300,6 +300,17 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    public void resetStats()
+    {
+        for(int i = 0; i<players.size(); i++)
+        {
+            saidStitches[i].inhaltSetzen("Angesagt: -");
+            madeStitches[i].inhaltSetzen("Gemacht: -");
+        }
+        ownSaidStitches.inhaltSetzen("Angesagt: -");
+        ownMadeStitches.inhaltSetzen("Gemacht: -");
+    }
+
     public void updateStitch()
     {
         if(!stitch.isEmpty()) {
@@ -313,6 +324,11 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void updateCurrentPlayerMarker()
     {
+        ownMarker.sichtbarSetzen(false);
+        for(int i = 0; i<players.size()-1; i++)
+        {
+            marker[i].sichtbarSetzen(false);
+        }
         if(currentPlayerID==idSelf)
         {
             ownMarker.sichtbarSetzen(true);
@@ -574,32 +590,32 @@ public class GUIClient extends Game implements MausReagierbar {
 
         //Angesagte Stiche anzeigen
         for (int i = 0; i < players.size()-1; i++) {
-            saidStitches[i] = new Text("Angesagt: ", 110 + i * 200, 200, 15);
+            saidStitches[i] = new Text("Angesagt: -", 110 + i * 200, 200, 15);
             sichtbarMachen(saidStitches[i]);
             saidStitches[i].sichtbarSetzen(false);
         }
-        ownSaidStitches = new Text("Angesagt: ", 20, 590, 15);
+        ownSaidStitches = new Text("Angesagt: -", 20, 590, 15);
         sichtbarMachen(ownSaidStitches);
         ownSaidStitches.sichtbarSetzen(false);
 
         //Gemachte Stiche anzeigen
         for(int i = 0; i < players.size()-1; i++)
         {
-            madeStitches[i] = new Text("Gemacht: ", 110+i*200, 220, 15);
+            madeStitches[i] = new Text("Gemacht: -", 110+i*200, 220, 15);
             sichtbarMachen(madeStitches[i]);
             madeStitches[i].sichtbarSetzen(false);
         }
-        ownMadeStitches = new Text("Gemacht: ", 20, 610, 15);
+        ownMadeStitches = new Text("Gemacht: -", 20, 610, 15);
         sichtbarMachen(ownMadeStitches);
         ownMadeStitches.sichtbarSetzen(false);
 
         //Punkte anzeigen
         for (int i = 0; i < players.size()-1; i++) {
-            points[i] = new Text("Punkte: ", 110 + i * 200, 240, 15);
+            points[i] = new Text("Punkte: 0", 110 + i * 200, 240, 15);
             sichtbarMachen(points[i]);
             points[i].sichtbarSetzen(false);
         }
-        ownPoints = new Text("Punkte: ", 20, 630, 15);
+        ownPoints = new Text("Punkte: 0", 20, 630, 15);
         sichtbarMachen(ownPoints);
         ownPoints.sichtbarSetzen(false);
 
@@ -645,14 +661,9 @@ public class GUIClient extends Game implements MausReagierbar {
         {
             System.out.println(i);
         }
-        System.out.println("Danach");
-        for(int i:relativeID)
-        {
-            System.out.println(i);
-        }
         for(int i = 0; i<players.size()-1; i++)
         {
-            System.out.println(players.get(relativeID[i+1]).getName());
+            System.out.println(players.get(relativeID[i]).getName());
         }
     }
 

@@ -128,6 +128,8 @@ public class CClient extends Client {
                 break;
 
             case "NR":
+                gClient.hand.clear();
+                gClient.resetStats();
                 gClient.stitch.clear();
                 gClient.clearStitchImage();
                 break;
