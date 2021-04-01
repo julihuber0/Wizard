@@ -120,6 +120,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     //teilt rundenabhängig Karten an die Spieler aus
     public void distribute(int round)
     {
+        deck = new CardDeck();
         deck.shuffleDeck();
         for(Player p:players)
         {
@@ -142,7 +143,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         Player p = players.get(0);      //Hier: player(0) kommt raus
         Card highestCard = stitch.get(0);
         int highCardPos = 0;
-        for(int i = 1; i<playerCount; i++)
+        for(int i = 1; i<players.size(); i++)
         {
             if(stitch.get(0).getValue()==14)    //Erste Karte Zauberer: Höchste Karte sofort gefunden
             {
@@ -179,7 +180,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         {
             int maxPoints = Integer.MIN_VALUE;
             int bestPlayer = 0;
-            for(int i = 0; i<playerCount; i++)
+            for(int i = 0; i<players.size(); i++)
             {
                 if(players.get(i).getPoints()>maxPoints)
                 {
@@ -236,7 +237,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
             {
                 return null;
             }
-            for(int i = 0; i<playerCount&&stitch.get(i)!=null; i++)
+            for(int i = 0; i<players.size()&&stitch.get(i)!=null; i++)
             {
                 if(stitch.get(i).getValue()!=0)
                 {
@@ -296,13 +297,14 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         if(gs != GameState.OVER) {
             distribute(currentRound);
             Card trumpCard = deck.removeCard();
-            server.update();
+            //server.update();
             if (trumpCard.getValue() == 0) {
                 currentTrump = null;
                 server.update();
             } else if (trumpCard.getValue() == 14) {
-                Player p = players.get((currentRound - 1) % playerCount);
+                Player p = players.get((currentRound - 1) % players.size());
                 p.selectedTrump = null;
+                server.update();
                 p.selectTrump();
                 //TODO: @Tobi Zauberer als Trumpf
                 System.out.println("Falsches Gutten Tag");
@@ -319,12 +321,12 @@ public class GameW extends Game implements MausReagierbar, Runnable{
             }
 
             int forbiddenNumber = currentRound;
-            for(int i = 0; i < playerCount; i++)
+            for(int i = 0; i < players.size(); i++)
             {
                 players.get(i).saidStitches = - 1;
                 currentPlayerID = players.get(i).getId();
-
-                if (i+1 == playerCount) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
+                server.update();
+                if (i+1 == players.size()) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
                     players.get(i).sayStitches(forbiddenNumber);
                 }
                 else {
@@ -347,10 +349,11 @@ public class GameW extends Game implements MausReagierbar, Runnable{
 
             //Spielphase
             for (int i = 0; i < currentRound; i++) {
-                for (int j = 0; j < playerCount; j++) {
+                for (int j = 0; j < players.size(); j++) {
                     currentPlayerID = players.get(j).getId();
                     //stitch.add(players.get(i).requestCard());
                     players.get(j).sendPlayableCards(getAllowedCards(players.get(j)));
+                    server.update();
                     players.get(i).setThread(Thread.currentThread());
                     players.get(j).requestCard();
                     System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Kartenabfrage");
@@ -370,6 +373,8 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 Player p = calculateStitch();
                 p.addStitch();
                 server.update();
+                server.sendString("TP/");
+                warten(500);
                 stitch.clear();
                 players = getNewFirstPlayer(p);
                 server.update();
@@ -379,8 +384,9 @@ public class GameW extends Game implements MausReagierbar, Runnable{
             {
                 pl.clearHand();
             }
+            server.update();
             //Punkteberechnung
-            for (int i = 0; i < playerCount; i++) {
+            for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).getSaidStitches() == players.get(i).getCurrentStitches()) {
                     players.get(i).addPoints(20 + (players.get(i).getCurrentStitches() * 10));
                     server.update();
