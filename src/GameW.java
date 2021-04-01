@@ -221,7 +221,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         }
         for(Player pl:newPlayers)
         {
-            System.out.println("Players: "+p.getName());
+            System.out.println("Players: "+pl.getName());
         }
         return newPlayers;
     }
