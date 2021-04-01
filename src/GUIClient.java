@@ -141,21 +141,28 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    public String askForStitches()
+    public String askForStitches(int forbiddenNumber)
     {
-        return eingabeFordern("Gewünschte Stichanzahl eingeben:");
+        if(forbiddenNumber == -1) {
+            return eingabeFordern("Gewünschte Stichanzahl eingeben:");
+        }
+        return eingabeFordern("Gewünschte Stichanzahl eingeben. Nicht: " + forbiddenNumber + ": ");
     }
 
-    public int validateStitches()
+    public int validateStitches(int forbiddenNumber)
     {
-        String stitchesCount = askForStitches();
+        String stitchesCount = askForStitches(forbiddenNumber);
         int sCount = 0;
         try {
             sCount = Integer.parseInt(stitchesCount);
         }
         catch (Exception e)
         {
-            validateStitches();
+            validateStitches(forbiddenNumber);
+        }
+
+        if(sCount == forbiddenNumber) {
+            validateStitches(forbiddenNumber);
         }
         return sCount;
     }

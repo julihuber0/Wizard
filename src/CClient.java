@@ -185,12 +185,8 @@ public class CClient extends Client {
                 break;
 
             case "SF":
-                String sa = "SA/" + gClient.validateStitches();
+                String sa = "SA/" + gClient.validateStitches(Integer.parseInt(content));
                 sendeString(sa);
-                break;
-
-            case "VA":
-                //ToDo
                 break;
 
             default:
