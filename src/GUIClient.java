@@ -302,7 +302,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void resetStats()
     {
-        for(int i = 0; i<players.size(); i++)
+        for(int i = 0; i<players.size()-1; i++)
         {
             saidStitches[i].inhaltSetzen("Angesagt: -");
             madeStitches[i].inhaltSetzen("Gemacht: -");
