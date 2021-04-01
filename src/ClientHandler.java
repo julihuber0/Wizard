@@ -69,6 +69,7 @@ public class ClientHandler implements Empfaenger {
             case "GK":
                 String[] s = content.split(";");
                 player.played = new Card(Integer.parseInt(s[0]),ColorW.toEnum(s[1]));
+                t.interrupt();
                 break;
 
             case "TA":

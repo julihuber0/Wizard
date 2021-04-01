@@ -343,13 +343,18 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                     currentPlayerID = players.get(j).getId();
                     //stitch.add(players.get(i).requestCard());
                     players.get(j).sendPlayableCards(getAllowedCards(players.get(j)));
+                    players.get(i).setThread(Thread.currentThread());
                     players.get(j).requestCard();
-                    while (players.get(j).played == null) {
-                        /*if(players.get(j).played != null) {
-                            break;
-                        }*/
-                        warten(20);
+                    System.out.println(Thread.currentThread().getName() + " eingeschläfert");
+                    try { //einschläfern, wird dann durch den ClientHandler geweckt
+                        this.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
+
+                    this.run();
+                    System.out.println("Gutten Tag");
+
                     stitch.add(players.get(j).played);
                     //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten (höchstwahrscheinlich erledigt)
                     server.update();
