@@ -198,9 +198,9 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         ArrayList<Player> newPlayers = new ArrayList<>();
         newPlayers.add(p);
         boolean behind = false;
-        for(int i = 0; i<playerCount; i++)
+        for(int i = 0; i<players.size(); i++)
         {
-            if(p.getId()==players.get(i).getId())
+            if(i<(players.size()-1)&&p.getId()==players.get(i+1).getId())
             {
                 behind = true;
             }
@@ -210,14 +210,14 @@ public class GameW extends Game implements MausReagierbar, Runnable{
             }
         }
         Player f = players.get(0);
-        for(int i = 1; f.getId()!=p.getId(); i++)
+        for(int i = 1; f.getId()<p.getId(); i++)
         {
             newPlayers.add(f);
             f = players.get(i);
         }
         for(Player pl:newPlayers)
         {
-            System.out.println(p.getName());
+            System.out.println("Players: "+p.getName());
         }
         return newPlayers;
     }
