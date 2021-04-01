@@ -881,5 +881,8 @@ public class GUIClient extends Game implements MausReagierbar {
             default:
                 break;
         }
+        if (code >= 100 && code <=119 ) {
+            inputAllowed=false;
+        }
     }
 }
