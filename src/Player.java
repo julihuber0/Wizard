@@ -35,7 +35,7 @@ public class Player {
 
     public void sendPlayableCards(ArrayList<Card> playable) {
         String cards = "HS/";
-        for(Card c:hand) {
+        for(Card c:playable) {
             cards = cards + c.getValue() + ";" + c.getColor() + "/";
         }
         ch.sendeString(cards);
