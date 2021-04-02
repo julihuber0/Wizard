@@ -506,7 +506,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(marker[i]);
             marker[i].sichtbarSetzen(false);
         }
-        ownMarker = new Rechteck(10, 410, 150, 150);
+        ownMarker = new Rechteck(10, 610, 150, 150);
         sichtbarMachen(ownMarker);
         ownMarker.sichtbarSetzen(false);
         //Avatare erzeugen
@@ -515,7 +515,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(s[i]);
             s[i].sichtbarSetzen(false);
         }
-        ownAvatar = new Bild(10, 410, "Resources/avatar.png");
+        ownAvatar = new Bild(10, 610, "Resources/avatar.png");
         sichtbarMachen(ownAvatar);
         ownAvatar.sichtbarSetzen(false);
 
@@ -526,7 +526,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(names[i]);
             names[i].sichtbarSetzen(false);
         }
-        name = new Text(players.get(idSelf).getName(), 20, 570, 15);
+        name = new Text(players.get(idSelf).getName(), 20, 770, 15);
         sichtbarMachen(name);
         name.sichtbarSetzen(false);
 
@@ -536,7 +536,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(saidStitches[i]);
             saidStitches[i].sichtbarSetzen(false);
         }
-        ownSaidStitches = new Text("Angesagt: -", 20, 590, 15);
+        ownSaidStitches = new Text("Angesagt: -", 20, 790, 15);
         sichtbarMachen(ownSaidStitches);
         ownSaidStitches.sichtbarSetzen(false);
 
@@ -546,7 +546,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(madeStitches[i]);
             madeStitches[i].sichtbarSetzen(false);
         }
-        ownMadeStitches = new Text("Gemacht: -", 20, 610, 15);
+        ownMadeStitches = new Text("Gemacht: -", 20, 810, 15);
         sichtbarMachen(ownMadeStitches);
         ownMadeStitches.sichtbarSetzen(false);
 
@@ -556,7 +556,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(points[i]);
             points[i].sichtbarSetzen(false);
         }
-        ownPoints = new Text("Punkte: 0", 20, 630, 15);
+        ownPoints = new Text("Punkte: 0", 20, 830, 15);
         sichtbarMachen(ownPoints);
         ownPoints.sichtbarSetzen(false);
 
