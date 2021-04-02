@@ -126,6 +126,8 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public int validateStitches(int forbiddenNumber) {
+        getEScoreboard();
+        setSichtbarEScoreboard(false);
         String stitchesCount = askForStitches(forbiddenNumber);
         int sCount = 0;
         try {
@@ -146,6 +148,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public ColorW validateTrump() {
         bg2.sichtbarSetzen(false);
+        getEScoreboard();
         setSichtbarEScoreboard(false);
         String trumpColor = askForTrumpColor();
         if (trumpColor.equals("grün")) {
