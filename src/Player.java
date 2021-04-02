@@ -20,7 +20,7 @@ public class Player {
         this.name = name;
         this.id = id;
         points = 0;
-        saidStitches = 0;
+        saidStitches = -1;
         currentStitches = 0;
     }
 

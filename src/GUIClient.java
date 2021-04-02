@@ -229,20 +229,12 @@ public class GUIClient extends Game implements MausReagierbar {
     public void updateMadeStitches() {
         for (Player p : players)
             if (p.getId() == idSelf) {
-                if (p.getCurrentStitches() == -1) {
-                    ownMadeStitches.setzeInhalt("Gemacht: -");
-                } else {
-                    ownMadeStitches.setzeInhalt("Gemacht: " + p.getCurrentStitches());
-                }
+                ownMadeStitches.setzeInhalt("Gemacht: " + p.getCurrentStitches());
             }
         for (int i = 0; i < players.size() - 1; i++) {
             for (Player p : players) {
                 if (p.getId() == relativeID[i + 1]) {
-                    if (p.getCurrentStitches() == -1) {
-                        madeStitches[i].setzeInhalt("Gemacht: -");
-                    } else {
-                        madeStitches[i].setzeInhalt("Gemacht: " + p.getCurrentStitches());
-                    }
+                    madeStitches[i].setzeInhalt("Gemacht: " + p.getCurrentStitches());
                 }
             }
         }
