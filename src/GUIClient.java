@@ -111,29 +111,16 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void setPlayableCards(ArrayList<Card> cards) {
-        for(Card c:cards)
-        {
-            System.out.println(c.getValue()+"_in_"+c.getColor());
-        }
         for(boolean b:allowedCards)
         {
             b = false;
         }
         for (int i = 0; i < currentRound; i++) {
-            System.out.println("Aktuelle Runde: "+currentRound);
-            for(Card c: hand)
-            {
-                System.out.println("Eine Karte wurde gefunden.");
-            }
             for(Card c:cards)
             {
                 if(c.isEqual(hand.get(i)))
                 {
                     allowedCards[i] = true;
-                }
-                else
-                {
-                    allowedCards[i] = false;
                 }
             }
         }
