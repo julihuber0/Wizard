@@ -237,7 +237,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
             {
                 return null;
             }
-            for(int i = 0; i<players.size()&&stitch.get(i)!=null; i++)
+            for(int i = 0; i<players.size()&& i < stitch.size()&&stitch.get(i)!=null; i++)
             {
                 if(stitch.get(i).getValue()!=0)
                 {
