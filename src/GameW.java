@@ -120,19 +120,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     //teilt rundenabhängig Karten an die Spieler aus
     public void distribute(int round) {
         deck = new CardDeck();
-        //deck.shuffleDeck();
-        deck.getDeck().get(2).setValue(11);
-        deck.getDeck().get(2).setColor(ColorW.YELLOW);
-        deck.getDeck().get(5).setValue(8);
-        deck.getDeck().get(5).setColor(ColorW.BLUE);
-        deck.getDeck().get(0).setValue(11);
-        deck.getDeck().get(0).setColor(ColorW.BLUE);
-        deck.getDeck().get(3).setValue(14);
-        deck.getDeck().get(3).setColor(ColorW.RED);
-        deck.getDeck().get(1).setValue(9);
-        deck.getDeck().get(1).setColor(ColorW.BLUE);
-        deck.getDeck().get(4).setValue(7);
-        deck.getDeck().get(4).setColor(ColorW.RED);
+        deck.shuffleDeck();
         for (Player p : players) {
             for (int i = 0; i < round; i++) {
                 p.addCards(deck.removeCard());
@@ -373,11 +361,6 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                             c.setValue(0);
                             break;
                         }
-                    }
-                    System.out.println("Hand von "+players.get(j).getName()+":");
-                    for(Card c:players.get(j).getHand())
-                    {
-                        System.out.println(c.getValue()+"_in_"+c.getColor());
                     }
                     server.update();
                 }
