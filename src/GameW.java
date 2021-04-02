@@ -317,7 +317,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         gs = GameState.RUNNING;
         nextRound();
         if(gs != GameState.OVER) {
-            getNewFirstPlayer(getPlayerToID(dealerID));
+            players = getNewFirstPlayer(getPlayerToID(dealerID));
             distribute(currentRound);
             Card trumpCard = deck.removeCard();
             //server.update();
