@@ -470,10 +470,10 @@ public class GUIClient extends Game implements MausReagierbar {
             }
         }
         if (b) {
-            eScoreboard_line1.sichtbarSetzen(true);
-            eScoreboard_line2.sichtbarSetzen(true);
             wurzel.add(eScoreboard_line1);
             wurzel.add(eScoreboard_line2);
+            eScoreboard_line1.sichtbarSetzen(true);
+            eScoreboard_line2.sichtbarSetzen(true);
         } else {
             eScoreboard_line1.sichtbarSetzen(false);
             eScoreboard_line2.sichtbarSetzen(false);
