@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameW extends Game implements MausReagierbar, Runnable {
 
@@ -75,9 +76,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     }
 
     public void addPlayer(Player p) {
-        if(p.getId() <= players.size()) {
-            players.add(p.getId(), p);
-        }
+        players.add(p);
+        Collections.sort(players);
         server.sendString("CP/");
         for (Player player : players) {
             String toSend = "PN/" + player.getName() + ";" + player.getId();
