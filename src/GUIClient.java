@@ -8,8 +8,6 @@ import java.util.Collections;
 public class GUIClient extends Game implements MausReagierbar {
     private Maus maus;
     private Text joinButton;
-    //private Text playButton;
-    private Text backButton;
     private Bild bg;
     private Bild logo;
     private Bild[] s = new Bild[5];
@@ -55,7 +53,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
 
     public GUIClient() {
-        super(1300, 870, "Wizard", false, false);
+        super(1300, 850, "Wizard", false, false);
 
         maus = new Maus(new Bild(0, 0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
@@ -66,11 +64,7 @@ public class GUIClient extends Game implements MausReagierbar {
         //Main Menu
         joinButton = new Text("Beitreten", 200, 200, 20);
         sichtbarMachen(joinButton);
-        backButton = new Text("Zurück", 200, 300, 20);
-        sichtbarMachen(backButton);
-        backButton.sichtbarSetzen(false);
         maus.anmelden(this, joinButton, 0);
-        maus.anmelden(this, backButton, 1);
         logo = new Bild(700, 100, "Resources/wizardgame.png");
         sichtbarMachen(logo);
 
@@ -116,7 +110,7 @@ public class GUIClient extends Game implements MausReagierbar {
             }
             else
             {
-                ownHand[i] = new Bild(200 + (i-10) * 95, 660, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
+                ownHand[i] = new Bild(200 + (i-10) * 95, 650, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
                 sichtbarMachen(ownHand[i]);
                 ownHand[i].sichtbarSetzen(true);
                 maus.anmelden(this, ownHand[i], 100 + i);
@@ -574,7 +568,7 @@ public class GUIClient extends Game implements MausReagierbar {
         scoreboardButton = new Text("Scoreboard", 1075, 10, 20);
         sichtbarMachen(scoreboardButton);
         scoreboardButton.sichtbarSetzen(false);
-        maus.anmelden(this, scoreboardButton, 4);
+        maus.anmelden(this, scoreboardButton, 1);
 
         joinButton.sichtbarSetzen(false);
         logo.sichtbarSetzen(false);
@@ -629,14 +623,7 @@ public class GUIClient extends Game implements MausReagierbar {
                     logo.sichtbarSetzen(false);
                 }
                 break;
-            case 1:     //Zurück-Button
-                if (backButton.sichtbar()) {
-                    joinButton.sichtbarSetzen(true);
-                    backButton.sichtbarSetzen(false);
-                    logo.sichtbarSetzen(true);
-                }
-                break;
-            case 4:
+            case 1:
                 if (scoreboardButton.sichtbar()) {
                     if (bg2.sichtbar()) {
                         bg2.sichtbarSetzen(false);
