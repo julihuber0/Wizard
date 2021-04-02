@@ -471,18 +471,21 @@ public class GUIClient extends Game implements MausReagierbar {
                 }
             }
         }
-        if (b) {
-            wurzel.add(eScoreboard_line1);
-            wurzel.add(eScoreboard_line2);
-            eScoreboard_line1.sichtbarSetzen(true);
-            eScoreboard_line2.sichtbarSetzen(true);
-            System.out.println("Lines sichtbar");
-        } else {
-            eScoreboard_line1.sichtbarSetzen(false);
-            eScoreboard_line2.sichtbarSetzen(false);
-            wurzel.entfernen(eScoreboard_line1);
-            wurzel.entfernen(eScoreboard_line2);
-            System.out.println("Lines unsichtbar");
+        if(eScoreboard_line1 != null && eScoreboard_line2 != null) {
+            if (b) {
+                wurzel.add(eScoreboard_line1);
+                wurzel.add(eScoreboard_line2);
+                eScoreboard_line1.sichtbarSetzen(true);
+                eScoreboard_line2.sichtbarSetzen(true);
+                System.out.println("Lines sichtbar");
+        }
+            else {
+                eScoreboard_line1.sichtbarSetzen(false);
+                eScoreboard_line2.sichtbarSetzen(false);
+                wurzel.entfernen(eScoreboard_line1);
+                wurzel.entfernen(eScoreboard_line2);
+                System.out.println("Lines unsichtbar");
+            }
         }
     }
 
