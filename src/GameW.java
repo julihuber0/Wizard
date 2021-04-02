@@ -123,7 +123,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     public void distribute(int round)
     {
         deck = new CardDeck();
-        //deck.shuffleDeck();
+        deck.shuffleDeck();
         for(Player p:players)
         {
             for(int i = 0; i<round; i++)
