@@ -16,6 +16,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     public ColorW currentTrump = null;      //aktuelle Trumpffarbe
     public CardDeck deck = new CardDeck();     //Kartendeck
     public int currentPlayerID = 0;
+    public int dealerID = -1;
     private Server server;
     private String ipadress;
     private String ipadress2 = "";
@@ -111,6 +112,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     public void nextRound() {
         if (currentRound < maxRounds) {
             currentRound++;
+            dealerID = (dealerID + 1)%players.size();
             server.update();
         } else {
             gs = GameState.OVER;
@@ -249,6 +251,18 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         return allowed;
     }
 
+    public Player getPlayerToID(int id)
+    {
+        for(Player p:players)
+        {
+            if(p.getId()==id)
+            {
+                return p;
+            }
+        }
+        return null;
+    }
+
     //gibt eine Liste mit allen erlaubten/spielbaren Karten eines Spielers zurück
     public ArrayList<Card> getAllowedCards(Player p)
     {
@@ -295,6 +309,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         gs = GameState.RUNNING;
         nextRound();
         if(gs != GameState.OVER) {
+            getNewFirstPlayer(getPlayerToID(dealerID));
             distribute(currentRound);
             Card trumpCard = deck.removeCard();
             //server.update();
