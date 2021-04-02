@@ -12,6 +12,7 @@ public class Player {
     public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
     private ClientHandler ch;
     public Card played;
+    public int dynNumber = -1;
 
     public ColorW selectedTrump = null; //nur bei dem Sonderfall befüllt, dass der Spieler einen Farbe wählen kann
 

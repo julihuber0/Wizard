@@ -195,19 +195,27 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         return null;
     }
 
+    public void setDynNumbers()
+    {
+        for(int i = 0; i<players.size(); i++)
+        {
+            players.get(i).dynNumber = i;
+        }
+    }
+
     //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
     public ArrayList<Player> getNewFirstPlayer(Player p)
     {
+        setDynNumbers();
         for(Player pl:players)
         {
             System.out.println("Players-List: "+pl.getName()+", "+pl.getId());
         }
         ArrayList<Player> newPlayers = new ArrayList<>();
-        //newPlayers.add(p);
         boolean behind = false;
         for(int i = 0; i<players.size(); i++)
         {
-            if(p.getId()==players.get(i).getId())
+            if(p.dynNumber==players.get(i).dynNumber)
             {
                 behind = true;
             }
@@ -217,7 +225,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
             }
         }
         Player f = players.get(0);
-        for(int i = 1; f.getId()<p.getId(); i++)
+        for(int i = 1; f.dynNumber<p.dynNumber; i++)
         {
             newPlayers.add(f);
             f = players.get(i);
