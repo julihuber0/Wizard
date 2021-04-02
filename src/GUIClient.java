@@ -147,7 +147,6 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public ColorW validateTrump() {
-        bg2.sichtbarSetzen(false);
         getEScoreboard();
         setSichtbarEScoreboard(false);
         String trumpColor = askForTrumpColor();
@@ -453,8 +452,8 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(bg2);
             bg2.sichtbarSetzen(true);
         } else {
-            wurzel.entfernen(bg2);
             bg2.sichtbarSetzen(false);
+            wurzel.entfernen(bg2);
         }
         sichtbarMachen(scoreboardButton);
         for (Text[] lines : eScoreboard) {
@@ -622,10 +621,9 @@ public class GUIClient extends Game implements MausReagierbar {
             case 1:
                 if (scoreboardButton.sichtbar()) {
                     if (bg2.sichtbar()) {
-                        bg2.sichtbarSetzen(false);
+                        getEScoreboard();
                         setSichtbarEScoreboard(false);
                     } else {
-                        bg2.sichtbarSetzen(true);
                         getEScoreboard();
                         setSichtbarEScoreboard(true);
                     }
