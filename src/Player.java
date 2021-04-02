@@ -27,7 +27,7 @@ public class Player {
     public void sendHand() {
         //sendet die Arraylist hand an den zugehörigen Client
         String cards = "HA/";
-        for(Card c:hand) {
+        for (Card c : hand) {
             cards = cards + c.getValue() + ";" + c.getColor() + "/";
         }
         ch.sendeString(cards);
@@ -35,23 +35,21 @@ public class Player {
 
     public void sendPlayableCards(ArrayList<Card> playable) {
         String cards = "HS/";
-        for(Card c:playable) {
+        for (Card c : playable) {
             cards = cards + c.getValue() + ";" + c.getColor() + "/";
         }
         ch.sendeString(cards);
     }
 
-    public int getLastPoints()
-    {
-        int i = sh.size()-1;
-        if(i>=0) {
+    public int getLastPoints() {
+        int i = sh.size() - 1;
+        if (i >= 0) {
             return sh.get(i).getPoints();
         }
         return 0;
     }
 
-    public void clearHand()
-    {
+    public void clearHand() {
         hand.clear();
     }
 
@@ -99,20 +97,17 @@ public class Player {
         this.hand = hand;
     }
 
-    public void addStitch()
-    {
+    public void addStitch() {
         currentStitches++;
     }
 
-    public void addPoints(int i)
-    {
+    public void addPoints(int i) {
         points = points + i;
         sh.add(new StitchHistory(saidStitches, points));
     }
 
     //Sortiert die Hand des Spielers
-    public void sortHand()
-    {
+    public void sortHand() {
         Collections.sort(hand);
     }
 
@@ -143,12 +138,13 @@ public class Player {
     public void addCards(Card c) {
         hand.add(c);
     }
-/*
-    public Card requestCard() {
 
-        return new Card(1, ColorW.BLUE);
-    }
-*/
+    /*
+        public Card requestCard() {
+
+            return new Card(1, ColorW.BLUE);
+        }
+    */
     public void requestCard() {
         played = null;
         ch.sendeString("KS/");
@@ -202,7 +198,7 @@ public class Player {
         return ColorW.BLUE;
     }
 
-    public void setThread(Thread t){
+    public void setThread(Thread t) {
         ch.setT(t);
     }
 }

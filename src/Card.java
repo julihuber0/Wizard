@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Card implements Comparable<Card>{
+public class Card implements Comparable<Card> {
 
     private Integer value;
     private ColorW colorW;
@@ -8,7 +8,7 @@ public class Card implements Comparable<Card>{
     public Card(Integer value, ColorW colorW) {
         this.value = value;
         this.colorW = colorW;
-        String fileName = value+"_in_"+ colorW;       //dient zur Zuweisung des richtigen Bildes zur Karte
+        String fileName = value + "_in_" + colorW;       //dient zur Zuweisung des richtigen Bildes zur Karte
     }
 
     public Integer getValue() {
@@ -28,19 +28,16 @@ public class Card implements Comparable<Card>{
     }
 
     //gibt eine Liste mit allen möglichen Kartenwerten zurück
-    public static ArrayList<Integer> getValidValues()
-    {
+    public static ArrayList<Integer> getValidValues() {
         ArrayList<Integer> values = new ArrayList<>();
-        for(int i = 0; i<=14; i++)
-        {
+        for (int i = 0; i <= 14; i++) {
             values.add(i);
         }
         return values;
     }
 
     //gibt eine Liste mit allen möglichen Farben zurück
-    public static ArrayList<ColorW> getValidColors()
-    {
+    public static ArrayList<ColorW> getValidColors() {
         ArrayList<ColorW> colorWS = new ArrayList<>();
         colorWS.add(ColorW.BLUE);
         colorWS.add(ColorW.RED);
@@ -49,57 +46,44 @@ public class Card implements Comparable<Card>{
         return colorWS;
     }
 
-    public int getColorOrder()
-    {
-        if(this.colorW == ColorW.GREEN)
-        {
+    public int getColorOrder() {
+        if (this.colorW == ColorW.GREEN) {
             return 1;
         }
-        if(this.colorW == ColorW.BLUE)
-        {
+        if (this.colorW == ColorW.BLUE) {
             return 2;
         }
-        if(this.colorW == ColorW.RED)
-        {
+        if (this.colorW == ColorW.RED) {
             return 3;
         }
         return 4;
     }
 
     //Gibt die entsprechenden Sortierregeln für Karten vor
-    public int compareTo(Card c)
-    {
-       if(c.getValue()==14)
-       {
-           return 1;
-       }
-       if(c.getValue()==0)
-       {
-           return -1;
-       }
-       if(c.getValue()>this.getValue()&&c.getColorOrder()==this.getColorOrder())
-       {
-           return 1;
-       }
-       if(c.getValue()<this.getValue()&&c.getColorOrder()==this.getColorOrder())
-       {
-           return -1;
-       }
-       if(c.getColorOrder()<this.getColorOrder())
-       {
-           return -1;
-       }
-       if(c.getColorOrder()>this.getColorOrder())
-       {
-           return 1;
-       }
-       return -1;
+    public int compareTo(Card c) {
+        if (c.getValue() == 14) {
+            return 1;
+        }
+        if (c.getValue() == 0) {
+            return -1;
+        }
+        if (c.getValue() > this.getValue() && c.getColorOrder() == this.getColorOrder()) {
+            return 1;
+        }
+        if (c.getValue() < this.getValue() && c.getColorOrder() == this.getColorOrder()) {
+            return -1;
+        }
+        if (c.getColorOrder() < this.getColorOrder()) {
+            return -1;
+        }
+        if (c.getColorOrder() > this.getColorOrder()) {
+            return 1;
+        }
+        return -1;
     }
 
-    public boolean isEqual(Card c)
-    {
-        if(c.getValue().equals(this.getValue()) &&c.getColor()==this.getColor())
-        {
+    public boolean isEqual(Card c) {
+        if (c.getValue().equals(this.getValue()) && c.getColor() == this.getColor()) {
             return true;
         }
         return false;

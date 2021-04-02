@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class GameW extends Game implements MausReagierbar, Runnable{
+public class GameW extends Game implements MausReagierbar, Runnable {
 
     public int playerCount;        //Anzahl Mitspieler
     public int maxRounds;      //Maximale Rundenzahl
@@ -27,14 +27,12 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     private Text displayIP;
     private Text displayIP2;
 
-
-    //ToDo @Julian nach jeder Änderung server.update asuführen (soweit erledigt)
     public GameW() {
         super(400, 300, "Wizard-Serer", false, false);
         run();
 
         server = new Server(this);
-        maus = new Maus(new Bild(0,0, "Resources/pointer.png"), new Punkt(0, 0));
+        maus = new Maus(new Bild(0, 0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
         startButton = new Text("Starte Spiel", 100, 100, 20);
         wurzel.add(startButton);
@@ -48,26 +46,24 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                     new InputStreamReader(myIP.openStream())
             );
             ipadress = in.readLine();
-        } catch (Exception e){
-           ipadress = "Fehler beim Anzeigen der eigenen IP-Adresse.";
-           ipadress2 = "Der Server startet ganz normal.";
+        } catch (Exception e) {
+            ipadress = "Fehler beim Anzeigen der eigenen IP-Adresse.";
+            ipadress2 = "Der Server startet ganz normal.";
         }
 
-        displayIP= new Text("IP: " + ipadress, 40, 200, 20);
+        displayIP = new Text("IP: " + ipadress, 40, 200, 20);
         wurzel.add(displayIP);
         displayIP.sichtbarSetzen(true);
 
-        if(!ipadress2.isEmpty()){
-            displayIP2= new Text(ipadress2, 40, 240, 20);
+        if (!ipadress2.isEmpty()) {
+            displayIP2 = new Text(ipadress2, 40, 240, 20);
             wurzel.add(displayIP2);
             displayIP2.sichtbarSetzen(true);
         }
     }
 
-    public void mausReagieren(int code)
-    {
-        switch (code)
-        {
+    public void mausReagieren(int code) {
+        switch (code) {
             case 0:
                 server.sendString("SG/");
                 start();
@@ -78,17 +74,17 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         }
     }
 
-    public void addPlayer(Player p)
-    {
-        players.add(p.getId(),p);
+    public void addPlayer(Player p) {
+        players.add(p.getId(), p);
         server.sendString("CP/");
-        for (Player player: players) {
+        for (Player player : players) {
             String toSend = "PN/" + player.getName() + ";" + player.getId();
             server.sendString(toSend);
         }
     }
 
-    public void tasteReagieren(int code){}
+    public void tasteReagieren(int code) {
+    }
 
     //legt fest, wie viele Spieler mitspielen
     public void setPlayerCount(int pc) {
@@ -112,7 +108,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     public void nextRound() {
         if (currentRound < maxRounds) {
             currentRound++;
-            dealerID = (dealerID + 1)%players.size();
+            dealerID = (dealerID + 1) % players.size();
             server.update();
         } else {
             gs = GameState.OVER;
@@ -120,19 +116,15 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     }
 
     //teilt rundenabhängig Karten an die Spieler aus
-    public void distribute(int round)
-    {
+    public void distribute(int round) {
         deck = new CardDeck();
         deck.shuffleDeck();
-        for(Player p:players)
-        {
-            for(int i = 0; i<round; i++)
-            {
+        for (Player p : players) {
+            for (int i = 0; i < round; i++) {
                 p.addCards(deck.removeCard());
             }
         }
-        for(Player p:players)
-        {
+        for (Player p : players) {
             p.sortHand();
             p.sendHand();
         }
@@ -140,33 +132,30 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     }
 
     //gibt den Spieler zurück, dem der aktuelle Stich gehört
-    public Player calculateStitch()
-    {
+    public Player calculateStitch() {
         Player p = players.get(0);      //Hier: player(0) kommt raus
         Card highestCard = stitch.get(0);
         int highCardPos = 0;
-        for(int i = 1; i<players.size(); i++)
-        {
-            if(stitch.get(0).getValue()==14)    //Erste Karte Zauberer: Höchste Karte sofort gefunden
+        for (int i = 1; i < players.size(); i++) {
+            if (stitch.get(0).getValue() == 14)    //Erste Karte Zauberer: Höchste Karte sofort gefunden
             {
                 break;
             }
-            if(stitch.get(i).getValue()==14)    //sobald ein Zauberer auftritt: Höchste Karte gefunden
+            if (stitch.get(i).getValue() == 14)    //sobald ein Zauberer auftritt: Höchste Karte gefunden
             {
                 highestCard = stitch.get(i);
                 highCardPos = i;
                 break;
             }
-            if(stitch.get(i).getValue()==0) {   //Narren werden übergangen, bei nur Narren sticht der Erste
+            if (stitch.get(i).getValue() == 0) {   //Narren werden übergangen, bei nur Narren sticht der Erste
                 continue;
             }
-            if(stitch.get(i).getValue()>highestCard.getValue()&&stitch.get(i).getColor()==highestCard.getColor())
-            {
+            if (stitch.get(i).getValue() > highestCard.getValue() && stitch.get(i).getColor() == highestCard.getColor()) {
                 highestCard = stitch.get(i);    //Wenn Kartenwert größer, als der der aktuellen höchsten Karte und gleiche Farbe: Neue hächste Karte
                 highCardPos = i;
                 continue;
             }
-            if(highestCard.getColor()!=currentTrump&&stitch.get(i).getColor()==currentTrump)    //Trumpf sticht Nicht-Trumpf
+            if (highestCard.getColor() != currentTrump && stitch.get(i).getColor() == currentTrump)    //Trumpf sticht Nicht-Trumpf
             {
                 highestCard = stitch.get(i);
                 highCardPos = i;
@@ -176,16 +165,12 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         return players.get(highCardPos);
     }
 
-    public Player getWinner()
-    {
-        if(gs==GameState.OVER)
-        {
+    public Player getWinner() {
+        if (gs == GameState.OVER) {
             int maxPoints = Integer.MIN_VALUE;
             int bestPlayer = 0;
-            for(int i = 0; i<players.size(); i++)
-            {
-                if(players.get(i).getPoints()>maxPoints)
-                {
+            for (int i = 0; i < players.size(); i++) {
+                if (players.get(i).getPoints() > maxPoints) {
                     maxPoints = players.get(i).getPoints();
                     bestPlayer = i;
                 }
@@ -195,62 +180,49 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         return null;
     }
 
-    public void setDynNumbers()
-    {
-        for(int i = 0; i<players.size(); i++)
-        {
+    public void setDynNumbers() {
+        for (int i = 0; i < players.size(); i++) {
             players.get(i).dynNumber = i;
         }
     }
 
     //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
-    public ArrayList<Player> getNewFirstPlayer(Player p)
-    {
+    public ArrayList<Player> getNewFirstPlayer(Player p) {
         setDynNumbers();
-        for(Player pl:players)
-        {
-            System.out.println("Players-List: "+pl.getName()+", "+pl.getId());
+        for (Player pl : players) {
+            System.out.println("Players-List: " + pl.getName() + ", " + pl.getId());
         }
         ArrayList<Player> newPlayers = new ArrayList<>();
         boolean behind = false;
-        for(int i = 0; i<players.size(); i++)
-        {
-            if(p.dynNumber==players.get(i).dynNumber)
-            {
+        for (int i = 0; i < players.size(); i++) {
+            if (p.dynNumber == players.get(i).dynNumber) {
                 behind = true;
             }
-            if(behind) //if (behind == true)
+            if (behind) //if (behind == true)
             {
                 newPlayers.add(players.get(i));
             }
         }
         Player f = players.get(0);
-        for(int i = 1; f.dynNumber<p.dynNumber; i++)
-        {
+        for (int i = 1; f.dynNumber < p.dynNumber; i++) {
             newPlayers.add(f);
             f = players.get(i);
         }
-        for(Player pl:newPlayers)
-        {
-            System.out.println("Players: "+pl.getName());
+        for (Player pl : newPlayers) {
+            System.out.println("Players: " + pl.getName());
         }
         return newPlayers;
     }
 
     //gibt die in diesem Stich erlaubte Farbe zurück
-    public ColorW getAllowed()
-    {
+    public ColorW getAllowed() {
         ColorW allowed = null;
-        if(!stitch.isEmpty())
-        {
-            if(stitch.get(0).getValue()==14)
-            {
+        if (!stitch.isEmpty()) {
+            if (stitch.get(0).getValue() == 14) {
                 return null;
             }
-            for(int i = 0; i<players.size()&& i < stitch.size()&&stitch.get(i)!=null; i++)
-            {
-                if(stitch.get(i).getValue()!=0)
-                {
+            for (int i = 0; i < players.size() && i < stitch.size() && stitch.get(i) != null; i++) {
+                if (stitch.get(i).getValue() != 0) {
                     allowed = stitch.get(i).getColor();
                     break;
                 }
@@ -259,12 +231,9 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         return allowed;
     }
 
-    public Player getPlayerToID(int id)
-    {
-        for(Player p:players)
-        {
-            if(p.getId()==id)
-            {
+    public Player getPlayerToID(int id) {
+        for (Player p : players) {
+            if (p.getId() == id) {
                 return p;
             }
         }
@@ -272,40 +241,30 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     }
 
     //gibt eine Liste mit allen erlaubten/spielbaren Karten eines Spielers zurück
-    public ArrayList<Card> getAllowedCards(Player p)
-    {
+    public ArrayList<Card> getAllowedCards(Player p) {
         ColorW allowed = getAllowed();
         ArrayList<Card> allowedCards = new ArrayList<>();
-        if(allowed==null)
-        {
+        if (allowed == null) {
             return p.getHand();
-        }
-        else
-        {
-            for(Card c:p.getHand())
-            {
-                if(c.getColor()==allowed)
-                {
+        } else {
+            for (Card c : p.getHand()) {
+                if (c.getColor() == allowed) {
                     allowedCards.add(c);
                 }
             }
         }
-        if(allowedCards.isEmpty())
-        {
+        if (allowedCards.isEmpty()) {
             return p.getHand();
         }
-        for(Card c:p.getHand())
-        {
-            if(c.getValue()==0||c.getValue()==14)
-            {
+        for (Card c : p.getHand()) {
+            if (c.getValue() == 0 || c.getValue() == 14) {
                 allowedCards.add(c);
             }
         }
         return allowedCards;
     }
 
-    public void start()
-    {
+    public void start() {
         setPlayerCount(players.size());
         setMaxRounds(players.size());
         startNextRound();
@@ -316,7 +275,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         server.startNextRound();
         gs = GameState.RUNNING;
         nextRound();
-        if(gs != GameState.OVER) {
+        if (gs != GameState.OVER) {
             players = getNewFirstPlayer(getPlayerToID(dealerID));
             distribute(currentRound);
             Card trumpCard = deck.removeCard();
@@ -349,15 +308,13 @@ public class GameW extends Game implements MausReagierbar, Runnable{
             }
 
             int forbiddenNumber = currentRound;
-            for(int i = 0; i < players.size(); i++)
-            {
-                players.get(i).saidStitches = - 1;
+            for (int i = 0; i < players.size(); i++) {
+                players.get(i).saidStitches = -1;
                 currentPlayerID = players.get(i).getId();
                 server.update();
-                if (i+1 == players.size()) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
+                if (i + 1 == players.size()) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
                     players.get(i).sayStitches(forbiddenNumber);
-                }
-                else {
+                } else {
                     players.get(i).sayStitches(-1);
                 }
                 //ToDo @Tobi wtf
@@ -395,7 +352,6 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                     System.out.println("Gutten Tag");
 
                     stitch.add(players.get(j).played);
-                    //ToDo @Julian Karte aus dem Inventar des Spielers entfernen + Hand des Spielers updaten (höchstwahrscheinlich erledigt)
                     server.update();
                 }
                 Player p = calculateStitch();
@@ -407,14 +363,12 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 players = getNewFirstPlayer(p);
                 server.update();
             }
-            for(Player pl:players)
-            {
+            for (Player pl : players) {
                 pl.saidStitches = -1;
                 pl.setCurrentStitches(-1);
             }
 
-            for(Player pl:players)
-            {
+            for (Player pl : players) {
                 pl.clearHand();
             }
             server.update();
@@ -441,7 +395,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
         System.out.println("Fred läuft");
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         GameW gameW = new GameW();
     }
 }

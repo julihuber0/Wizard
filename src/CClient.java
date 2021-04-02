@@ -33,7 +33,7 @@ public class CClient extends Client {
         //empfangenen String einfach an der Konsole ausgeben
         System.out.println("[Client hat empfangen:] " + string);
 
-        String key = string.substring(0,2);
+        String key = string.substring(0, 2);
         String content = string.substring(3);
         String[] lines;
         String[] s;
@@ -43,18 +43,17 @@ public class CClient extends Client {
              */
             case "SB":
                 lines = content.split("/");
-                for(String line:lines) {
+                for (String line : lines) {
                     s = line.split(";");
                     //erste Stelle ist die PlayerID
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     //SH wird ganz geupdatet -> aktuelle Einträge löschen
                     p.clearSH();
                     int saidStitches = 0;
-                    for (int i = 1;i<s.length; i++) {
-                        if(i%2 != 0) {//ungerade -> angesagte Stiche
+                    for (int i = 1; i < s.length; i++) {
+                        if (i % 2 != 0) {//ungerade -> angesagte Stiche
                             saidStitches = Integer.parseInt(s[i]);
-                        }
-                        else {
+                        } else {
                             p.addToSH(saidStitches, Integer.parseInt(s[i]));
                         }
                     }
@@ -64,7 +63,7 @@ public class CClient extends Client {
 
             case "SS":
                 lines = content.split("/");
-                for(String line:lines) {
+                for (String line : lines) {
                     s = line.split(";");
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     p.setSaidStitches(Integer.parseInt(s[1]));
@@ -74,7 +73,7 @@ public class CClient extends Client {
 
             case "CS":
                 lines = content.split("/");
-                for(String line:lines) {
+                for (String line : lines) {
                     s = line.split(";");
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
                     p.setCurrentStitches(Integer.parseInt(s[1]));
@@ -89,8 +88,8 @@ public class CClient extends Client {
             case "AS":
                 gClient.stitch.clear();
                 lines = content.split("/");
-                for(String line:lines) {
-                    if(!line.isEmpty()) {
+                for (String line : lines) {
+                    if (!line.isEmpty()) {
                         s = line.split(";");
                         gClient.stitch.add(new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1])));
                     }
@@ -121,7 +120,7 @@ public class CClient extends Client {
 
             case "GO":
                 s = content.split(";");
-                gClient.gameOver(s[0],Integer.parseInt(s[1]));
+                gClient.gameOver(s[0], Integer.parseInt(s[1]));
                 break;
 
             case "DC":
@@ -134,7 +133,7 @@ public class CClient extends Client {
 
             case "NR":
                 lines = content.split("/");
-                for(String line:lines) {
+                for (String line : lines) {
                     s = line.split(";");
                     //erste Stelle ist die PlayerID
                     Player p = gClient.getPlayerByID(Integer.parseInt(s[0]));
@@ -148,8 +147,8 @@ public class CClient extends Client {
                 break;
 
             /*
-            *  Clientspezifisches
-            */
+             *  Clientspezifisches
+             */
             case "NF":
                 //Eingabe Namen auffordern
                 name = gClient.getInputName();
@@ -166,7 +165,7 @@ public class CClient extends Client {
 
                 gClient.hand.clear();
                 lines = content.split("/");
-                for(String line:lines) {
+                for (String line : lines) {
                     if (!line.isEmpty()) {
                         s = line.split(";");
                         gClient.hand.add(new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1])));
@@ -178,7 +177,7 @@ public class CClient extends Client {
             case "HS": // Spielbare Karten auf der Hand des Spielers
                 lines = content.split("/");
                 ArrayList<Card> cards = new ArrayList<>();
-                for(String line:lines) {
+                for (String line : lines) {
                     if (!line.isEmpty()) {
                         s = line.split(";");
                         cards.add(new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1])));

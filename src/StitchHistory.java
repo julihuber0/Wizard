@@ -3,8 +3,7 @@ public class StitchHistory {
     private int stitches;
     private int points;
 
-    public StitchHistory(int s, int p)
-    {
+    public StitchHistory(int s, int p) {
         this.stitches = s;
         this.points = p;
     }
