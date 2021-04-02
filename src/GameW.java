@@ -366,7 +366,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                     System.out.println("Gutten Tag");
 
                     stitch.add(players.get(j).played);
-                    for(Card c:players.get(j).getHand())
+                    for(Card c:players.get(j).hand)
                     {
                         if(c.isEqual(players.get(j).played))
                         {
