@@ -326,8 +326,11 @@ public class GUIClient extends Game implements MausReagierbar {
                 if(b != null)
                 {
                     b.sichtbarSetzen(false);
-                    b = null;
                 }
+            }
+            for(int i = 0; i<stitchImage.length; i++)
+            {
+                stitchImage[i] = null;
             }
         }
     }
