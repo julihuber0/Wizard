@@ -5,7 +5,7 @@ public class Player {
 
     private String name;
     private int id;
-    private ArrayList<StitchHistory> sh = new ArrayList<>();
+    public ArrayList<StitchHistory> sh = new ArrayList<>();
     private int points;
     public int saidStitches;   //angesagte Stiche
     private int currentStitches;    //schon gemachte Stiche

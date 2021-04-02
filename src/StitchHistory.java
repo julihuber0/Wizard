@@ -1,7 +1,7 @@
 public class StitchHistory {
 
-    private int stitches;
-    private int points;
+    public int stitches;
+    public int points;
 
     public StitchHistory(int s, int p) {
         this.stitches = s;
