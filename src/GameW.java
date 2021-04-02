@@ -375,7 +375,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             }
             for (Player pl : players) {
                 pl.saidStitches = -1;
-                pl.setCurrentStitches(-1);
+                pl.currentStitches = -1;
+                System.out.println("Angesagte und gemachte Stiche für "+pl.getName()+" zurückgesetzt.");
             }
 
             for (Player pl : players) {

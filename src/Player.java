@@ -8,7 +8,7 @@ public class Player {
     public ArrayList<StitchHistory> sh = new ArrayList<>();
     private int points;
     public int saidStitches;   //angesagte Stiche
-    private int currentStitches;    //schon gemachte Stiche
+    public int currentStitches;    //schon gemachte Stiche
     public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
     private ClientHandler ch;
     public Card played;
