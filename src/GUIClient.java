@@ -454,7 +454,7 @@ public class GUIClient extends Game implements MausReagierbar {
             System.out.println("BG2 sichtbar");
         } else {
             bg2.sichtbarSetzen(false);
-            //wurzel.entfernen(bg2);
+            wurzel.entfernen(bg2);
             System.out.println("BG2 unsichtbar");
         }
         sichtbarMachen(scoreboardButton);
@@ -467,7 +467,7 @@ public class GUIClient extends Game implements MausReagierbar {
                         System.out.println("Text sichtbar");
                     } else {
                         t.sichtbarSetzen(false);
-                        //wurzel.entfernen(t);
+                        wurzel.entfernen(t);
                         System.out.println("Text unsichtbar");
                     }
                 }
@@ -482,8 +482,8 @@ public class GUIClient extends Game implements MausReagierbar {
         } else {
             eScoreboard_line1.sichtbarSetzen(false);
             eScoreboard_line2.sichtbarSetzen(false);
-            //wurzel.entfernen(eScoreboard_line1);
-            //wurzel.entfernen(eScoreboard_line2);
+            wurzel.entfernen(eScoreboard_line1);
+            wurzel.entfernen(eScoreboard_line2);
             System.out.println("Lines unsichtbar");
         }
     }
@@ -627,7 +627,7 @@ public class GUIClient extends Game implements MausReagierbar {
             case 1:
                 if (scoreboardButton.sichtbar()) {
                     if (bg2.sichtbar()) {
-                        getEScoreboard();
+                        //getEScoreboard();
                         setSichtbarEScoreboard(false);
                     } else {
                         getEScoreboard();
