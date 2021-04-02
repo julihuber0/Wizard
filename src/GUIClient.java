@@ -347,6 +347,7 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void karteLegen(Card c) {
+        inputAllowed = false;
         for (int i = 0; i < 6; i++) {
             if (stitchImage[i] == null) {
                 stitchImage[i] = new Bild(200 + i * 50, 300, "./Resources/" + c.getValue() + "_in_" + c.getColor() + ".png");
@@ -781,9 +782,6 @@ public class GUIClient extends Game implements MausReagierbar {
                 break;
             default:
                 break;
-        }
-        if (code >= 100 && code <= 119) {
-            inputAllowed = false;
         }
     }
 }
