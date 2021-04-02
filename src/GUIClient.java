@@ -111,6 +111,10 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void setPlayableCards(ArrayList<Card> cards) {
+        for(Card c:cards)
+        {
+            System.out.println(c.getValue()+"_in_"+c.getColor());
+        }
         for(boolean b:allowedCards)
         {
             b = false;
@@ -407,8 +411,11 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void requestCard() {
+        for(boolean b:allowedCards)
+        {
+            System.out.println(b);
+        }
         greyOutCards();
-        //for(int i = 0; i<currentRound; i++)
         inputAllowed = true;
         System.out.println("Input für "+idSelf+" freigegeben.");
     }
