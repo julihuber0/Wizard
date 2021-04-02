@@ -1,5 +1,6 @@
 import ea.*;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -315,6 +316,17 @@ public class GUIClient extends Game implements MausReagierbar {
             for (int i = 0; i < stitch.size(); i++) {
                 if (stitchImage[i] == null) {
                     karteLegen(stitch.get(i));
+                }
+            }
+        }
+        else
+        {
+            for(Bild b:stitchImage)
+            {
+                if(b != null)
+                {
+                    b.sichtbarSetzen(false);
+                    b = null;
                 }
             }
         }
