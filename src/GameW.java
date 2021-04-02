@@ -131,8 +131,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         deck.getDeck().get(3).setColor(ColorW.RED);
         deck.getDeck().get(1).setValue(9);
         deck.getDeck().get(1).setColor(ColorW.BLUE);
-        deck.getDeck().get(4).setValue(14);
-        deck.getDeck().get(4).setColor(ColorW.BLUE);
+        deck.getDeck().get(4).setValue(7);
+        deck.getDeck().get(4).setColor(ColorW.RED);
         for (Player p : players) {
             for (int i = 0; i < round; i++) {
                 p.addCards(deck.removeCard());
