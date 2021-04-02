@@ -112,9 +112,9 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void setPlayableCards(ArrayList<Card> cards) {
-        for(boolean b:allowedCards)
+        for(int i = 0; i<allowedCards.length; i++)
         {
-            b = false;
+            allowedCards[i] = false;
         }
         for (int i = 0; i < currentRound; i++) {
             for(Card c:cards)
