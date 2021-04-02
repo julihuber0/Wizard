@@ -22,6 +22,11 @@ public class CClient extends Client {
 
     }
 
+    @Override
+    public void verbindungBeendet() {
+        super.verbindungBeendet();
+        gClient.disconnected("*Der* Server");
+    }
 
     @Override
     public void empfangeString(String string) {

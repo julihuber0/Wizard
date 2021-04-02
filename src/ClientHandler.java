@@ -74,6 +74,7 @@ public class ClientHandler implements Empfaenger {
 
             case "TA":
                 player.selectedTrump = ColorW.toEnum(content);
+                t.interrupt();
                 break;
 
             case "SA":

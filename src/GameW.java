@@ -123,7 +123,7 @@ public class GameW extends Game implements MausReagierbar, Runnable{
     public void distribute(int round)
     {
         deck = new CardDeck();
-        deck.shuffleDeck();
+        //deck.shuffleDeck();
         for(Player p:players)
         {
             for(int i = 0; i<round; i++)
@@ -321,14 +321,19 @@ public class GameW extends Game implements MausReagierbar, Runnable{
                 p.selectedTrump = null;
                 server.update();
                 p.selectTrump();
-                //TODO: @Tobi Zauberer als Trumpf
-                System.out.println("Falsches Gutten Tag");
-                if(p.selectedTrump != null){
-                    currentTrump = p.selectedTrump;
+                p.setThread(Thread.currentThread());
+                System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Trumpfbafrage");
+                try { //einschläfern, wird dann durch den ClientHandler geweckt
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
 
+                this.run();
+                System.out.println("Falsches Gutten Tag");
+
                 currentTrump = p.selectedTrump;
-               // currentTrump = players.get((currentRound - 1) % playerCount).getBestColor();
+
                 server.update();
             } else {
                 currentTrump = trumpCard.getColor();
