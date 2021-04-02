@@ -373,16 +373,12 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 players = getNewFirstPlayer(p);
                 server.update();
             }
-            for (Player pl : players) {
-                pl.saidStitches = -1;
-                pl.currentStitches = -1;
-                System.out.println("Angesagte und gemachte Stiche für "+pl.getName()+" zurückgesetzt.");
-            }
 
             for (Player pl : players) {
                 pl.clearHand();
             }
             server.update();
+
             //Punkteberechnung
             for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).getSaidStitches() == players.get(i).getCurrentStitches()) {
@@ -392,6 +388,12 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                     players.get(i).addPoints(-(10 * Math.abs((players.get(i).getSaidStitches() - players.get(i).getCurrentStitches()))));
                     server.update();
                 }
+            }
+
+            for (Player pl : players) {
+                pl.saidStitches = -1;
+                pl.currentStitches = -1;
+                System.out.println("Angesagte und gemachte Stiche für "+pl.getName()+" zurückgesetzt.");
             }
             gs = GameState.WAITING_FOR_NEXT_ROUND;
             startNextRound();
