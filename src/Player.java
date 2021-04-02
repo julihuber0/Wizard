@@ -41,6 +41,15 @@ public class Player {
         ch.sendeString(cards);
     }
 
+    public int getLastPoints()
+    {
+        int i = sh.size()-1;
+        if(i>=0) {
+            return sh.get(i).getPoints();
+        }
+        return 0;
+    }
+
     public void clearHand()
     {
         hand.clear();

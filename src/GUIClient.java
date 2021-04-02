@@ -247,7 +247,13 @@ public class GUIClient extends Game implements MausReagierbar {
         for(Player p:players)
             if(p.getId()==idSelf)
             {
-                ownSaidStitches.setzeInhalt("Angesagt: "+p.getSaidStitches());
+                if(p.getSaidStitches()==-1)
+                {
+                    ownSaidStitches.setzeInhalt("Angesagt: -");
+                }
+                else {
+                    ownSaidStitches.setzeInhalt("Angesagt: " + p.getSaidStitches());
+                }
             }
         for(int i = 0; i<players.size()-1; i++)
         {
@@ -255,7 +261,13 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getId()==relativeID[i+1])
                 {
-                    saidStitches[i].setzeInhalt("Angesagt: "+p.getSaidStitches());
+                    if(p.getSaidStitches()==-1)
+                    {
+                        saidStitches[i].setzeInhalt("Angesagt: -");
+                    }
+                    else {
+                        saidStitches[i].setzeInhalt("Angesagt: " + p.getSaidStitches());
+                    }
                 }
             }
         }
@@ -266,7 +278,12 @@ public class GUIClient extends Game implements MausReagierbar {
         for(Player p:players)
             if(p.getId()==idSelf)
             {
-                ownMadeStitches.setzeInhalt("Gemacht: "+p.getCurrentStitches());
+                if(p.getCurrentStitches()==-1) {
+                    ownMadeStitches.setzeInhalt("Gemacht: -");
+                }
+                else {
+                    ownMadeStitches.setzeInhalt("Gemacht: " + p.getCurrentStitches());
+                }
             }
         for(int i = 0; i<players.size()-1; i++)
         {
@@ -274,7 +291,13 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getId()==relativeID[i+1])
                 {
-                    madeStitches[i].setzeInhalt("Gemacht: "+p.getCurrentStitches());
+                    if(p.getCurrentStitches()==-1)
+                    {
+                        madeStitches[i].setzeInhalt("Gemacht: -");
+                    }
+                    else {
+                        madeStitches[i].setzeInhalt("Gemacht: " + p.getCurrentStitches());
+                    }
                 }
             }
         }
@@ -284,7 +307,7 @@ public class GUIClient extends Game implements MausReagierbar {
     {
         for(Player p:players) {
             if (p.getId() == idSelf) {
-                ownPoints.setzeInhalt("Punkte: " + p.getPoints());
+                ownPoints.setzeInhalt("Punkte: " + p.getLastPoints());
             }
         }
         for(int i = 0; i<players.size()-1; i++)
@@ -293,7 +316,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getId()==relativeID[i+1])
                 {
-                    points[i].setzeInhalt("Punkte: "+p.getPoints());
+                    points[i].setzeInhalt("Punkte: "+p.getLastPoints());
                 }
             }
         }
