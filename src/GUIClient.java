@@ -8,7 +8,7 @@ import java.util.Collections;
 public class GUIClient extends Game implements MausReagierbar {
     private Maus maus;
     private Text joinButton;
-    private Text playButton;
+    //private Text playButton;
     private Text backButton;
     private Bild bg;
     private Bild logo;
@@ -56,24 +56,13 @@ public class GUIClient extends Game implements MausReagierbar {
 
 
     public GUIClient() {
-        super(1200, 650, "Wizard", false, false);
+        super(1200, 850, "Wizard", false, false);
 
         maus = new Maus(new Bild(0, 0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
 
         bg = new Bild(0, 0, "Resources/BG2.jpg");
         sichtbarMachen(bg);
-
-        //Test
-        /*inputAllowed = true;
-        hand.add(new Card(3, ColorW.YELLOW));
-        hand.add(new Card(2, ColorW.YELLOW));
-        hand.add(new Card(1, ColorW.YELLOW));
-        hand.add(new Card(0, ColorW.BLUE));
-        allowedCards[0] = false;
-        allowedCards[1] = true;
-        allowedCards[2] = false;
-        allowedCards[3] = true;*/
 
         //Main Menu
         joinButton = new Text("Beitreten", 200, 200, 20);
@@ -83,9 +72,6 @@ public class GUIClient extends Game implements MausReagierbar {
         backButton.sichtbarSetzen(false);
         maus.anmelden(this, joinButton, 0);
         maus.anmelden(this, backButton, 1);
-        playButton = new Text("Start", 200, 250, 20);
-        sichtbarMachen(playButton);
-        maus.anmelden(this, playButton, 2);
         logo = new Bild(700, 100, "Resources/wizardgame.png");
         sichtbarMachen(logo);
 
@@ -657,7 +643,6 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, scoreboardButton, 4);
 
         joinButton.sichtbarSetzen(false);
-        playButton.sichtbarSetzen(false);
         logo.sichtbarSetzen(false);
         for (int i = 0; i < players.size()-1; i++) {
             s[i].sichtbarSetzen(true);
@@ -718,40 +703,6 @@ public class GUIClient extends Game implements MausReagierbar {
                     joinButton.sichtbarSetzen(true);
                     backButton.sichtbarSetzen(false);
                     logo.sichtbarSetzen(true);
-                }
-                break;
-            case 2:     //Start-Button
-                if(playButton.sichtbar()) {
-                    joinButton.sichtbarSetzen(false);
-                    playButton.sichtbarSetzen(false);
-                    logo.sichtbarSetzen(false);
-                    for (int i = 0; i < 5; i++) {
-                        s[i].sichtbarSetzen(true);
-                    }
-                    for (int i = 0; i < 5; i++) {
-                        names[i].sichtbarSetzen(true);
-                    }
-                    for (int i = 0; i < 5; i++) {
-                        saidStitches[i].sichtbarSetzen(true);
-                    }
-                    for(int i = 0; i < 5; i++)
-                    {
-                        madeStitches[i].sichtbarSetzen(true);
-                    }
-                    for (int i = 0; i < 5; i++) {
-                        points[i].sichtbarSetzen(true);
-                    }
-                    name.sichtbarSetzen(true);
-                    ownAvatar.sichtbarSetzen(true);
-                    ownSaidStitches.sichtbarSetzen(true);
-                    ownMadeStitches.sichtbarSetzen(true);
-                    ownPoints.sichtbarSetzen(true);
-                    marker[0].sichtbarSetzen(true);
-                    t.sichtbarSetzen(true);
-                    showOwnHand();
-                    System.out.println("Here1");
-                    scoreboardButton.sichtbarSetzen(true);
-                    System.out.println("Here2");
                 }
                 break;
             case 4:
