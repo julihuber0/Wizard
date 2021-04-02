@@ -262,7 +262,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             return p.getHand();
         } else {
             for (Card c : p.getHand()) {
-                if (c.getColor() == allowed) {
+                if (c.getColor() == allowed && c.getValue()!=0 && c.getValue()!=14) {
                     allowedCards.add(c);
                 }
             }
@@ -373,6 +373,11 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                             c.setValue(0);
                             break;
                         }
+                    }
+                    System.out.println("Hand von "+players.get(j).getName()+":");
+                    for(Card c:players.get(j).getHand())
+                    {
+                        System.out.println(c.getValue()+"_in_"+c.getColor());
                     }
                     server.update();
                 }
