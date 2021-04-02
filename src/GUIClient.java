@@ -55,7 +55,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
 
     public GUIClient() {
-        super(1200, 850, "Wizard", false, false);
+        super(1300, 870, "Wizard", false, false);
 
         maus = new Maus(new Bild(0, 0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
@@ -108,10 +108,19 @@ public class GUIClient extends Game implements MausReagierbar {
     public void showOwnHand() {
         Collections.sort(hand);
         for (int i = 0; i < currentRound; i++) {
-            ownHand[i] = new Bild(200 + i * 95, 500, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
-            sichtbarMachen(ownHand[i]);
-            ownHand[i].sichtbarSetzen(true);
-            maus.anmelden(this, ownHand[i], 100 + i);
+            if(i<10) {
+                ownHand[i] = new Bild(200 + i * 95, 500, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
+                sichtbarMachen(ownHand[i]);
+                ownHand[i].sichtbarSetzen(true);
+                maus.anmelden(this, ownHand[i], 100 + i);
+            }
+            else
+            {
+                ownHand[i] = new Bild(200 + (i-10) * 95, 660, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
+                sichtbarMachen(ownHand[i]);
+                ownHand[i].sichtbarSetzen(true);
+                maus.anmelden(this, ownHand[i], 100 + i);
+            }
         }
     }
 
@@ -181,6 +190,10 @@ public class GUIClient extends Game implements MausReagierbar {
         }
         if (currentTrump == ColorW.GREEN) {
             t.setzeInhalt("Trumpf: Grün");
+        }
+        if(currentTrump == null)
+        {
+            t.setzeInhalt("Trumpf: Narr");
         }
     }
 
