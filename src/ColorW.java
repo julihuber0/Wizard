@@ -20,4 +20,25 @@ public enum ColorW {
             return null;
         }
     }
+
+    public static String toString(ColorW c)
+    {
+        if(c == ColorW.BLUE)
+        {
+            return "Blau";
+        }
+        if(c == ColorW.GREEN)
+        {
+            return "Grün";
+        }
+        if(c == ColorW.RED)
+        {
+            return "Rot";
+        }
+        if(c == ColorW.YELLOW)
+        {
+            return "Gelb";
+        }
+        else {return null;}
+    }
 }

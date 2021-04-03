@@ -31,6 +31,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text winner;
     private Text[] scoreboard = new Text[6];
     private Text scoreboardButton;
+    private Bild scoreboardButton2;
     private Bild bg2;
 
     private Text[][] eScoreboard = new Text[13][21];
@@ -187,17 +188,13 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 t.setzeInhalt("Trumpf: Zauberer");
             }
-            else if (currentTrumpCard.getColor() == ColorW.BLUE) {
-                t.setzeInhalt("Trumpf: Blau");
+            else if(currentTrumpCard.getValue()==14 && currentTrump != null)
+            {
+                t.setzeInhalt("Trumpf: "+ColorW.toString(currentTrump));
             }
-            else if (currentTrumpCard.getColor() == ColorW.RED) {
-                t.setzeInhalt("Trumpf: Rot");
-            }
-            else if (currentTrumpCard.getColor() == ColorW.YELLOW) {
-                t.setzeInhalt("Trumpf: Gelb");
-            }
-            else if (currentTrumpCard.getColor() == ColorW.GREEN) {
-                t.setzeInhalt("Trumpf: Grün");
+            else
+            {
+                t.setzeInhalt("Trumpf: "+ColorW.toString(currentTrumpCard.getColor()));
             }
         }
         trumpCard = null;
@@ -498,7 +495,7 @@ public class GUIClient extends Game implements MausReagierbar {
             wurzel.entfernen(bg2);
             System.out.println("BG2 unsichtbar");
         }
-        sichtbarMachen(scoreboardButton);
+        sichtbarMachen(scoreboardButton2);
         for (Text[] lines : eScoreboard) {
             for (Text t : lines) {
                 if (t != null) {
@@ -611,10 +608,14 @@ public class GUIClient extends Game implements MausReagierbar {
         bg2.sichtbarSetzen(false);
 
         //Scoreboard-Button
-        scoreboardButton = new Text("Scoreboard", 1075, 10, "Segoe UI", 20);
+        /*scoreboardButton = new Text("Scoreboard", 1075, 10, "Segoe UI", 20);
         sichtbarMachen(scoreboardButton);
         scoreboardButton.sichtbarSetzen(false);
-        maus.anmelden(this, scoreboardButton, 1);
+        maus.anmelden(this, scoreboardButton, 1);*/
+        scoreboardButton2 = new Bild(1075, 10, "Resources/sb.png");
+        sichtbarMachen(scoreboardButton2);
+        scoreboardButton2.sichtbarSetzen(false);
+        maus.anmelden(this, scoreboardButton2, 1);
 
         //Ingame-Exit Button
         exit2 = new Bild(1075, 60, "Resources/exitButton.png");
@@ -646,7 +647,7 @@ public class GUIClient extends Game implements MausReagierbar {
         marker[0].sichtbarSetzen(true);
         t.sichtbarSetzen(true);
         showOwnHand();
-        scoreboardButton.sichtbarSetzen(true);
+        scoreboardButton2.sichtbarSetzen(true);
         for (int i : relativeID) {
             System.out.println(i);
         }
@@ -676,7 +677,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 }
                 break;
             case 1:
-                if (scoreboardButton.sichtbar()) {
+                if (scoreboardButton2.sichtbar()) {
                     if (bg2.sichtbar()) {
                         //getEScoreboard();
                         setSichtbarEScoreboard(false);
