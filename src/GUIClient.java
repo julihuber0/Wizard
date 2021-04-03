@@ -350,7 +350,7 @@ public class GUIClient extends Game implements MausReagierbar {
         Bild stitchFinish = new Bild(200, 200, "Resources/back.png");
         sichtbarMachen(stitchFinish);
         stitchFinish.sichtbarSetzen(true);
-        if(id == relativeID[0]) {
+        /*if(id == relativeID[0]) {
             this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1500);
         }
         if(id == relativeID[1]) {
@@ -367,9 +367,12 @@ public class GUIClient extends Game implements MausReagierbar {
         }
         if(id == relativeID[5]) {
             this.animationsManager.geradenAnimation(stitchFinish, new Punkt(930, 20),  1500);
-        }
+        }*/
+        warten(2000);
+        System.out.println("Wieder unsichtbar");
         stitchFinish.sichtbarSetzen(false);
         wurzel.entfernen(stitchFinish);
+
     }
 
     public void sichtbarMachen(Raum m) {
