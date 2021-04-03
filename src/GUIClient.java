@@ -350,24 +350,24 @@ public class GUIClient extends Game implements MausReagierbar {
         Bild stitchFinish = new Bild(200, 200, "Resources/back.png");
         sichtbarMachen(stitchFinish);
         stitchFinish.sichtbarSetzen(true);
-        /*if(id == relativeID[0]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1500);
+        if(id == relativeID[0]) {
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1000, 2000);
         }
         if(id == relativeID[1]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(130, 20), 1500);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(130, 20), 1000, 2000);
         }
         if(id == relativeID[2]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(330, 20), 1500);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(330, 20), 1000, 2000);
         }
         if(id == relativeID[3]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(530, 20), 1500);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(530, 20), 1000, 2000);
         }
         if(id == relativeID[4]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(730, 20),  1500);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(730, 20),  1000, 2000);
         }
         if(id == relativeID[5]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(930, 20),  1500);
-        }*/
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(930, 20),  1000, 2000);
+        }
         warten(2000);
         System.out.println("Wieder unsichtbar");
         stitchFinish.sichtbarSetzen(false);
