@@ -381,6 +381,10 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             for (Player pl : players) {
                 pl.clearHand();
             }
+            currentTrumpColor = null;
+            currentTrumpValue = null;
+            currentTrump = null;
+
             server.update();
 
             //Punkteberechnung
