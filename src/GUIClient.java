@@ -75,13 +75,13 @@ public class GUIClient extends Game implements MausReagierbar {
 
         //Mitspieler-Liste
         for (int i = 0; i < 6; i++) {
-            playerList[i] = new Text("empty", 700, 150 + i * 20, 15);
+            playerList[i] = new Text("empty", 700, 150 + i * 20, "Segoe UI" ,15);
             sichtbarMachen(playerList[i]);
             playerList[i].sichtbarSetzen(false);
         }
 
         //Trumpfanzeige
-        t = new Text("Trumpf: ", 10, 350, 20);
+        t = new Text("Trumpf: ", 10, 350,"Segoe UI", 20);
         sichtbarMachen(t);
         t.sichtbarSetzen(false);
     }
@@ -412,7 +412,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(sbBG);
             sbBG.farbeSetzen("Dunkelgrau");
             sbBG.sichtbarSetzen(false);
-            scoreboard[i] = new Text(players.get(i).getName() + ": " + players.get(i).getPoints(), 260, 300 + i * 20, 15);
+            scoreboard[i] = new Text(players.get(i).getName() + ": " + players.get(i).getPoints(), 260, 300 + i * 20, "Segoe UI", 15);
             sichtbarMachen(scoreboard[i]);
             scoreboard[i].sichtbarSetzen(false);
         }
@@ -424,7 +424,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 winningPoints = p.getPoints();
             }
         }
-        winner = new Text("Gewinner: " + nameWinner + ", Punkte: " + winningPoints, 260, 260, 30);
+        winner = new Text("Gewinner: " + nameWinner + ", Punkte: " + winningPoints, 260, 260, "Segoe UI", 30);
         for (int i = 0; i < players.size(); i++) {
             scoreboard[i].inhaltSetzen(players.get(i).getName() + ": " + players.get(i).getPoints());
             scoreboard[i].sichtbarSetzen(true);
@@ -433,9 +433,9 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void getEScoreboard() {
         //Runde
-        eScoreboard[0][0] = new Text("Runde", 100, 0, 20);
+        eScoreboard[0][0] = new Text("Runde", 100, 0, "Segoe UI", 20);
         for (int i = 1; i <= currentRound; i++) {
-            eScoreboard[0][i] = new Text("" + i, 100, 20 + i * 30);
+            eScoreboard[0][i] = new Text("" + i, 100, 20 + i * 30, "Segoe UI");
         }
 
         int xpos = 0;
@@ -445,12 +445,12 @@ public class GUIClient extends Game implements MausReagierbar {
                 int p = (i - 1) / 2;
                 if (players.size() > p) {
                     if (i < 2) { //erster Playername, braucht nicht auf vorherigen Namen zu achten
-                        eScoreboard[i][0] = new Text(players.get(p).getName(), 200, 0, 20);
+                        eScoreboard[i][0] = new Text(players.get(p).getName(), 200, 0, "Segoe UI", 20);
                         ArrayList<StitchHistory> sh = players.get(p).getSh();
                         for (int y = 0; y < sh.size(); y++) {
                             StitchHistory s = sh.get(y);
-                            eScoreboard[i][y + 1] = new Text("" + s.getStitches(), 200, 50 + y * 30, 20);
-                            eScoreboard[i + 1][y + 1] = new Text("" + s.getPoints(), 250, 50 + y * 30, 20);
+                            eScoreboard[i][y + 1] = new Text("" + s.getStitches(), 200, 50 + y * 30, "Segoe UI", 20);
+                            eScoreboard[i + 1][y + 1] = new Text("" + s.getPoints(), 250, 50 + y * 30, "Segoe UI", 20);
                         }
                     } else {
                         int breite = (int) (eScoreboard[i - 2][0].getBreite()) + 30;
@@ -460,12 +460,12 @@ public class GUIClient extends Game implements MausReagierbar {
 
                         xpos = (int) (eScoreboard[i - 2][0].getX() + breite);
 
-                        eScoreboard[i][0] = new Text(players.get(p).getName(), xpos, 0, 20);
+                        eScoreboard[i][0] = new Text(players.get(p).getName(), xpos, 0, "Segoe UI", 20);
                         ArrayList<StitchHistory> sh = players.get(p).getSh();
                         for (int y = 0; y < sh.size(); y++) {
                             StitchHistory s = sh.get(y);
-                            eScoreboard[i][y + 1] = new Text("" + s.getStitches(), xpos, 50 + y * 30, 20);
-                            eScoreboard[i + 1][y + 1] = new Text("" + s.getPoints(), xpos + 50, 50 + y * 30, 20);
+                            eScoreboard[i][y + 1] = new Text("" + s.getStitches(), xpos, 50 + y * 30, "Segoe UI", 20);
+                            eScoreboard[i + 1][y + 1] = new Text("" + s.getPoints(), xpos + 50, 50 + y * 30, "Segoe UI", 20);
                         }
                     }
                 }
@@ -526,7 +526,7 @@ public class GUIClient extends Game implements MausReagierbar {
     public void disconnected(String name) {
         Bild bg3 = new Bild(0, 0, "Resources/BG.jpg");
         sichtbarMachen(bg3);
-        Text dcMsg = new Text(name + " ist nicht mehr.", 260, 260, 20);
+        Text dcMsg = new Text(name + " ist nicht mehr.", 260, 260, "Segoe UI", 20);
         sichtbarMachen(dcMsg);
     }
 
@@ -557,42 +557,42 @@ public class GUIClient extends Game implements MausReagierbar {
 
         //Namen erzeugen
         for (int i = 0; i < players.size() - 1; i++) {
-            names[i] = new Text(players.get(relativeID[i + 1]).getName(), 110 + i * 200, 180, 15);
+            names[i] = new Text(players.get(relativeID[i + 1]).getName(), 110 + i * 200, 180, "Segoe UI", 15);
             System.out.println(names[i].gibInhalt());
             sichtbarMachen(names[i]);
             names[i].sichtbarSetzen(false);
         }
-        name = new Text(players.get(idSelf).getName(), 20, 770, 15);
+        name = new Text(players.get(idSelf).getName(), 20, 770, "Segoe UI", 15);
         sichtbarMachen(name);
         name.sichtbarSetzen(false);
 
         //Angesagte Stiche anzeigen
         for (int i = 0; i < players.size() - 1; i++) {
-            saidStitches[i] = new Text("Angesagt: -", 110 + i * 200, 200, 15);
+            saidStitches[i] = new Text("Angesagt: -", 110 + i * 200, 200, "Segoe UI", 15);
             sichtbarMachen(saidStitches[i]);
             saidStitches[i].sichtbarSetzen(false);
         }
-        ownSaidStitches = new Text("Angesagt: -", 20, 790, 15);
+        ownSaidStitches = new Text("Angesagt: -", 20, 790, "Segoe UI", 15);
         sichtbarMachen(ownSaidStitches);
         ownSaidStitches.sichtbarSetzen(false);
 
         //Gemachte Stiche anzeigen
         for (int i = 0; i < players.size() - 1; i++) {
-            madeStitches[i] = new Text("Gemacht: -", 110 + i * 200, 220, 15);
+            madeStitches[i] = new Text("Gemacht: -", 110 + i * 200, 220, "Segoe UI", 15);
             sichtbarMachen(madeStitches[i]);
             madeStitches[i].sichtbarSetzen(false);
         }
-        ownMadeStitches = new Text("Gemacht: -", 20, 810, 15);
+        ownMadeStitches = new Text("Gemacht: -", 20, 810, "Segoe UI", 15);
         sichtbarMachen(ownMadeStitches);
         ownMadeStitches.sichtbarSetzen(false);
 
         //Punkte anzeigen
         for (int i = 0; i < players.size() - 1; i++) {
-            points[i] = new Text("Punkte: 0", 110 + i * 200, 240, 15);
+            points[i] = new Text("Punkte: 0", 110 + i * 200, 240, "Segoe UI", 15);
             sichtbarMachen(points[i]);
             points[i].sichtbarSetzen(false);
         }
-        ownPoints = new Text("Punkte: 0", 20, 830, 15);
+        ownPoints = new Text("Punkte: 0", 20, 830, "Segoe UI", 15);
         sichtbarMachen(ownPoints);
         ownPoints.sichtbarSetzen(false);
 
@@ -601,7 +601,7 @@ public class GUIClient extends Game implements MausReagierbar {
         bg2.sichtbarSetzen(false);
 
         //Scoreboard-Button
-        scoreboardButton = new Text("Scoreboard", 1075, 10, 20);
+        scoreboardButton = new Text("Scoreboard", 1075, 10, "Segoe UI", 20);
         sichtbarMachen(scoreboardButton);
         scoreboardButton.sichtbarSetzen(false);
         maus.anmelden(this, scoreboardButton, 1);
