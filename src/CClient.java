@@ -102,8 +102,9 @@ public class CClient extends Client {
                 if(!content.equals("")) {
                     gClient.currentTrumpCard = new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1]));
                     gClient.currentTrump = ColorW.toEnum(s[1]);
+                    gClient.updateTrump();
                 }
-                gClient.updateTrump();
+                gClient.resetTrump();
                 break;
 
             case "AP":
@@ -150,7 +151,7 @@ public class CClient extends Client {
                 gClient.clearStitchImage();
                 break;
             case "TP":
-                gClient.stitchAnimation(Integer.parseInt(content));
+                //gClient.stitchAnimation(Integer.parseInt(content));
                 break;
 
             /*

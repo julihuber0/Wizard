@@ -50,6 +50,11 @@ public class CardDeck {
         return s;
     }
 
+    public boolean isEmpty()
+    {
+        return deck.isEmpty();
+    }
+
     //Mischt das Kartendeck
     public void shuffleDeck()
     {

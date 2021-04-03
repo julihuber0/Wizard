@@ -207,6 +207,7 @@ public class GUIClient extends Game implements MausReagierbar {
         if(currentTrumpCard!=null) {
             trumpCard = new Bild(10, 300, "Resources/" + currentTrumpCard.getValue() + "_in_" + currentTrumpCard.getColor()+".png");
             sichtbarMachen(trumpCard);
+            trumpCard.sichtbarSetzen(true);
         }
 
     }
@@ -279,6 +280,12 @@ public class GUIClient extends Game implements MausReagierbar {
         }
         ownSaidStitches.inhaltSetzen("Angesagt: -");
         ownMadeStitches.inhaltSetzen("Gemacht: -");
+    }
+
+    public void resetTrump()
+    {
+        t.setzeInhalt("Trumpf:");
+        trumpCard.sichtbarSetzen(false);
     }
 
     public void updateStitch() {
@@ -706,7 +713,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 }
                 break;
             case 3:
-                if(exit2.sichtbar() && !bg.sichtbar())
+                if(exit2.sichtbar() && !bg2.sichtbar())
                 {
                     if(frage("Spiel wirklich beenden?"))
                     {
