@@ -195,8 +195,11 @@ public class GUIClient extends Game implements MausReagierbar {
             t.setzeInhalt("Trumpf: Narr");
         }*/
         trumpCard = null;
-        trumpCard = new Bild(10, 300, "Resources/"+currentTrumpCard.getValue()+"_in_"+currentTrumpCard.getColor());
-        sichtbarMachen(trumpCard);
+        if(currentTrumpCard!=null) {
+            trumpCard = new Bild(10, 300, "Resources/" + currentTrumpCard.getValue() + "_in_" + currentTrumpCard.getColor());
+            sichtbarMachen(trumpCard);
+        }
+
     }
 
     public void updateNames() {
@@ -608,7 +611,7 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, scoreboardButton, 1);
 
         //Ingame-Exit Button
-        exit2 = new Bild(1075, 40, "Resources/exitButton.png");
+        exit2 = new Bild(1075, 60, "Resources/exitButton.png");
         sichtbarMachen(exit2);
         maus.anmelden(this, exit2, 3);
 
