@@ -26,6 +26,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text ownPoints;
     private Text t;
     private Bild trumpCard;
+    private Bild exit2;
     private Rechteck sbBG;
     private Text winner;
     private Text[] scoreboard = new Text[6];
@@ -605,6 +606,11 @@ public class GUIClient extends Game implements MausReagierbar {
         scoreboardButton.sichtbarSetzen(false);
         maus.anmelden(this, scoreboardButton, 1);
 
+        //Ingame-Exit Button
+        exit2 = new Bild(1075, 40, "Resources/exit.png");
+        sichtbarMachen(exit2);
+        maus.anmelden(this, exit2, 3);
+
         join.sichtbarSetzen(false);
         logo.sichtbarSetzen(false);
         for (int i = 0; i < players.size() - 1; i++) {
@@ -674,8 +680,18 @@ public class GUIClient extends Game implements MausReagierbar {
                 {
                     System.exit(0);
                 }
+                break;
+            case 3:
+                if(exit2.sichtbar() && !bg.sichtbar())
+                {
+                    if(frage("Spiel wirklich beenden?"))
+                    {
+                        System.exit(0);
+                    }
+                }
+                break;
             case 100:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[0].sichtbarSetzen(false);
                     karteLegen(hand.get(0));
                     cClient.playCard(hand.get(0));
@@ -683,133 +699,133 @@ public class GUIClient extends Game implements MausReagierbar {
 
                 break;
             case 101:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[1].sichtbarSetzen(false);
                     karteLegen(hand.get(1));
                     cClient.playCard(hand.get(1));
                 }
                 break;
             case 102:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[2].sichtbarSetzen(false);
                     karteLegen(hand.get(2));
                     cClient.playCard(hand.get(2));
                 }
                 break;
             case 103:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[3].sichtbarSetzen(false);
                     karteLegen(hand.get(3));
                     cClient.playCard(hand.get(3));
                 }
                 break;
             case 104:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[4].sichtbarSetzen(false);
                     karteLegen(hand.get(4));
                     cClient.playCard(hand.get(4));
                 }
                 break;
             case 105:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[5].sichtbarSetzen(false);
                     karteLegen(hand.get(5));
                     cClient.playCard(hand.get(5));
                 }
                 break;
             case 106:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[6].sichtbarSetzen(false);
                     karteLegen(hand.get(6));
                     cClient.playCard(hand.get(6));
                 }
                 break;
             case 107:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[7].sichtbarSetzen(false);
                     karteLegen(hand.get(7));
                     cClient.playCard(hand.get(7));
                 }
                 break;
             case 108:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[8].sichtbarSetzen(false);
                     karteLegen(hand.get(8));
                     cClient.playCard(hand.get(8));
                 }
                 break;
             case 109:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[9].sichtbarSetzen(false);
                     karteLegen(hand.get(9));
                     cClient.playCard(hand.get(9));
                 }
                 break;
             case 110:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[10].sichtbarSetzen(false);
                     karteLegen(hand.get(10));
                     cClient.playCard(hand.get(10));
                 }
                 break;
             case 111:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[11].sichtbarSetzen(false);
                     karteLegen(hand.get(11));
                     cClient.playCard(hand.get(11));
                 }
                 break;
             case 112:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[12].sichtbarSetzen(false);
                     karteLegen(hand.get(12));
                     cClient.playCard(hand.get(12));
                 }
                 break;
             case 113:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[13].sichtbarSetzen(false);
                     karteLegen(hand.get(13));
                     cClient.playCard(hand.get(13));
                 }
                 break;
             case 114:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[14].sichtbarSetzen(false);
                     karteLegen(hand.get(14));
                     cClient.playCard(hand.get(14));
                 }
                 break;
             case 115:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[15].sichtbarSetzen(false);
                     karteLegen(hand.get(15));
                     cClient.playCard(hand.get(15));
                 }
                 break;
             case 116:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[16].sichtbarSetzen(false);
                     karteLegen(hand.get(16));
                     cClient.playCard(hand.get(16));
                 }
                 break;
             case 117:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[17].sichtbarSetzen(false);
                     karteLegen(hand.get(17));
                     cClient.playCard(hand.get(17));
                 }
                 break;
             case 118:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[18].sichtbarSetzen(false);
                     karteLegen(hand.get(18));
                     cClient.playCard(hand.get(18));
                 }
                 break;
             case 119:
-                if (allowedCards[code - 100] && inputAllowed) {
+                if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[19].sichtbarSetzen(false);
                     karteLegen(hand.get(19));
                     cClient.playCard(hand.get(19));
