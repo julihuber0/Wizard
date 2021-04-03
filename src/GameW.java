@@ -407,6 +407,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         server.update();
     }
 
+    //Alternative Sortiermethode für eine Liste mit Karten, falls bei der normalen Methode Fehler auftreten
     public static ArrayList<Card> sortCardArray( ArrayList <Card> toSort) {
         ArrayList<Card> clone = new ArrayList<>(toSort);
         ArrayList<Card> sorted = new ArrayList<>();
