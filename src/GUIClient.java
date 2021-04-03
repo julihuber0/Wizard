@@ -612,7 +612,7 @@ public class GUIClient extends Game implements MausReagierbar {
         ownPoints.sichtbarSetzen(false);
 
         //Trennlinie anzeigen
-        lineSeparator = new Rechteck(150, 370, 1150, 1);
+        lineSeparator = new Rechteck(150, 370, 1100, 1);
         sichtbarMachen(lineSeparator);
 
         //Scoreboard-BG
