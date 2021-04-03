@@ -1,6 +1,9 @@
 
 import ea.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class ClientHandler implements Empfaenger {
     /**
      * Die Netzwerkverbindung, über die der Handler nachrichten senden und empfangen kann.
@@ -120,12 +123,24 @@ public class ClientHandler implements Empfaenger {
     //Nur um schnell was zu testen falls nötig
     public static void main(String[] args) {
         EngineAlpha.main(null);
-        for(int i = 1;i<13;i++) {
-            if (i % 2 != 0) {
-                int p = (i - 1) / 2;
-                System.out.println(p);
-            }
+        ArrayList<Card> test = new ArrayList<>();
+
+        test.add(new Card(3, ColorW.YELLOW));
+        test.add(new Card(9, ColorW.GREEN));
+        test.add(new Card(11, ColorW.BLUE));
+        test.add(new Card(11,ColorW.GREEN));
+        test.add(new Card(0, ColorW.RED));
+        test.add(new Card(12,ColorW.GREEN));
+        test.add(new Card(13,ColorW.BLUE));
+        test.add(new Card(7,ColorW.BLUE));
+        test.add(new Card(8,ColorW.BLUE));
+
+        Collections.sort(test);
+
+        for(Card c:test) {
+            System.out.println(c.value + " in " + c.colorW);
         }
+
     }
 
 }
