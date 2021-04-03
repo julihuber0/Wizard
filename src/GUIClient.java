@@ -1,7 +1,5 @@
 import ea.*;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -332,6 +330,32 @@ public class GUIClient extends Game implements MausReagierbar {
 
     }
 
+    public void stitchAnimation(int id)
+    {
+        Bild stitchFinish = new Bild(200, 300, "Resources/back.png");
+        sichtbarMachen(stitchFinish);
+        if(id == relativeID[0]) {
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1, 350);
+        }
+        if(id == relativeID[1]) {
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(130, 20), 1, 350);
+        }
+        if(id == relativeID[2]) {
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(330, 20), 1, 350);
+        }
+        if(id == relativeID[3]) {
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(530, 20), 1, 350);
+        }
+        if(id == relativeID[4]) {
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(730, 20), 1, 350);
+        }
+        if(id == relativeID[5]) {
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(930, 20), 1, 350);
+        }
+        stitchFinish.sichtbarSetzen(false);
+        wurzel.entfernen(stitchFinish);
+    }
+
     public void sichtbarMachen(Raum m) {
         wurzel.add(m);
     }
@@ -385,7 +409,7 @@ public class GUIClient extends Game implements MausReagierbar {
         for (int i = 0; i < 5; i++) {
             sbBG = new Rechteck(250, 250, 300, 300);
             sichtbarMachen(sbBG);
-            sbBG.farbeSetzen(Color.GRAY);
+            sbBG.farbeSetzen("Dunkelgrau");
             sbBG.sichtbarSetzen(false);
             scoreboard[i] = new Text(players.get(i).getName() + ": " + players.get(i).getPoints(), 260, 300 + i * 20, 15);
             sichtbarMachen(scoreboard[i]);
