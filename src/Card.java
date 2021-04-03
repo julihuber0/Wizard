@@ -47,6 +47,14 @@ public class Card implements Comparable<Card> {
     }
 
     public int getColorOrder() {
+        if(this.getValue()==14)     //Damit Zauberer und Narren ganz nach vorne sortiert werden
+        {
+            return 6;
+        }
+        if(this.getValue()==0)
+        {
+            return 5;
+        }
         if (this.colorW == ColorW.GREEN) {
             return 1;
         }
@@ -61,36 +69,6 @@ public class Card implements Comparable<Card> {
 
     //Gibt die entsprechenden Sortierregeln für Karten vor
     public int compareTo(Card c) {
-        if (c.getValue() == 14 && this.getValue() == 14) {
-            if(c.getColorOrder()>this.getColorOrder())
-            {
-                return 1;
-            }
-            else if(c.getColorOrder()<this.getColorOrder())
-            {
-                return -1;
-            }
-            return 0;
-        }
-        if(c.getValue() == 14 && this.getValue()!=14)
-        {
-            return 1;
-        }
-        if(c.getValue()==0 && this.getValue()==0)
-        {
-            if(c.getColorOrder()>this.getColorOrder())
-            {
-                return 1;
-            }
-            else if(c.getColorOrder()<this.getColorOrder())
-            {
-                return -1;
-            }
-            else return 0;
-        }
-        if (c.getValue() == 0 && this.getValue()!=0) {
-            return -1;
-        }
         if (c.getValue() > this.getValue() && c.getColorOrder() == this.getColorOrder()) {
             return 1;
         }
