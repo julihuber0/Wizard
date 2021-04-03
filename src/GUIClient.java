@@ -9,6 +9,8 @@ public class GUIClient extends Game implements MausReagierbar {
     private Bild exit;
     private Bild bg;
     private Bild logo;
+    private Text credits;
+    private Text version;
     private Bild[] s = new Bild[5];
     private Rechteck[] marker = new Rechteck[5];
     private Text[] names = new Text[5];
@@ -31,8 +33,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Rechteck sbBG;
     private Text winner;
     private Text[] scoreboard = new Text[6];
-    private Text scoreboardButton;
-    private Bild scoreboardButton2;
+    private Bild scoreboardButton;
     private Bild bg2;
 
     private Text[][] eScoreboard = new Text[13][21];
@@ -66,14 +67,18 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(bg);
 
         //Main Menu
-        join = new Bild(200, 200, "Resources/joinButton.png");
+        join = new Bild(300, 245, "Resources/joinButton.png");
         sichtbarMachen(join);
         maus.anmelden(this, join, 0);
-        exit = new Bild(200, 300, "Resources/exitButton.png");
+        exit = new Bild(300, 395, "Resources/exitButton.png");
         sichtbarMachen(exit);
         maus.anmelden(this, exit, 2);
-        logo = new Bild(700, 100, "Resources/wizardgame.png");
+        logo = new Bild(700, 145, "Resources/wizardgame.png");
         sichtbarMachen(logo);
+        credits = new Text("®Tobias Eder & Julian Huber", 5, 670, "Segoe UI", 15);
+        sichtbarMachen(credits);
+        version = new Text("v1.0", 1265, 670, "Segoe UI", 15);
+        sichtbarMachen(version);
 
         //Mitspieler-Liste
         for (int i = 0; i < 6; i++) {
@@ -498,7 +503,7 @@ public class GUIClient extends Game implements MausReagierbar {
             wurzel.entfernen(bg2);
             System.out.println("BG2 unsichtbar");
         }
-        sichtbarMachen(scoreboardButton2);
+        sichtbarMachen(scoreboardButton);
         for (Text[] lines : eScoreboard) {
             for (Text t : lines) {
                 if (t != null) {
@@ -615,14 +620,10 @@ public class GUIClient extends Game implements MausReagierbar {
         bg2.sichtbarSetzen(false);
 
         //Scoreboard-Button
-        /*scoreboardButton = new Text("Scoreboard", 1075, 10, "Segoe UI", 20);
+        scoreboardButton = new Bild(1075, 10, "Resources/sb.png");
         sichtbarMachen(scoreboardButton);
         scoreboardButton.sichtbarSetzen(false);
-        maus.anmelden(this, scoreboardButton, 1);*/
-        scoreboardButton2 = new Bild(1075, 10, "Resources/sb.png");
-        sichtbarMachen(scoreboardButton2);
-        scoreboardButton2.sichtbarSetzen(false);
-        maus.anmelden(this, scoreboardButton2, 1);
+        maus.anmelden(this, scoreboardButton, 1);
 
         //Ingame-Exit Button
         exit2 = new Bild(1075, 60, "Resources/exitButton.png");
@@ -654,7 +655,7 @@ public class GUIClient extends Game implements MausReagierbar {
         marker[0].sichtbarSetzen(true);
         t.sichtbarSetzen(true);
         showOwnHand();
-        scoreboardButton2.sichtbarSetzen(true);
+        scoreboardButton.sichtbarSetzen(true);
         for (int i : relativeID) {
             System.out.println(i);
         }
@@ -681,12 +682,13 @@ public class GUIClient extends Game implements MausReagierbar {
                     join.sichtbarSetzen(false);
                     exit.sichtbarSetzen(false);
                     logo.sichtbarSetzen(false);
+                    credits.sichtbarSetzen(false);
+                    version.sichtbarSetzen(false);
                 }
                 break;
             case 1:
-                if (scoreboardButton2.sichtbar()) {
+                if (scoreboardButton.sichtbar()) {
                     if (bg2.sichtbar()) {
-                        //getEScoreboard();
                         setSichtbarEScoreboard(false);
                     } else {
                         getEScoreboard();
