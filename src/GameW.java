@@ -36,7 +36,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         server = new Server(this);
         maus = new Maus(new Bild(0, 0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
-        startButton = new Text("Starte Spiel", 100, 100, 20);
+        startButton = new Text("Starte Spiel", 100, 100, "Segoe UI", 20);
         wurzel.add(startButton);
         startButton.sichtbarSetzen(true);
         maus.anmelden(this, startButton, 0);
@@ -53,12 +53,12 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             ipadress2 = "Der Server startet ganz normal.";
         }
 
-        displayIP = new Text("IP: " + ipadress, 40, 200, 20);
+        displayIP = new Text("IP: " + ipadress, 40, 200, "Segoe UI", 20);
         wurzel.add(displayIP);
         displayIP.sichtbarSetzen(true);
 
         if (!ipadress2.isEmpty()) {
-            displayIP2 = new Text(ipadress2, 40, 240, 20);
+            displayIP2 = new Text(ipadress2, 40, 240, "Segoe UI", 20);
             wurzel.add(displayIP2);
             displayIP2.sichtbarSetzen(true);
         }
