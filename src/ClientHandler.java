@@ -129,17 +129,23 @@ public class ClientHandler implements Empfaenger {
         test.add(new Card(9, ColorW.GREEN));
         test.add(new Card(11, ColorW.BLUE));
         test.add(new Card(11,ColorW.GREEN));
-        //test.add(new Card(0, ColorW.RED));
+        test.add(new Card(0, ColorW.RED));
         test.add(new Card(12,ColorW.GREEN));
         test.add(new Card(13,ColorW.BLUE));
-        //test.add(new Card(14, ColorW.GREEN));
+        test.add(new Card(14, ColorW.GREEN));
         test.add(new Card(7,ColorW.BLUE));
         test.add(new Card(8,ColorW.BLUE));
-        //test.add(new Card(14, ColorW.YELLOW));
+        test.add(new Card(14, ColorW.YELLOW));
 
         Collections.sort(test);
 
+        ArrayList<Card> sorted = new ArrayList<>(GameW.sortCardArray(test));
+
         for(Card c:test) {
+            System.out.println(c.value + " in " + c.colorW);
+        }
+        System.out.println("---------------------------------------------------");
+        for(Card c:sorted) {
             System.out.println(c.value + " in " + c.colorW);
         }
 

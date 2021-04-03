@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameW extends Game implements MausReagierbar, Runnable {
 
@@ -404,6 +405,40 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         }
         server.gameOver(getWinner().getName(), getWinner().getId());
         server.update();
+    }
+
+    public static ArrayList<Card> sortCardArray( ArrayList <Card> toSort) {
+        ArrayList<Card> clone = new ArrayList<>(toSort);
+        ArrayList<Card> sorted = new ArrayList<>();
+        ArrayList<Card> narren = new ArrayList<>();
+
+        //Zauberer ganz vorne
+        for(Card c:clone) {
+            if(c.getValue() == 14) {
+                sorted.add(new Card(c.getValue(),c.getColor()));
+                toSort.remove(c);
+            }
+        }
+
+        //Narren ganz hinten
+        for(Card c:clone) {
+            if(c.getValue() == 0) {
+                narren.add(new Card(c.getValue(),c.getColor()));
+                toSort.remove(c);
+            }
+        }
+
+        Collections.sort(toSort);
+
+        for(Card c: toSort) {
+            sorted.add(new Card(c.getValue(),c.getColor()));
+        }
+        for (Card c:narren) {
+            sorted.add(new Card(c.getValue(),c.getColor()));
+        }
+
+
+        return sorted;
     }
 
 
