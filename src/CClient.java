@@ -104,7 +104,9 @@ public class CClient extends Client {
                     gClient.currentTrump = ColorW.toEnum(s[1]);
                     gClient.updateTrump();
                 }
-                gClient.resetTrump();
+                else {
+                    gClient.resetTrump();
+                }
                 break;
 
             case "AP":
