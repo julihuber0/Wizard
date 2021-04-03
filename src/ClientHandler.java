@@ -137,9 +137,10 @@ public class ClientHandler implements Empfaenger {
         test.add(new Card(8,ColorW.BLUE));
         test.add(new Card(14, ColorW.YELLOW));
 
+        ArrayList<Card> clone = new ArrayList<>(test);
         Collections.sort(test);
 
-        ArrayList<Card> sorted = new ArrayList<>(GameW.sortCardArray(test));
+        ArrayList<Card> sorted = new ArrayList<>(GameW.sortCardArray(clone));
 
         for(Card c:test) {
             System.out.println(c.value + " in " + c.colorW);
