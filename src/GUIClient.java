@@ -81,7 +81,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
 
         //Trumpfanzeige
-        t = new Text("Trumpf: ", 10, 350,"Segoe UI", 20);
+        t = new Text("Trumpf: ", 10, 460,"Segoe UI", 20);
         sichtbarMachen(t);
         t.sichtbarSetzen(false);
     }
@@ -178,25 +178,31 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void updateTrump() {
-        /*if (currentTrump == ColorW.BLUE) {
-            t.setzeInhalt("Trumpf: Blau");
+        if(currentTrumpCard != null) {
+            if(currentTrumpCard.getValue()==0)
+            {
+                t.setzeInhalt("Trumpf: Narr");
+            }
+            else if(currentTrumpCard.getValue()==14 && currentTrump == null)
+            {
+                t.setzeInhalt("Trumpf: Zauberer");
+            }
+            else if (currentTrumpCard.getColor() == ColorW.BLUE) {
+                t.setzeInhalt("Trumpf: Blau");
+            }
+            else if (currentTrumpCard.getColor() == ColorW.RED) {
+                t.setzeInhalt("Trumpf: Rot");
+            }
+            else if (currentTrumpCard.getColor() == ColorW.YELLOW) {
+                t.setzeInhalt("Trumpf: Gelb");
+            }
+            else if (currentTrumpCard.getColor() == ColorW.GREEN) {
+                t.setzeInhalt("Trumpf: Grün");
+            }
         }
-        if (currentTrump == ColorW.RED) {
-            t.setzeInhalt("Trumpf: Rot");
-        }
-        if (currentTrump == ColorW.YELLOW) {
-            t.setzeInhalt("Trumpf: Gelb");
-        }
-        if (currentTrump == ColorW.GREEN) {
-            t.setzeInhalt("Trumpf: Grün");
-        }
-        if(currentTrump == null)
-        {
-            t.setzeInhalt("Trumpf: Narr");
-        }*/
         trumpCard = null;
         if(currentTrumpCard!=null) {
-            trumpCard = new Bild(10, 300, "Resources/" + currentTrumpCard.getValue() + "_in_" + currentTrumpCard.getColor());
+            trumpCard = new Bild(10, 300, "Resources/" + currentTrumpCard.getValue() + "_in_" + currentTrumpCard.getColor()+".png");
             sichtbarMachen(trumpCard);
         }
 
