@@ -120,20 +120,22 @@ public class ClientHandler implements Empfaenger {
     public void empfangeBoolean (boolean b) {
     }
 
-    //Nur um schnell was zu testen falls nötig
+    //Nur um schnell was zu testen, falls nötig
     public static void main(String[] args) {
-        EngineAlpha.main(null);
+        //EngineAlpha.main(null);
         ArrayList<Card> test = new ArrayList<>();
 
         test.add(new Card(3, ColorW.YELLOW));
         test.add(new Card(9, ColorW.GREEN));
         test.add(new Card(11, ColorW.BLUE));
         test.add(new Card(11,ColorW.GREEN));
-        test.add(new Card(0, ColorW.RED));
+        //test.add(new Card(0, ColorW.RED));
         test.add(new Card(12,ColorW.GREEN));
         test.add(new Card(13,ColorW.BLUE));
+        //test.add(new Card(14, ColorW.GREEN));
         test.add(new Card(7,ColorW.BLUE));
         test.add(new Card(8,ColorW.BLUE));
+        //test.add(new Card(14, ColorW.YELLOW));
 
         Collections.sort(test);
 

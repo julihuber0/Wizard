@@ -66,27 +66,29 @@ public class Card implements Comparable<Card> {
             {
                 return 1;
             }
-            else
+            else if(c.getColorOrder()<this.getColorOrder())
             {
                 return -1;
             }
+            return 0;
         }
-        if(c.getValue() == 14)
+        if(c.getValue() == 14 && this.getValue()!=14)
         {
             return 1;
         }
-        if(c.getValue()==0 && c.getValue()==0)
+        if(c.getValue()==0 && this.getValue()==0)
         {
             if(c.getColorOrder()>this.getColorOrder())
             {
                 return 1;
             }
-            else
+            else if(c.getColorOrder()<this.getColorOrder())
             {
                 return -1;
             }
+            else return 0;
         }
-        if (c.getValue() == 0) {
+        if (c.getValue() == 0 && this.getValue()!=0) {
             return -1;
         }
         if (c.getValue() > this.getValue() && c.getColorOrder() == this.getColorOrder()) {
@@ -100,6 +102,10 @@ public class Card implements Comparable<Card> {
         }
         if (c.getColorOrder() > this.getColorOrder()) {
             return 1;
+        }
+        if(c.getValue() == this.getValue() && c.getColorOrder() == this.getColorOrder())
+        {
+            return 0;
         }
         return -1;
     }
