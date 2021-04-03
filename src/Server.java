@@ -111,9 +111,16 @@ public class Server  implements  Runnable{
         server.sendeString(currentStitch);
     }
 
-    public void bcCurrentTrump(int value, ColorW c) {
-        String currentTrump = "AT/" + value+";"+c;
-        server.sendeString(currentTrump);
+    public void bcCurrentTrump(Integer value, ColorW c) {
+        if(value != null && c != null) {
+            String currentTrump = "AT/" + value + ";" + c;
+            server.sendeString(currentTrump);
+        }
+        else
+        {
+            String currentTrump = "AT/";
+            server.sendeString(currentTrump);
+        }
     }
 
     public void bcCurrentPlayerID (int playerID) {

@@ -531,6 +531,7 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void startGame() {
+        System.out.println("Spiel gestartet.");
         setRelativeIDs();
         for (Text t : playerList) {
             t.sichtbarSetzen(false);
@@ -607,7 +608,7 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, scoreboardButton, 1);
 
         //Ingame-Exit Button
-        exit2 = new Bild(1075, 40, "Resources/exit.png");
+        exit2 = new Bild(1075, 40, "Resources/exitButton.png");
         sichtbarMachen(exit2);
         maus.anmelden(this, exit2, 3);
 
