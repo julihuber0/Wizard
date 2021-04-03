@@ -285,7 +285,9 @@ public class GUIClient extends Game implements MausReagierbar {
     public void resetTrump()
     {
         t.setzeInhalt("Trumpf:");
-        trumpCard.sichtbarSetzen(false);
+        if(trumpCard!=null) {
+            trumpCard.sichtbarSetzen(false);
+        }
     }
 
     public void updateStitch() {
