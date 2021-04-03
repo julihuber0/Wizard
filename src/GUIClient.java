@@ -27,6 +27,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text ownMadeStitches;
     private Text ownPoints;
     private Text t;
+    private Bild trumpCard;
     private Rechteck sbBG;
     private Text winner;
     private Text[] scoreboard = new Text[6];
@@ -48,6 +49,7 @@ public class GUIClient extends Game implements MausReagierbar {
     public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
     public ArrayList<Card> stitch = new ArrayList<>(); //Karten, die aktuell auf dem Tisch liegen
     public ColorW currentTrump = null;      //aktuelle Trumpffarbe
+    public Card currentTrumpCard = null;    //aktuelle Trumpfkarte
     public int currentRound = 0;       //aktuelle Runde
     public int currentPlayerID = 0; //ID des Spielers, der gerade an der Reihe ist
     public int idSelf = 0; //ID des Spielers, der man selbst ist
@@ -177,7 +179,7 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void updateTrump() {
-        if (currentTrump == ColorW.BLUE) {
+        /*if (currentTrump == ColorW.BLUE) {
             t.setzeInhalt("Trumpf: Blau");
         }
         if (currentTrump == ColorW.RED) {
@@ -192,7 +194,10 @@ public class GUIClient extends Game implements MausReagierbar {
         if(currentTrump == null)
         {
             t.setzeInhalt("Trumpf: Narr");
-        }
+        }*/
+        trumpCard = null;
+        trumpCard = new Bild(10, 300, "Resources/"+currentTrumpCard.getValue()+"_in_"+currentTrumpCard.getColor());
+        sichtbarMachen(trumpCard);
     }
 
     public void updateNames() {
