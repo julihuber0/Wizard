@@ -284,6 +284,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void resetTrump()
     {
+        System.out.println("Trumpf zurückgesetzt.");
         t.setzeInhalt("Trumpf:");
         if(trumpCard!=null) {
             trumpCard.sichtbarSetzen(false);
