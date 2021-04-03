@@ -277,6 +277,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         if (gs != GameState.OVER) {
             players = getNewFirstPlayer(getPlayerToID(dealerID));
             distribute(currentRound);
+            //TODO: Fix für letzte Runde
             Card currentTrumpCard = deck.removeCard();
             currentTrumpValue = currentTrumpCard.getValue();
             currentTrumpColor = currentTrumpCard.getColor();

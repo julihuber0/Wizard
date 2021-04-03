@@ -343,6 +343,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     }
 
+    //TODO: Methode funktionierend machen
     public void stitchAnimation(int id)
     {
         System.out.println("Animation zum Spieler mit der ID "+id+" wird gestartet.");

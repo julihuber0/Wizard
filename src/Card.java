@@ -61,8 +61,30 @@ public class Card implements Comparable<Card> {
 
     //Gibt die entsprechenden Sortierregeln für Karten vor
     public int compareTo(Card c) {
-        if (c.getValue() == 14) {
+        if (c.getValue() == 14 && this.getValue() == 14) {
+            if(c.getColorOrder()>this.getColorOrder())
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        if(c.getValue() == 14)
+        {
             return 1;
+        }
+        if(c.getValue()==0 && c.getValue()==0)
+        {
+            if(c.getColorOrder()>this.getColorOrder())
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
         }
         if (c.getValue() == 0) {
             return -1;
