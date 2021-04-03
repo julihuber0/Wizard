@@ -340,8 +340,10 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void stitchAnimation(int id)
     {
-        Bild stitchFinish = new Bild(200, 300, "Resources/back.png");
+        System.out.println("Animation zum Spieler mit der ID "+id+" wird gestartet.");
+        Bild stitchFinish = new Bild(200, 200, "Resources/back.png");
         sichtbarMachen(stitchFinish);
+        stitchFinish.sichtbarSetzen(true);
         if(id == relativeID[0]) {
             this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1, 1500);
         }
