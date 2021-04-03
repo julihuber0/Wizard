@@ -152,6 +152,9 @@ public class CClient extends Client {
                 gClient.stitch.clear();
                 gClient.clearStitchImage();
                 break;
+            case "TP":
+                gClient.stitchAnimation(Integer.parseInt(content));
+                break;
 
             /*
              *  Clientspezifisches

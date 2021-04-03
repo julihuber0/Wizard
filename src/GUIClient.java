@@ -336,22 +336,22 @@ public class GUIClient extends Game implements MausReagierbar {
         Bild stitchFinish = new Bild(200, 300, "Resources/back.png");
         sichtbarMachen(stitchFinish);
         if(id == relativeID[0]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1, 350);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1, 1500);
         }
         if(id == relativeID[1]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(130, 20), 1, 350);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(130, 20), 1, 1500);
         }
         if(id == relativeID[2]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(330, 20), 1, 350);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(330, 20), 1, 1500);
         }
         if(id == relativeID[3]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(530, 20), 1, 350);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(530, 20), 1, 1500);
         }
         if(id == relativeID[4]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(730, 20), 1, 350);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(730, 20), 1, 1500);
         }
         if(id == relativeID[5]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(930, 20), 1, 350);
+            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(930, 20), 1, 1500);
         }
         stitchFinish.sichtbarSetzen(false);
         wurzel.entfernen(stitchFinish);
