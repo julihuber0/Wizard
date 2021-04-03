@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class GameW extends Game implements MausReagierbar, Runnable {
 
@@ -31,7 +30,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     private Text displayIP2;
 
     public GameW() {
-        super(400, 300, "Wizard-Serer", false, false);
+        super(500, 300, "Wizard-Server", false, false);
         run();
 
         server = new Server(this);
