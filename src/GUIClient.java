@@ -27,6 +27,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text t;
     private Bild trumpCard;
     private Bild exit2;
+    private Rechteck lineSeparator;
     private Rechteck sbBG;
     private Text winner;
     private Text[] scoreboard = new Text[6];
@@ -56,7 +57,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
 
     public GUIClient() {
-        super(1300, 850, "Wizard", false, false);
+        super(1300, 690, "Wizard", false, false);
 
         maus = new Maus(new Bild(0, 0, "Resources/pointer.png"), new Punkt(0, 0));
         mausAnmelden(maus);
@@ -109,14 +110,14 @@ public class GUIClient extends Game implements MausReagierbar {
         Collections.sort(hand);
         for (int i = 0; i < currentRound; i++) {
             if(i<10) {
-                ownHand[i] = new Bild(200 + i * 95, 500, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
+                ownHand[i] = new Bild(200 + i * 95, 390, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
                 sichtbarMachen(ownHand[i]);
                 ownHand[i].sichtbarSetzen(true);
                 maus.anmelden(this, ownHand[i], 100 + i);
             }
             else
             {
-                ownHand[i] = new Bild(200 + (i-10) * 95, 650, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
+                ownHand[i] = new Bild(200 + (i-10) * 95, 540, "Resources/" + hand.get(i).getValue() + "_in_" + hand.get(i).getColor() + ".png");
                 sichtbarMachen(ownHand[i]);
                 ownHand[i].sichtbarSetzen(true);
                 maus.anmelden(this, ownHand[i], 100 + i);
@@ -379,7 +380,7 @@ public class GUIClient extends Game implements MausReagierbar {
         inputAllowed = false;
         for (int i = 0; i < 6; i++) {
             if (stitchImage[i] == null) {
-                stitchImage[i] = new Bild(200 + i * 50, 300, "./Resources/" + c.getValue() + "_in_" + c.getColor() + ".png");
+                stitchImage[i] = new Bild(200 + i * 50, 200, "./Resources/" + c.getValue() + "_in_" + c.getColor() + ".png");
                 sichtbarMachen(stitchImage[i]);
                 break;
             }
@@ -545,63 +546,67 @@ public class GUIClient extends Game implements MausReagierbar {
         }
         //Marker erzeugen
         for (int i = 0; i < players.size() - 1; i++) {
-            marker[i] = new Rechteck(100 + i * 200, 20, 150, 150);
+            marker[i] = new Rechteck(100 + i * 200, 0, 80, 80);
             sichtbarMachen(marker[i]);
             marker[i].sichtbarSetzen(false);
         }
-        ownMarker = new Rechteck(10, 610, 150, 150);
+        ownMarker = new Rechteck(10, 450, 150, 150);
         sichtbarMachen(ownMarker);
         ownMarker.sichtbarSetzen(false);
         //Avatare erzeugen
         for (int i = 0; i < players.size() - 1; i++) {
-            s[i] = new Bild(100 + i * 200, 20, "Resources/avatar.png");
+            s[i] = new Bild(100 + i * 200, 0, "Resources/avatar2.png");
             sichtbarMachen(s[i]);
             s[i].sichtbarSetzen(false);
         }
-        ownAvatar = new Bild(10, 610, "Resources/avatar.png");
+        ownAvatar = new Bild(10, 450, "Resources/avatar.png");
         sichtbarMachen(ownAvatar);
         ownAvatar.sichtbarSetzen(false);
 
         //Namen erzeugen
         for (int i = 0; i < players.size() - 1; i++) {
-            names[i] = new Text(players.get(relativeID[i + 1]).getName(), 110 + i * 200, 180, "Segoe UI", 15);
+            names[i] = new Text(players.get(relativeID[i + 1]).getName(), 110 + i * 200, 90, "Segoe UI", 15);
             System.out.println(names[i].gibInhalt());
             sichtbarMachen(names[i]);
             names[i].sichtbarSetzen(false);
         }
-        name = new Text(players.get(idSelf).getName(), 20, 770, "Segoe UI", 15);
+        name = new Text(players.get(idSelf).getName(), 20, 610, "Segoe UI", 15);
         sichtbarMachen(name);
         name.sichtbarSetzen(false);
 
         //Angesagte Stiche anzeigen
         for (int i = 0; i < players.size() - 1; i++) {
-            saidStitches[i] = new Text("Angesagt: -", 110 + i * 200, 200, "Segoe UI", 15);
+            saidStitches[i] = new Text("Angesagt: -", 110 + i * 200, 110, "Segoe UI", 15);
             sichtbarMachen(saidStitches[i]);
             saidStitches[i].sichtbarSetzen(false);
         }
-        ownSaidStitches = new Text("Angesagt: -", 20, 790, "Segoe UI", 15);
+        ownSaidStitches = new Text("Angesagt: -", 20, 630, "Segoe UI", 15);
         sichtbarMachen(ownSaidStitches);
         ownSaidStitches.sichtbarSetzen(false);
 
         //Gemachte Stiche anzeigen
         for (int i = 0; i < players.size() - 1; i++) {
-            madeStitches[i] = new Text("Gemacht: -", 110 + i * 200, 220, "Segoe UI", 15);
+            madeStitches[i] = new Text("Gemacht: -", 110 + i * 200, 130, "Segoe UI", 15);
             sichtbarMachen(madeStitches[i]);
             madeStitches[i].sichtbarSetzen(false);
         }
-        ownMadeStitches = new Text("Gemacht: -", 20, 810, "Segoe UI", 15);
+        ownMadeStitches = new Text("Gemacht: -", 20, 650, "Segoe UI", 15);
         sichtbarMachen(ownMadeStitches);
         ownMadeStitches.sichtbarSetzen(false);
 
         //Punkte anzeigen
         for (int i = 0; i < players.size() - 1; i++) {
-            points[i] = new Text("Punkte: 0", 110 + i * 200, 240, "Segoe UI", 15);
+            points[i] = new Text("Punkte: 0", 110 + i * 200, 150, "Segoe UI", 15);
             sichtbarMachen(points[i]);
             points[i].sichtbarSetzen(false);
         }
-        ownPoints = new Text("Punkte: 0", 20, 830, "Segoe UI", 15);
+        ownPoints = new Text("Punkte: 0", 20, 670, "Segoe UI", 15);
         sichtbarMachen(ownPoints);
         ownPoints.sichtbarSetzen(false);
+
+        //Trennlinie anzeigen
+        lineSeparator = new Rechteck(0, 370, 1300, 1);
+        sichtbarMachen(lineSeparator);
 
         //Scoreboard-BG
         bg2 = new Bild(0, 0, "Resources/BG2.jpg");
