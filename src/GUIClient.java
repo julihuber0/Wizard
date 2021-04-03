@@ -63,13 +63,10 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(bg);
 
         //Main Menu
-        //joinButton = new Text("Beitreten", 200, 200, 20);
-        //sichtbarMachen(joinButton);
-        //maus.anmelden(this, joinButton, 0);
-        join = new Bild(200, 200, 150, 50, "Resources/joinButton.png");
+        join = new Bild(200, 200, "Resources/joinButton.png");
         sichtbarMachen(join);
         maus.anmelden(this, join, 0);
-        exit = new Bild(200, 300, 150, 50, "Resources/exitButton.png");
+        exit = new Bild(200, 300, "Resources/exitButton.png");
         sichtbarMachen(exit);
         maus.anmelden(this, exit, 2);
         logo = new Bild(700, 100, "Resources/wizardgame.png");
