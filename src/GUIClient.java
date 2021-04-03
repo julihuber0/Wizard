@@ -7,7 +7,8 @@ import java.util.Collections;
 
 public class GUIClient extends Game implements MausReagierbar {
     private Maus maus;
-    private Text joinButton;
+    private Bild join;
+    private Bild exit;
     private Bild bg;
     private Bild logo;
     private Bild[] s = new Bild[5];
@@ -62,9 +63,15 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(bg);
 
         //Main Menu
-        joinButton = new Text("Beitreten", 200, 200, 20);
-        sichtbarMachen(joinButton);
-        maus.anmelden(this, joinButton, 0);
+        //joinButton = new Text("Beitreten", 200, 200, 20);
+        //sichtbarMachen(joinButton);
+        //maus.anmelden(this, joinButton, 0);
+        join = new Bild(200, 200, 150, 50, "Resources/joinButton.png");
+        sichtbarMachen(join);
+        maus.anmelden(this, join, 0);
+        exit = new Bild(200, 300, 150, 50, "Resources/exitButton.png");
+        sichtbarMachen(exit);
+        maus.anmelden(this, exit, 2);
         logo = new Bild(700, 100, "Resources/wizardgame.png");
         sichtbarMachen(logo);
 
@@ -572,7 +579,7 @@ public class GUIClient extends Game implements MausReagierbar {
         scoreboardButton.sichtbarSetzen(false);
         maus.anmelden(this, scoreboardButton, 1);
 
-        joinButton.sichtbarSetzen(false);
+        join.sichtbarSetzen(false);
         logo.sichtbarSetzen(false);
         for (int i = 0; i < players.size() - 1; i++) {
             s[i].sichtbarSetzen(true);
@@ -618,10 +625,10 @@ public class GUIClient extends Game implements MausReagierbar {
 
         switch (code) {
             case 0:     //Beitreten-Button
-                if (joinButton.sichtbar()) {
+                if (join.sichtbar()) {
                     String ipAdress = getInputIP();
                     cClient = new CClient(ipAdress, this);
-                    joinButton.sichtbarSetzen(false);
+                    join.sichtbarSetzen(false);
                     logo.sichtbarSetzen(false);
                 }
                 break;
@@ -636,6 +643,11 @@ public class GUIClient extends Game implements MausReagierbar {
                     }
                 }
                 break;
+            case 2:
+                if(exit.sichtbar())
+                {
+                    System.exit(0);
+                }
             case 100:
                 if (allowedCards[code - 100] && inputAllowed) {
                     ownHand[0].sichtbarSetzen(false);
