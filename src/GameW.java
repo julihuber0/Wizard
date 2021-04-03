@@ -136,24 +136,17 @@ public class GameW extends Game implements MausReagierbar, Runnable {
 
     //gibt den Spieler zurück, dem der aktuelle Stich gehört
     public Player calculateStitch() {
-        Player p = players.get(0);      //Hier: player(0) kommt raus
-        Card highestCard = stitch.get(0);
-        int highCardPos = 0;
-        for (int i = 1; i < players.size(); i++) {
-            if (stitch.get(0).getValue() == 14)    //Erste Karte Zauberer: Höchste Karte sofort gefunden
-            {
-                break;
-            }
+        Card highestCard = null;
+        int highCardPos = -1;
+        for (int i = 0; i < players.size(); i++) {
             if (stitch.get(i).getValue() == 14)    //sobald ein Zauberer auftritt: Höchste Karte gefunden
             {
-                highestCard = stitch.get(i);
-                highCardPos = i;
-                break;
+                return players.get(i);
             }
             if (stitch.get(i).getValue() == 0) {   //Narren werden übergangen, bei nur Narren sticht der Erste
                 continue;
             }
-            if (stitch.get(i).getValue() > highestCard.getValue() && stitch.get(i).getColor() == highestCard.getColor()) {
+            if (highestCard == null || (stitch.get(i).getValue() > highestCard.getValue() && stitch.get(i).getColor() == highestCard.getColor())) {
                 highestCard = stitch.get(i);    //Wenn Kartenwert größer, als der der aktuellen höchsten Karte und gleiche Farbe: Neue hächste Karte
                 highCardPos = i;
                 continue;
@@ -164,6 +157,9 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 highCardPos = i;
                 continue;
             }
+        }
+        if(highCardPos == -1){
+            return players.get(0);
         }
         return players.get(highCardPos);
     }
