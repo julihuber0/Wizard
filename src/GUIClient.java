@@ -557,7 +557,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(marker[i]);
             marker[i].sichtbarSetzen(false);
         }
-        ownMarker = new Rechteck(10, 450, 150, 150);
+        ownMarker = new Rechteck(10, 520, 80, 80);
         sichtbarMachen(ownMarker);
         ownMarker.sichtbarSetzen(false);
         //Avatare erzeugen
@@ -566,7 +566,7 @@ public class GUIClient extends Game implements MausReagierbar {
             sichtbarMachen(s[i]);
             s[i].sichtbarSetzen(false);
         }
-        ownAvatar = new Bild(10, 450, "Resources/avatar.png");
+        ownAvatar = new Bild(10, 520, "Resources/avatar2.png");
         sichtbarMachen(ownAvatar);
         ownAvatar.sichtbarSetzen(false);
 
@@ -612,7 +612,7 @@ public class GUIClient extends Game implements MausReagierbar {
         ownPoints.sichtbarSetzen(false);
 
         //Trennlinie anzeigen
-        lineSeparator = new Rechteck(0, 370, 1300, 1);
+        lineSeparator = new Rechteck(150, 370, 1150, 1);
         sichtbarMachen(lineSeparator);
 
         //Scoreboard-BG
