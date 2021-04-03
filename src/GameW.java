@@ -15,6 +15,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     public ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
     public ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
     public Card currentTrumpCard;
+    public Integer currentTrumpValue = null;    //Wert der aktuellen Trumpfkarte
+    public ColorW currentTrumpColor = null;     //Farbe der aktuellen Trumpfkarte
     public ColorW currentTrump = null;      //aktuelle Trumpffarbe
     public CardDeck deck = new CardDeck();     //Kartendeck
     public int currentPlayerID = 0;
@@ -282,6 +284,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             players = getNewFirstPlayer(getPlayerToID(dealerID));
             distribute(currentRound);
             currentTrumpCard = deck.removeCard();
+            currentTrumpValue = currentTrumpCard.getValue();
+            currentTrumpColor = currentTrumpCard.getColor();
             //server.update();
             if (currentTrumpCard.getValue() == 0) {
                 currentTrump = null;

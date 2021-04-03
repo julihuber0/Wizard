@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Card implements Comparable<Card> {
 
-    private Integer value;
-    private ColorW colorW;
+    public Integer value;
+    public ColorW colorW;
 
     public Card(Integer value, ColorW colorW) {
         this.value = value;

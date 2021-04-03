@@ -34,7 +34,7 @@ public class Server  implements  Runnable{
         bcCurrentStitches(game.players);
         bcCurrentRound(game.currentRound);
         bcCurrentStitch(game.stitch);
-        bcCurrentTrump(game.currentTrumpCard.getValue(), game.currentTrumpCard.getColor());
+        bcCurrentTrump(game.currentTrumpValue, game.currentTrumpColor);
         bcCurrentPlayerID(game.currentPlayerID);
     }
 
