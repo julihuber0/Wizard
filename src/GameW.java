@@ -344,7 +344,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                     //stitch.add(players.get(i).requestCard());
                     players.get(j).sendPlayableCards(getAllowedCards(players.get(j)));
                     server.update();
-                    players.get(i).setThread(Thread.currentThread());
+                    players.get(j).setThread(Thread.currentThread());
                     players.get(j).requestCard();
                     System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Kartenabfrage");
                     try { //einschläfern, wird dann durch den ClientHandler geweckt
