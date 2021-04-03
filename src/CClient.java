@@ -98,14 +98,9 @@ public class CClient extends Client {
                 break;
 
             case "AT":
-                lines = content.split("/");
-                for(String line:lines) {
-                    if (!line.isEmpty()) {
-                        s = line.split(";");
-                        gClient.currentTrumpCard = new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1]));
-                        gClient.currentTrump = ColorW.toEnum(s[1]);
-                    }
-                }
+                s = content.split(";");
+                gClient.currentTrumpCard = new Card(Integer.parseInt(s[0]), ColorW.toEnum(s[1]));
+                gClient.currentTrump = ColorW.toEnum(s[1]);
                 gClient.updateTrump();
                 break;
 
