@@ -29,6 +29,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text t;
     private Bild trumpCard;
     private Text cRound;
+    private Text stitchSum;
     private Bild exit2;
     private Rechteck lineSeparator;
     private Rechteck sbBG;
@@ -262,6 +263,15 @@ public class GUIClient extends Game implements MausReagierbar {
     public void updateRoundCounter()
     {
         cRound.setzeInhalt("Runde: "+currentRound);
+        if(currentRound == 20)
+        {
+            trumpCard.sichtbarSetzen(false);
+        }
+    }
+
+    public void updateStitchSum(int sum)
+    {
+        stitchSum.setzeInhalt("Stiche: "+sum);
     }
 
     public void updatePoints() {
@@ -641,6 +651,10 @@ public class GUIClient extends Game implements MausReagierbar {
         //Aktuelle Runde anzeigen
         cRound = new Text("Runde: "+currentRound, 5, 5, "Segoe UI", 15);
         sichtbarMachen(cRound);
+
+        //Stichsumme anzeigen
+        stitchSum = new Text("Stiche: -", 5, 25, "Segoe UI", 15);
+        sichtbarMachen(stitchSum);
 
         //Scoreboard-BG
         bg2 = new Bild(0, 0, "Resources/BG2.jpg");

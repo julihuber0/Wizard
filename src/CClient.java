@@ -162,6 +162,9 @@ public class CClient extends Client {
             case "RC":
                 gClient.updateRoundCounter();
                 break;
+            case "SC":
+                gClient.updateStitchSum(Integer.parseInt(content));
+                break;
 
             /*
              *  Clientspezifisches

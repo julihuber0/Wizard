@@ -23,6 +23,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     private Server server;
     private String ipadress;
     private String ipadress2 = "";
+    public int forbiddenNumber;
 
     //GUI Elements
     private Maus maus;
@@ -329,7 +330,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 server.update();
             }
 
-            int forbiddenNumber = currentRound;
+            forbiddenNumber = currentRound;
             for (int i = 0; i < players.size(); i++) {
                 players.get(i).saidStitches = -1;
                 currentPlayerID = players.get(i).getId();
@@ -352,6 +353,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 System.out.println("Gutten Tag");
                 forbiddenNumber = forbiddenNumber - players.get(i).getSaidStitches();
                 server.update();
+                server.sendString("SC/"+(currentRound-forbiddenNumber));
             }
 
             //Spielphase
