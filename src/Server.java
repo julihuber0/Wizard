@@ -35,6 +35,7 @@ public class Server  implements  Runnable{
         bcCurrentRound(game.currentRound);
         bcCurrentStitch(game.stitch);
         bcCurrentTrump(game.currentTrumpValue, game.currentTrumpColor);
+        bcCurrentTrumpColor(game.currentTrump);
         bcCurrentPlayerID(game.currentPlayerID);
     }
 
@@ -120,6 +121,19 @@ public class Server  implements  Runnable{
         {
             String currentTrump = "AT/";
             server.sendeString(currentTrump);
+        }
+    }
+
+    public void bcCurrentTrumpColor(ColorW c)
+    {
+        if(c != null)
+        {
+            String currentTrumpColor = "TC/"+c;
+            server.sendeString(currentTrumpColor);
+        }
+        else
+        {
+            server.sendeString("TC/");
         }
     }
 

@@ -109,6 +109,10 @@ public class CClient extends Client {
                 }
                 break;
 
+            case "TC":
+                    gClient.setTrumpColor(ColorW.toEnum(content));
+                break;
+
             case "AP":
                 gClient.currentPlayerID = Integer.parseInt(content);
                 gClient.updateCurrentPlayerMarker();

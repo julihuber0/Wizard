@@ -185,7 +185,7 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void updateTrump() {
-        if(currentTrumpCard != null) {
+        /*if(currentTrumpCard != null) {
             if(currentTrumpCard.getValue()==0)
             {
                 t.setzeInhalt("Trumpf: Narr");
@@ -202,7 +202,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 t.setzeInhalt("Trumpf: "+ColorW.toString(currentTrumpCard.getColor()));
             }
-        }
+        }*/
         trumpCard = null;
         if(currentTrumpCard!=null) {
             trumpCard = new Bild(10, 300, "Resources/" + currentTrumpCard.getValue() + "_in_" + currentTrumpCard.getColor()+".png");
@@ -288,6 +288,17 @@ public class GUIClient extends Game implements MausReagierbar {
         t.setzeInhalt("Trumpf:");
         if(trumpCard!=null) {
             trumpCard.sichtbarSetzen(false);
+        }
+    }
+
+    public void setTrumpColor(ColorW c)
+    {
+        if(c!=null) {
+            t.setzeInhalt("Trumpf: " + ColorW.toString(c));
+        }
+        else
+        {
+            t.setzeInhalt("Trumpf: -");
         }
     }
 

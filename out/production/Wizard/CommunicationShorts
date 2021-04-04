@@ -8,6 +8,7 @@ Broadcasts:
  AR: Aktuelle Runde
  AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
  AT: Aktueller Trumpf
+ TC: Trumpffarbe
  AP: Aktueller Player
  CP: Clear Players
  PN: Player Namen

@@ -282,7 +282,6 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         if (gs != GameState.OVER) {
             players = getNewFirstPlayer(getPlayerToID(dealerID));
             distribute(currentRound);
-            //TODO: Fix für letzte Runde
             Card currentTrumpCard = null;
             if(!deck.isEmpty()) {
                 currentTrumpCard = deck.removeCard();
@@ -294,8 +293,9 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 currentTrump = null;
                 server.update();
             } else if (currentTrumpCard.getValue() == 14) {
-                Player p = players.get((currentRound - 1) % players.size());
+                Player p = players.get(players.size()-1);
                 p.selectedTrump = null;
+                currentTrump = null;
                 server.update();
                 p.selectTrump();
                 p.setThread(Thread.currentThread());
