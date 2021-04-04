@@ -28,6 +28,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text ownPoints;
     private Text t;
     private Bild trumpCard;
+    private Text cRound;
     private Bild exit2;
     private Rechteck lineSeparator;
     private Rechteck sbBG;
@@ -154,7 +155,7 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public String askForTrumpColor() {
-        return eingabeFordern("Gewünschte Trumpffarbe eingeben (grün, blau, rot, gelb)");
+        return eingabeFordern("Gewünschte Trumpffarbe eingeben (Grün, Blau, Rot, Gelb)");
     }
 
     public ColorW validateTrump() {
@@ -364,35 +365,28 @@ public class GUIClient extends Game implements MausReagierbar {
 
     }
 
-    //TODO: Methode funktionierend machen
-    public void stitchAnimation(int id)
+    //Markiert den Spieler, der gestochen hat durch ein grünes Rechteck hinter seinem Avatar
+    public void stitchMarker(int id)
     {
-        System.out.println("Animation zum Spieler mit der ID "+id+" wird gestartet.");
-        Bild stitchFinish = new Bild(200, 200, "Resources/back.png");
-        wurzel.add(stitchFinish);
+        System.out.println("Der Spieler mit der ID "+id+" wird markiert.");
         if(id == relativeID[0]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(20, 680), 1500, 1500);
+            ownMarker.farbeSetzen("Grün");
+            ownMarker.sichtbarSetzen(true);
+            warten(1500);
+            ownMarker.sichtbarSetzen(false);
+            ownMarker.farbeSetzen("Weiß");
         }
-        if(id == relativeID[1]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(130, 20), 1500, 1500);
+        for(int i = 0; i<players.size()-1; i++)
+        {
+            if(id == relativeID[i+1])
+            {
+                marker[i].farbeSetzen("Grün");
+                marker[i].sichtbarSetzen(true);
+                warten(1500);
+                marker[i].sichtbarSetzen(false);
+                marker[i].farbeSetzen("Weiß");
+            }
         }
-        if(id == relativeID[2]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(330, 20), 1500, 1500);
-        }
-        if(id == relativeID[3]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(530, 20), 1500, 1500);
-        }
-        if(id == relativeID[4]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(730, 20),  1500, 1500);
-        }
-        if(id == relativeID[5]) {
-            this.animationsManager.geradenAnimation(stitchFinish, new Punkt(930, 20),  1500, 1500);
-        }
-        warten(2000);
-        System.out.println("Wieder unsichtbar");
-        stitchFinish.sichtbarSetzen(false);
-        wurzel.entfernen(stitchFinish);
-
     }
 
     public void sichtbarMachen(Raum m) {
@@ -639,8 +633,13 @@ public class GUIClient extends Game implements MausReagierbar {
         lineSeparator = new Rechteck(150, 370, 1100, 1);
         sichtbarMachen(lineSeparator);
 
+        //Aktuelle Runde anzeigen
+        cRound = new Text("Runde: "+currentRound, 5, 5, "Segoe UI", 15);
+        sichtbarMachen(cRound);
+
         //Scoreboard-BG
         bg2 = new Bild(0, 0, "Resources/BG2.jpg");
+        sichtbarMachen(bg2);
         bg2.sichtbarSetzen(false);
 
         //Scoreboard-Button
@@ -690,7 +689,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     @Override
     public void mausReagieren(int code) {
-        //falls code einer Karte hier anstatt in dem switch immer abfragen
+        //Verhindern, dass schon gespielte Karten nochmal gespielt werden können
         if (code >= 100 && code <= 119) {
             if (!ownHand[code - 100].sichtbar()) {
                 return;
@@ -723,7 +722,10 @@ public class GUIClient extends Game implements MausReagierbar {
             case 2:
                 if(exit.sichtbar())
                 {
-                    System.exit(0);
+                    if(frage("Spiel wirklich beenden?"))
+                    {
+                        System.exit(0);
+                    }
                 }
                 break;
             case 3:
