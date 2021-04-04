@@ -159,7 +159,7 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public ColorW validateTrump() {
         setSichtbarEScoreboard(false);
-        String trumpColor = askForTrumpColor();
+        String trumpColor = askForTrumpColor().toLowerCase();
         if (trumpColor.equals("grün")) {
             return ColorW.GREEN;
         }
