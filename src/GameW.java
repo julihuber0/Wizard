@@ -300,7 +300,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 currentTrumpColor = currentTrumpCard.getColor();
             }
             //server.update();
-            if (currentTrumpCard.getValue() == 0) {
+            if (currentTrumpCard == null || currentTrumpCard.getValue() == 0) {
                 currentTrump = null;
                 server.update();
             } else if (currentTrumpCard.getValue() == 14) {
