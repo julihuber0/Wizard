@@ -80,7 +80,10 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     public void addPlayer(Player p) {
         //players.add(p); //aktuelle Lösung
         //ToDo @Tobi
-        if(players.size()<=p.getId()) {
+        if(players.size()==p.getId()) {
+            players.add(p);
+        }
+        else if (players.size()<p.getId()) {
             players.add(p.getId()-1,p);
             players.remove(p.getId());
         }
