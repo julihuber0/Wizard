@@ -78,8 +78,19 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     }
 
     public void addPlayer(Player p) {
-        players.add(p);
-        //Collections.sort(players); //ToDo @Tobi
+        //players.add(p); //aktuelle Lösung
+        //ToDo @Tobi
+        if(players.size()<=p.getId()) {
+            players.add(p.getId()-1,p);
+            players.remove(p.getId());
+        }
+        else {
+            while (players.size() + 1 > p.getId()) {
+                players.add(new Player("Connecting...", players.size()));
+            }
+            players.add(p);
+        }
+
         server.sendString("CP/");
         for (Player player : players) {
             String toSend = "PN/" + player.getName() + ";" + player.getId();
