@@ -61,7 +61,7 @@ public class ClientHandler implements Empfaenger {
         switch (key) {
             case "NA":
                 //Namen setzen
-                if(content.contains("/") || content.contains(";") ) {
+                if(content.contains("/") || content.contains(";") || content.isEmpty()) {
                     sendeString("NF/");
                 }
                 else {
