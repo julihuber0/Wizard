@@ -129,6 +129,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             currentRound++;
             dealerID = (dealerID + 1) % players.size();
             server.update();
+            server.sendString("RC/");
         } else {
             gs = GameState.OVER;
         }

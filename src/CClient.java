@@ -159,6 +159,9 @@ public class CClient extends Client {
             case "TP":
                 gClient.stitchMarker(Integer.parseInt(content));
                 break;
+            case "RC":
+                gClient.updateRoundCounter();
+                break;
 
             /*
              *  Clientspezifisches

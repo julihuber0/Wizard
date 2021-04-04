@@ -259,6 +259,11 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    public void updateRoundCounter()
+    {
+        cRound.setzeInhalt("Runde: "+currentRound);
+    }
+
     public void updatePoints() {
         for (Player p : players) {
             if (p.getId() == idSelf) {
