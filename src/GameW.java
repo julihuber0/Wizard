@@ -470,8 +470,19 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         String stitchLS = "LS/";
 
         for(Card c:stitch) {
+            if(c.getValue() == 0) {
+                stitchLS = stitchLS + "Narr: ";
+            }
+            else if(c.getValue() == 14) {
+                stitchLS = stitchLS + "Zauberer: ";
+            }
+            else {
+                stitchLS = stitchLS + c.getValue() + ": ";
+            }
 
+            stitchLS = stitchLS + ColorW.toString(c.getColor()) +"  |  ";
         }
+        server.sendString(stitchLS);
     }
 
 

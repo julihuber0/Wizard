@@ -170,6 +170,10 @@ public class CClient extends Client {
                 gClient.markPlayers();
                 break;
 
+            case "LS":
+                //ToDo im Content ist der String des letzten Stiches
+                break;
+
             /*
              *  Clientspezifisches
              */
