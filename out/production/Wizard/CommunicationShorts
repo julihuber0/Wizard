@@ -20,7 +20,7 @@ Broadcasts:
  RC: Rundecounter
  SC: Gesamtzahl angesager Stiche
  MP: Markiere Spieler am Rundenende entsprechend, ob richtig angesagt wurde oder nicht
-
+ LS: Last Stitch
 
 Server zu Clients:
  NF: Namen fragen
