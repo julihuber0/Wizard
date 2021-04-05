@@ -379,7 +379,7 @@ public class GUIClient extends Game implements MausReagierbar {
         if(id == relativeID[0]) {
             ownMarker.farbeSetzen("Grün");
             ownMarker.sichtbarSetzen(true);
-            warten(3900);
+            warten(2600);
             ownMarker.sichtbarSetzen(false);
             ownMarker.farbeSetzen("Weiß");
         }
@@ -389,7 +389,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 marker[i].farbeSetzen("Grün");
                 marker[i].sichtbarSetzen(true);
-                warten(3900);
+                warten(2600);
                 marker[i].sichtbarSetzen(false);
                 marker[i].farbeSetzen("Weiß");
             }
@@ -404,7 +404,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getSaidStitches()==p.getCurrentStitches())
                 {
-                    ownMarker.farbeSetzen(new Farbe(0,102,0));
+                    ownMarker.farbeSetzen(new Farbe(0,150,0));
                     ownMarker.sichtbarSetzen(true);
                 }
                 else
@@ -422,7 +422,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 {
                     if(p.getSaidStitches()==p.getCurrentStitches())
                     {
-                        marker[i].farbeSetzen(new Farbe(0,102,0));
+                        marker[i].farbeSetzen(new Farbe(0,150,0));
                         marker[i].sichtbarSetzen(true);
                     }
                     else
@@ -433,7 +433,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 }
             }
         }
-        warten(3000);
+        warten(2700);
         ownMarker.farbeSetzen("Weiß");
         ownMarker.sichtbarSetzen(false);
         for(int i = 0; i<players.size()-1; i++)
