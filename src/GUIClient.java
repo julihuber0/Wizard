@@ -4,47 +4,49 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class GUIClient extends Game implements MausReagierbar {
+    //Grafische Elemente
     private Maus maus;
-    private Bild join;
-    private Bild exit;
-    private Bild bg;
-    private Bild logo;
-    private Text credits;
-    private Text version;
-    private Bild[] s = new Bild[5];
-    private Rechteck[] marker = new Rechteck[5];
-    private Text[] names = new Text[5];
-    private Text[] saidStitches = new Text[5];
-    private Text[] madeStitches = new Text[5];
-    private Text[] points = new Text[5];
-    private Bild[] stitchImage = new Bild[6];
-    private Bild[] ownHand = new Bild[20];
-    private Text[] playerList = new Text[6];
-    private Rechteck ownMarker;
-    private Bild ownAvatar;
-    private Text name;
-    private Text ownSaidStitches;
-    private Text ownMadeStitches;
-    private Text ownPoints;
-    private Text t;
-    private Bild trumpCard;
-    private Text cRound;
-    private Text stitchSum;
-    private Bild exit2;
-    private Rechteck lineSeparator;
-    private Rechteck sbBG;
-    private Text winner;
-    private Text[] scoreboard = new Text[6];
-    private Bild scoreboardButton;
-    private Bild bg2;
+    private Bild join;      //Join-Button im Hauptmenü
+    private Bild exit;      //Exit-Button im Hauptmenü
+    private Bild bg;        //Haupthintergrundbild
+    private Bild logo;      //Wizard-Logo im Hauptmenü
+    private Text credits;   //Namen der Entwicker im Hauptmenü
+    private Text version;   //Spielversion im Hauptmenü
+    private Bild[] s = new Bild[5];     //Spieleravatare der anderen Spieler
+    private Rechteck[] marker = new Rechteck[5];    //Marker der anderen Spieler
+    private Text[] names = new Text[5];     //Spielernamen der anderen Spieler
+    private Text[] saidStitches = new Text[5];      //Angesagte Stiche der anderen Spieler
+    private Text[] madeStitches = new Text[5];      //Gemachte Stiche der anderen Spieler
+    private Text[] points = new Text[5];        //Punkte der anderen Spieler
+    private Bild[] stitchImage = new Bild[6];       //Aktueller Stich
+    private Bild[] ownHand = new Bild[20];      //Eigene Hand
+    private Text[] playerList = new Text[6];    //Spielerliste in der "Lobby"
+    private Rechteck ownMarker;     //Eigener Spielermarker
+    private Bild ownAvatar;     //Eigener Avatar
+    private Text name;      //Eigener Name
+    private Text ownSaidStitches;       //Eigene angesagte Stiche
+    private Text ownMadeStitches;       //Eigene gemachte Stiche
+    private Text ownPoints;     //Eigene Punkte
+    private Text t;     //Aktuelle Trumpffarbe
+    private Bild trumpCard;     //Aktuelle Trumpfkarte
+    private Text cRound;        //Aktuelle Runde
+    private Text stitchSum;     //Summe der (bereits) angesagten Stiche
+    private Bild exit2;     //Exit-Button im Spiel
+    private Rechteck lineSeparator;     //Trennlinie zwischen eigener Hand und aktuellem Stich
+    private Rechteck sbBG;      //Hintergrund für das Scoreboard für den Game-Over-Screen
+    private Text winner;        //Gewinner
+    private Text[] scoreboard = new Text[6];    //Scoreboard für den Game-Over-Screen
+    private Bild scoreboardButton;      //Scoreboard-Button
+    private Bild bg2;       //Hintergrund für das Hauptscoreboard
 
+        //Elemente des Hauptscoreboards
     private Text[][] eScoreboard = new Text[13][21];
     private Rechteck eScoreboard_line1;
     private Rechteck eScoreboard_line2;
 
-    private boolean inputAllowed = false;
-    private boolean[] allowedCards = new boolean[20];
-    private int relativeID[] = new int[6];
+    private boolean inputAllowed = false;       //Legt fest, ob der Spieler eine Karte legen darf
+    private boolean[] allowedCards = new boolean[20];       //Speichert, welche Karten aktuell gespielt werden dürfen
+    private int relativeID[] = new int[6];      //Speichert die relativen IDs zur Zuordnung der Spieler im UI
 
     private CClient cClient;
 
@@ -79,7 +81,7 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(logo);
         credits = new Text("®Tobias Eder & Julian Huber", 5, 670, "Segoe UI", 15);
         sichtbarMachen(credits);
-        version = new Text("v1.0", 1265, 670, "Segoe UI", 15);
+        version = new Text("v1.1", 1265, 670, "Segoe UI", 15);
         sichtbarMachen(version);
 
         //Mitspieler-Liste
@@ -95,11 +97,13 @@ public class GUIClient extends Game implements MausReagierbar {
         t.sichtbarSetzen(false);
     }
 
+    //Zeigt im Lobbyscreen einen neuen Spieler an
     public void showPlayerInList(String name, int id) {
         playerList[id].setzeInhalt(name);
         playerList[id].sichtbarSetzen(true);
     }
 
+    //Legt fest, welche Karten in der eigenen Hand gespielt werden dürfen. Übernimmt dabei eine Liste aller erlaubten Karten
     public void setPlayableCards(ArrayList<Card> cards) {
         for (int i = 0; i < allowedCards.length; i++) {
             allowedCards[i] = false;
@@ -113,6 +117,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    //Erzeugt die Darstellung der eigenen Hand
     public void showOwnHand() {
         Collections.sort(hand);
         for (int i = 0; i < currentRound; i++) {
@@ -132,6 +137,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    //Pop-Up-Dialog zur Abfrage der gewünschten Stiche
     public String askForStitches(int forbiddenNumber) {
         if (forbiddenNumber <= -1) {
             return eingabeFordern("Gewünschte Stichanzahl eingeben:");
@@ -139,6 +145,7 @@ public class GUIClient extends Game implements MausReagierbar {
         return eingabeFordern("Gewünschte Stichanzahl eingeben. Nicht: " + forbiddenNumber + ": ");
     }
 
+    //Interpretiert die Eingabe von vorgehender Methode
     public int validateStitches(int forbiddenNumber) {
         setSichtbarEScoreboard(false);
         String stitchesCount = askForStitches(forbiddenNumber);
@@ -155,10 +162,12 @@ public class GUIClient extends Game implements MausReagierbar {
         return sCount;
     }
 
+    //Pop-Up-Dialog zur Abfrage der gewünschten Trumpffarbe (falls Zauberer als Trumpfkarte aufgedeckt)
     public String askForTrumpColor() {
         return eingabeFordern("Gewünschte Trumpffarbe eingeben (Grün, Blau, Rot, Gelb)");
     }
 
+    //Interpretiert die Eingabe von vorgehender Methode
     public ColorW validateTrump() {
         setSichtbarEScoreboard(false);
         String trumpColor = askForTrumpColor().toLowerCase();
@@ -177,6 +186,7 @@ public class GUIClient extends Game implements MausReagierbar {
         return validateTrump();
     }
 
+    //Gibt den Spieler mit der übergebenen ID zurück
     public Player getPlayerByID(int id) {
         for (Player p : players) {
             if (p.getId() == id) {
@@ -186,6 +196,7 @@ public class GUIClient extends Game implements MausReagierbar {
         return null;
     }
 
+    //Update-Methoden werden vom Server aufgerufen und aktualisieren die Spieloberfläche entsprechend
     public void updateTrump() {
         trumpCard = null;
         if(currentTrumpCard!=null && currentRound != (60/players.size())) {
@@ -207,10 +218,6 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void updateSaidStitches() {
-        for (Player p : players) {
-            System.out.println(p.getName() + "  " + p.getId());
-        }
-
         for (Player p : players)
             if (p.getId() == idSelf) {
                 if (p.getSaidStitches() == -1) {
@@ -281,35 +288,6 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    public void resetStats() {
-        for (int i = 0; i < players.size() - 1; i++) {
-            saidStitches[i].inhaltSetzen("Angesagt: -");
-            madeStitches[i].inhaltSetzen("Gemacht: -");
-        }
-        ownSaidStitches.inhaltSetzen("Angesagt: -");
-        ownMadeStitches.inhaltSetzen("Gemacht: -");
-    }
-
-    public void resetTrump()
-    {
-        System.out.println("Trumpf zurückgesetzt.");
-        t.setzeInhalt("Trumpf:");
-        if(trumpCard!=null) {
-            trumpCard.sichtbarSetzen(false);
-        }
-    }
-
-    public void setTrumpColor(ColorW c)
-    {
-        if(c!=null) {
-            t.setzeInhalt("Trumpf: " + ColorW.toString(c));
-        }
-        else
-        {
-            t.setzeInhalt("Trumpf: -");
-        }
-    }
-
     public void updateStitch() {
         if (!stitch.isEmpty()) {
             for (int i = 0; i < stitch.size(); i++) {
@@ -350,6 +328,38 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    //Setzt die Werte bei den Spielern zurück
+    public void resetStats() {
+        for (int i = 0; i < players.size() - 1; i++) {
+            saidStitches[i].inhaltSetzen("Angesagt: -");
+            madeStitches[i].inhaltSetzen("Gemacht: -");
+        }
+        ownSaidStitches.inhaltSetzen("Angesagt: -");
+        ownMadeStitches.inhaltSetzen("Gemacht: -");
+    }
+
+    //Setzt die Trumpffarbenanzeige zurück (wahrscheinlich unnötig, zu faul zum entfernen)
+    public void resetTrump()
+    {
+        t.setzeInhalt("Trumpf:");
+        if(trumpCard!=null) {
+            trumpCard.sichtbarSetzen(false);
+        }
+    }
+
+    //Zeigt die richtige Trumpffarbe an, bei Zauberer die vom Spieler Gewählte
+    public void setTrumpColor(ColorW c)
+    {
+        if(c!=null) {
+            t.setzeInhalt("Trumpf: " + ColorW.toString(c));
+        }
+        else
+        {
+            t.setzeInhalt("Trumpf: -");
+        }
+    }
+
+    //Setzt relative IDs, dass bei jedem individuellen Client die Position der Spieler im UI bestimmt werden kann
     public void setRelativeIDs() {
         relativeID[0] = idSelf;
         for (int i = 0; i < players.size() - 1; i++) {
@@ -375,7 +385,6 @@ public class GUIClient extends Game implements MausReagierbar {
     //Markiert den Spieler, der gestochen hat durch ein grünes Rechteck hinter seinem Avatar
     public void stitchMarker(int id)
     {
-        System.out.println("Der Spieler mit der ID "+id+" wird markiert.");
         if(id == relativeID[0]) {
             ownMarker.farbeSetzen("Grün");
             ownMarker.sichtbarSetzen(true);
@@ -396,6 +405,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    //Markiert Spieler entsprechend in grün bzw. rot, ob die Stichansage am Ende der Runde richtig war oder nicht
     public void markPlayers()
     {
         for(Player p:players)
@@ -404,7 +414,7 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 if(p.getSaidStitches()==p.getCurrentStitches())
                 {
-                    ownMarker.farbeSetzen(new Farbe(0,150,0));
+                    ownMarker.farbeSetzen(new Farbe(0,200,0));
                     ownMarker.sichtbarSetzen(true);
                 }
                 else
@@ -422,7 +432,7 @@ public class GUIClient extends Game implements MausReagierbar {
                 {
                     if(p.getSaidStitches()==p.getCurrentStitches())
                     {
-                        marker[i].farbeSetzen(new Farbe(0,150,0));
+                        marker[i].farbeSetzen(new Farbe(0,200,0));
                         marker[i].sichtbarSetzen(true);
                     }
                     else
@@ -443,6 +453,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    //Meldet Objekte an der Wurzel an
     public void sichtbarMachen(Raum m) {
         wurzel.add(m);
     }
@@ -472,15 +483,13 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    //Wird vom Server aufgerufen, wenn der Spieler eine Karte spielen darf, hier wird die Eingabe freigegeben
     public void requestCard() {
-        for (boolean b : allowedCards) {
-            System.out.println(b);
-        }
         greyOutCards();
         inputAllowed = true;
-        System.out.println("Input für " + idSelf + " freigegeben.");
     }
 
+    //Graut nicht spielbare Karten aus
     public void greyOutCards() {
         for (int i = 0; i < currentRound; i++) {
             if (allowedCards[i]) {
@@ -517,6 +526,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    //Erzeugt ein neues Scoreboard
     public void getEScoreboard() {
         //Runde
         eScoreboard[0][0] = new Text("Runde", 100, 0, "Segoe UI", 20);
@@ -565,15 +575,14 @@ public class GUIClient extends Game implements MausReagierbar {
         eScoreboard_line2 = new Rechteck(175, 0, 1, ypos);
     }
 
+    //Blendet das Scoreboard ein bzw. aus
     public void setSichtbarEScoreboard(boolean b) {
         if (b) {
             sichtbarMachen(bg2);
             bg2.sichtbarSetzen(true);
-            System.out.println("BG2 sichtbar");
         } else {
             bg2.sichtbarSetzen(false);
             wurzel.entfernen(bg2);
-            System.out.println("BG2 unsichtbar");
         }
         sichtbarMachen(scoreboardButton);
         for (Text[] lines : eScoreboard) {
@@ -582,11 +591,9 @@ public class GUIClient extends Game implements MausReagierbar {
                     if (b) {
                         wurzel.add(t);
                         t.sichtbarSetzen(true);
-                        System.out.println("Text sichtbar");
                     } else {
                         t.sichtbarSetzen(false);
                         wurzel.entfernen(t);
-                        System.out.println("Text unsichtbar");
                     }
                 }
             }
@@ -597,18 +604,17 @@ public class GUIClient extends Game implements MausReagierbar {
                 wurzel.add(eScoreboard_line2);
                 eScoreboard_line1.sichtbarSetzen(true);
                 eScoreboard_line2.sichtbarSetzen(true);
-                System.out.println("Lines sichtbar");
         }
             else {
                 eScoreboard_line1.sichtbarSetzen(false);
                 eScoreboard_line2.sichtbarSetzen(false);
                 wurzel.entfernen(eScoreboard_line1);
                 wurzel.entfernen(eScoreboard_line2);
-                System.out.println("Lines unsichtbar");
             }
         }
     }
 
+    //Zeigt an, wenn ein Spieler disconnected
     public void disconnected(String name) {
         Bild bg3 = new Bild(0, 0, "Resources/BG.jpg");
         sichtbarMachen(bg3);
@@ -616,13 +622,14 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(dcMsg);
     }
 
+    //Wird vom Server aufgerufen, wenn auf Starte Spiel geklickt wurde; blendet die Ingame-Oberfläche ein
     public void startGame() {
-        System.out.println("Spiel gestartet.");
         setRelativeIDs();
         for (Text t : playerList) {
             t.sichtbarSetzen(false);
             wurzel.entfernen(t);
         }
+
         //Marker erzeugen
         for (int i = 0; i < players.size() - 1; i++) {
             marker[i] = new Rechteck(100 + i * 200, 0, 80, 80);
@@ -632,6 +639,7 @@ public class GUIClient extends Game implements MausReagierbar {
         ownMarker = new Rechteck(10, 520, 80, 80);
         sichtbarMachen(ownMarker);
         ownMarker.sichtbarSetzen(false);
+
         //Avatare erzeugen
         for (int i = 0; i < players.size() - 1; i++) {
             s[i] = new Bild(100 + i * 200, 0, "Resources/avatar2.png");
@@ -645,7 +653,6 @@ public class GUIClient extends Game implements MausReagierbar {
         //Namen erzeugen
         for (int i = 0; i < players.size() - 1; i++) {
             names[i] = new Text(players.get(relativeID[i + 1]).getName(), 110 + i * 200, 90, "Segoe UI", 15);
-            System.out.println(names[i].gibInhalt());
             sichtbarMachen(names[i]);
             names[i].sichtbarSetzen(false);
         }
@@ -737,12 +744,6 @@ public class GUIClient extends Game implements MausReagierbar {
         t.sichtbarSetzen(true);
         showOwnHand();
         scoreboardButton.sichtbarSetzen(true);
-        for (int i : relativeID) {
-            System.out.println(i);
-        }
-        for (int i = 0; i < players.size() - 1; i++) {
-            System.out.println(players.get(relativeID[i]).getName());
-        }
     }
 
     @Override
@@ -767,7 +768,7 @@ public class GUIClient extends Game implements MausReagierbar {
                     version.sichtbarSetzen(false);
                 }
                 break;
-            case 1:
+            case 1:     //Scoreboard-Button
                 if (scoreboardButton.sichtbar()) {
                     if (bg2.sichtbar()) {
                         setSichtbarEScoreboard(false);
@@ -777,7 +778,7 @@ public class GUIClient extends Game implements MausReagierbar {
                     }
                 }
                 break;
-            case 2:
+            case 2:     //Exit-Button im Hauptmenü
                 if(exit.sichtbar())
                 {
                     if(frage("Spiel wirklich beenden?"))
@@ -786,7 +787,7 @@ public class GUIClient extends Game implements MausReagierbar {
                     }
                 }
                 break;
-            case 3:
+            case 3:     //Exit-Button im Spiel
                 if(exit2.sichtbar() && !bg2.sichtbar())
                 {
                     if(frage("Spiel wirklich beenden?"))
@@ -795,7 +796,7 @@ public class GUIClient extends Game implements MausReagierbar {
                     }
                 }
                 break;
-            case 100:
+            case 100:   //100-119: Karten in der eigenen Hand
                 if (allowedCards[code - 100] && inputAllowed && !bg2.sichtbar()) {
                     ownHand[0].sichtbarSetzen(false);
                     karteLegen(hand.get(0));

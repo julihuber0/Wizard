@@ -16,11 +16,11 @@ Broadcasts:
  DC: Player disconnected
  SG: Starte Game
  NR: Neue Runde starten
- TP: To Player (Animation, die letzte Karte wird reingelegt, kleine Pause -> Stich wird eingezogen)
+ TP: To Player (Spieler, der gestochen hat, wird kurz grün markiert)
  RC: Rundecounter
  SC: Gesamtzahl angesager Stiche
  MP: Markiere Spieler am Rundenende entsprechend, ob richtig angesagt wurde oder nicht
- LS: Last Stitch
+ LS: Letzter Stich
 
 Server zu Clients:
  NF: Namen fragen
