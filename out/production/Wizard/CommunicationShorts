@@ -18,6 +18,7 @@ Broadcasts:
  NR: Neue Runde starten
  TP: To Player (Animation, die letzte Karte wird reingelegt, kleine Pause -> Stich wird eingezogen)
  RC: Rundecounter
+ SC: Gesamtzahl angesager Stiche
 
 
 Server zu Clients:

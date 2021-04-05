@@ -19,6 +19,7 @@ Broadcasts:
  TP: To Player (Animation, die letzte Karte wird reingelegt, kleine Pause -> Stich wird eingezogen)
  RC: Rundecounter
  SC: Gesamtzahl angesager Stiche
+ MP: Markiere Spieler am Rundenende entsprechend, ob richtig angesagt wurde oder nicht
 
 
 Server zu Clients:

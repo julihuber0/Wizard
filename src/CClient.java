@@ -155,6 +155,7 @@ public class CClient extends Client {
                 gClient.resetStats();
                 gClient.stitch.clear();
                 gClient.clearStitchImage();
+                gClient.updateStitchSum(-1);
                 break;
             case "TP":
                 gClient.stitchMarker(Integer.parseInt(content));
@@ -164,6 +165,9 @@ public class CClient extends Client {
                 break;
             case "SC":
                 gClient.updateStitchSum(Integer.parseInt(content));
+                break;
+            case "MP":
+                gClient.markPlayers();
                 break;
 
             /*

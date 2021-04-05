@@ -187,29 +187,15 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public void updateTrump() {
-        /*if(currentTrumpCard != null) {
-            if(currentTrumpCard.getValue()==0)
-            {
-                t.setzeInhalt("Trumpf: Narr");
-            }
-            else if(currentTrumpCard.getValue()==14 && currentTrump == null)
-            {
-                t.setzeInhalt("Trumpf: Zauberer");
-            }
-            else if(currentTrumpCard.getValue()==14 && currentTrump != null)
-            {
-                t.setzeInhalt("Trumpf: "+ColorW.toString(currentTrump));
-            }
-            else
-            {
-                t.setzeInhalt("Trumpf: "+ColorW.toString(currentTrumpCard.getColor()));
-            }
-        }*/
         trumpCard = null;
-        if(currentTrumpCard!=null) {
+        if(currentTrumpCard!=null && currentRound != (60/players.size())) {
             trumpCard = new Bild(10, 300, "Resources/" + currentTrumpCard.getValue() + "_in_" + currentTrumpCard.getColor()+".png");
             sichtbarMachen(trumpCard);
             trumpCard.sichtbarSetzen(true);
+        }
+        if (currentRound == (60/players.size()))
+        {
+            trumpCard.sichtbarSetzen(false);
         }
 
     }
@@ -271,7 +257,13 @@ public class GUIClient extends Game implements MausReagierbar {
 
     public void updateStitchSum(int sum)
     {
-        stitchSum.setzeInhalt("Stiche: "+sum);
+        if(sum!=-1) {
+            stitchSum.setzeInhalt("Stiche: " + sum);
+        }
+        else
+        {
+            stitchSum.setzeInhalt("Stiche: -");
+        }
     }
 
     public void updatePoints() {
@@ -387,7 +379,7 @@ public class GUIClient extends Game implements MausReagierbar {
         if(id == relativeID[0]) {
             ownMarker.farbeSetzen("Grün");
             ownMarker.sichtbarSetzen(true);
-            warten(1500);
+            warten(3900);
             ownMarker.sichtbarSetzen(false);
             ownMarker.farbeSetzen("Weiß");
         }
@@ -397,10 +389,57 @@ public class GUIClient extends Game implements MausReagierbar {
             {
                 marker[i].farbeSetzen("Grün");
                 marker[i].sichtbarSetzen(true);
-                warten(1500);
+                warten(3900);
                 marker[i].sichtbarSetzen(false);
                 marker[i].farbeSetzen("Weiß");
             }
+        }
+    }
+
+    public void markPlayers()
+    {
+        for(Player p:players)
+        {
+            if(p.getId()==idSelf)
+            {
+                if(p.getSaidStitches()==p.getCurrentStitches())
+                {
+                    ownMarker.farbeSetzen(new Farbe(0,102,0));
+                    ownMarker.sichtbarSetzen(true);
+                }
+                else
+                {
+                    ownMarker.farbeSetzen("Rot");
+                    ownMarker.sichtbarSetzen(true);
+                }
+            }
+        }
+        for(int i = 0; i<players.size()-1; i++)
+        {
+            for(Player p:players)
+            {
+                if(p.getId()==relativeID[i+1])
+                {
+                    if(p.getSaidStitches()==p.getCurrentStitches())
+                    {
+                        marker[i].farbeSetzen(new Farbe(0,102,0));
+                        marker[i].sichtbarSetzen(true);
+                    }
+                    else
+                    {
+                        marker[i].farbeSetzen("Rot");
+                        marker[i].sichtbarSetzen(true);
+                    }
+                }
+            }
+        }
+        warten(3000);
+        ownMarker.farbeSetzen("Weiß");
+        ownMarker.sichtbarSetzen(false);
+        for(int i = 0; i<players.size()-1; i++)
+        {
+            marker[i].farbeSetzen("Weiß");
+            marker[i].sichtbarSetzen(false);
         }
     }
 
