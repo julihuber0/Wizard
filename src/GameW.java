@@ -391,6 +391,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 server.sendString("TP/"+p.getId());
                 warten(2700);
                 p.addStitch();
+                sendLastStitch();
                 stitch.clear();
                 players = getNewFirstPlayer(p);
                 server.update();
@@ -463,6 +464,14 @@ public class GameW extends Game implements MausReagierbar, Runnable {
 
 
         return sorted;
+    }
+
+    public void sendLastStitch() {
+        String stitchLS = "LS/";
+
+        for(Card c:stitch) {
+
+        }
     }
 
 
