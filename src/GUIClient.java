@@ -81,7 +81,7 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(logo);
         credits = new Text("®Tobias Eder & Julian Huber", 5, 670, "Segoe UI", 15);
         sichtbarMachen(credits);
-        version = new Text("v1.1", 1265, 670, "Segoe UI", 15);
+        version = new Text("v1.2", 1265, 670, "Segoe UI", 15);
         sichtbarMachen(version);
 
         //Mitspieler-Liste
@@ -198,8 +198,12 @@ public class GUIClient extends Game implements MausReagierbar {
 
     //Update-Methoden werden vom Server aufgerufen und aktualisieren die Spieloberfläche entsprechend
     public void updateTrump() {
-        trumpCard = null;
         if(currentTrumpCard!=null && currentRound != (60/players.size())) {
+            if(trumpCard!=null) {
+                trumpCard.sichtbarSetzen(false);
+                wurzel.entfernen(trumpCard);
+                trumpCard = null;
+            }
             trumpCard = new Bild(10, 300, "Resources/" + currentTrumpCard.getValue() + "_in_" + currentTrumpCard.getColor()+".png");
             sichtbarMachen(trumpCard);
             trumpCard.sichtbarSetzen(true);
@@ -336,6 +340,11 @@ public class GUIClient extends Game implements MausReagierbar {
         }
         ownSaidStitches.inhaltSetzen("Angesagt: -");
         ownMadeStitches.inhaltSetzen("Gemacht: -");
+        if(trumpCard!=null) {
+            trumpCard.sichtbarSetzen(false);
+            wurzel.entfernen(trumpCard);
+            trumpCard = null;
+        }
     }
 
     //Setzt die Trumpffarbenanzeige zurück (wahrscheinlich unnötig, zu faul zum entfernen)

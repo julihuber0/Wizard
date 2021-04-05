@@ -24,15 +24,18 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     private String ipadress;
     private String ipadress2 = "";
     public int forbiddenNumber;
+    public boolean forbidden = true;
 
     //GUI Elements
     private Maus maus;
     private Text startButton;
     private Text displayIP;
     private Text displayIP2;
+    private Text forbiddenN;
+    private Text switcher;
 
     public GameW() {
-        super(500, 300, "Wizard-Server", false, false);
+        super(550, 300, "Wizard-Server", false, false);
         run();
 
         server = new Server(this);
@@ -42,6 +45,11 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         wurzel.add(startButton);
         startButton.sichtbarSetzen(true);
         maus.anmelden(this, startButton, 0);
+        forbiddenN = new Text("Stiche dürfen sich aufgehen:", 250, 100, "Segoe UI", 20);
+        wurzel.add(forbiddenN);
+        switcher = new Text("Aus", 250, 130, "Segoe UI", 15);
+        wurzel.add(switcher);
+        maus.anmelden(this, switcher, 1);
 
         //IP-Adresse ausgeben
         try {
@@ -72,6 +80,19 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 server.sendString("SG/");
                 start();
                 break;
+            case 1:
+                if(forbidden)
+                {
+                    forbidden = false;
+                    switcher.setzeInhalt("An");
+                    break;
+                }
+                else
+                {
+                    forbidden = true;
+                    switcher.setzeInhalt("Aus");
+                    break;
+                }
             default:
                 System.out.println("lel");
                 break;
@@ -185,7 +206,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     public Player getWinner() {
         if (gs == GameState.OVER) {
             int maxPoints = Integer.MIN_VALUE;
-            int bestPlayer = 0;
+            int bestPlayer = -1;
             for (int i = 0; i < players.size(); i++) {
                 if (players.get(i).getPoints() > maxPoints) {
                     maxPoints = players.get(i).getPoints();
@@ -335,7 +356,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 players.get(i).saidStitches = -1;
                 currentPlayerID = players.get(i).getId();
                 server.update();
-                if (i + 1 == players.size()) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
+                if (i + 1 == players.size() && forbidden) { //Der letzte in der Reihe bekommt mit, welche Anzahl er nicht sagen darf
                     players.get(i).sayStitches(forbiddenNumber);
                 } else {
                     players.get(i).sayStitches(-1);
@@ -427,7 +448,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             gs = GameState.WAITING_FOR_NEXT_ROUND;
             startNextRound();
         }
-        server.gameOver(getWinner().getName(), getWinner().getId());
+        //TODO: Falscher Gewinner wird angezeigt?
+        //server.gameOver(getWinner().getName(), getWinner().getId());
         server.update();
     }
 
