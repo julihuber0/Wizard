@@ -468,11 +468,24 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public String getInputName() {
-        return eingabeFordern("Name eingeben:");
+        String inName = eingabeFordern("Name eingeben:");
+        if(inName.equals(""))
+        {
+            return eingabeFordern("Name eingeben:");
+        }
+        else return inName;
     }
 
     public String getInputIP() {
-        return eingabeFordern("Server-IP-Adresse:");
+        String inIP = eingabeFordern("Server-IP-Adresse:");
+        if(inIP.equals(""))
+        {
+            return eingabeFordern("Server-IP-Adresse:");
+        }
+        else
+        {
+            return inIP;
+        }
     }
 
     public void karteLegen(Card c) {
