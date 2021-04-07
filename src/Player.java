@@ -206,10 +206,10 @@ public class Player implements Comparable<Player>{
     @Override
     public int compareTo(Player o) {
         if(o.getId()>this.getId()){
-            return 1;
+            return -1;
         }
         if(o.getId()<this.getId()){
-            return -1;
+            return 1;
         }
         return 0;
     }
