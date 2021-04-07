@@ -79,9 +79,9 @@ public class GUIClient extends Game implements MausReagierbar {
         maus.anmelden(this, exit, 2);
         logo = new Bild(700, 145, "Resources/wizardgame.png");
         sichtbarMachen(logo);
-        credits = new Text("Tobias Eder & Julian Huber", 5, 670, "Segoe UI", 15);
+        credits = new Text("Coded by Tobias Eder & Julian Huber", 5, 670, "Segoe UI", 15);
         sichtbarMachen(credits);
-        version = new Text("v1.2", 1265, 670, "Segoe UI", 15);
+        version = new Text("v1.3", 1265, 670, "Segoe UI", 15);
         sichtbarMachen(version);
 
         //Mitspieler-Liste
