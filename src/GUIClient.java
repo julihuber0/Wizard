@@ -260,12 +260,6 @@ public class GUIClient extends Game implements MausReagierbar {
     public void updateRoundCounter()
     {
         cRound.setzeInhalt("Runde: "+currentRound);
-        if(currentRound == 20)
-        {
-            if(trumpCard!=null) {
-                trumpCard.sichtbarSetzen(false);
-            }
-        }
     }
 
     public void updateStitchSum(int sum)

@@ -10,7 +10,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
 
     public int playerCount;        //Anzahl Mitspieler
     public int maxRounds;      //Maximale Rundenzahl
-    public int currentRound = 19;       //aktuelle Runde
+    public int currentRound = 0;       //aktuelle Runde
     public GameState gs = GameState.WAITING_FOR_NEXT_ROUND;        //aktueller Spielzustand
     public ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
     public ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
