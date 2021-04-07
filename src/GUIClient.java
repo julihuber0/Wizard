@@ -262,7 +262,9 @@ public class GUIClient extends Game implements MausReagierbar {
         cRound.setzeInhalt("Runde: "+currentRound);
         if(currentRound == 20)
         {
-            trumpCard.sichtbarSetzen(false);
+            if(trumpCard!=null) {
+                trumpCard.sichtbarSetzen(false);
+            }
         }
     }
 
