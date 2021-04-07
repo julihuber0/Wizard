@@ -334,7 +334,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    System.out.println("Thread wurde unterbrochen (Fehler wird geworfen, kann ignoriert werden).");
                 }
 
                 this.run();
@@ -364,7 +365,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    //e.printStackTrace();
+                    System.out.println("Thread wurde unterbrochen (Fehler wird geworfen, kann ignoriert werden).");
                 }
 
                 this.run();
@@ -387,7 +389,8 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                     try { //einschläfern, wird dann durch den ClientHandler geweckt
                         this.wait();
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        //e.printStackTrace();
+                        System.out.println("Thread wurde unterbrochen (Fehler wird geworfen, kann ignoriert werden).");
                     }
 
                     this.run();
