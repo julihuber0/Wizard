@@ -43,6 +43,7 @@ public class GUIClient extends Game implements MausReagierbar {
     private Text[][] eScoreboard = new Text[13][21];
     private Rechteck eScoreboard_line1;
     private Rechteck eScoreboard_line2;
+    private Text lastStitch;
 
     private boolean inputAllowed = false;       //Legt fest, ob der Spieler eine Karte legen darf
     private boolean[] allowedCards = new boolean[20];       //Speichert, welche Karten aktuell gespielt werden dürfen
@@ -59,6 +60,7 @@ public class GUIClient extends Game implements MausReagierbar {
     public int currentRound = 0;       //aktuelle Runde
     public int currentPlayerID = 0; //ID des Spielers, der gerade an der Reihe ist
     public int idSelf = 0; //ID des Spielers, der man selbst ist
+    public String lastStitchString = "";
 
 
     public GUIClient() {
@@ -307,6 +309,11 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
+    public void updateLastStitch(String s)
+    {
+        lastStitchString = s;
+    }
+
     public void updateCurrentPlayerMarker() {
         ownMarker.sichtbarSetzen(false);
         for (int i = 0; i < players.size() - 1; i++) {
@@ -350,6 +357,11 @@ public class GUIClient extends Game implements MausReagierbar {
         if(trumpCard!=null) {
             trumpCard.sichtbarSetzen(false);
         }
+    }
+
+    public void resetLastStitch()
+    {
+        lastStitchString = "";
     }
 
     //Zeigt die richtige Trumpffarbe an, bei Zauberer die vom Spieler Gewählte
@@ -591,6 +603,9 @@ public class GUIClient extends Game implements MausReagierbar {
         int ypos = 50 + currentRound * 30;
         eScoreboard_line1 = new Rechteck(70, 40, xpos, 1);
         eScoreboard_line2 = new Rechteck(175, 0, 1, ypos);
+
+        //Letzter stich
+        lastStitch = new Text(lastStitchString, 30, 670, "Segoe UI", 15);
     }
 
     //Blendet das Scoreboard ein bzw. aus
@@ -628,6 +643,15 @@ public class GUIClient extends Game implements MausReagierbar {
                 eScoreboard_line2.sichtbarSetzen(false);
                 wurzel.entfernen(eScoreboard_line1);
                 wurzel.entfernen(eScoreboard_line2);
+            }
+        }
+        if(lastStitch != null) {
+            if (b) {
+                sichtbarMachen(lastStitch);
+                lastStitch.sichtbarSetzen(true);
+            } else {
+                lastStitch.sichtbarSetzen(false);
+                wurzel.entfernen(lastStitch);
             }
         }
     }

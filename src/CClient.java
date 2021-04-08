@@ -153,6 +153,7 @@ public class CClient extends Client {
 
                 gClient.hand.clear();
                 gClient.resetStats();
+                gClient.resetLastStitch();
                 gClient.stitch.clear();
                 gClient.clearStitchImage();
                 gClient.updateStitchSum(-1);
@@ -171,7 +172,7 @@ public class CClient extends Client {
                 break;
 
             case "LS":
-                //ToDo im Content ist der String des letzten Stiches
+                gClient.updateLastStitch(content);
                 break;
 
             /*

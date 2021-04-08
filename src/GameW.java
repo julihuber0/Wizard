@@ -491,18 +491,18 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     public void sendLastStitch() {
         String stitchLS = "LS/";
 
-        for(Card c:stitch) {
-            if(c.getValue() == 0) {
-                stitchLS = stitchLS + "Narr: ";
+        for(int i = 0; i<stitch.size(); i++) {
+            if(stitch.get(i).getValue() == 0) {
+                stitchLS = stitchLS + "Narr in ";
             }
-            else if(c.getValue() == 14) {
-                stitchLS = stitchLS + "Zauberer: ";
+            else if(stitch.get(i).getValue() == 14) {
+                stitchLS = stitchLS + "Zauberer in ";
             }
             else {
-                stitchLS = stitchLS + c.getValue() + ": ";
+                stitchLS = stitchLS + stitch.get(i).getValue() + " in ";
             }
 
-            stitchLS = stitchLS + ColorW.toString(c.getColor()) +"  |  ";
+            stitchLS = stitchLS + ColorW.toString(stitch.get(i).getColor()) +" ["+players.get(i).getName()+"]  |  ";
         }
         server.sendString(stitchLS);
     }
