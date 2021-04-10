@@ -385,7 +385,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                     server.update();
                     players.get(j).setThread(Thread.currentThread());
                     players.get(j).requestCard();
-                    System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Kartenabfrage");
+                    System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Kartenabfrage von "+players.get(j).getName()+".");
                     try { //einschläfern, wird dann durch den ClientHandler geweckt
                         this.wait();
                     } catch (InterruptedException e) {
