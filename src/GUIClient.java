@@ -105,6 +105,14 @@ public class GUIClient extends Game implements MausReagierbar {
         playerList[id].sichtbarSetzen(true);
     }
 
+    public void resetPlayableCards()
+    {
+        for(int i = 0;  i<allowedCards.length; i++)
+        {
+            allowedCards[i] = true;
+        }
+    }
+
     //Legt fest, welche Karten in der eigenen Hand gespielt werden dürfen. Übernimmt dabei eine Liste aller erlaubten Karten
     public void setPlayableCards(ArrayList<Card> cards) {
         for (int i = 0; i < allowedCards.length; i++) {

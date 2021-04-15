@@ -174,6 +174,9 @@ public class CClient extends Client {
             case "LS":
                 gClient.updateLastStitch(content);
                 break;
+            case "RP":
+                gClient.resetPlayableCards();
+                break;
 
             /*
              *  Clientspezifisches
