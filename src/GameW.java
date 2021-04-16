@@ -1,10 +1,10 @@
 import ea.*;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class GameW extends Game implements MausReagierbar, Runnable {
 
@@ -33,6 +33,9 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     private Text displayIP2;
     private Text forbiddenN;
     private Text switcher;
+
+    private Scanner s = new Scanner(System.in);
+    private int setPlayerCount = -1;
 
     public GameW() {
         super(550, 300, "Wizard-Server", false, false);
@@ -506,6 +509,18 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             stitchLS = stitchLS + ColorW.toString(stitch.get(i).getColor()) +" ["+players.get(i).getName()+"]  |  ";
         }
         server.sendString(stitchLS);
+    }
+
+    public static void writeText(String s){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Logfile.txt", true));
+            writer.write(s);
+            writer.close();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error: Logfile.txt not found.");
+        }
     }
 
 
