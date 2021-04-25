@@ -337,7 +337,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 server.update();
                 p.selectTrump();
                 p.setThread(Thread.currentThread());
-                System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Trumpfabfrage");
+                System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Trumpfabfrage von "+p.getName());
                 try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
@@ -368,7 +368,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 }
                 //ToDo @Tobi wtf
                 players.get(i).setThread(Thread.currentThread());
-                System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Stichabfrage");
+                System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Stichabfrage von "+players.get(i).getName());
                 try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
