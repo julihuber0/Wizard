@@ -83,7 +83,7 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(logo);
         credits = new Text("Coded by Tobias Eder & Julian Huber", 5, 670, "Segoe UI", 15);
         sichtbarMachen(credits);
-        version = new Text("v1.3", 1265, 670, "Segoe UI", 15);
+        version = new Text("v1.4", 1265, 670, "Segoe UI", 15);
         sichtbarMachen(version);
 
         //Mitspieler-Liste
