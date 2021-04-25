@@ -39,6 +39,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
 
     public GameW() {
         super(550, 300, "Wizard-Server", false, false);
+        super.iconSetzen(new Bild("Resources/icon.png"));
         run();
 
         server = new Server(this);
