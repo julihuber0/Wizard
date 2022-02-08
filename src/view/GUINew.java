@@ -29,6 +29,7 @@ public class GUINew extends JFrame {
     private OwnCardsView ownHand;
     //private Text[] playerList = new Text[6];    //Spielerliste in der "Lobby"
     private JLabel[] playerList = new JLabel[6];
+    private LobbyView lobby = new LobbyView();
     private Rechteck ownMarker;     //Eigener Spielermarker
     private Bild ownAvatar;     //Eigener Avatar
     private Text name;      //Eigener Name
@@ -77,7 +78,7 @@ public class GUINew extends JFrame {
 
     public GUINew() {
         setLayout(new BorderLayout());
-        setBackground(new Color(57, 62, 195));
+        //setBackground(new Color(57, 62, 195));
 
         title = new JLabel(cover);
         mainButtons = new ButtonBar(this);
@@ -93,6 +94,7 @@ public class GUINew extends JFrame {
     public void joinGame() {
         title.setVisible(false);
         mainButtons.setVisible(false);
+        add(lobby, BorderLayout.CENTER);
     }
 
     public void resetPlayableCards() {
@@ -187,9 +189,11 @@ public class GUINew extends JFrame {
     public void startGame() {
         setRelativeIDs();
         opw = new OtherPlayersView(createSortedPlayerView());
+        selfView = new PlayerView(players.get(relativeID[0]));
 
         add(opw);
-        add(ownHand);
+        add(selfView, BorderLayout.WEST);
+        showOwnHand();
         add(stitchImage);
     }
 
@@ -219,5 +223,10 @@ public class GUINew extends JFrame {
         ownHand.removeCard(cv);
         stitchImage.addCard(cv);
 
+    }
+
+    public void addPlayer(Player p) {
+        players.add(p);
+        lobby.addPlayerName(p);
     }
 }

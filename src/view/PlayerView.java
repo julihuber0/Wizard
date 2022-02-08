@@ -67,7 +67,7 @@ public class PlayerView extends JPanel {
                 ImageIcon ic = new ImageIcon(path);
                 avatar = Utility.resizeIcon(ic, 100, 100);
                 try {
-                    wait();
+                    wait(2000);
                 } catch (InterruptedException e) {
                     System.out.println("Thread interrupted.");
                 }
