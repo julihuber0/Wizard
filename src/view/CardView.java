@@ -15,6 +15,7 @@ public class CardView extends JPanel {
 
     private Card card;
     private BufferedImage im;
+    private boolean isPlayable;
 
     public CardView(Card c) {
         card = c;
@@ -29,13 +30,28 @@ public class CardView extends JPanel {
         this.card = card;
     }
 
+    public void setPlayable(boolean playable) {
+        isPlayable = playable;
+    }
+
+    public boolean getPlayable() {
+        return isPlayable;
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.fillOval(10,10,0,0);
         g2.setColor(Color.BLACK);
-        g2.drawImage(im, 50, 50, null);
+        if(isPlayable) {
+            g2.drawImage(im, 50, 50, null);
+        } else {
+            float alpha = 0.5f;
+            AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+            g2.setComposite(ac);
+            g2.drawImage(im, 50, 50, null);
+        }
     }
 
     public void setImage() {

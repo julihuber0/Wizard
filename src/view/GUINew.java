@@ -91,6 +91,14 @@ public class GUINew extends JFrame {
         cClient = c;
     }
 
+    public CClient getCClient() {
+        return cClient;
+    }
+
+    public boolean getInputAllowed() {
+        return inputAllowed;
+    }
+
     public void joinGame() {
         title.setVisible(false);
         mainButtons.setVisible(false);
@@ -123,6 +131,15 @@ public class GUINew extends JFrame {
             return Utility.askInput("Gewünschte Stichzahl eingeben.");
         }
         return Utility.askInput("Gewünschte Stichzahl eingeben (nicht "+forbidden+"):");
+    }
+
+    public void requestCard() {
+        inputAllowed = false;
+        updatePlayableCards();
+    }
+
+    private void updatePlayableCards() {
+        ownHand.setPlayableCards(allowedCards);
     }
 
     //Interpretiert die Eingabe von vorgehender Methode
@@ -187,6 +204,7 @@ public class GUINew extends JFrame {
     }
 
     public void startGame() {
+        lobby.setVisible(false);
         setRelativeIDs();
         opw = new OtherPlayersView(createSortedPlayerView());
         selfView = new PlayerView(players.get(relativeID[0]));

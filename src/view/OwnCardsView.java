@@ -1,5 +1,7 @@
 package view;
 
+import model.Card;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -20,7 +22,13 @@ public class OwnCardsView extends JPanel {
             c.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    mainGUI.layCard((CardView) e.getSource());
+                    if(mainGUI.getInputAllowed()) {
+                        CardView cv = (CardView) e.getSource();
+                        if(cv.getPlayable()) {
+                            mainGUI.layCard(cv);
+                            mainGUI.getCClient().playCard(cv.getCard());
+                        }
+                    }
                 }
 
                 @Override
@@ -49,5 +57,12 @@ public class OwnCardsView extends JPanel {
 
     public void removeCard(CardView cv) {
         cv.setVisible(false);
+    }
+
+    public void setPlayableCards(boolean[] playableCards) {
+        for(int i = 0; i<cards.size(); i++) {
+            cards.get(i).setPlayable(playableCards[i]);
+            cards.get(i).repaint();
+        }
     }
 }
