@@ -1,6 +1,7 @@
 package model;
 
 import ea.Client;
+import view.GUINew;
 
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ public class CClient extends Client {
 
     private String name;
     private GUIClient gClient;
+    private GUINew gClientNew;
 
     public CClient(String ipAdress, GUIClient gClient) {
         //Verbinde dich mit der übergebenen IP-Adresse und Port 7654.
@@ -127,8 +129,9 @@ public class CClient extends Client {
             case "PN":
                 s = content.split(";");
                 //gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
-                gClient.players.add(new Player(s[0], Integer.parseInt(s[1])));
-                gClient.updateNames();
+                //gClient.players.add(new Player(s[0], Integer.parseInt(s[1])));
+                //gClient.updateNames();
+                gClientNew.addPlayer(new Player(s[0], Integer.parseInt(s[1])));
                 break;
 
             case "GO":
