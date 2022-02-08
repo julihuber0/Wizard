@@ -9,14 +9,14 @@ Broadcasts:
  AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
  AT: Aktueller Trumpf
  TC: Trumpffarbe
- AP: Aktueller model.Player
+ AP: Aktueller Player
  CP: Clear Players
  PN: model.Player Namen
  GO: Game over
- DC: model.Player disconnected
+ DC: Player disconnected
  SG: Starte Game
  NR: Neue Runde starten
- TP: To model.Player (Spieler, der gestochen hat, wird kurz grün markiert)
+ TP: To Player (Spieler, der gestochen hat, wird kurz grün markiert)
  RC: Rundecounter
  SC: Gesamtzahl angesager Stiche
  MP: Markiere Spieler am Rundenende entsprechend, ob richtig angesagt wurde oder nicht
