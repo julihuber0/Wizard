@@ -10,4 +10,12 @@ public class Utility {
         Image resized = img.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
         return new ImageIcon(resized);
     }
+
+    public static String askInput(String msg) {
+        String input = JOptionPane.showInputDialog(msg);
+        if(input == null || input.equals("")){
+            return askInput(msg);
+        }
+        return input;
+    }
 }

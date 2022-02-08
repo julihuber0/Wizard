@@ -44,7 +44,8 @@ public class GUINew extends JFrame {
     private Bild scoreboardButton;      //Scoreboard-Button
     private Bild bg2;       //Hintergrund für das Hauptscoreboard
 
-    private JLabel title = new JLabel("WIZARD");
+    private JLabel title;
+    ImageIcon cover = new ImageIcon("./Resources/wizardgame.png");
     private ButtonBar mainButtons;
 
     //Elemente des Hauptscoreboards
@@ -75,16 +76,19 @@ public class GUINew extends JFrame {
         setLayout(new BorderLayout());
         setBackground(new Color(57, 62, 195));
 
-        Player[] ps = new Player[3];
+        title = new JLabel(cover);
+        mainButtons = new ButtonBar(this);
 
-        ps[0] = new Player("Julian", 0);
-        ps[1] = new Player("Julian2", 1);
-        ps[2] = new Player("Julian3", 2);
-        opw = new OtherPlayersView(ps);
-        add(opw, BorderLayout.NORTH);
-
-        mainButtons = new ButtonBar();
-
+        add(title, BorderLayout.NORTH);
         add(mainButtons, BorderLayout.CENTER);
+    }
+
+    public void setCClient(CClient c) {
+        cClient = c;
+    }
+
+    public void joinGame() {
+        title.setVisible(false);
+        mainButtons.setVisible(false);
     }
 }

@@ -497,10 +497,10 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public String getInputIP() {
-        String inIP = eingabeFordern("model.Server-IP-Adresse:");
+        String inIP = eingabeFordern("Server-IP-Adresse:");
         if(inIP.equals(""))
         {
-            return eingabeFordern("model.Server-IP-Adresse:");
+            return eingabeFordern("Server-IP-Adresse:");
         }
         else
         {

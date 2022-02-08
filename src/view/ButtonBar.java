@@ -1,5 +1,7 @@
 package view;
 
+import model.CClient;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,14 +12,18 @@ public class ButtonBar extends JPanel{
     private JButton join = new JButton("Beitreten");
     private JButton exit = new JButton("Beenden");
 
-    public ButtonBar() {
+    private GUINew mainGUI;
+
+    public ButtonBar(GUINew parent) {
+        mainGUI = parent;
         setLayout(new FlowLayout());
 
         join.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Join.");
-                join.setVisible(false);
+                String ipAddress = Utility.askInput("Server-IP-Adresse");
+                //mainGUI.setCClient(new CClient(ipAddress, null));
+                mainGUI.joinGame();
             }
         });
         exit.addActionListener(new ActionListener() {

@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import model.*;
+
 public class CardView extends JPanel {
 
     private Card card;
