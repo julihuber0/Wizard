@@ -13,6 +13,7 @@ public class GUINew extends JFrame {
     //Grafische Elemente
     //private Bild[] s = new Bild[5];     //Spieleravatare der anderen Spieler
     private OtherPlayersView opw;
+    private PlayerView selfView;
     private Rechteck[] marker = new Rechteck[5];    //Marker der anderen Spieler
     //private Text[] names = new Text[5];     //Spielernamen der anderen Spieler
     private JLabel[] names = new JLabel[5];

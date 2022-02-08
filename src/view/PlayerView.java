@@ -9,8 +9,6 @@ public class PlayerView extends JPanel {
 
     private ImageIcon avatar;
 
-    private Frame tla;
-
     private JLabel av = new JLabel();
     private JLabel name = new JLabel();
     private JLabel saidStitches = new JLabel();
@@ -23,7 +21,6 @@ public class PlayerView extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.p = p;
-        tla = Frame.getFrames()[0];
         setImage(false);
         av.setSize(10, 50);
         av.setIcon(avatar);
@@ -49,12 +46,35 @@ public class PlayerView extends JPanel {
     public void setImage(boolean t) {
         String path;
         if(t) {
-            path = "./Resources/avatar2.png";
+            path = "./Resources/avatarMarked.png";
         } else {
             path = "./Resources/avatar.png";
         }
         ImageIcon ic = new ImageIcon(path);
         avatar = Utility.resizeIcon(ic, 100, 100);
+    }
+
+    public void markPlayer() {
+        Thread marker = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String path;
+                if(p.getSaidStitches()==p.getCurrentStitches()) {
+                    path = "./Resources/avatarRight.png";
+                } else {
+                    path = "./Resources/avatarWrong.png";
+                }
+                ImageIcon ic = new ImageIcon(path);
+                avatar = Utility.resizeIcon(ic, 100, 100);
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    System.out.println("Thread interrupted.");
+                }
+                setImage(false);
+            }
+        });
+        marker.start();
     }
 
     public void setHisTurn(boolean hisTurn) {

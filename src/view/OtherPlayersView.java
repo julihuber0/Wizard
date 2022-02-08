@@ -17,4 +17,10 @@ public class OtherPlayersView extends JPanel {
             add(pv);
         }
     }
+
+    public void markPlayers() {
+        for(PlayerView pv:playerView) {
+            pv.markPlayer();
+        }
+    }
 }
