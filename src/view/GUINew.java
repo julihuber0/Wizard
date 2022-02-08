@@ -5,6 +5,8 @@ import ea.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import model.*;
 
 public class GUINew extends JFrame {
@@ -21,9 +23,9 @@ public class GUINew extends JFrame {
     //private Text[] points = new Text[5];        //Punkte der anderen Spieler
     private JLabel[] points = new JLabel[5];
     //private Bild[] stitchImage = new Bild[6];       //Aktueller Stich
-    private CardView[] stitchImage = new CardView[6];
+    private StitchView stitchImage = new StitchView();
     //private Bild[] ownHand = new Bild[20];      //Eigene Hand
-    private CardView[] ownHand = new CardView[20];
+    private OwnCardsView ownHand;
     //private Text[] playerList = new Text[6];    //Spielerliste in der "Lobby"
     private JLabel[] playerList = new JLabel[6];
     private Rechteck ownMarker;     //Eigener Spielermarker
@@ -90,5 +92,131 @@ public class GUINew extends JFrame {
     public void joinGame() {
         title.setVisible(false);
         mainButtons.setVisible(false);
+    }
+
+    public void resetPlayableCards() {
+        for (int i = 0; i < allowedCards.length; i++) {
+            allowedCards[i] = true;
+        }
+    }
+
+    //Legt fest, welche Karten in der eigenen Hand gespielt werden dürfen. Übernimmt dabei eine Liste aller erlaubten Karten
+    public void setPlayableCards(ArrayList<Card> cards) {
+        for (int i = 0; i < allowedCards.length; i++) {
+            allowedCards[i] = false;
+        }
+        for (int i = 0; i < currentRound; i++) {
+            for (Card c : cards) {
+                if (c.isEqual(hand.get(i))) {
+                    allowedCards[i] = true;
+                }
+            }
+        }
+    }
+
+    //Pop-Up-Dialog zur Abfrage der gewünschten Stiche
+    private String askForStitches(int forbidden) {
+        if (forbidden <= -1) {
+            return Utility.askInput("Gewünschte Stichzahl eingeben.");
+        }
+        return Utility.askInput("Gewünschte Stichzahl eingeben (nicht "+forbidden+"):");
+    }
+
+    //Interpretiert die Eingabe von vorgehender Methode
+    public int validateStitches(int forbiddenNumber) {
+        String stitchesCount = askForStitches(forbiddenNumber);
+        int sCount = 0;
+        try {
+            sCount = Integer.parseInt(stitchesCount);
+        } catch (Exception e) {
+            return validateStitches(forbiddenNumber);
+        }
+
+        if (sCount == forbiddenNumber || sCount < 0) {
+            return validateStitches(forbiddenNumber);
+        }
+        return sCount;
+    }
+
+    //Pop-Up-Dialog zur Abfrage der gewünschten Trumpffarbe (falls Zauberer als Trumpfkarte aufgedeckt)
+    private String askForTrumpColor() {
+        return Utility.askInput("Gewünschte Trumpffarbe eingeben (Grün, Blau, Rot, Gelb):");
+    }
+
+    //Interpretiert die Eingabe von vorgehender Methode
+    public ColorW validateTrump() {
+        String trumpColor = askForTrumpColor().toLowerCase();
+        if (trumpColor.equals("grün")) {
+            return ColorW.GREEN;
+        }
+        if (trumpColor.equals("blau")) {
+            return ColorW.BLUE;
+        }
+        if (trumpColor.equals("rot")) {
+            return ColorW.RED;
+        }
+        if (trumpColor.equals("gelb")) {
+            return ColorW.YELLOW;
+        }
+        return validateTrump();
+    }
+
+    //Gibt den Spieler mit der übergebenen ID zurück
+    private Player getPlayerByID(int id) {
+        for (Player p : players) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    //Setzt relative IDs, dass bei jedem individuellen Client die Position der Spieler im UI bestimmt werden kann
+    private void setRelativeIDs() {
+        relativeID[0] = idSelf;
+        for (int i = 0; i < players.size() - 1; i++) {
+            relativeID[i + 1] = (idSelf + 1 + i) % players.size();
+        }
+    }
+
+    public void disconnected(String name) {
+        Utility.showInfoDialog(name+ "hat das Spiel verlassen!");
+    }
+
+    public void startGame() {
+        setRelativeIDs();
+        opw = new OtherPlayersView(createSortedPlayerView());
+
+        add(opw);
+        add(ownHand);
+        add(stitchImage);
+    }
+
+    private ArrayList<PlayerView> createSortedPlayerView() {
+        ArrayList<PlayerView> playerView = new ArrayList<>();
+        for(int i = 0; i < players.size(); i++) {
+            playerView.add(new PlayerView(players.get(relativeID[i+1])));
+        }
+        return playerView;
+    }
+
+    private ArrayList<CardView> createCardView() {
+        ArrayList<CardView> cards = new ArrayList<>();
+        for(Card c:hand) {
+            cards.add(new CardView(c));
+        }
+        return cards;
+    }
+
+    public void showOwnHand() {
+        Collections.sort(hand);
+        ownHand = new OwnCardsView(createCardView(), this);
+        add(ownHand, BorderLayout.SOUTH);
+    }
+
+    public void layCard(CardView cv) {
+        ownHand.removeCard(cv);
+        stitchImage.addCard(cv);
+
     }
 }

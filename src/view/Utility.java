@@ -18,4 +18,8 @@ public class Utility {
         }
         return input;
     }
+
+    public static void showInfoDialog(String msg) {
+        JOptionPane.showMessageDialog(null, msg);
+    }
 }

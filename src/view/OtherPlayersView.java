@@ -2,18 +2,19 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+
 import model.Player;
 
 public class OtherPlayersView extends JPanel {
 
-    private PlayerView[] playerView;
+    private ArrayList<PlayerView> playerView;
 
-    public OtherPlayersView(Player[] players) {
-        playerView = new PlayerView[players.length];
+    public OtherPlayersView(ArrayList<PlayerView> playerView) {
+        this.playerView = playerView;
         setLayout(new FlowLayout(FlowLayout.CENTER, 40, 0));
-        for(int i = 0; i<players.length; i++) {
-            playerView[i] = new PlayerView(players[i]);
-            add(playerView[i]);
+        for(PlayerView pv: playerView) {
+            add(pv);
         }
     }
 }

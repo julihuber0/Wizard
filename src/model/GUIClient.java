@@ -525,7 +525,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    //Wird vom model.Server aufgerufen, wenn der Spieler eine Karte spielen darf, hier wird die Eingabe freigegeben
+    //Wird vom Server aufgerufen, wenn der Spieler eine Karte spielen darf, hier wird die Eingabe freigegeben
     public void requestCard() {
         greyOutCards();
         inputAllowed = true;
