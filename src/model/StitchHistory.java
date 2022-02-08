@@ -1,3 +1,5 @@
+package model;
+
 public class StitchHistory {
 
     public int stitches;

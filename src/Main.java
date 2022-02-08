@@ -1,4 +1,4 @@
-import ea.Text;
+import view.GUINew;
 
 import javax.swing.*;
 import java.awt.*;

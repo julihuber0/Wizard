@@ -1,11 +1,11 @@
+package view;
+
 import ea.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
+import model.*;
 
 public class GUINew extends JFrame {
     //Grafische Elemente

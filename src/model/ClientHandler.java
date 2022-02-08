@@ -1,3 +1,4 @@
+package model;
 
 import ea.*;
 
@@ -54,7 +55,7 @@ public class ClientHandler implements Empfaenger {
 
     @Override
     public synchronized void empfangeString (String string) {
-        System.out.println("[Server hat empfangen:] " + string);
+        System.out.println("[model.Server hat empfangen:] " + string);
 
         String key = string.substring(0,2);
         String content = string.substring(3);

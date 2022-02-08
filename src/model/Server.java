@@ -1,3 +1,5 @@
+package model;
+
 import ea.*;
 import java.util.*;
 
@@ -144,7 +146,7 @@ public class Server  implements  Runnable{
 
     /**
      * In dieser Run-Methode wartet ein eigener Thread nur auf neu andockende Clients,
-     * um diese dann durch einen eigenen ClientHandler zu bedienen.
+     * um diese dann durch einen eigenen model.ClientHandler zu bedienen.
      */
     @Override
     public void run() {

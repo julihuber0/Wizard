@@ -9,21 +9,21 @@ Broadcasts:
  AS: Aktueller Stich (Karten, die gerade am Tisch liegen)
  AT: Aktueller Trumpf
  TC: Trumpffarbe
- AP: Aktueller Player
+ AP: Aktueller model.Player
  CP: Clear Players
- PN: Player Namen
+ PN: model.Player Namen
  GO: Game over
- DC: Player disconnected
+ DC: model.Player disconnected
  SG: Starte Game
  NR: Neue Runde starten
- TP: To Player (Spieler, der gestochen hat, wird kurz grün markiert)
+ TP: To model.Player (Spieler, der gestochen hat, wird kurz grün markiert)
  RC: Rundecounter
  SC: Gesamtzahl angesager Stiche
  MP: Markiere Spieler am Rundenende entsprechend, ob richtig angesagt wurde oder nicht
  LS: Letzter Stich
  RP: Setzt die spielbaren Karten zurück
 
-Server zu Clients:
+model.Server zu Clients:
  NF: Namen fragen
  ID: ID des eignen Spielers
  HA: Hand des Spielers
@@ -33,7 +33,7 @@ Server zu Clients:
  SF: Stiche fragen
 
 
-Clients zu Server
+Clients zu model.Server
  NA: Namen angeben
  GK: Gespielte Karte
  TA: Trumpf ausgewählt

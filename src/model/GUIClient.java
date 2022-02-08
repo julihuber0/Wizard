@@ -1,4 +1,7 @@
+package model;
+
 import ea.*;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -207,7 +210,7 @@ public class GUIClient extends Game implements MausReagierbar {
         return null;
     }
 
-    //Update-Methoden werden vom Server aufgerufen und aktualisieren die Spieloberfläche entsprechend
+    //Update-Methoden werden vom model.Server aufgerufen und aktualisieren die Spieloberfläche entsprechend
     public void updateTrump() {
         if(currentTrumpCard!=null && currentRound != (60/players.size())) {
             if(trumpCard!=null) {
@@ -494,10 +497,10 @@ public class GUIClient extends Game implements MausReagierbar {
     }
 
     public String getInputIP() {
-        String inIP = eingabeFordern("Server-IP-Adresse:");
+        String inIP = eingabeFordern("model.Server-IP-Adresse:");
         if(inIP.equals(""))
         {
-            return eingabeFordern("Server-IP-Adresse:");
+            return eingabeFordern("model.Server-IP-Adresse:");
         }
         else
         {
@@ -522,7 +525,7 @@ public class GUIClient extends Game implements MausReagierbar {
         }
     }
 
-    //Wird vom Server aufgerufen, wenn der Spieler eine Karte spielen darf, hier wird die Eingabe freigegeben
+    //Wird vom model.Server aufgerufen, wenn der Spieler eine Karte spielen darf, hier wird die Eingabe freigegeben
     public void requestCard() {
         greyOutCards();
         inputAllowed = true;
@@ -673,7 +676,7 @@ public class GUIClient extends Game implements MausReagierbar {
         sichtbarMachen(dcMsg);
     }
 
-    //Wird vom Server aufgerufen, wenn auf Starte Spiel geklickt wurde; blendet die Ingame-Oberfläche ein
+    //Wird vom model.Server aufgerufen, wenn auf Starte Spiel geklickt wurde; blendet die Ingame-Oberfläche ein
     public void startGame() {
         setRelativeIDs();
         for (Text t : playerList) {

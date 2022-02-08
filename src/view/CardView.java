@@ -1,3 +1,5 @@
+package view;
+
 import ea.internal.io.ImageLoader;
 
 import javax.imageio.ImageIO;

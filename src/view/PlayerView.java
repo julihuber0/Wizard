@@ -1,9 +1,9 @@
+package view;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import model.*;
 
 public class PlayerView extends JPanel {
 

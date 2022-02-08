@@ -1,3 +1,5 @@
+package model;
+
 public class CFred extends Thread{
 
     public CFred() {

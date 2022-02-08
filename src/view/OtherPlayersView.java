@@ -1,5 +1,8 @@
+package view;
+
 import javax.swing.*;
 import java.awt.*;
+import model.Player;
 
 public class OtherPlayersView extends JPanel {
 

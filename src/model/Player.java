@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -140,9 +142,9 @@ public class Player implements Comparable<Player>{
     }
 
     /*
-        public Card requestCard() {
+        public model.Card requestCard() {
 
-            return new Card(1, ColorW.BLUE);
+            return new model.Card(1, model.ColorW.BLUE);
         }
     */
     public void requestCard() {

@@ -1,3 +1,5 @@
+package model;
+
 import ea.*;
 
 import java.io.*;
@@ -38,7 +40,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     private int setPlayerCount = -1;
 
     public GameW() {
-        super(550, 300, "Wizard-Server", false, false);
+        super(550, 300, "Wizard-model.Server", false, false);
         super.iconSetzen(new Bild("Resources/icon.png"));
         run();
 
@@ -64,7 +66,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
             ipadress = in.readLine();
         } catch (Exception e) {
             ipadress = "Fehler beim Anzeigen der eigenen IP-Adresse.";
-            ipadress2 = "Der Server startet ganz normal.";
+            ipadress2 = "Der model.Server startet ganz normal.";
         }
 
         displayIP = new Text("IP: " + ipadress, 40, 200, "Segoe UI", 20);
@@ -146,7 +148,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
         }
     }
 
-    //schaltet den Rundenzähler auf die nächste Runde, setzt GameState auf OVER, wenn letzte Runde
+    //schaltet den Rundenzähler auf die nächste Runde, setzt model.GameState auf OVER, wenn letzte Runde
     public void nextRound() {
         if (currentRound < maxRounds) {
             currentRound++;
@@ -339,7 +341,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 p.selectTrump();
                 p.setThread(Thread.currentThread());
                 System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Trumpfabfrage von "+p.getName());
-                try { //einschläfern, wird dann durch den ClientHandler geweckt
+                try { //einschläfern, wird dann durch den model.ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
                     //e.printStackTrace();
@@ -370,7 +372,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                 //ToDo @Tobi wtf
                 players.get(i).setThread(Thread.currentThread());
                 System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Stichabfrage von "+players.get(i).getName());
-                try { //einschläfern, wird dann durch den ClientHandler geweckt
+                try { //einschläfern, wird dann durch den model.ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
                     //e.printStackTrace();
@@ -394,7 +396,7 @@ public class GameW extends Game implements MausReagierbar, Runnable {
                     players.get(j).setThread(Thread.currentThread());
                     players.get(j).requestCard();
                     System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Kartenabfrage von "+players.get(j).getName()+".");
-                    try { //einschläfern, wird dann durch den ClientHandler geweckt
+                    try { //einschläfern, wird dann durch den model.ClientHandler geweckt
                         this.wait();
                     } catch (InterruptedException e) {
                         //e.printStackTrace();

@@ -1,3 +1,5 @@
+package model;
+
 import ea.Client;
 
 import java.util.ArrayList;
@@ -15,8 +17,8 @@ public class CClient extends Client {
         super(ipAdress, 7654);
         this.gClient = gClient;
 
-        //Warten, bis die Verbindung zum Server steht:
-        //   Achtung: Wenn kein Server gefunden werden kann,
+        //Warten, bis die Verbindung zum model.Server steht:
+        //   Achtung: Wenn kein model.Server gefunden werden kann,
         //            friert dieser Konstruktor ein!
         warteAufVerbindung();
 
@@ -25,7 +27,7 @@ public class CClient extends Client {
     @Override
     public void verbindungBeendet() {
         super.verbindungBeendet();
-        gClient.disconnected("*Der* Server");
+        gClient.disconnected("*Der* model.Server");
     }
 
     @Override

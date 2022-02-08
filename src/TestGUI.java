@@ -1,3 +1,7 @@
+import model.Card;
+import model.ColorW;
+import view.CardView;
+
 import javax.swing.*;
 import java.awt.*;
 
