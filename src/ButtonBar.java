@@ -15,6 +15,7 @@ public class ButtonBar extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Join.");
+                join.setVisible(false);
             }
         });
         exit.addActionListener(new ActionListener() {

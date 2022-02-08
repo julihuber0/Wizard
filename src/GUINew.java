@@ -9,7 +9,8 @@ import java.util.Collections;
 
 public class GUINew extends JFrame {
     //Grafische Elemente
-    private Bild[] s = new Bild[5];     //Spieleravatare der anderen Spieler
+    //private Bild[] s = new Bild[5];     //Spieleravatare der anderen Spieler
+    private OtherPlayersView opw;
     private Rechteck[] marker = new Rechteck[5];    //Marker der anderen Spieler
     //private Text[] names = new Text[5];     //Spielernamen der anderen Spieler
     private JLabel[] names = new JLabel[5];
@@ -74,9 +75,16 @@ public class GUINew extends JFrame {
         setLayout(new BorderLayout());
         setBackground(new Color(57, 62, 195));
 
+        Player[] ps = new Player[3];
+
+        ps[0] = new Player("Julian", 0);
+        ps[1] = new Player("Julian2", 1);
+        ps[2] = new Player("Julian3", 2);
+        opw = new OtherPlayersView(ps);
+        add(opw, BorderLayout.NORTH);
+
         mainButtons = new ButtonBar();
 
-        add(title, BorderLayout.NORTH);
         add(mainButtons, BorderLayout.CENTER);
     }
 }

@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +8,8 @@ import java.io.IOException;
 public class PlayerView extends JPanel {
 
     private ImageIcon avatar;
+
+    private Frame tla;
 
     private JLabel av = new JLabel();
     private JLabel name = new JLabel();
@@ -17,10 +20,12 @@ public class PlayerView extends JPanel {
     private Player p;
 
     public PlayerView(Player p) {
-        setLayout(new BoxLayout(null, BoxLayout.Y_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.p = p;
+        tla = Frame.getFrames()[0];
         setImage(false);
+        av.setSize(10, 50);
         av.setIcon(avatar);
         name.setText(p.getName());
         saidStitches.setText("Angesagt: "+p.getSaidStitches());
@@ -48,11 +53,8 @@ public class PlayerView extends JPanel {
         } else {
             path = "./Resources/avatar.png";
         }
-        try {
-            avatar = new ImageIcon(getClass().getResource(path));
-        } catch (Exception e) {
-            System.out.println("Image not found!");
-        }
+        ImageIcon ic = new ImageIcon(path);
+        avatar = Utility.resizeIcon(ic, 100, 100);
     }
 
     public void setHisTurn(boolean hisTurn) {
