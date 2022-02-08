@@ -23,7 +23,7 @@ Broadcasts:
  LS: Letzter Stich
  RP: Setzt die spielbaren Karten zurück
 
-model.Server zu Clients:
+Server zu Clients:
  NF: Namen fragen
  ID: ID des eignen Spielers
  HA: Hand des Spielers
@@ -33,7 +33,7 @@ model.Server zu Clients:
  SF: Stiche fragen
 
 
-Clients zu model.Server
+Clients zu Server
  NA: Namen angeben
  GK: Gespielte Karte
  TA: Trumpf ausgewählt
