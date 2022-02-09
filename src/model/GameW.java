@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class GameW extends Game implements Runnable {
+public class GameW implements Runnable {
 
     public int playerCount;        //Anzahl Mitspieler
     public int maxRounds;      //Maximale Rundenzahl
@@ -401,6 +401,14 @@ public class GameW extends Game implements Runnable {
         //TODO: Falscher Gewinner wird angezeigt?
         //server.gameOver(getWinner().getName(), getWinner().getId());
         server.update();
+    }
+
+    private void warten(long i) {
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            System.out.println("Waiting");
+        }
     }
 
     //Alternative Sortiermethode für eine Liste mit Karten, falls bei der normalen Methode Fehler auftreten

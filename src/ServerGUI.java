@@ -21,6 +21,7 @@ public class ServerGUI extends JPanel {
 
     public ServerGUI() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        g = new GameW();
         Font standard = new Font("Segoe UI", Font.PLAIN, 20);
         add(start);
         add(check);
@@ -49,7 +50,6 @@ public class ServerGUI extends JPanel {
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                g = new GameW();
                 g.setForbidden(!check.isSelected());
                 g.getServer().sendString("SG/");
                 g.start();

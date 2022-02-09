@@ -11,8 +11,8 @@ public class ServerMain {
 
     public static void createAndShowGUI() {
         ServerFrame gui = new ServerFrame();
-        gui.setSize(new Dimension(400, 150));
-        gui.setMinimumSize(new Dimension(400, 150));
+        gui.setSize(new Dimension(500, 200));
+        gui.setMinimumSize(new Dimension(500, 200));
         gui.setLocationRelativeTo(null);
         gui.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         ImageIcon icon = new ImageIcon("./Resources/icon.png");
