@@ -210,7 +210,7 @@ public class GUIClient extends Game implements MausReagierbar {
         return null;
     }
 
-    //Update-Methoden werden vom model.Server aufgerufen und aktualisieren die Spieloberfläche entsprechend
+    //Update-Methoden werden vom Server aufgerufen und aktualisieren die Spieloberfläche entsprechend
     public void updateTrump() {
         if(currentTrumpCard!=null && currentRound != (60/players.size())) {
             if(trumpCard!=null) {

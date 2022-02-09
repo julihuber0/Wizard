@@ -36,11 +36,25 @@ public class PlayerView extends JPanel {
         add(points);
     }
 
-    public void updateStats() {
-        name.setText(p.getName());
-        saidStitches.setText("Angesagt: "+p.getSaidStitches());
-        madeStitches.setText("Gemacht: "+p.getSaidStitches());
+    public void resetStats() {
+        saidStitches.setText("Angesagt: -");
+        madeStitches.setText("Gemacht: -");
+    }
+
+    public void updatePoints() {
         points.setText("Punkte: "+p.getPoints());
+    }
+
+    public void updateMadeStitches() {
+        madeStitches.setText("Gemacht: "+p.getSaidStitches());
+    }
+
+    public void updateSaidStitches() {
+        if(p.getSaidStitches()!=-1) {
+            saidStitches.setText("Angesagt: " + p.getSaidStitches());
+        } else {
+            saidStitches.setText("Angesagt: -");
+        }
     }
 
     public void setImage(boolean t) {
@@ -54,12 +68,12 @@ public class PlayerView extends JPanel {
         avatar = Utility.resizeIcon(ic, 100, 100);
     }
 
-    public void markPlayer() {
+    public void markPlayer(MarkerColor mc, boolean onTurn) {
         Thread marker = new Thread(new Runnable() {
             @Override
             public void run() {
                 String path;
-                if(p.getSaidStitches()==p.getCurrentStitches()) {
+                if(mc == MarkerColor.GREEN) {
                     path = "./Resources/avatarRight.png";
                 } else {
                     path = "./Resources/avatarWrong.png";
@@ -71,13 +85,13 @@ public class PlayerView extends JPanel {
                 } catch (InterruptedException e) {
                     System.out.println("Thread interrupted.");
                 }
-                setImage(false);
+                setImage(onTurn);
             }
         });
         marker.start();
     }
 
-    public void setHisTurn(boolean hisTurn) {
-        setImage(hisTurn);
+    public void setOnTurn(boolean onTurn) {
+        setImage(onTurn);
     }
 }

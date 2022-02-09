@@ -38,8 +38,11 @@ public class GUINew extends JFrame {
     private Text ownPoints;     //Eigene Punkte
     private Text t;     //Aktuelle Trumpffarbe
     private Bild trumpCard;     //Aktuelle Trumpfkarte
-    private Text cRound;        //Aktuelle Runde
-    private Text stitchSum;     //Summe der (bereits) angesagten Stiche
+    private TrumpView trump = new TrumpView();
+    //private Text cRound;        //Aktuelle Runde
+    private JLabel cRound = new JLabel();
+    //private Text stitchSum;     //Summe der (bereits) angesagten Stiche
+    private JLabel stitchSum = new JLabel();
     private Bild exit2;     //Exit-Button im Spiel
     private Rechteck lineSeparator;     //Trennlinie zwischen eigener Hand und aktuellem Stich
     private Rechteck sbBG;      //Hintergrund für das Scoreboard für den Game-Over-Screen
@@ -209,10 +212,11 @@ public class GUINew extends JFrame {
         opw = new OtherPlayersView(createSortedPlayerView());
         selfView = new PlayerView(players.get(relativeID[0]));
 
-        add(opw);
+        add(opw, BorderLayout.NORTH);
         add(selfView, BorderLayout.WEST);
         showOwnHand();
-        add(stitchImage);
+        add(stitchImage, BorderLayout.CENTER);
+        add(trump, BorderLayout.WEST);
     }
 
     private ArrayList<PlayerView> createSortedPlayerView() {
@@ -238,7 +242,7 @@ public class GUINew extends JFrame {
     }
 
     public void layCard(CardView cv) {
-        ownHand.removeCard(cv);
+        //ownHand.removeCard(cv);
         stitchImage.addCard(cv);
 
     }
@@ -246,5 +250,149 @@ public class GUINew extends JFrame {
     public void addPlayer(Player p) {
         players.add(p);
         lobby.addPlayerName(p);
+    }
+
+    public void updateTrump() {
+        if(currentTrumpCard != null && currentRound != (60/players.size())) {
+            trump.setTrumpCard(currentTrumpCard);
+        }
+    }
+
+    public void setTrumpColor(ColorW c) {
+        trump.setTrumpColor(c);
+    }
+
+    public void clearStitchImage() {
+        stitchImage.clearCards();
+    }
+
+    public void stitchMarker(int id) {
+        if(id==relativeID[0]) {
+            selfView.markPlayer(MarkerColor.GREEN, true);
+        } else {
+            for(int i = 0; i<players.size()-1; i++) {
+                if(id == relativeID[i+1]) {
+                    opw.markPlayer(i, MarkerColor.GREEN, true);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void markPlayers() {
+        for(Player p:players) {
+            if(p.getId()==idSelf) {
+                if(p.getSaidStitches() == p.getCurrentStitches()) {
+                    selfView.markPlayer(MarkerColor.GREEN, false);
+                } else {
+                    selfView.markPlayer(MarkerColor.RED, false);
+                }
+            }
+        }
+        for(int i = 0; i<players.size()-1; i++) {
+            for(Player p: players) {
+                if(p.getId()==relativeID[i+1]) {
+                    if(p.getSaidStitches()==p.getCurrentStitches()) {
+                        opw.markPlayer(i, MarkerColor.GREEN, false);
+                    } else {
+                        opw.markPlayer(i, MarkerColor.RED, false);
+                    }
+                }
+            }
+        }
+    }
+
+    public void updateRoundCounter() {
+        cRound.setText("Runde: "+currentRound);
+    }
+
+    public void updateStitchSum(int sum) {
+        if(sum != -1) {
+            stitchSum.setText("Stiche: "+sum);
+        } else {
+            stitchSum.setText("Stiche: -");
+        }
+    }
+
+    public void updatePoints() {
+        for (Player p : players) {
+            if (p.getId() == idSelf) {
+                selfView.updatePoints();
+            }
+        }
+        for (int i = 0; i < players.size() - 1; i++) {
+            for (Player p : players) {
+                if (p.getId() == relativeID[i + 1]) {
+                    opw.getPlayerView(i).updatePoints();
+                }
+            }
+        }
+    }
+
+    public void updateMadeStitches() {
+        for (Player p : players)
+            if (p.getId() == idSelf) {
+                selfView.updateMadeStitches();
+            }
+        for (int i = 0; i < players.size() - 1; i++) {
+            for (Player p : players) {
+                if (p.getId() == relativeID[i + 1]) {
+                    opw.getPlayerView(i).updateMadeStitches();
+                }
+            }
+        }
+    }
+
+    public void updateSaidStitches() {
+        for (Player p : players)
+            if (p.getId() == idSelf) {
+                selfView.updateSaidStitches();
+            }
+        for (int i = 0; i < players.size() - 1; i++) {
+            for (Player p : players) {
+                if (p.getId() == relativeID[i + 1]) {
+                    opw.getPlayerView(i).updateSaidStitches();
+                }
+            }
+        }
+    }
+
+    public void updateStitch() {
+        if(!stitch.isEmpty()) {
+            layCard(new CardView(stitch.get(stitch.size()-1)));
+        } else {
+            stitchImage.clearCards();
+        }
+    }
+
+    public void updateCurrentPlayerMarker() {
+        selfView.setOnTurn(false);
+        for(int i = 0; i<players.size()-1; i++) {
+            opw.getPlayerView(i).setOnTurn(false);
+        }
+        if(currentPlayerID==idSelf) {
+            selfView.setOnTurn(true);
+        } else {
+            for (int i = 0; i < players.size() - 1; i++) {
+                if (relativeID[i + 1] == currentPlayerID) {
+                    opw.getPlayerView(i).setOnTurn(true);
+                } else {
+                    opw.getPlayerView(i).setOnTurn(false);
+                }
+            }
+        }
+    }
+
+    public void resetStats() {
+        selfView.resetStats();
+        for(int i = 0; i<players.size()-1; i++) {
+            opw.getPlayerView(i).resetStats();
+        }
+        trump.setTrumpCard(null);
+    }
+
+    public void resetTrump() {
+        trump.setTrumpColor(null);
+        trump.setTrumpCard(null);
     }
 }

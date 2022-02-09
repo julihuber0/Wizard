@@ -1,5 +1,7 @@
 package view;
 
+import model.ColorW;
+
 import javax.swing.*;
 import java.awt.*;
 
