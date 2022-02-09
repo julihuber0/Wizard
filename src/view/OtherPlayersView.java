@@ -12,7 +12,7 @@ public class OtherPlayersView extends JPanel {
 
     public OtherPlayersView(ArrayList<PlayerView> playerView) {
         this.playerView = playerView;
-        setLayout(new FlowLayout(FlowLayout.CENTER, 40, 0));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 60, 0));
         for(PlayerView pv: playerView) {
             add(pv);
         }

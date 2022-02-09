@@ -23,8 +23,8 @@ public class PlayerView extends JPanel {
         setImage(MarkerColor.NONE);
         av.setIcon(avatar);
         name.setText(p.getName());
-        saidStitches.setText("Angesagt: " + p.getSaidStitches());
-        madeStitches.setText("Gemacht: " + p.getSaidStitches());
+        saidStitches.setText("Angesagt: ");
+        madeStitches.setText("Gemacht: -");
         points.setText("Punkte: " + p.getPoints());
 
         add(av);
@@ -43,23 +43,25 @@ public class PlayerView extends JPanel {
         points.setText("Punkte: " + p.getPoints());
     }
 
-    public void updateMadeStitches() {
-        if (p.getCurrentStitches() != -1) {
-            madeStitches.setText("Gemacht: " + p.getSaidStitches());
+    public void updateMadeStitches(int stitches) {
+        if (stitches != -1) {
+            madeStitches.setText("Gemacht: " + stitches);
         } else {
             madeStitches.setText("Gemacht: -");
         }
     }
 
-    public void updateSaidStitches() {
-        if (p.getSaidStitches() != -1) {
-            saidStitches.setText("Angesagt: " + p.getSaidStitches());
+    public void updateSaidStitches(int stitches) {
+        if (stitches != -1) {
+            saidStitches.setText("Angesagt: " + stitches);
         } else {
             saidStitches.setText("Angesagt: -");
         }
     }
 
     public void setImage(MarkerColor mc) {
+        av.setIcon(null);
+        av.setVisible(false);
         String path;
         if (mc == MarkerColor.BLUE) {
             path = "./Resources/avatarMarked.png";
@@ -73,6 +75,7 @@ public class PlayerView extends JPanel {
         ImageIcon ic = new ImageIcon(path);
         avatar = Utility.resizeIcon(ic, 100, 100);
         av.setIcon(avatar);
+        av.setVisible(true);
     }
 
     public void setOnTurn(boolean onTurn) {

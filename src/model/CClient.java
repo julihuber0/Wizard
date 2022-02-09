@@ -160,7 +160,8 @@ public class CClient extends Client {
                 gClient.resetStats();
                 //gClient.resetLastStitch();
                 gClient.stitch.clear();
-                gClient.clearStitchImage();
+                //gClient.clearStitchImage();
+                gClient.updateStitch();
                 gClient.updateStitchSum(-1);
                 break;
             case "TP":

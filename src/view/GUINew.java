@@ -242,6 +242,14 @@ public class GUINew extends JFrame {
         return cards;
     }
 
+    private ArrayList<CardView> createStitchView() {
+        ArrayList<CardView> cards = new ArrayList<>();
+        for (Card c : stitch) {
+            cards.add(new CardView(c));
+        }
+        return cards;
+    }
+
     public void showOwnHand() {
         Collections.sort(hand);
         ownHand = new OwnCardsView(createCardView(), this);
@@ -249,7 +257,6 @@ public class GUINew extends JFrame {
     }
 
     public void layCard(CardView cv) {
-        updateStitch();
         inputAllowed = false;
 
     }
@@ -273,10 +280,6 @@ public class GUINew extends JFrame {
 
     public void setTrumpColor(ColorW c) {
         trump.setTrumpColor(c);
-    }
-
-    public void clearStitchImage() {
-        stitchImage = new StitchView();
     }
 
     public void sleep(long millis) {
@@ -362,12 +365,12 @@ public class GUINew extends JFrame {
     public void updateMadeStitches() {
         for (Player p : players)
             if (p.getId() == idSelf) {
-                selfView.updateMadeStitches();
+                selfView.updateMadeStitches(p.getCurrentStitches());
             }
         for (int i = 0; i < players.size() - 1; i++) {
             for (Player p : players) {
                 if (p.getId() == relativeID[i + 1]) {
-                    opw.getPlayerView(i).updateMadeStitches();
+                    opw.getPlayerView(i).updateMadeStitches(p.getCurrentStitches());
                 }
             }
         }
@@ -376,25 +379,25 @@ public class GUINew extends JFrame {
     public void updateSaidStitches() {
         for (Player p : players)
             if (p.getId() == idSelf) {
-                selfView.updateSaidStitches();
+                selfView.updateSaidStitches(p.getSaidStitches());
             }
         for (int i = 0; i < players.size() - 1; i++) {
             for (Player p : players) {
                 if (p.getId() == relativeID[i + 1]) {
-                    opw.getPlayerView(i).updateSaidStitches();
+                    opw.getPlayerView(i).updateSaidStitches(p.getSaidStitches());
                 }
             }
         }
     }
 
     public void updateStitch() {
-        if (!stitch.isEmpty()) {
-            for (int i = 0; i < stitch.size(); i++) {
-                stitchImage.getStitch().get(i).setCard(stitch.get(i));
-            }
-        } else {
-            stitchImage = new StitchView();
+        for (int i = 0; i < 6; i++) {
+            stitchImage.getStitch().get(i).setCard(null);
         }
+        for (int i = 0; i < stitch.size(); i++) {
+            stitchImage.getStitch().get(i).setCard(stitch.get(i));
+        }
+
     }
 
     public void updateCurrentPlayerMarker() {

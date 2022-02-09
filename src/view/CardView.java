@@ -42,6 +42,8 @@ public class CardView extends JLabel {
         if(c!=null) {
             ImageIcon image = new ImageIcon("./Resources/" + c.getValue() + "_in_" + c.getColor() + ".png");
             setIcon(image);
+        } else {
+            setIcon(null);
         }
     }
 }
