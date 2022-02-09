@@ -1,29 +1,34 @@
 import model.GameW;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class ServerGUI extends JFrame {
+public class ServerGUI extends JPanel {
 
     private JButton start = new JButton("Starte Spiel");
     private JLabel ip = new JLabel();
-    private JLabel ip2;
+    private JLabel ip2 = new JLabel();
     private JCheckBox check = new JCheckBox("Stiche dürfen sich ausgehen");
 
     private GameW g;
-    private String ipadress;
-    private String ipadress2;
+    private String ipadress = "";
+    private String ipadress2 = "";
 
     public ServerGUI() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        Font standard = new Font("Segoe UI", Font.PLAIN, 20);
         add(start);
         add(check);
         add(ip);
         add(ip2);
+        check.setFont(standard);
+        ip.setFont(standard);
+        ip2.setFont(standard);
 
         try {
             URL myIP = new URL("http://myip.dnsomatic.com/");
@@ -39,13 +44,12 @@ public class ServerGUI extends JFrame {
         if(!ipadress2.isEmpty()) {
             ip2.setText(ipadress2);
         }
-
-        g.setForbidden(true);
         check.setFocusable(false);
 
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                g = new GameW();
                 g.setForbidden(!check.isSelected());
                 g.getServer().sendString("SG/");
                 g.start();

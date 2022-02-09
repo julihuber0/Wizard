@@ -10,11 +10,14 @@ public class ServerMain {
     }
 
     public static void createAndShowGUI() {
-        ServerGUI gui = new ServerGUI();
-        gui.setSize(new Dimension(1300, 690));
-        gui.setMinimumSize(new Dimension(600, 400));
+        ServerFrame gui = new ServerFrame();
+        gui.setSize(new Dimension(400, 150));
+        gui.setMinimumSize(new Dimension(400, 150));
         gui.setLocationRelativeTo(null);
         gui.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("./Resources/icon.png");
+        gui.setIconImage(icon.getImage());
+        gui.setTitle("Wizard-Server");
         gui.setVisible(true);
     }
 }
