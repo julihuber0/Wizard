@@ -11,11 +11,19 @@ public class LobbyView extends JPanel {
 
     public LobbyView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        for(int i = 0; i<6; i++) {
+            JLabel name = new JLabel();
+            names.add(name);
+            add(name);
+        }
     }
 
     public void addPlayerName(Player p) {
-        JLabel name = new JLabel(p.getName());
-        names.add(name);
-        add(name);
+        for(int i = 0; i<6; i++) {
+            if(names.get(i).getText().equals("")) {
+                names.get(i).setText(p.getName());
+                break;
+            }
+        }
     }
 }

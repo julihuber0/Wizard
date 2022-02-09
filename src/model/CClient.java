@@ -8,10 +8,10 @@ import java.util.ArrayList;
 public class CClient extends Client {
 
     private String name;
-    private GUIClient gClient;
+    private GUINew gClient;
     private GUINew gClientNew;
 
-    public CClient(String ipAdress, GUIClient gClient) {
+    public CClient(String ipAdress, GUINew gClient) {
         //Verbinde dich mit der übergebenen IP-Adresse und Port 7654.
         //Port 7654 ist willkürlich gewählt. Wichtig ist,
         //  - dass die Portnummer größer als 1024 ist.
@@ -19,8 +19,8 @@ public class CClient extends Client {
         super(ipAdress, 7654);
         this.gClient = gClient;
 
-        //Warten, bis die Verbindung zum model.Server steht:
-        //   Achtung: Wenn kein model.Server gefunden werden kann,
+        //Warten, bis die Verbindung zum Server steht:
+        //   Achtung: Wenn kein Server gefunden werden kann,
         //            friert dieser Konstruktor ein!
         warteAufVerbindung();
 
@@ -29,7 +29,7 @@ public class CClient extends Client {
     @Override
     public void verbindungBeendet() {
         super.verbindungBeendet();
-        gClient.disconnected("*Der* model.Server");
+        gClient.disconnected("*Der* Server");
     }
 
     @Override
@@ -131,7 +131,7 @@ public class CClient extends Client {
                 //gClient.showPlayerInList(s[0], Integer.parseInt(s[1]));
                 //gClient.players.add(new Player(s[0], Integer.parseInt(s[1])));
                 //gClient.updateNames();
-                gClientNew.addPlayer(new Player(s[0], Integer.parseInt(s[1])));
+                gClient.addPlayer(new Player(s[0], Integer.parseInt(s[1])));
                 break;
 
             case "GO":
@@ -158,7 +158,7 @@ public class CClient extends Client {
 
                 gClient.hand.clear();
                 gClient.resetStats();
-                gClient.resetLastStitch();
+                //gClient.resetLastStitch();
                 gClient.stitch.clear();
                 gClient.clearStitchImage();
                 gClient.updateStitchSum(-1);
@@ -177,7 +177,7 @@ public class CClient extends Client {
                 break;
 
             case "LS":
-                gClient.updateLastStitch(content);
+                //gClient.updateLastStitch(content);
                 break;
             case "RP":
                 gClient.resetPlayableCards();

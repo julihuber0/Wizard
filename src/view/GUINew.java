@@ -185,7 +185,7 @@ public class GUINew extends JFrame {
     }
 
     //Gibt den Spieler mit der übergebenen ID zurück
-    private Player getPlayerByID(int id) {
+    public Player getPlayerByID(int id) {
         for (Player p : players) {
             if (p.getId() == id) {
                 return p;
@@ -217,6 +217,8 @@ public class GUINew extends JFrame {
         showOwnHand();
         add(stitchImage, BorderLayout.CENTER);
         add(trump, BorderLayout.WEST);
+        add(cRound, BorderLayout.EAST);
+        add(stitchSum, BorderLayout.EAST);
     }
 
     private ArrayList<PlayerView> createSortedPlayerView() {
@@ -394,5 +396,19 @@ public class GUINew extends JFrame {
     public void resetTrump() {
         trump.setTrumpColor(null);
         trump.setTrumpCard(null);
+    }
+
+    public void gameOver(String nameWinner, int playerID) {
+        int winningPoints = 0;
+        for (Player p : players) {
+            if (p.getId() == playerID) {
+                winningPoints = p.getPoints();
+            }
+        }
+        Utility.showInfoDialog(nameWinner+ " hat mit "+winningPoints+ "Punkten gewonnen.");
+    }
+
+    public String getInputName() {
+        return Utility.askInput("Name eingeben:");
     }
 }

@@ -814,7 +814,7 @@ public class GUIClient extends Game implements MausReagierbar {
             case 0:     //Beitreten-Button
                 if (join.sichtbar()) {
                     String ipAdress = getInputIP();
-                    cClient = new CClient(ipAdress, this);
+                    //cClient = new CClient(ipAdress, this);
                     join.sichtbarSetzen(false);
                     exit.sichtbarSetzen(false);
                     logo.sichtbarSetzen(false);

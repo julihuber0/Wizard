@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class GameW extends Game implements MausReagierbar, Runnable {
+public class GameW extends Game implements Runnable {
 
     public int playerCount;        //Anzahl Mitspieler
     public int maxRounds;      //Maximale Rundenzahl
@@ -23,86 +23,25 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     public int currentPlayerID = 0;
     public int dealerID = -1;
     private Server server;
-    private String ipadress;
-    private String ipadress2 = "";
     public int forbiddenNumber;
     public boolean forbidden = true;
 
-    //GUI Elements
-    private Maus maus;
-    private Text startButton;
-    private Text displayIP;
-    private Text displayIP2;
-    private Text forbiddenN;
-    private Text switcher;
 
     private Scanner s = new Scanner(System.in);
     private int setPlayerCount = -1;
 
     public GameW() {
-        super(550, 300, "Wizard-model.Server", false, false);
-        super.iconSetzen(new Bild("Resources/icon.png"));
         run();
 
         server = new Server(this);
-        maus = new Maus(new Bild(0, 0, "Resources/pointer.png"), new Punkt(0, 0));
-        mausAnmelden(maus);
-        startButton = new Text("Starte Spiel", 100, 100, "Segoe UI", 20);
-        wurzel.add(startButton);
-        startButton.sichtbarSetzen(true);
-        maus.anmelden(this, startButton, 0);
-        forbiddenN = new Text("Stiche dürfen sich aufgehen:", 250, 100, "Segoe UI", 20);
-        wurzel.add(forbiddenN);
-        switcher = new Text("Aus", 250, 130, "Segoe UI", 15);
-        wurzel.add(switcher);
-        maus.anmelden(this, switcher, 1);
-
-        //IP-Adresse ausgeben
-        try {
-            URL myIP = new URL("http://myip.dnsomatic.com/");
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(myIP.openStream())
-            );
-            ipadress = in.readLine();
-        } catch (Exception e) {
-            ipadress = "Fehler beim Anzeigen der eigenen IP-Adresse.";
-            ipadress2 = "Der model.Server startet ganz normal.";
-        }
-
-        displayIP = new Text("IP: " + ipadress, 40, 200, "Segoe UI", 20);
-        wurzel.add(displayIP);
-        displayIP.sichtbarSetzen(true);
-
-        if (!ipadress2.isEmpty()) {
-            displayIP2 = new Text(ipadress2, 40, 240, "Segoe UI", 20);
-            wurzel.add(displayIP2);
-            displayIP2.sichtbarSetzen(true);
-        }
     }
 
-    public void mausReagieren(int code) {
-        switch (code) {
-            case 0:
-                server.sendString("SG/");
-                start();
-                break;
-            case 1:
-                if(forbidden)
-                {
-                    forbidden = false;
-                    switcher.setzeInhalt("An");
-                    break;
-                }
-                else
-                {
-                    forbidden = true;
-                    switcher.setzeInhalt("Aus");
-                    break;
-                }
-            default:
-                System.out.println("lel");
-                break;
-        }
+    public void setForbidden(boolean f) {
+        forbidden = f;
+    }
+
+    public Server getServer() {
+        return server;
     }
 
     public void addPlayer(Player p) {
@@ -534,9 +473,5 @@ public class GameW extends Game implements MausReagierbar, Runnable {
     @Override
     public void run() {
         System.out.println("Fred läuft");
-    }
-
-    public static void main(String[] args) {
-        GameW gameW = new GameW();
     }
 }

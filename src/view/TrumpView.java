@@ -12,14 +12,13 @@ public class TrumpView extends JPanel {
 
     public TrumpView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(trump);
-        add(trumpColor);
     }
 
     public void setTrumpCard(Card c) {
         if(c!=null) {
             trump.setVisible(true);
             trump = new CardView(c);
+            add(trump);
         } else {
             trump.setVisible(false);
 
@@ -29,6 +28,7 @@ public class TrumpView extends JPanel {
     public void setTrumpColor(ColorW c) {
         if(c != null) {
             trumpColor.setText("Trumpf: "+ColorW.toString(c));
+            add(trumpColor);
         } else {
             trumpColor.setText("Trumpf: -");
         }
