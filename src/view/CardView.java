@@ -11,57 +11,37 @@ import java.io.IOException;
 
 import model.*;
 
-public class CardView extends JPanel {
+public class CardView extends JLabel {
 
-    private Card card;
-    private BufferedImage im;
-    private boolean isPlayable;
+    private Card c;
+    private boolean playable;
 
     public CardView(Card c) {
-        card = c;
-        setImage();
-    }
-
-    public Card getCard() {
-        return card;
-    }
-
-    public void setCard(Card card) {
-        this.card = card;
-    }
-
-    public void setPlayable(boolean playable) {
-        isPlayable = playable;
-    }
-
-    public boolean getPlayable() {
-        return isPlayable;
-    }
-
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        g2.fillOval(10,10,0,0);
-        g2.setColor(Color.BLACK);
-        if(isPlayable) {
-            g2.drawImage(im, 50, 50, null);
-        } else {
-            float alpha = 0.5f;
-            AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
-            g2.setComposite(ac);
-            g2.drawImage(im, 50, 50, null);
+        super();
+        this.c = c;
+        if(c!=null) {
+            ImageIcon image = new ImageIcon("./Resources/" + c.getValue() + "_in_" + c.getColor() + ".png");
+            setIcon(image);
         }
     }
 
-    public void setImage() {
-        String path =
-                "./Resources/" + card.getValue() + "_in_" + card.getColor() + ".png";
-        try {
-            im = ImageIO.read(new File(path));
-            repaint();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public Card getCard() {
+        return c;
+    }
+
+    public void setPlayable(boolean playable) {
+        this.playable = playable;
+    }
+
+    public boolean getPlayable() {
+        return playable;
+    }
+
+    public void setCard(Card c) {
+        this.c = c;
+        if(c!=null) {
+            ImageIcon image = new ImageIcon("./Resources/" + c.getValue() + "_in_" + c.getColor() + ".png");
+            setIcon(image);
         }
     }
 }

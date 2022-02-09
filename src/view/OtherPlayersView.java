@@ -18,10 +18,6 @@ public class OtherPlayersView extends JPanel {
         }
     }
 
-    public void markPlayer(int index, MarkerColor mc, boolean onTurn) {
-        playerView.get(index).markPlayer(mc, onTurn);
-    }
-
     public PlayerView getPlayerView(int index) {
         return playerView.get(index);
     }

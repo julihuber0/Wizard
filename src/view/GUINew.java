@@ -109,8 +109,9 @@ public class GUINew extends JFrame {
     }
 
     public void resetPlayableCards() {
-        for (int i = 0; i < allowedCards.length; i++) {
-            allowedCards[i] = true;
+        ArrayList<CardView> hand = ownHand.getOwnHand();
+        for (CardView cv : hand) {
+            cv.setPlayable(false);
         }
     }
 
@@ -133,11 +134,11 @@ public class GUINew extends JFrame {
         if (forbidden <= -1) {
             return Utility.askInput("Gewünschte Stichzahl eingeben.");
         }
-        return Utility.askInput("Gewünschte Stichzahl eingeben (nicht "+forbidden+"):");
+        return Utility.askInput("Gewünschte Stichzahl eingeben (nicht " + forbidden + "):");
     }
 
     public void requestCard() {
-        inputAllowed = false;
+        inputAllowed = true;
         updatePlayableCards();
     }
 
@@ -203,7 +204,7 @@ public class GUINew extends JFrame {
     }
 
     public void disconnected(String name) {
-        Utility.showInfoDialog(name+ "hat das Spiel verlassen!");
+        Utility.showInfoDialog(name + " hat das Spiel verlassen!");
     }
 
     public void startGame() {
@@ -212,26 +213,30 @@ public class GUINew extends JFrame {
         opw = new OtherPlayersView(createSortedPlayerView());
         selfView = new PlayerView(players.get(relativeID[0]));
 
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        add(leftPanel, BorderLayout.WEST);
+
         add(opw, BorderLayout.NORTH);
-        add(selfView, BorderLayout.WEST);
+        leftPanel.add(selfView);
         showOwnHand();
         add(stitchImage, BorderLayout.CENTER);
-        add(trump, BorderLayout.WEST);
-        add(cRound, BorderLayout.EAST);
-        add(stitchSum, BorderLayout.EAST);
+        leftPanel.add(trump);
+        //add(cRound, BorderLayout.EAST);
+        //add(stitchSum, BorderLayout.EAST);
     }
 
     private ArrayList<PlayerView> createSortedPlayerView() {
         ArrayList<PlayerView> playerView = new ArrayList<>();
-        for(int i = 0; i < players.size(); i++) {
-            playerView.add(new PlayerView(players.get(relativeID[i+1])));
+        for (int i = 0; i < players.size() - 1; i++) {
+            playerView.add(new PlayerView(players.get(relativeID[i + 1])));
         }
         return playerView;
     }
 
     private ArrayList<CardView> createCardView() {
         ArrayList<CardView> cards = new ArrayList<>();
-        for(Card c:hand) {
+        for (Card c : hand) {
             cards.add(new CardView(c));
         }
         return cards;
@@ -244,18 +249,24 @@ public class GUINew extends JFrame {
     }
 
     public void layCard(CardView cv) {
-        //ownHand.removeCard(cv);
-        stitchImage.addCard(cv);
+        updateStitch();
+        inputAllowed = false;
 
     }
 
     public void addPlayer(Player p) {
         players.add(p);
-        lobby.addPlayerName(p);
+        updateNames();
+    }
+
+    public void updateNames() {
+        for (int i = 0; i < players.size(); i++) {
+            lobby.addPlayerName(players.get(i), i);
+        }
     }
 
     public void updateTrump() {
-        if(currentTrumpCard != null && currentRound != (60/players.size())) {
+        if (currentTrumpCard != null && currentRound != (60 / players.size())) {
             trump.setTrumpCard(currentTrumpCard);
         }
     }
@@ -265,16 +276,28 @@ public class GUINew extends JFrame {
     }
 
     public void clearStitchImage() {
-        stitchImage.clearCards();
+        stitchImage = new StitchView();
+    }
+
+    public void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void stitchMarker(int id) {
-        if(id==relativeID[0]) {
-            selfView.markPlayer(MarkerColor.GREEN, true);
+        if (id == relativeID[0]) {
+            selfView.setImage(MarkerColor.GREEN);
+            sleep(2200);
+            selfView.setImage(MarkerColor.NONE);
         } else {
-            for(int i = 0; i<players.size()-1; i++) {
-                if(id == relativeID[i+1]) {
-                    opw.markPlayer(i, MarkerColor.GREEN, true);
+            for (int i = 0; i < players.size() - 1; i++) {
+                if (id == relativeID[i + 1]) {
+                    opw.getPlayerView(i).setImage(MarkerColor.GREEN);
+                    sleep(2200);
+                    opw.getPlayerView(i).setImage(MarkerColor.NONE);
                     break;
                 }
             }
@@ -282,35 +305,40 @@ public class GUINew extends JFrame {
     }
 
     public void markPlayers() {
-        for(Player p:players) {
-            if(p.getId()==idSelf) {
-                if(p.getSaidStitches() == p.getCurrentStitches()) {
-                    selfView.markPlayer(MarkerColor.GREEN, false);
+        for (Player p : players) {
+            if (p.getId() == idSelf) {
+                if (p.getSaidStitches() == p.getCurrentStitches()) {
+                    selfView.setImage(MarkerColor.GREEN);
                 } else {
-                    selfView.markPlayer(MarkerColor.RED, false);
+                    selfView.setImage(MarkerColor.RED);
                 }
             }
         }
-        for(int i = 0; i<players.size()-1; i++) {
-            for(Player p: players) {
-                if(p.getId()==relativeID[i+1]) {
-                    if(p.getSaidStitches()==p.getCurrentStitches()) {
-                        opw.markPlayer(i, MarkerColor.GREEN, false);
+        for (int i = 0; i < players.size() - 1; i++) {
+            for (Player p : players) {
+                if (p.getId() == relativeID[i + 1]) {
+                    if (p.getSaidStitches() == p.getCurrentStitches()) {
+                        opw.getPlayerView(i).setImage(MarkerColor.GREEN);
                     } else {
-                        opw.markPlayer(i, MarkerColor.RED, false);
+                        opw.getPlayerView(i).setImage(MarkerColor.RED);
                     }
                 }
             }
         }
+        sleep(2400);
+        selfView.setImage(MarkerColor.NONE);
+        for (int i = 0; i < players.size() - 1; i++) {
+            opw.getPlayerView(i).setImage(MarkerColor.NONE);
+        }
     }
 
     public void updateRoundCounter() {
-        cRound.setText("Runde: "+currentRound);
+        cRound.setText("Runde: " + currentRound);
     }
 
     public void updateStitchSum(int sum) {
-        if(sum != -1) {
-            stitchSum.setText("Stiche: "+sum);
+        if (sum != -1) {
+            stitchSum.setText("Stiche: " + sum);
         } else {
             stitchSum.setText("Stiche: -");
         }
@@ -360,19 +388,21 @@ public class GUINew extends JFrame {
     }
 
     public void updateStitch() {
-        if(!stitch.isEmpty()) {
-            layCard(new CardView(stitch.get(stitch.size()-1)));
+        if (!stitch.isEmpty()) {
+            for (int i = 0; i < stitch.size(); i++) {
+                stitchImage.getStitch().get(i).setCard(stitch.get(i));
+            }
         } else {
-            stitchImage.clearCards();
+            stitchImage = new StitchView();
         }
     }
 
     public void updateCurrentPlayerMarker() {
         selfView.setOnTurn(false);
-        for(int i = 0; i<players.size()-1; i++) {
+        for (int i = 0; i < players.size() - 1; i++) {
             opw.getPlayerView(i).setOnTurn(false);
         }
-        if(currentPlayerID==idSelf) {
+        if (currentPlayerID == idSelf) {
             selfView.setOnTurn(true);
         } else {
             for (int i = 0; i < players.size() - 1; i++) {
@@ -387,7 +417,7 @@ public class GUINew extends JFrame {
 
     public void resetStats() {
         selfView.resetStats();
-        for(int i = 0; i<players.size()-1; i++) {
+        for (int i = 0; i < players.size() - 1; i++) {
             opw.getPlayerView(i).resetStats();
         }
         trump.setTrumpCard(null);
@@ -405,7 +435,7 @@ public class GUINew extends JFrame {
                 winningPoints = p.getPoints();
             }
         }
-        Utility.showInfoDialog(nameWinner+ " hat mit "+winningPoints+ "Punkten gewonnen.");
+        Utility.showInfoDialog(nameWinner + " hat mit " + winningPoints + "Punkten gewonnen.");
     }
 
     public String getInputName() {

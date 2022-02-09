@@ -14,10 +14,12 @@ public class ServerGUI extends JPanel {
     private JLabel ip = new JLabel();
     private JLabel ip2 = new JLabel();
     private JCheckBox check = new JCheckBox("Stiche dürfen sich ausgehen");
+    private JButton quit = new JButton("Beenden");
 
     private GameW g;
     private String ipadress = "";
     private String ipadress2 = "";
+    Thread game;
 
     public ServerGUI() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -47,13 +49,10 @@ public class ServerGUI extends JPanel {
         }
         check.setFocusable(false);
 
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                g.setForbidden(!check.isSelected());
-                g.getServer().sendString("SG/");
-                g.start();
-            }
+        start.addActionListener(e -> {
+            g.setForbidden(!check.isSelected());
+            g.getServer().sendString("SG/");
+            g.start();
         });
 
     }

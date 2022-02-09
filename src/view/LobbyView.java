@@ -18,12 +18,7 @@ public class LobbyView extends JPanel {
         }
     }
 
-    public void addPlayerName(Player p) {
-        for(int i = 0; i<6; i++) {
-            if(names.get(i).getText().equals("")) {
-                names.get(i).setText(p.getName());
-                break;
-            }
-        }
+    public void addPlayerName(Player p, int index) {
+        names.get(index).setText(p.getName());
     }
 }

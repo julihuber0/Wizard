@@ -25,8 +25,10 @@ public class OwnCardsView extends JPanel {
                     if(mainGUI.getInputAllowed()) {
                         CardView cv = (CardView) e.getSource();
                         if(cv.getPlayable()) {
+                            System.out.println("Yeet");
                             mainGUI.layCard(cv);
                             mainGUI.getCClient().playCard(cv.getCard());
+                            removeCard(cv);
                         }
                     }
                 }
@@ -62,7 +64,10 @@ public class OwnCardsView extends JPanel {
     public void setPlayableCards(boolean[] playableCards) {
         for(int i = 0; i<cards.size(); i++) {
             cards.get(i).setPlayable(playableCards[i]);
-            cards.get(i).repaint();
         }
+    }
+
+    public ArrayList<CardView> getOwnHand() {
+        return cards;
     }
 }

@@ -13,7 +13,7 @@ public class Main {
         gui.setSize(new Dimension(1300, 690));
         gui.setMinimumSize(new Dimension(600, 400));
         gui.setLocationRelativeTo(null);
-        gui.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ImageIcon icon = new ImageIcon("./Resources/icon.png");
         gui.setIconImage(icon.getImage());
         gui.setTitle("Wizard");

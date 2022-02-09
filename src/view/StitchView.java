@@ -10,17 +10,14 @@ public class StitchView extends JPanel {
 
     public StitchView() {
         setLayout(new FlowLayout());
-    }
-
-    public void addCard(CardView cv) {
-        cards.add(cv);
-        add(cv);
-    }
-
-    public void clearCards() {
-        for(CardView cv:cards) {
-            cv.setVisible(false);
+        for(int i = 0; i<6; i++) {
+            CardView cv = new CardView(null);
+            cards.add(cv);
+            add(cv);
         }
-        cards.clear();
+    }
+
+    public ArrayList<CardView> getStitch() {
+        return cards;
     }
 }
