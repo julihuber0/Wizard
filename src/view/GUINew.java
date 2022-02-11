@@ -444,4 +444,8 @@ public class GUINew extends JFrame {
     public String getInputName() {
         return Utility.askInput("Name eingeben:");
     }
+
+    public void shutdown() {
+        cClient.verbindungSchliessen();
+    }
 }

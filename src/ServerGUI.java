@@ -19,7 +19,8 @@ public class ServerGUI extends JPanel {
     private GameW g;
     private String ipadress = "";
     private String ipadress2 = "";
-    Thread stop;
+    Thread game;
+    boolean isStarted = false;
 
     public ServerGUI() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -29,7 +30,6 @@ public class ServerGUI extends JPanel {
         add(check);
         add(ip);
         add(ip2);
-        add(quit);
         check.setFont(standard);
         ip.setFont(standard);
         ip2.setFont(standard);
@@ -45,17 +45,19 @@ public class ServerGUI extends JPanel {
             ipadress2 = "Der Server startet ganz normal.";
         }
         ip.setText(ipadress);
-        if(!ipadress2.isEmpty()) {
+        if (!ipadress2.isEmpty()) {
             ip2.setText(ipadress2);
         }
         check.setFocusable(false);
 
         start.addActionListener(e -> {
-            g.setForbidden(!check.isSelected());
-            g.getServer().sendString("SG/");
-            g.start();
+            start.setVisible(false);
+            game = new Thread(() -> {
+                g.setForbidden(!check.isSelected());
+                g.getServer().sendString("SG/");
+                g.start();
+            });
+            game.start();
         });
-
-        stop = new Thread(() -> quit.addActionListener(e -> System.exit(0)));
     }
 }
