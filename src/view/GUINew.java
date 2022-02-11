@@ -109,8 +109,8 @@ public class GUINew extends JFrame {
     }
 
     public void resetPlayableCards() {
-        ArrayList<CardView> hand = ownHand.getOwnHand();
-        for (CardView cv : hand) {
+        ArrayList<CardPanel> hand = ownHand.getOwnHand();
+        for (CardPanel cv : hand) {
             cv.setPlayable(false);
         }
     }
@@ -234,10 +234,10 @@ public class GUINew extends JFrame {
         return playerView;
     }
 
-    private ArrayList<CardView> createCardView() {
-        ArrayList<CardView> cards = new ArrayList<>();
+    private ArrayList<CardPanel> createCardView() {
+        ArrayList<CardPanel> cards = new ArrayList<>();
         for (Card c : hand) {
-            cards.add(new CardView(c));
+            cards.add(new CardPanel(c));
         }
         return cards;
     }
@@ -256,7 +256,7 @@ public class GUINew extends JFrame {
         add(ownHand, BorderLayout.SOUTH);
     }
 
-    public void layCard(CardView cv) {
+    public void layCard() {
         inputAllowed = false;
 
     }

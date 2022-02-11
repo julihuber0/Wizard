@@ -6,18 +6,18 @@ import java.util.ArrayList;
 
 public class StitchView extends JPanel {
 
-    private ArrayList<CardView> cards = new ArrayList<>();
+    private ArrayList<CardPanel> cards = new ArrayList<>();
 
     public StitchView() {
         setLayout(new FlowLayout());
         for(int i = 0; i<6; i++) {
-            CardView cv = new CardView(null);
+            CardPanel cv = new CardPanel(null);
             cards.add(cv);
             add(cv);
         }
     }
 
-    public ArrayList<CardView> getStitch() {
+    public ArrayList<CardPanel> getStitch() {
         return cards;
     }
 }

@@ -10,23 +10,23 @@ import java.util.ArrayList;
 
 public class OwnCardsView extends JPanel {
 
-    private ArrayList<CardView> cards;
+    private ArrayList<CardPanel> cards;
     private GUINew mainGUI;
 
-    public OwnCardsView(ArrayList<CardView> cards, GUINew mainGUI) {
+    public OwnCardsView(ArrayList<CardPanel> cards, GUINew mainGUI) {
         setLayout(new FlowLayout());
         this.mainGUI = mainGUI;
         this.cards = cards;
 
-        for(CardView c: cards) {
+        for(CardPanel c: cards) {
             c.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if(mainGUI.getInputAllowed()) {
-                        CardView cv = (CardView) e.getSource();
+                        CardPanel cv = (CardPanel) e.getSource();
                         if(cv.getPlayable()) {
                             System.out.println("Yeet");
-                            mainGUI.layCard(cv);
+                            mainGUI.layCard();
                             mainGUI.getCClient().playCard(cv.getCard());
                             removeCard(cv);
                         }
@@ -57,7 +57,7 @@ public class OwnCardsView extends JPanel {
         }
     }
 
-    public void removeCard(CardView cv) {
+    public void removeCard(CardPanel cv) {
         cv.setVisible(false);
     }
 
@@ -67,7 +67,7 @@ public class OwnCardsView extends JPanel {
         }
     }
 
-    public ArrayList<CardView> getOwnHand() {
+    public ArrayList<CardPanel> getOwnHand() {
         return cards;
     }
 }

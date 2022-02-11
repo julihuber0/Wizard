@@ -19,7 +19,7 @@ public class ServerGUI extends JPanel {
     private GameW g;
     private String ipadress = "";
     private String ipadress2 = "";
-    Thread game;
+    Thread stop;
 
     public ServerGUI() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -29,6 +29,7 @@ public class ServerGUI extends JPanel {
         add(check);
         add(ip);
         add(ip2);
+        add(quit);
         check.setFont(standard);
         ip.setFont(standard);
         ip2.setFont(standard);
@@ -55,5 +56,6 @@ public class ServerGUI extends JPanel {
             g.start();
         });
 
+        stop = new Thread(() -> quit.addActionListener(e -> System.exit(0)));
     }
 }
