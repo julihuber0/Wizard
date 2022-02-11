@@ -280,7 +280,7 @@ public class GameW implements Runnable {
                 p.selectTrump();
                 p.setThread(Thread.currentThread());
                 System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Trumpfabfrage von "+p.getName());
-                try { //einschläfern, wird dann durch den model.ClientHandler geweckt
+                try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
                     //e.printStackTrace();
