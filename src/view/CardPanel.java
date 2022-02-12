@@ -29,7 +29,7 @@ public class CardPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
 
         if(c!=null) {
-            g2.drawImage(getCardImage(), 0, 0, 91*getScaleFactor(), 150+getScaleFactor(), null);
+            g2.drawImage(getCardImage(), 0, 0, (int) (91*getScaleFactor()), (int) (150*getScaleFactor()), null);
         }
     }
 
@@ -55,12 +55,13 @@ public class CardPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(91, 150);
+        return new Dimension((int) (91*getScaleFactor()), (int) (150*getScaleFactor()));
     }
 
-    private int getScaleFactor() {
-        JFrame jf = (JFrame) getTopLevelAncestor();
+    private double getScaleFactor() {
+        Frame jf = Frame.getFrames()[0];
         int dim = Math.min(jf.getHeight(), jf.getWidth());
-        return dim/1300;
+        System.out.println(dim);
+        return (dim/690)*2;
     }
 }
