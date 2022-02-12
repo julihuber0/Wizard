@@ -247,7 +247,7 @@ public class GUINew extends JFrame {
         cw = new ChatWindow(this);
         cw.setSize(400, 400);
         cw.setMinimumSize(new Dimension(400, 400));
-        cw.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        cw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         ImageIcon icon = new ImageIcon("./Resources/icon.png");
         cw.setIconImage(icon.getImage());
         cw.setTitle("Wizard-Chat");
@@ -262,13 +262,14 @@ public class GUINew extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
+                System.out.println("Closing");
                 resetChatWindow();
                 isOpened = false;
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
-
+                System.out.println("Closed");
             }
 
             @Override
