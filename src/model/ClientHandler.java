@@ -86,7 +86,8 @@ public class ClientHandler implements Empfaenger {
                 t.interrupt();
                 break;
             case "CS":
-
+                server.sendString("CN/" + content);
+                break;
             default:
                 break;
 
