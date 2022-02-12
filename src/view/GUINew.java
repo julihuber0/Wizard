@@ -446,6 +446,8 @@ public class GUINew extends JFrame {
     }
 
     public void shutdown() {
-        cClient.verbindungSchliessen();
+        if(cClient!=null) {
+            cClient.verbindungSchliessen();
+        }
     }
 }
