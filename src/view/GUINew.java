@@ -454,9 +454,13 @@ public class GUINew extends JFrame {
     }
 
     public void addMessage(String s) {
-        if(chat.size()>10) {
+        if(chat.size()>5) {
             chat.remove(0);
         }
         chat.add(s);
+    }
+
+    public String getDisplayName() {
+        return players.get(relativeID[0]).getName();
     }
 }
