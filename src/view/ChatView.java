@@ -21,7 +21,7 @@ public class ChatView extends JPanel {
     }
 
     public void updateChat(ArrayList<String> chat) {
-        for(int i = 5; i>=10-chat.size(); i--) {
+        for(int i = 9; i>=10-chat.size(); i--) {
             msg[i].setText(chat.get(i-10+chat.size()));
         }
     }
