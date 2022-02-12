@@ -245,8 +245,8 @@ public class GUINew extends JFrame {
 
     private void createAndShowChat() {
         cw = new ChatWindow(this);
-        cw.setSize(400, 400);
-        cw.setMinimumSize(new Dimension(400, 400));
+        cw.setSize(new Dimension(400, 300));
+        cw.setMinimumSize(new Dimension(400, 300));
         cw.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         ImageIcon icon = new ImageIcon("./Resources/icon.png");
         cw.setIconImage(icon.getImage());
@@ -518,7 +518,7 @@ public class GUINew extends JFrame {
     }
 
     public void addMessage(String s) {
-        if(chat.size()>5) {
+        if(chat.size()>9) {
             chat.remove(0);
         }
         chat.add(s);
