@@ -12,8 +12,7 @@ public class ChatSender extends JPanel {
 
     public ChatSender(GUINew gui) {
         setLayout(new FlowLayout());
-        Frame f = Frame.getFrames()[1];
-        msg.setPreferredSize(new Dimension(f.getWidth()-200, 40));
+        msg.setPreferredSize(new Dimension(250, 40));
         send.addActionListener(e -> {
             if(!msg.getText().isEmpty()) {
                 gui.getCClient().sendChatmessage(msg.getText());

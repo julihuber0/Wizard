@@ -523,6 +523,7 @@ public class GUINew extends JFrame {
         }
         chat.add(s);
         if(cw != null) {
+            System.out.println("Updated Chat in GUI");
             cw.updateChat(chat);
         }
     }
