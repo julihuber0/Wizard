@@ -87,6 +87,7 @@ public class ClientHandler implements Empfaenger {
                 break;
             case "CS":
                 String stringCS = "CN/" + content;
+                System.out.println("CS: " + stringCS);
                 server.sendString(stringCS);
                 break;
             default:
