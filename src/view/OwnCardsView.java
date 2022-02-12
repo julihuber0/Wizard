@@ -14,7 +14,8 @@ public class OwnCardsView extends JPanel {
     private GUINew mainGUI;
 
     public OwnCardsView(ArrayList<CardPanel> cards, GUINew mainGUI) {
-        setLayout(new FlowLayout());
+        //setLayout(new FlowLayout());
+        setLayout(new GridLayout(2,10));
         this.mainGUI = mainGUI;
         this.cards = cards;
 
