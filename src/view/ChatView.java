@@ -15,6 +15,7 @@ public class ChatView extends JPanel {
             add(msg[i]);
         }
         sender = new ChatSender(gui);
+        add(sender);
     }
 
     public void updateChat(ArrayList<String> chat) {

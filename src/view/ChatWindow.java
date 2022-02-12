@@ -5,15 +5,14 @@ import java.util.ArrayList;
 
 public class ChatWindow extends JFrame {
 
-    private ArrayList<String> chat;
-    private ChatView cw;
+    private ChatView cv;
 
     public ChatWindow(GUINew gui) {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        cw = new ChatView(gui);
+        cv = new ChatView(gui);
+        add(cv);
     }
 
     public void updateChat(ArrayList<String> chat) {
-        cw.updateChat(chat);
+        cv.updateChat(chat);
     }
 }
