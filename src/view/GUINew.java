@@ -84,7 +84,7 @@ public class GUINew extends JFrame {
 
     private ArrayList<String> chat = new ArrayList<>();
     private ChatWindow cw;
-    private JButton openChat = new JButton();
+    private JButton openChat = new JButton("Chat");
     private boolean isOpened = false;
 
 
@@ -236,7 +236,6 @@ public class GUINew extends JFrame {
             if(!isOpened) {
                 isOpened = true;
                 javax.swing.SwingUtilities.invokeLater(() -> createAndShowChat());
-                cw.updateChat(chat);
             }
         });
         add(openChat, BorderLayout.EAST);
@@ -253,6 +252,7 @@ public class GUINew extends JFrame {
         cw.setIconImage(icon.getImage());
         cw.setTitle("Wizard-Chat");
         cw.setVisible(true);
+        cw.updateChat(chat);
 
         cw.addWindowListener(new WindowListener() {
             @Override
