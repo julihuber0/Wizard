@@ -232,15 +232,19 @@ public class GUINew extends JFrame {
         add(stitchImage, BorderLayout.CENTER);
         leftPanel.add(trump);
 
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        add(rightPanel, BorderLayout.EAST);
+
         openChat.addActionListener(e -> {
             if(!isOpened) {
                 isOpened = true;
                 javax.swing.SwingUtilities.invokeLater(() -> createAndShowChat());
             }
         });
-        add(openChat, BorderLayout.EAST);
-        //add(cRound, BorderLayout.EAST);
-        //add(stitchSum, BorderLayout.EAST);
+        rightPanel.add(openChat);
+        rightPanel.add(cRound);
+        rightPanel.add(stitchSum);
     }
 
     private void createAndShowChat() {
