@@ -2,8 +2,12 @@ package view;
 
 import model.Card;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class CardPanel extends JPanel {
 
@@ -23,10 +27,9 @@ public class CardPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        Frame f = Frame.getFrames()[0];
 
         if(c!=null) {
-            g2.drawImage(getCardImage(), 0, 0, 100, 150, null);
+            g2.drawImage(getCardImage(), 0, 0, 91*getScaleFactor(), 150+getScaleFactor(), null);
         }
     }
 
@@ -48,5 +51,16 @@ public class CardPanel extends JPanel {
 
     public boolean getPlayable() {
         return playable && c != null;
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(91, 150);
+    }
+
+    private int getScaleFactor() {
+        JFrame jf = (JFrame) getTopLevelAncestor();
+        int dim = Math.min(jf.getHeight(), jf.getWidth());
+        return dim/1300;
     }
 }
