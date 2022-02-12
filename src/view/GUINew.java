@@ -4,6 +4,8 @@ import ea.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -78,7 +80,10 @@ public class GUINew extends JFrame {
     public int idSelf = 0; //ID des Spielers, der man selbst ist
     public String lastStitchString = "";
 
-    public ArrayList<String> chat = new ArrayList<>();
+    private ArrayList<String> chat = new ArrayList<>();
+    private ChatWindow cw;
+    private JButton openChat = new JButton();
+    private boolean isOpened = false;
 
 
     public GUINew() {
@@ -224,6 +229,15 @@ public class GUINew extends JFrame {
         showOwnHand();
         add(stitchImage, BorderLayout.CENTER);
         leftPanel.add(trump);
+
+        openChat.addActionListener(e -> {
+            if(!isOpened) {
+                isOpened = true;
+                cw = new ChatWindow(this);
+                cw.updateChat(chat);
+            }
+        });
+        add(openChat, BorderLayout.EAST);
         //add(cRound, BorderLayout.EAST);
         //add(stitchSum, BorderLayout.EAST);
     }
@@ -458,6 +472,13 @@ public class GUINew extends JFrame {
             chat.remove(0);
         }
         chat.add(s);
+        if(cw != null) {
+            cw.updateChat(chat);
+        }
+    }
+
+    public void resetChatWindow() {
+        cw = null;
     }
 
     public String getDisplayName() {

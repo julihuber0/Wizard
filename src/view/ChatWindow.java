@@ -6,9 +6,14 @@ import java.util.ArrayList;
 public class ChatWindow extends JFrame {
 
     private ArrayList<String> chat;
+    private ChatView cw;
 
-    public ChatWindow(ArrayList<String> chat) {
+    public ChatWindow(GUINew gui) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.chat = chat;
+        cw = new ChatView(gui);
+    }
+
+    public void updateChat(ArrayList<String> chat) {
+        cw.updateChat(chat);
     }
 }
