@@ -85,6 +85,7 @@ public class ClientHandler implements Empfaenger {
                 player.saidStitches = Integer.parseInt(content);
                 t.interrupt();
                 break;
+            case "CS":
 
             default:
                 break;

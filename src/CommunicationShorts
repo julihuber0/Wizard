@@ -22,6 +22,7 @@ Broadcasts:
  MP: Markiere Spieler am Rundenende entsprechend, ob richtig angesagt wurde oder nicht
  LS: Letzter Stich
  RP: Setzt die spielbaren Karten zurück
+ CN: Chatnachricht geschrieben
 
 Server zu Clients:
  NF: Namen fragen
@@ -38,6 +39,7 @@ Clients zu Server
  GK: Gespielte Karte
  TA: Trumpf ausgewählt
  SA: Stiche angesagt
+ CS: Chatnachticht senden
 
 
 

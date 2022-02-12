@@ -177,6 +177,9 @@ public class CClient extends Client {
                 gClient.resetPlayableCards();
                 break;
 
+            case "CN":
+                gClient.addMessage(content);
+                break;
             /*
              *  Clientspezifisches
              */
@@ -241,6 +244,11 @@ public class CClient extends Client {
     public void playCard(Card c) {
         String ks = "GK/" + c.getValue() + ";" + c.getColor();
         super.sendeString(ks);
+    }
+
+    public void sendChatmessage(String message) {
+        String cs = "CS/" + gClient.getDisplayName() + message;
+        sendeString(cs);
     }
 
 }
