@@ -1,6 +1,8 @@
 package model;
 
 import ea.*;
+
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 public class Server  implements  Runnable{
@@ -14,7 +16,11 @@ public class Server  implements  Runnable{
         new Thread(this).start();
         System.out.println("Kommt hier an");
         this.game = game;
+
+        BufferedImage bi;
+
     }
+
 
     /**
      * Bietet Broadcast (BC) Methoden an
