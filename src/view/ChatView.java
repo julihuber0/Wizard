@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class ChatView extends JPanel {
@@ -11,7 +12,8 @@ public class ChatView extends JPanel {
     public ChatView(GUINew gui) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         for(int i = 0; i<6; i++) {
-            msg[i] = new JLabel();
+            msg[i] = new JLabel(" ");
+            msg[i].setFont(msg[i].getFont().deriveFont(Font.PLAIN));
             add(msg[i]);
         }
         sender = new ChatSender(gui);
@@ -19,9 +21,6 @@ public class ChatView extends JPanel {
     }
 
     public void updateChat(ArrayList<String> chat) {
-        for(int i = 0; i<6; i++) {
-            msg[i].setText("");
-        }
         for(int i = 5; i>=6-chat.size(); i--) {
             msg[i].setText(chat.get(i-6+chat.size()));
         }

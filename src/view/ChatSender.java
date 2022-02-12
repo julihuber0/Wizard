@@ -16,6 +16,7 @@ public class ChatSender extends JPanel {
         send.addActionListener(e -> {
             if(!msg.getText().isEmpty()) {
                 gui.getCClient().sendChatmessage(msg.getText());
+                msg.setText("");
             }
         });
         add(msg);
