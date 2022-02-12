@@ -262,14 +262,12 @@ public class GUINew extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                System.out.println("Closing");
                 resetChatWindow();
                 isOpened = false;
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
-                System.out.println("Closed");
             }
 
             @Override
