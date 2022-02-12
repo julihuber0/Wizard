@@ -14,10 +14,9 @@ public class ChatSender extends JPanel {
     public ChatSender(GUINew gui) {
         this.gui = gui;
         setLayout(new FlowLayout());
-        send.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+        send.addActionListener(e -> {
+            if(!msg.getText().isEmpty()) {
+                gui.getCClient().sendChatmessage(msg.getText());
             }
         });
     }

@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -233,13 +235,62 @@ public class GUINew extends JFrame {
         openChat.addActionListener(e -> {
             if(!isOpened) {
                 isOpened = true;
-                cw = new ChatWindow(this);
+                javax.swing.SwingUtilities.invokeLater(() -> createAndShowChat());
                 cw.updateChat(chat);
             }
         });
         add(openChat, BorderLayout.EAST);
         //add(cRound, BorderLayout.EAST);
         //add(stitchSum, BorderLayout.EAST);
+    }
+
+    private void createAndShowChat() {
+        cw = new ChatWindow(this);
+        cw.setSize(400, 400);
+        cw.setMinimumSize(new Dimension(400, 400));
+        cw.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        ImageIcon icon = new ImageIcon("./Resources/icon.png");
+        cw.setIconImage(icon.getImage());
+        cw.setTitle("Wizard-Chat");
+        cw.setVisible(true);
+
+        cw.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                resetChatWindow();
+                isOpened = false;
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
     }
 
     private ArrayList<PlayerView> createSortedPlayerView() {
