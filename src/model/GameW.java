@@ -311,7 +311,7 @@ public class GameW implements Runnable {
                 //ToDo @Tobi wtf
                 players.get(i).setThread(Thread.currentThread());
                 System.out.println(Thread.currentThread().getName() + " eingeschläfert bei Stichabfrage von "+players.get(i).getName());
-                try { //einschläfern, wird dann durch den model.ClientHandler geweckt
+                try { //einschläfern, wird dann durch den ClientHandler geweckt
                     this.wait();
                 } catch (InterruptedException e) {
                     //e.printStackTrace();

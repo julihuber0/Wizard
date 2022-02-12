@@ -11,15 +11,10 @@ public class CardPanel extends JPanel {
     private boolean playable;
 
     public CardPanel(Card c) {
-        this.c = c;
-        if(c != null) {
-            setCard(c);
-        }
+        setCard(c);
     }
 
     public void setCard(Card c) {
-        if(c != null) {
-        }
         this.c = c;
         repaint();
     }
@@ -31,7 +26,7 @@ public class CardPanel extends JPanel {
         Frame f = Frame.getFrames()[0];
 
         if(c!=null) {
-            g2.drawImage(getCardImage(), 0, 0, f.getWidth()/5, f.getWidth()/5, null);
+            g2.drawImage(getCardImage(), 0, 0, 100, 150, null);
         }
     }
 

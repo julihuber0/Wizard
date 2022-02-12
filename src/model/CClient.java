@@ -9,7 +9,6 @@ public class CClient extends Client {
 
     private String name;
     private GUINew gClient;
-    private GUINew gClientNew;
 
     public CClient(String ipAdress, GUINew gClient) {
         //Verbinde dich mit der übergebenen IP-Adresse und Port 7654.
@@ -24,12 +23,6 @@ public class CClient extends Client {
         //            friert dieser Konstruktor ein!
         warteAufVerbindung();
 
-    }
-
-    @Override
-    public void verbindungBeendet() {
-        super.verbindungBeendet();
-        gClient.disconnected("*Der* Server");
     }
 
     @Override

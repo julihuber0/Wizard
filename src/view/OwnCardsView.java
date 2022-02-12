@@ -25,7 +25,6 @@ public class OwnCardsView extends JPanel {
                     if(mainGUI.getInputAllowed()) {
                         CardPanel cv = (CardPanel) e.getSource();
                         if(cv.getPlayable()) {
-                            System.out.println("Yeet");
                             mainGUI.layCard();
                             mainGUI.getCClient().playCard(cv.getCard());
                             removeCard(cv);
