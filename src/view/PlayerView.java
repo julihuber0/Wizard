@@ -6,9 +6,7 @@ import model.*;
 
 public class PlayerView extends JPanel {
 
-    private ImageIcon avatar;
-
-    private JLabel av = new JLabel();
+    private AvatarView avatar = new AvatarView(MarkerColor.NONE);
     private JLabel name = new JLabel();
     private JLabel saidStitches = new JLabel();
     private JLabel madeStitches = new JLabel();
@@ -20,14 +18,12 @@ public class PlayerView extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.p = p;
-        setImage(MarkerColor.NONE);
-        av.setIcon(avatar);
         name.setText(p.getName());
         saidStitches.setText("Angesagt: ");
         madeStitches.setText("Gemacht: -");
         points.setText("Punkte: " + p.getPoints());
 
-        add(av);
+        add(avatar);
         add(name);
         add(saidStitches);
         add(madeStitches);
@@ -60,22 +56,7 @@ public class PlayerView extends JPanel {
     }
 
     public void setImage(MarkerColor mc) {
-        av.setIcon(null);
-        av.setVisible(false);
-        String path;
-        if (mc == MarkerColor.BLUE) {
-            path = "./Resources/avatarMarked.png";
-        } else if (mc == MarkerColor.NONE) {
-            path = "./Resources/avatar.png";
-        } else if (mc == MarkerColor.GREEN) {
-            path = "./Resources/avatarRight.png";
-        } else {
-            path = "./Resources/avatarWrong.png";
-        }
-        ImageIcon ic = new ImageIcon(path);
-        avatar = Utility.resizeIcon(ic, 100, 100);
-        av.setIcon(avatar);
-        av.setVisible(true);
+        avatar.setMarkerColor(mc);
     }
 
     public void setOnTurn(boolean onTurn) {

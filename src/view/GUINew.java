@@ -78,6 +78,8 @@ public class GUINew extends JFrame {
     public int idSelf = 0; //ID des Spielers, der man selbst ist
     public String lastStitchString = "";
 
+    public ArrayList<String> chat = new ArrayList<>();
+
 
     public GUINew() {
         setLayout(new BorderLayout());
@@ -449,5 +451,12 @@ public class GUINew extends JFrame {
         if(cClient!=null) {
             cClient.verbindungSchliessen();
         }
+    }
+
+    public void addMessage(String s) {
+        if(chat.size()>10) {
+            chat.remove(0);
+        }
+        chat.add(s);
     }
 }
