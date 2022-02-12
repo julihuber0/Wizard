@@ -60,8 +60,7 @@ public class CardPanel extends JPanel {
 
     private double getScaleFactor() {
         Frame jf = Frame.getFrames()[0];
-        int dim = Math.min(jf.getHeight(), jf.getWidth());
-        System.out.println(dim);
-        return (dim/690)*2;
+        double dim = Math.min(jf.getHeight(), jf.getWidth());
+        return (dim/690);
     }
 }
