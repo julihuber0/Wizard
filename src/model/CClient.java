@@ -247,8 +247,10 @@ public class CClient extends Client {
     }
 
     public void sendChatmessage(String message) {
-        String cs = "CS/" + "<html><strong>" + gClient.getDisplayName() + "</strong>: " + message + "</html>";
+        String cs = "CS/" + "<html><p style=\"font-weight:9000;\">" + gClient.getDisplayName() + "</p>: " + message + "</html>";
         sendeString(cs);
+        String cs2 = "CS/" + "<html><p style=\"font-weight:900;\">" + gClient.getDisplayName() + "</p>: " + message + "</html>";
+        sendeString(cs2);
     }
 
 }
