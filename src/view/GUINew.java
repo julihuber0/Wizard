@@ -238,7 +238,7 @@ public class GUINew extends JFrame {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         add(rightPanel, BorderLayout.EAST);
 
-        openChat.setIcon(new ImageIcon("./Resources/block.png"));
+        openChat.setIcon(new ImageIcon("./Resources/dot.png"));
 
         openChat.addActionListener(e -> {
             if(!isOpened) {
