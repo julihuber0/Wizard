@@ -86,6 +86,8 @@ public class GUINew extends JFrame {
     private ChatWindow cw;
     private JButton openChat = new JButton("Chat");
     private boolean isOpened = false;
+    private boolean isMuted = false;
+    private JCheckBox mute = new JCheckBox();
 
 
     public GUINew() {
@@ -242,9 +244,18 @@ public class GUINew extends JFrame {
                 javax.swing.SwingUtilities.invokeLater(() -> createAndShowChat());
             }
         });
+
+        mute.setIcon(new ImageIcon("./Resources/speaker.png"));
+        mute.setSelectedIcon(new ImageIcon("./Resources/speakerMuted.png"));
+
+        rightPanel.add(mute);
         rightPanel.add(openChat);
         rightPanel.add(cRound);
         rightPanel.add(stitchSum);
+    }
+
+    public boolean getMuted() {
+        return mute.isSelected();
     }
 
     private void createAndShowChat() {
