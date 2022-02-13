@@ -101,8 +101,14 @@ public class GUINew extends JFrame {
         add(mainButtons, BorderLayout.CENTER);
     }
 
-    public void setCClient(CClient c) {
-        cClient = c;
+    public void setCClient(String ipAddress) {
+        cClient = new CClient(ipAddress,this);
+        sleep(5000);
+        if(cClient.verbindungGescheitert()){
+            Utility.showInfoDialog("Verbindung zu der eingegebenen IP-Adresse fehlgeschlagen!");
+            return;
+        }
+        joinGame();
     }
 
     public CClient getCClient() {
@@ -113,7 +119,7 @@ public class GUINew extends JFrame {
         return inputAllowed;
     }
 
-    public void joinGame() {
+    private void joinGame() {
         title.setVisible(false);
         mainButtons.setVisible(false);
         add(lobby, BorderLayout.CENTER);

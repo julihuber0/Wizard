@@ -22,8 +22,7 @@ public class ButtonBar extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String ipAddress = Utility.askInput("Server-IP-Adresse");
-                mainGUI.setCClient(new CClient(ipAddress, mainGUI));
-                mainGUI.joinGame();
+                mainGUI.setCClient(ipAddress);
             }
         });
         exit.addActionListener(new ActionListener() {
