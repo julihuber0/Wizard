@@ -131,6 +131,7 @@ public class ClientHandler implements Empfaenger {
 
     //Nur um schnell was zu testen, falls nötig
     public static void main(String[] args) {
+        System.setProperty("file.encoding", "UTF-8");
         String p = "Ü";
         String test = "\u00DC";
         System.out.println(p);
