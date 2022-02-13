@@ -28,24 +28,26 @@ public class Utility {
         JOptionPane.showMessageDialog(null, msg);
     }
 
-    public static void playPingSound() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void playPingSound(){
         File f = new File("./Resources/notification.wav");
-        AudioInputStream audioIn = AudioSystem.getAudioInputStream(f);
-        Clip clip = AudioSystem.getClip();
-        clip.open(audioIn);
-        clip.start();
-    }
-
-    public static void main(String[] args){
+        AudioInputStream audioIn = null;
         try {
-            playPingSound();
-        } catch (UnsupportedAudioFileException e) {
+            audioIn = AudioSystem.getAudioInputStream(f);
+        } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        Clip clip = null;
+        try {
+            clip = AudioSystem.getClip();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
-
+        try {
+            clip.open(audioIn);
+        } catch (LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+        clip.start();
     }
+
 }

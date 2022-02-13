@@ -2,6 +2,7 @@ package view;
 
 import ea.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -86,7 +87,6 @@ public class GUINew extends JFrame {
     private ChatWindow cw;
     private JButton openChat = new JButton("Chat");
     private boolean isOpened = false;
-    private boolean isMuted = false;
     private JCheckBox mute = new JCheckBox();
 
 
@@ -237,6 +237,13 @@ public class GUINew extends JFrame {
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         add(rightPanel, BorderLayout.EAST);
+
+        try {
+            Image img = ImageIO.read(getClass().getResource("./Resources/block.png"));
+            openChat.setIcon(new ImageIcon(img));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
 
         openChat.addActionListener(e -> {
             if(!isOpened) {
@@ -538,8 +545,12 @@ public class GUINew extends JFrame {
         }
         chat.add(s);
         if(cw != null) {
-            System.out.println("Updated Chat in GUI");
             cw.updateChat(chat);
+        }
+        else {
+            if(!getMuted()) {
+                Utility.playPingSound();
+            }
         }
     }
 
