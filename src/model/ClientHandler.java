@@ -2,6 +2,7 @@ package model;
 
 import ea.*;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -89,6 +90,8 @@ public class ClientHandler implements Empfaenger {
                 String stringCS = "CN/" + content;
                 System.out.println("CS: " + stringCS);
                 server.sendString(stringCS);
+                String testCS = "\u00DC";
+                server.sendString(testCS);
                 break;
             default:
                 break;
@@ -127,34 +130,10 @@ public class ClientHandler implements Empfaenger {
 
     //Nur um schnell was zu testen, falls nötig
     public static void main(String[] args) {
-        //EngineAlpha.main(null);
-        ArrayList<Card> test = new ArrayList<>();
-
-        test.add(new Card(3, ColorW.YELLOW));
-        test.add(new Card(9, ColorW.GREEN));
-        test.add(new Card(11, ColorW.BLUE));
-        test.add(new Card(11,ColorW.GREEN));
-        test.add(new Card(0, ColorW.RED));
-        test.add(new Card(12,ColorW.GREEN));
-        test.add(new Card(13,ColorW.BLUE));
-        test.add(new Card(14, ColorW.GREEN));
-        test.add(new Card(7,ColorW.BLUE));
-        test.add(new Card(8,ColorW.BLUE));
-        test.add(new Card(14, ColorW.YELLOW));
-
-        ArrayList<Card> clone = new ArrayList<>(test);
-        Collections.sort(test);
-
-        ArrayList<Card> sorted = new ArrayList<>(GameW.sortCardArray(clone));
-
-        for(Card c:test) {
-            System.out.println(c.value + " in " + c.colorW);
-        }
-        System.out.println("---------------------------------------------------");
-        for(Card c:sorted) {
-            System.out.println(c.value + " in " + c.colorW);
-        }
-
+        String p = "Ü";
+        String test = "\u00DC";
+        System.out.println(p);
+        System.out.println(test);
     }
 
 }
