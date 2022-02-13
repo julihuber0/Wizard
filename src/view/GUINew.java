@@ -536,17 +536,16 @@ public class GUINew extends JFrame {
     }
 
     public void addMessage(String s) {
+        System.out.println(mute.isSelected());
         if(chat.size()>9) {
             chat.remove(0);
         }
         chat.add(s);
         if(cw != null) {
             cw.updateChat(chat);
-        }
-        else {
-            if(!getMuted()) {
-                Utility.playPingSound();
-            }
+        } else if(mute.isSelected()) {
+            Utility.playPingSound();
+            openChat.setIcon(new ImageIcon("./Resources/dot.png"));
         }
     }
 
