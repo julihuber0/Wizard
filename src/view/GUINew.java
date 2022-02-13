@@ -238,6 +238,8 @@ public class GUINew extends JFrame {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         add(rightPanel, BorderLayout.EAST);
 
+        openChat.setFocusable(false);
+
         openChat.addActionListener(e -> {
             if(!isOpened) {
                 isOpened = true;
@@ -544,7 +546,6 @@ public class GUINew extends JFrame {
         else {
             if(!getMuted()) {
                 Utility.playPingSound();
-                openChat.setIcon(new ImageIcon("./Resources/dot.png"));
             }
         }
     }
