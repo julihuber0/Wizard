@@ -238,12 +238,7 @@ public class GUINew extends JFrame {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         add(rightPanel, BorderLayout.EAST);
 
-        try {
-            Image img = ImageIO.read(getClass().getResource("./Resources/block.png"));
-            openChat.setIcon(new ImageIcon(img));
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        openChat.setIcon(new ImageIcon("./Resources/block.png"));
 
         openChat.addActionListener(e -> {
             if(!isOpened) {
