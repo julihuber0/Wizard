@@ -109,7 +109,6 @@ public class GUINew extends JFrame {
         else {
             joinGame();
         }
-
     }
 
     public CClient getCClient() {
