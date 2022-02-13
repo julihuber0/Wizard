@@ -17,7 +17,8 @@ public class PlayerView extends JPanel {
     private Player p;
 
     public PlayerView(Player p) {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new VerticalFlowLayout(FlowLayout.LEFT, FlowLayout.LEFT));
 
         this.p = p;
         name.setText(p.getName());

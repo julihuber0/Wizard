@@ -14,13 +14,13 @@ public class OwnCardsView extends JPanel {
     private GUINew mainGUI;
 
     public OwnCardsView(ArrayList<CardPanel> cards, GUINew mainGUI) {
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         //setLayout(new GridLayout(2,10));
         this.mainGUI = mainGUI;
         this.cards = cards;
 
         for(CardPanel c: cards) {
-            if(cards.size()<9) {
+            if(cards.size()>9) {
                 c.setHalfSize();
             }
             c.addMouseListener(new MouseListener() {

@@ -45,14 +45,17 @@ public class AvatarView extends JPanel {
         if(scalable) {
             Frame jf = Frame.getFrames()[0];
             double dim = Math.min(jf.getHeight(), jf.getWidth());
-            return (dim / 690);
+            double scale = dim / 690;
+            if(scale < 1) {
+                return scale;
+            }
         }
         return 1;
     }
 
     @Override
     public Dimension getPreferredSize() {
-        //return new Dimension((int) (100*getScaleFactor()), (int) (100*getScaleFactor()));
-        return new Dimension(100 , 100);
+        return new Dimension((int) (100*getScaleFactor()), (int) (100*getScaleFactor()));
+        //return new Dimension(200 , 200);
     }
 }
