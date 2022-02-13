@@ -11,6 +11,7 @@ public class ChatView extends JPanel {
 
     public ChatView(GUINew gui) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setAlignmentX(0.0f);
         for(int i = 0; i<10; i++) {
             msg[i] = new JLabel(" ");
             msg[i].setFont(msg[i].getFont().deriveFont(Font.PLAIN));
