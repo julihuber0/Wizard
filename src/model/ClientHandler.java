@@ -3,6 +3,7 @@ package model;
 import ea.*;
 
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -134,6 +135,7 @@ public class ClientHandler implements Empfaenger {
         String test = "\u00DC";
         System.out.println(p);
         System.out.println(test);
+        System.out.println(Charset.defaultCharset());
     }
 
 }
