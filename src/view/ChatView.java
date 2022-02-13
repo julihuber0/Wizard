@@ -10,7 +10,7 @@ public class ChatView extends JPanel {
     ChatSender sender;
 
     public ChatView(GUINew gui) {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new VerticalFlowLayout(FlowLayout.LEFT, FlowLayout.LEFT));
         for(int i = 0; i<10; i++) {
             msg[i] = new JLabel(" ");
             msg[i].setFont(msg[i].getFont().deriveFont(Font.PLAIN));

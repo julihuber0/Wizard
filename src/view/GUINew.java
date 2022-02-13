@@ -5,10 +5,7 @@ import ea.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -254,17 +251,13 @@ public class GUINew extends JFrame {
             }
         });
 
-        mute.setIcon(new ImageIcon("./Resources/speaker.png"));
-        mute.setSelectedIcon(new ImageIcon("./Resources/speakerMuted.png"));
+        mute.setIcon(Utility.resizeIcon(new ImageIcon("./Resources/speaker.png"), 35, 35));
+        mute.setSelectedIcon(Utility.resizeIcon(new ImageIcon("./Resources/speakerMuted.png"), 35, 35));
 
         rightPanel.add(mute);
         rightPanel.add(openChat);
         rightPanel.add(cRound);
         rightPanel.add(stitchSum);
-    }
-
-    public boolean getMuted() {
-        return mute.isSelected();
     }
 
     private void createAndShowChat() {

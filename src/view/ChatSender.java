@@ -11,7 +11,7 @@ public class ChatSender extends JPanel {
     private boolean textFocused = false;
 
     public ChatSender(GUINew gui) {
-        setLayout(new FlowLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT));
         msg.setPreferredSize(new Dimension(250, 25));
         send.addActionListener(e -> {
             if(!msg.getText().isEmpty()) {
