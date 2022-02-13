@@ -17,14 +17,7 @@ public class TrumpView extends JPanel {
     }
 
     public void setTrumpCard(Card c) {
-        if(c!=null) {
-            trump.setVisible(true);
-            trump.setCard(c);
-            add(trump);
-        } else {
-            trump.setVisible(false);
-
-        }
+        trump.setCard(c);
     }
 
     public void setTrumpColor(ColorW c) {

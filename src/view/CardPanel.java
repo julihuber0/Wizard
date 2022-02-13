@@ -2,17 +2,14 @@ package view;
 
 import model.Card;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class CardPanel extends JPanel {
 
     private Card c;
     private boolean playable;
+    private double firstScaleFactor = 1;
 
     public CardPanel(Card c) {
         setCard(c);
@@ -28,13 +25,13 @@ public class CardPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if(c!=null) {
-            g2.drawImage(getCardImage(), 0, 0, (int) (91*getScaleFactor()), (int) (150*getScaleFactor()), null);
+        if (c != null) {
+            g2.drawImage(getCardImage(), 0, 0, (int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()), null);
         }
     }
 
     private Image getCardImage() {
-        if(c!=null) {
+        if (c != null) {
             ImageIcon ic = new ImageIcon("./Resources/" + c.getValue() + "_in_" + c.getColor() + ".png");
             return ic.getImage();
         }
@@ -55,12 +52,21 @@ public class CardPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension((int) (91*getScaleFactor()), (int) (150*getScaleFactor()));
+        return new Dimension((int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()));
     }
 
     private double getScaleFactor() {
+
         Frame jf = Frame.getFrames()[0];
         double dim = Math.min(jf.getHeight(), jf.getWidth());
-        return (dim/690);
+        return (dim / 690)*firstScaleFactor;
+    }
+
+    public void setHalfSize() {
+        firstScaleFactor = 0.5;
+    }
+
+    public void setFullSize() {
+        firstScaleFactor = 1;
     }
 }

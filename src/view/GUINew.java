@@ -229,10 +229,10 @@ public class GUINew extends JFrame {
         add(leftPanel, BorderLayout.WEST);
 
         add(opw, BorderLayout.NORTH);
+        leftPanel.add(trump);
         leftPanel.add(selfView);
         showOwnHand();
         add(stitchImage, BorderLayout.CENTER);
-        leftPanel.add(trump);
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));

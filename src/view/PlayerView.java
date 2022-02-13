@@ -4,6 +4,8 @@ import javax.swing.*;
 
 import model.*;
 
+import java.awt.*;
+
 public class PlayerView extends JPanel {
 
     private AvatarView avatar = new AvatarView(MarkerColor.NONE);

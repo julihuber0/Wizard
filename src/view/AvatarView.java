@@ -5,7 +5,8 @@ import java.awt.*;
 
 public class AvatarView extends JPanel {
 
-    MarkerColor mc;
+    private MarkerColor mc;
+    private boolean scalable = true;
 
     public AvatarView(MarkerColor mc) {
         setMarkerColor(mc);
@@ -41,13 +42,17 @@ public class AvatarView extends JPanel {
     }
 
     private double getScaleFactor() {
-        Frame jf = Frame.getFrames()[0];
-        double dim = Math.min(jf.getHeight(), jf.getWidth());
-        return (dim/690);
+        if(scalable) {
+            Frame jf = Frame.getFrames()[0];
+            double dim = Math.min(jf.getHeight(), jf.getWidth());
+            return (dim / 690);
+        }
+        return 1;
     }
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension((int) (100*getScaleFactor()), (int) (100*getScaleFactor()));
+        //return new Dimension((int) (100*getScaleFactor()), (int) (100*getScaleFactor()));
+        return new Dimension(100 , 100);
     }
 }
