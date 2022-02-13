@@ -241,7 +241,7 @@ public class GUINew extends JFrame {
         openChat.setFocusable(false);
 
         openChat.addActionListener(e -> {
-            if(!isOpened) {
+            if (!isOpened) {
                 isOpened = true;
                 openChat.setIcon(null);
                 javax.swing.SwingUtilities.invokeLater(() -> createAndShowChat());
@@ -530,22 +530,23 @@ public class GUINew extends JFrame {
     }
 
     public void shutdown() {
-        if(cClient!=null) {
+        if (cClient != null) {
             cClient.verbindungSchliessen();
         }
     }
 
     public void addMessage(String s) {
-        System.out.println(mute.isSelected());
-        if(chat.size()>9) {
+        if (chat.size() > 9) {
             chat.remove(0);
         }
         chat.add(s);
-        if(cw != null) {
+        if (cw != null) {
             cw.updateChat(chat);
-        } else if(mute.isSelected()) {
-            Utility.playPingSound();
+        } else {
             openChat.setIcon(new ImageIcon("./Resources/dot.png"));
+            if (!mute.isSelected()) {
+                Utility.playPingSound();
+            }
         }
     }
 
