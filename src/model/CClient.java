@@ -3,6 +3,7 @@ package model;
 import ea.Client;
 import view.GUINew;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class CClient extends Client {
@@ -178,6 +179,7 @@ public class CClient extends Client {
                 break;
 
             case "CN":
+                System.out.println("Encoding:" + Charset.defaultCharset());
                 gClient.addMessage(content);
                 break;
             /*
