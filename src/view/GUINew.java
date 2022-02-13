@@ -103,12 +103,13 @@ public class GUINew extends JFrame {
 
     public void setCClient(String ipAddress) {
         cClient = new CClient(ipAddress,this);
-        sleep(5000);
-        if(cClient.verbindungGescheitert()){
+        if (cClient.verbindungGescheitert()) {
             Utility.showInfoDialog("Verbindung zu der eingegebenen IP-Adresse fehlgeschlagen!");
-            return;
         }
-        joinGame();
+        else {
+            joinGame();
+        }
+
     }
 
     public CClient getCClient() {
