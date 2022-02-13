@@ -91,6 +91,7 @@ public class ClientHandler implements Empfaenger {
                 String stringCS = "CN/" + content;
                 System.out.println("CS: " + stringCS);
                 server.sendString(stringCS);
+                System.out.println("Encoding: " + Charset.defaultCharset());
                 String testCS = "CN/Servernachricht: \u00DC";
                 server.sendString(testCS);
                 break;
