@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import model.*;
+import model.Sound;
 
 public class GUINew extends JFrame {
     //Grafische Elemente
@@ -555,5 +556,11 @@ public class GUINew extends JFrame {
 
     public String getDisplayName() {
         return players.get(relativeID[0]).getName();
+    }
+
+    public void playSound(String filename) {
+        if(!mute.isSelected()) {
+            Utility.playSound(filename);
+        }
     }
 }

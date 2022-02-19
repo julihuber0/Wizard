@@ -15,7 +15,7 @@ public class ChatSender extends JPanel {
         msg.setPreferredSize(new Dimension(250, 25));
         send.addActionListener(e -> {
             if(!msg.getText().isEmpty()) {
-                gui.getCClient().sendChatmessage(msg.getText());
+                gui.getCClient().sendChatMessage(msg.getText());
                 msg.setText("");
             }
         });
@@ -30,7 +30,7 @@ public class ChatSender extends JPanel {
             public void keyPressed(KeyEvent e) {
                 if(textFocused && e.getKeyCode() == 10) {
                     if(!msg.getText().isEmpty()) {
-                        gui.getCClient().sendChatmessage(msg.getText());
+                        gui.getCClient().sendChatMessage(msg.getText());
                         msg.setText("");
                     }
                 }

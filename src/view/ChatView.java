@@ -8,6 +8,7 @@ public class ChatView extends JPanel {
 
     JLabel[] msg = new JLabel[10];
     ChatSender sender;
+    QuickReactionBar reactionBar;
 
     public ChatView(GUINew gui) {
         setLayout(new VerticalFlowLayout(FlowLayout.LEFT, FlowLayout.LEFT));
@@ -17,7 +18,9 @@ public class ChatView extends JPanel {
             add(msg[i]);
         }
         sender = new ChatSender(gui);
+        reactionBar = new QuickReactionBar(gui);
         add(sender);
+        add(reactionBar);
     }
 
     public void updateChat(ArrayList<String> chat) {

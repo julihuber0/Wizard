@@ -50,4 +50,28 @@ public class Utility {
         clip.start();
     }
 
+    public static void playSound(String filename){
+        File f = new File("./Resources/"+filename);
+        AudioInputStream audioIn = null;
+        try {
+            audioIn = AudioSystem.getAudioInputStream(f);
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+        Clip clip = null;
+        try {
+            clip = AudioSystem.getClip();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+        try {
+            clip.open(audioIn);
+        } catch (LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(-6.0f);
+        clip.start();
+    }
+
 }

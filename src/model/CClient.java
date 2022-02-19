@@ -182,6 +182,11 @@ public class CClient extends Client {
                 System.out.println("Encoding:" + Charset.defaultCharset());
                 gClient.addMessage(content);
                 break;
+
+            case "PS":
+                gClient.playSound(content);
+                break;
+
             /*
              *  Clientspezifisches
              */
@@ -248,8 +253,13 @@ public class CClient extends Client {
         super.sendeString(ks);
     }
 
-    public void sendChatmessage(String message) {
+    public void sendChatMessage(String message) {
         sendeString("CS/" + "<html><strong><i>" + gClient.getDisplayName() + ": </i></strong>" + message + "</html>");
+    }
+
+    public void playSound(Sound s) {
+        sendeString("PS/"+s+".wav");
+        sendChatMessage(Sound.toString(s));
     }
 
 }
