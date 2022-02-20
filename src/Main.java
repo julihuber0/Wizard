@@ -15,9 +15,8 @@ public class Main {
     public static void createAndShowGUI() {
         GUINew gui = new GUINew();
         gui.setSize(new Dimension(1300, 690));
-        gui.setMinimumSize(new Dimension(600, 400));
+        gui.setMinimumSize(new Dimension(1300, 690));
         gui.setLocationRelativeTo(null);
-        gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ImageIcon icon = new ImageIcon("./Resources/icon.png");
         gui.setIconImage(icon.getImage());
         gui.setTitle("Wizard");
@@ -31,7 +30,13 @@ public class Main {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                gui.shutdown();
+                int result = Utility.showConfirmDialog("Beenden", "Wirklich beenden?");
+                if(result == JOptionPane.YES_OPTION) {
+                    gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    gui.shutdown();
+                } else if (result == JOptionPane.NO_OPTION) {
+                    gui.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                }
             }
 
             @Override

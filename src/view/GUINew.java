@@ -229,17 +229,24 @@ public class GUINew extends JFrame {
         selfView = new PlayerView(players.get(relativeID[0]));
 
         JPanel leftPanel = new JPanel();
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.setLayout(new VerticalFlowLayout());
         add(leftPanel, BorderLayout.WEST);
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new VerticalFlowLayout(FlowLayout.CENTER, FlowLayout.CENTER));
+        add(centerPanel, BorderLayout.CENTER);
 
         add(opw, BorderLayout.NORTH);
         leftPanel.add(trump);
         leftPanel.add(selfView);
-        showOwnHand();
-        add(stitchImage, BorderLayout.CENTER);
+        centerPanel.add(stitchImage);
+        //centerPanel.add(new SeparatorLine());
+        Collections.sort(hand);
+        ownHand = new OwnCardsView(createCardView(), this);
+        centerPanel.add(ownHand);
 
         JPanel rightPanel = new JPanel();
-        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setLayout(new VerticalFlowLayout());
         add(rightPanel, BorderLayout.EAST);
 
         openChat.setFocusable(false);
@@ -336,8 +343,7 @@ public class GUINew extends JFrame {
 
     public void showOwnHand() {
         Collections.sort(hand);
-        ownHand = new OwnCardsView(createCardView(), this);
-        add(ownHand, BorderLayout.SOUTH);
+        ownHand.initHand(createCardView());
     }
 
     public void layCard() {

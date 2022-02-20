@@ -24,9 +24,18 @@ public class CardPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        float alpha = 0.5f;
+        Composite cs = AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha);
 
         if (c != null) {
-            g2.drawImage(getCardImage(), 0, 0, (int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()), null);
+            if(c.getValue() == 20) {
+                g2.drawImage(getEmptyImage(), 0, 0, (int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()), null);
+            } else {
+                g2.drawImage(getCardImage(), 0, 0, (int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()), null);
+                if (!playable) {
+                    g2.setComposite(cs);
+                }
+            }
         }
     }
 
@@ -36,6 +45,11 @@ public class CardPanel extends JPanel {
             return ic.getImage();
         }
         return null;
+    }
+
+    private Image getEmptyImage() {
+        ImageIcon ic = new ImageIcon("./Resources/empty.png");
+        return ic.getImage();
     }
 
     public Card getCard() {
@@ -59,7 +73,11 @@ public class CardPanel extends JPanel {
 
         Frame jf = Frame.getFrames()[0];
         double dim = Math.min(jf.getHeight(), jf.getWidth());
-        return (dim / 690)*firstScaleFactor;
+        double scale = dim / 690;
+        if(scale<1) {
+            return scale * firstScaleFactor;
+        }
+        return firstScaleFactor;
     }
 
     public void setHalfSize() {

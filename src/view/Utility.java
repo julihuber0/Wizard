@@ -28,6 +28,10 @@ public class Utility {
         JOptionPane.showMessageDialog(null, msg);
     }
 
+    public static int showConfirmDialog(String msg, String header) {
+        return JOptionPane.showConfirmDialog(null, header, msg, JOptionPane.YES_NO_OPTION);
+    }
+
     public static void playPingSound(){
         File f = new File("./Resources/notification.wav");
         AudioInputStream audioIn = null;

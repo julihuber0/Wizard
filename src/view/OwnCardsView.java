@@ -1,6 +1,7 @@
 package view;
 
 import model.Card;
+import model.ColorW;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,13 +12,40 @@ import java.util.ArrayList;
 public class OwnCardsView extends JPanel {
 
     private ArrayList<CardPanel> cards;
+    private int cardCount;
     private GUINew mainGUI;
+    private CardPanel emptyCard = new CardPanel(new Card(20, ColorW.YELLOW));
 
     public OwnCardsView(ArrayList<CardPanel> cards, GUINew mainGUI) {
         setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
-        //setLayout(new GridLayout(2,10));
         this.mainGUI = mainGUI;
+        add(emptyCard);
+        initHand(cards);
+
+    }
+
+    public void removeCard(CardPanel cp) {
+        cp.setVisible(false);
+        cardCount--;
+        if(cardCount == 0) {
+            emptyCard.setVisible(true);
+        }
+    }
+
+    public void setPlayableCards(boolean[] playableCards) {
+        for(int i = 0; i<cards.size(); i++) {
+            cards.get(i).setPlayable(playableCards[i]);
+        }
+    }
+
+    public ArrayList<CardPanel> getOwnHand() {
+        return cards;
+    }
+
+    public void initHand(ArrayList<CardPanel> cards) {
+        emptyCard.setVisible(false);
         this.cards = cards;
+        cardCount = cards.size();
 
         for(CardPanel c: cards) {
             if(cards.size()>9) {
@@ -27,11 +55,11 @@ public class OwnCardsView extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if(mainGUI.getInputAllowed()) {
-                        CardPanel cv = (CardPanel) e.getSource();
-                        if(cv.getPlayable()) {
+                        CardPanel cp = (CardPanel) e.getSource();
+                        if(cp.getPlayable()) {
                             mainGUI.layCard();
-                            mainGUI.getCClient().playCard(cv.getCard());
-                            removeCard(cv);
+                            mainGUI.getCClient().playCard(cp.getCard());
+                            removeCard(cp);
                         }
                     }
                 }
@@ -58,19 +86,5 @@ public class OwnCardsView extends JPanel {
             });
             add(c);
         }
-    }
-
-    public void removeCard(CardPanel cv) {
-        cv.setVisible(false);
-    }
-
-    public void setPlayableCards(boolean[] playableCards) {
-        for(int i = 0; i<cards.size(); i++) {
-            cards.get(i).setPlayable(playableCards[i]);
-        }
-    }
-
-    public ArrayList<CardPanel> getOwnHand() {
-        return cards;
     }
 }
