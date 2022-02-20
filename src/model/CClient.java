@@ -183,7 +183,7 @@ public class CClient extends Client {
                 gClient.addMessage(content);
                 break;
 
-            case "PS":
+            case "SP":
                 gClient.playSound(content);
                 break;
 

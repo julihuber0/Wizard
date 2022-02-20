@@ -23,6 +23,7 @@ Broadcasts:
  LS: Letzter Stich
  RP: Setzt die spielbaren Karten zurück
  CN: Chatnachricht geschrieben
+ SP: Sound abgespielt
 
 Server zu Clients:
  NF: Namen fragen
@@ -39,7 +40,7 @@ Clients zu Server
  GK: Gespielte Karte
  TA: Trumpf ausgewählt
  SA: Stiche angesagt
- CN: Chatnachticht senden
+ CS: Chatnachticht senden
  PS: Sound abspielen
 
 
