@@ -17,8 +17,8 @@ Broadcasts:
  SG: Starte Game
  NR: Neue Runde starten
  TP: To Player (Spieler, der gestochen hat, wird kurz grün markiert)
- RC: Rundecounter
- SC: Gesamtzahl angesager Stiche
+ RC: Rundencounter
+ SC: Gesamtzahl angesagte Stiche
  MP: Markiere Spieler am Rundenende entsprechend, ob richtig angesagt wurde oder nicht
  LS: Letzter Stich
  RP: Setzt die spielbaren Karten zurück
@@ -40,7 +40,7 @@ Clients zu Server
  GK: Gespielte Karte
  TA: Trumpf ausgewählt
  SA: Stiche angesagt
- CS: Chatnachticht senden
+ CS: Chatnachricht senden
  PS: Sound abspielen
 
 
