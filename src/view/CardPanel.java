@@ -81,7 +81,7 @@ public class CardPanel extends JPanel {
     }
 
     public void setHalfSize() {
-        firstScaleFactor = 0.7;
+        firstScaleFactor = 0.85;
     }
 
     public void setFullSize() {
