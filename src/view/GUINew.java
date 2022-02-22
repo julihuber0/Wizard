@@ -234,7 +234,7 @@ public class GUINew extends JFrame {
         add(leftPanel, BorderLayout.WEST);
 
         JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new VerticalFlowLayout(FlowLayout.CENTER, FlowLayout.CENTER));
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         add(centerPanel, BorderLayout.CENTER);
 
         add(opw, BorderLayout.NORTH);
