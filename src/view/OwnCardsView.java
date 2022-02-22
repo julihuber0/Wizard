@@ -14,7 +14,7 @@ public class OwnCardsView extends JPanel {
     private ArrayList<CardPanel> cards;
     private int cardCount;
     private GUINew mainGUI;
-    private CardPanel emptyCard = new CardPanel(new Card(20, ColorW.YELLOW));
+    private CardPanel emptyCard = new CardPanel(new Card(20, ColorW.YELLOW), mainGUI.getInitScale());
 
     public OwnCardsView(ArrayList<CardPanel> cards, GUINew mainGUI) {
         setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));

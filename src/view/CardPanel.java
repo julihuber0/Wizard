@@ -9,10 +9,12 @@ public class CardPanel extends JPanel {
 
     private Card c;
     private boolean playable;
+    private double initScale;
     private double firstScaleFactor = 1;
 
-    public CardPanel(Card c) {
+    public CardPanel(Card c, double scale) {
         setCard(c);
+        initScale = scale;
     }
 
     public void setCard(Card c) {
@@ -70,21 +72,10 @@ public class CardPanel extends JPanel {
     }
 
     private double getScaleFactor() {
-
-        Frame jf = Frame.getFrames()[0];
-        double dim = Math.min(jf.getHeight(), jf.getWidth());
-        double scale = dim / 690;
-        if(scale<1) {
-            return scale * firstScaleFactor;
-        }
-        return firstScaleFactor;
+        return initScale * firstScaleFactor;
     }
 
     public void setHalfSize() {
         firstScaleFactor = 0.85;
-    }
-
-    public void setFullSize() {
-        firstScaleFactor = 1;
     }
 }

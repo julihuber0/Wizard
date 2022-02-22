@@ -87,17 +87,29 @@ public class GUINew extends JFrame {
     private JButton openChat = new JButton("Chat");
     private boolean isOpened = false;
     private JCheckBox mute = new JCheckBox();
+    private double initScale = 1;
 
 
     public GUINew() {
         setLayout(new BorderLayout());
-        //setBackground(new Color(57, 62, 195));
 
         title = new JLabel(cover);
         mainButtons = new ButtonBar(this);
 
         add(title, BorderLayout.NORTH);
         add(mainButtons, BorderLayout.CENTER);
+    }
+
+    public void setInitScale(double scale) {
+        initScale = scale;
+    }
+
+    public double getInitScale() {
+        return initScale;
+    }
+
+    public boolean getMuted() {
+        return mute.isSelected();
     }
 
     public void setCClient(String ipAddress) {
@@ -329,7 +341,7 @@ public class GUINew extends JFrame {
     private ArrayList<CardPanel> createCardView() {
         ArrayList<CardPanel> cards = new ArrayList<>();
         for (Card c : hand) {
-            cards.add(new CardPanel(c));
+            cards.add(new CardPanel(c, initScale));
         }
         return cards;
     }
@@ -562,9 +574,6 @@ public class GUINew extends JFrame {
             cw.updateChat(chat);
         } else {
             openChat.setIcon(new ImageIcon("./Resources/dot.png"));
-            if (!mute.isSelected()) {
-                Utility.playPingSound();
-            }
         }
     }
 

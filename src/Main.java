@@ -14,8 +14,8 @@ public class Main {
 
     public static void createAndShowGUI() {
         GUINew gui = new GUINew();
-        gui.setSize(new Dimension(1300, 690));
-        gui.setMinimumSize(new Dimension(1300, 690));
+        gui.setSize(new Dimension(1300, 730));
+        gui.setMinimumSize(new Dimension(1300, 730));
         gui.setLocationRelativeTo(null);
         ImageIcon icon = new ImageIcon("./Resources/icon.png");
         gui.setIconImage(icon.getImage());

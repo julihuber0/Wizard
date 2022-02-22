@@ -12,7 +12,7 @@ public class StitchView extends JPanel {
     public StitchView() {
         setLayout(new FlowLayout());
         for(int i = 0; i<6; i++) {
-            CardPanel cv = new CardPanel(null);
+            CardPanel cv = new CardPanel(null, 1);
             cards.add(cv);
             add(cv);
         }

@@ -2,6 +2,7 @@ package model;
 
 import ea.Client;
 import view.GUINew;
+import view.Utility;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -180,11 +181,13 @@ public class CClient extends Client {
 
             case "CN":
                 System.out.println("Encoding:" + Charset.defaultCharset());
+                playPingSound();
                 gClient.addMessage(content);
                 break;
 
             case "SP":
-                gClient.playSound(content);
+                //gClient.playSound(content);
+                executeSound(content);
                 break;
 
             /*
@@ -258,8 +261,20 @@ public class CClient extends Client {
     }
 
     public void playSound(Sound s) {
-        sendChatMessage(Sound.toString(s));
         sendeString("PS/"+s+".wav");
+        sendChatMessage(Sound.toString(s));
+    }
+
+    private void executeSound(String filename) {
+        if(!gClient.getMuted()) {
+            Utility.playSound(filename);
+        }
+    }
+
+    private void playPingSound() {
+        if(!gClient.getMuted()) {
+            Utility.playPingSound();
+        }
     }
 
 }

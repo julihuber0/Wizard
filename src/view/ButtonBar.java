@@ -1,16 +1,14 @@
 package view;
 
-import model.CClient;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ButtonBar extends JPanel{
 
     private JButton join = new JButton("Beitreten");
     private JButton exit = new JButton("Beenden");
+    private JLabel cS = new JLabel("Kartengröße:");
+    private JComboBox<String> cardSize = new JComboBox<>();
 
     private GUINew mainGUI;
 
@@ -18,23 +16,29 @@ public class ButtonBar extends JPanel{
         mainGUI = parent;
         setLayout(new FlowLayout());
 
-        join.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String ipAddress = Utility.askInput("Server-IP-Adresse");
-                mainGUI.setCClient(ipAddress);
+        cardSize.addItem("Normal");
+        cardSize.addItem("Klein");
+        cardSize.setSelectedIndex(0);
+
+        join.addActionListener(e -> {
+            String ipAddress = Utility.askInput("Server-IP-Adresse");
+            mainGUI.setCClient(ipAddress);
+            int size = cardSize.getSelectedIndex();
+            if(size == 0) {
+                mainGUI.setInitScale(1.0);
+            } else {
+                mainGUI.setInitScale(0.9);
             }
         });
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Frame frame : Frame.getFrames()) {
-                    frame.dispose();
-                }
+        exit.addActionListener(e -> {
+            for (Frame frame : Frame.getFrames()) {
+                frame.dispose();
             }
         });
 
         add(join);
         add(exit);
+        add(cS);
+        add(cardSize);
     }
 }
