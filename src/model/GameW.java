@@ -251,7 +251,7 @@ public class GameW implements Runnable {
     public void start() {
         setPlayerCount(players.size());
         setMaxRounds(players.size());
-        currentRound = 9;
+        currentRound = 8;
         startNextRound();
     }
 
