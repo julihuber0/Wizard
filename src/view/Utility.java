@@ -18,7 +18,7 @@ public class Utility {
 
     public static String askInput(String msg) {
         String input = JOptionPane.showInputDialog(msg);
-        if(input == null || input.equals("")){
+        if(input != null && input.equals("")){
             return askInput(msg);
         }
         return input;

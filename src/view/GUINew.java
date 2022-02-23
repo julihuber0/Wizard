@@ -7,6 +7,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -15,45 +18,20 @@ import model.Sound;
 
 public class GUINew extends JFrame {
     //Grafische Elemente
-    //private Bild[] s = new Bild[5];     //Spieleravatare der anderen Spieler
+
     private OtherPlayersView opw;
     private PlayerView selfView;
-    private Rechteck[] marker = new Rechteck[5];    //Marker der anderen Spieler
-    //private Text[] names = new Text[5];     //Spielernamen der anderen Spieler
     private JLabel[] names = new JLabel[5];
-    //private Text[] saidStitches = new Text[5];      //Angesagte Stiche der anderen Spieler
     private JLabel[] saidStitches = new JLabel[5];
-    //private Text[] madeStitches = new Text[5];      //Gemachte Stiche der anderen Spieler
     private JLabel[] madeStitches = new JLabel[5];
-    //private Text[] points = new Text[5];        //Punkte der anderen Spieler
     private JLabel[] points = new JLabel[5];
-    //private Bild[] stitchImage = new Bild[6];       //Aktueller Stich
     private StitchView stitchImage = new StitchView();
-    //private Bild[] ownHand = new Bild[20];      //Eigene Hand
     private OwnCardsView ownHand;
-    //private Text[] playerList = new Text[6];    //Spielerliste in der "Lobby"
     private JLabel[] playerList = new JLabel[6];
     private LobbyView lobby = new LobbyView();
-    private Rechteck ownMarker;     //Eigener Spielermarker
-    private Bild ownAvatar;     //Eigener Avatar
-    private Text name;      //Eigener Name
-    private Text ownSaidStitches;       //Eigene angesagte Stiche
-    private Text ownMadeStitches;       //Eigene gemachte Stiche
-    private Text ownPoints;     //Eigene Punkte
-    private Text t;     //Aktuelle Trumpffarbe
-    private Bild trumpCard;     //Aktuelle Trumpfkarte
     private TrumpView trump = new TrumpView();
-    //private Text cRound;        //Aktuelle Runde
     private JLabel cRound = new JLabel();
-    //private Text stitchSum;     //Summe der (bereits) angesagten Stiche
     private JLabel stitchSum = new JLabel();
-    private Bild exit2;     //Exit-Button im Spiel
-    private Rechteck lineSeparator;     //Trennlinie zwischen eigener Hand und aktuellem Stich
-    private Rechteck sbBG;      //Hintergrund für das Scoreboard für den Game-Over-Screen
-    private Text winner;        //Gewinner
-    private Text[] scoreboard = new Text[6];    //Scoreboard für den Game-Over-Screen
-    private Bild scoreboardButton;      //Scoreboard-Button
-    private Bild bg2;       //Hintergrund für das Hauptscoreboard
 
     private JLabel title;
     ImageIcon cover = new ImageIcon("./Resources/wizardgame.png");
@@ -88,6 +66,11 @@ public class GUINew extends JFrame {
     private boolean isOpened = false;
     private JCheckBox mute = new JCheckBox();
     private double initScale = 1;
+    private JLabel credits = new JLabel("by Tobias Eder & Julian Huber");
+    private JLabel space = new JLabel("   -   ");
+    private JLabel version = new JLabel("v2.0a");
+    private JPanel bottom = new JPanel();
+    private JPanel lobbyPanel = new JPanel();
 
 
     public GUINew() {
@@ -98,6 +81,37 @@ public class GUINew extends JFrame {
 
         add(title, BorderLayout.NORTH);
         add(mainButtons, BorderLayout.CENTER);
+
+        bottom.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        bottom.add(credits);
+        bottom.add(space);
+        bottom.add(version);
+
+        add(bottom, BorderLayout.SOUTH);
+
+        credits.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Desktop d = Desktop.getDesktop();
+                try {
+                    d.browse(new URI("https://youtu.be/dQw4w9WgXcQ"));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                } catch (URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                credits.setForeground(new Color(0, 73, 218));
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                credits.setForeground(Color.BLACK);
+            }
+        });
     }
 
     public void setInitScale(double scale) {
@@ -133,13 +147,17 @@ public class GUINew extends JFrame {
     private void joinGame() {
         title.setVisible(false);
         mainButtons.setVisible(false);
-        add(lobby, BorderLayout.CENTER);
+        bottom.setVisible(false);
+
+        lobbyPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
+        lobbyPanel.add(lobby);
+        add(lobbyPanel, BorderLayout.CENTER);
     }
 
     public void resetPlayableCards() {
         ArrayList<CardPanel> hand = ownHand.getOwnHand();
         for (CardPanel cv : hand) {
-            cv.setPlayable(false);
+            cv.setPlayable(true);
         }
     }
 
@@ -177,10 +195,14 @@ public class GUINew extends JFrame {
     //Interpretiert die Eingabe von vorgehender Methode
     public int validateStitches(int forbiddenNumber) {
         String stitchesCount = askForStitches(forbiddenNumber);
-        int sCount = 0;
-        try {
-            sCount = Integer.parseInt(stitchesCount);
-        } catch (Exception e) {
+        int sCount;
+        if(stitchesCount != null) {
+            try {
+                sCount = Integer.parseInt(stitchesCount);
+            } catch (Exception e) {
+                return validateStitches(forbiddenNumber);
+            }
+        } else {
             return validateStitches(forbiddenNumber);
         }
 
@@ -236,7 +258,7 @@ public class GUINew extends JFrame {
     }
 
     public void startGame() {
-        lobby.setVisible(false);
+        lobbyPanel.setVisible(false);
         setRelativeIDs();
         opw = new OtherPlayersView(createSortedPlayerView());
         selfView = new PlayerView(players.get(relativeID[0]));
@@ -292,40 +314,11 @@ public class GUINew extends JFrame {
         cw.setVisible(true);
         cw.updateChat(chat);
 
-        cw.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-
-            }
-
+        cw.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 resetChatWindow();
                 isOpened = false;
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-
             }
         });
     }
@@ -341,15 +334,7 @@ public class GUINew extends JFrame {
     private ArrayList<CardPanel> createCardView() {
         ArrayList<CardPanel> cards = new ArrayList<>();
         for (Card c : hand) {
-            cards.add(new CardPanel(c, initScale));
-        }
-        return cards;
-    }
-
-    private ArrayList<CardView> createStitchView() {
-        ArrayList<CardView> cards = new ArrayList<>();
-        for (Card c : stitch) {
-            cards.add(new CardView(c));
+            cards.add(new CardPanel(c, initScale, true));
         }
         return cards;
     }

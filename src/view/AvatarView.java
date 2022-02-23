@@ -6,7 +6,7 @@ import java.awt.*;
 public class AvatarView extends JPanel {
 
     private MarkerColor mc;
-    private boolean scalable = true;
+    private boolean scalable = false;
 
     public AvatarView(MarkerColor mc) {
         setMarkerColor(mc);
@@ -56,6 +56,5 @@ public class AvatarView extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension((int) (100*getScaleFactor()), (int) (100*getScaleFactor()));
-        //return new Dimension(200 , 200);
     }
 }

@@ -5,6 +5,7 @@ import model.ColorW;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -14,11 +15,12 @@ public class OwnCardsView extends JPanel {
     private ArrayList<CardPanel> cards;
     private int cardCount;
     private GUINew mainGUI;
-    private CardPanel emptyCard = new CardPanel(new Card(20, ColorW.YELLOW), mainGUI.getInitScale());
+    private CardPanel emptyCard;
 
     public OwnCardsView(ArrayList<CardPanel> cards, GUINew mainGUI) {
         setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         this.mainGUI = mainGUI;
+        emptyCard = new CardPanel(new Card(20, ColorW.YELLOW), mainGUI.getInitScale());
         add(emptyCard);
         initHand(cards);
 
@@ -51,7 +53,7 @@ public class OwnCardsView extends JPanel {
             if(cards.size()>9) {
                 c.setHalfSize();
             }
-            c.addMouseListener(new MouseListener() {
+            c.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if(mainGUI.getInputAllowed()) {
@@ -60,28 +62,34 @@ public class OwnCardsView extends JPanel {
                             mainGUI.layCard();
                             mainGUI.getCClient().playCard(cp.getCard());
                             removeCard(cp);
+                            cp.mouseExited();
+                            mainGUI.resetPlayableCards();
+                        } else if(!mainGUI.getMuted()){
+                            Toolkit.getDefaultToolkit().beep();
+                        }
+                    } else if(!mainGUI.getMuted()){
+                        Toolkit.getDefaultToolkit().beep();
+                    }
+                }
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    if(mainGUI.getInputAllowed()) {
+                        CardPanel cp = (CardPanel) e.getSource();
+                        if(cp.getPlayable()) {
+                            setCursor(new Cursor(Cursor.HAND_CURSOR));
+                            cp.mouseEntered();
                         }
                     }
                 }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-
-                }
-
                 @Override
                 public void mouseExited(MouseEvent e) {
-
+                    if(mainGUI.getInputAllowed()) {
+                        CardPanel cp = (CardPanel) e.getSource();
+                        if(cp.getPlayable()) {
+                            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                            cp.mouseExited();
+                        }
+                    }
                 }
             });
             add(c);

@@ -11,8 +11,15 @@ public class CardPanel extends JPanel {
     private boolean playable;
     private double initScale;
     private double firstScaleFactor = 1;
+    private double mouseZoom = 1;
 
     public CardPanel(Card c, double scale) {
+        setCard(c);
+        initScale = scale;
+    }
+
+    public CardPanel(Card c, double scale, boolean playable) {
+        this.playable = playable;
         setCard(c);
         initScale = scale;
     }
@@ -27,16 +34,19 @@ public class CardPanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         float alpha = 0.5f;
-        Composite cs = AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha);
+        AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+        AlphaComposite ac2 = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f);
+        if(!playable) {
+            g2.setComposite(ac);
+        } else {
+            g2.setComposite(ac2);
+        }
 
         if (c != null) {
             if(c.getValue() == 20) {
                 g2.drawImage(getEmptyImage(), 0, 0, (int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()), null);
             } else {
                 g2.drawImage(getCardImage(), 0, 0, (int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()), null);
-                if (!playable) {
-                    g2.setComposite(cs);
-                }
             }
         }
     }
@@ -59,7 +69,10 @@ public class CardPanel extends JPanel {
     }
 
     public void setPlayable(boolean playable) {
-        this.playable = playable;
+        if(this.playable != playable) {
+            this.playable = playable;
+            repaint();
+        }
     }
 
     public boolean getPlayable() {
@@ -72,10 +85,20 @@ public class CardPanel extends JPanel {
     }
 
     private double getScaleFactor() {
-        return initScale * firstScaleFactor;
+        return initScale * firstScaleFactor * mouseZoom;
     }
 
     public void setHalfSize() {
         firstScaleFactor = 0.85;
+    }
+
+    public void mouseEntered() {
+        mouseZoom = 0.95;
+        repaint();
+    }
+
+    public void mouseExited() {
+        mouseZoom = 1.0;
+        repaint();
     }
 }

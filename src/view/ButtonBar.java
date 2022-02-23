@@ -22,12 +22,15 @@ public class ButtonBar extends JPanel{
 
         join.addActionListener(e -> {
             String ipAddress = Utility.askInput("Server-IP-Adresse");
-            mainGUI.setCClient(ipAddress);
-            int size = cardSize.getSelectedIndex();
-            if(size == 0) {
-                mainGUI.setInitScale(1.0);
-            } else {
-                mainGUI.setInitScale(0.9);
+            if(ipAddress != null) {
+                mainGUI.setCClient(ipAddress);
+                int size = cardSize.getSelectedIndex();
+                if (size == 0) {
+                    mainGUI.setInitScale(1.0);
+                } else {
+                    mainGUI.setInitScale(0.9);
+                    mainGUI.setMinimumSize(new Dimension(1300, 700));
+                }
             }
         });
         exit.addActionListener(e -> {

@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class TrumpView extends JPanel {
 
-    private CardPanel trump = new CardPanel(null, 1);
+    private CardPanel trump = new CardPanel(null, 1, true);
     private JLabel trumpColor = new JLabel();
 
     public TrumpView() {

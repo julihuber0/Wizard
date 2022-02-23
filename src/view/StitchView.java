@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -12,7 +11,7 @@ public class StitchView extends JPanel {
     public StitchView() {
         setLayout(new FlowLayout());
         for(int i = 0; i<6; i++) {
-            CardPanel cv = new CardPanel(null, 1);
+            CardPanel cv = new CardPanel(null, 1, true);
             cards.add(cv);
             add(cv);
         }
