@@ -551,7 +551,7 @@ public class GUINew extends JFrame {
     }
 
     public void shutdown() {
-        if (cClient != null) {
+        if (cClient != null && !cClient.verbindungGescheitert()) {
             cClient.verbindungSchliessen();
         }
     }
