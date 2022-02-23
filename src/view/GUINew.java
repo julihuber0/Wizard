@@ -7,9 +7,12 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,6 +20,9 @@ import model.*;
 import model.Sound;
 
 public class GUINew extends JFrame {
+    public static final String VERSION = "2.0a";
+    public static final String DOWNLOAD_URL = "https://www.dropbox.com/sh/wxo2xpc7du1fu8m/AAB2vmm-cvHPryL0CMLmn-d5a?dl=0";
+
     //Grafische Elemente
 
     private OtherPlayersView opw;
@@ -68,7 +74,7 @@ public class GUINew extends JFrame {
     private double initScale = 1;
     private JLabel credits = new JLabel("by Tobias Eder & Julian Huber");
     private JLabel space = new JLabel("   -   ");
-    private JLabel version = new JLabel("v2.0a");
+    private JLabel version = new JLabel(VERSION);
     private JPanel bottom = new JPanel();
     private JPanel lobbyPanel = new JPanel();
 
@@ -526,7 +532,7 @@ public class GUINew extends JFrame {
                 winningPoints = p.getPoints();
             }
         }
-        int result = Utility.showConfirmDialog(nameWinner + " hat mit " + winningPoints + "Punkten gewonnen. Erneut spielen?", "Game over.");
+        int result = Utility.showConfirmDialog(nameWinner + " hat mit " + winningPoints + " Punkten gewonnen. Erneut spielen?", "Game over.");
         for(Frame f: Frame.getFrames()) {
             f.dispose();
         }

@@ -1,9 +1,5 @@
-import view.GUINew;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public class ServerMain {
 
@@ -14,9 +10,8 @@ public class ServerMain {
 
     public static void createAndShowGUI() {
         ServerFrame gui = new ServerFrame();
-        gui.setSize(new Dimension(300, 150));
+        gui.setSize(new Dimension(350, 160));
         gui.setResizable(false);
-        //gui.setMinimumSize(new Dimension(300, 150));
         gui.setLocationRelativeTo(null);
         gui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ImageIcon icon = new ImageIcon("./Resources/icon.png");

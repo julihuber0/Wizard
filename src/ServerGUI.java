@@ -3,6 +3,10 @@ import view.VerticalFlowLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -14,6 +18,7 @@ public class ServerGUI extends JPanel {
     private JLabel ipLabel = new JLabel("Server-IP:");
     private JTextField ip = new JTextField();
     private JLabel ip2 = new JLabel();
+    private JButton copy = new JButton();
     private JCheckBox check = new JCheckBox("Stiche dürfen sich ausgehen");
 
     private GameW g;
@@ -34,6 +39,9 @@ public class ServerGUI extends JPanel {
         ipPanel.add(ipLabel);
         ipPanel.add(ip);
 
+        copy.setIcon(new ImageIcon("./Resources/clipboard.png"));
+        ipPanel.add(copy);
+
 
         add(start);
         add(check);
@@ -51,6 +59,12 @@ public class ServerGUI extends JPanel {
         }
         ip.setText(ipadress);
         check.setFocusable(false);
+
+        copy.addActionListener(e -> {
+            StringSelection s = new StringSelection(ipadress);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(s, null);
+        });
 
         start.addActionListener(e -> {
             start.setVisible(false);

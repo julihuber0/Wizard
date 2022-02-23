@@ -29,7 +29,7 @@ public class Utility {
     }
 
     public static int showConfirmDialog(String msg, String header) {
-        return JOptionPane.showConfirmDialog(null, header, msg, JOptionPane.YES_NO_OPTION);
+        return JOptionPane.showConfirmDialog(null, msg, header, JOptionPane.YES_NO_OPTION);
     }
 
     public static void playPingSound(){
