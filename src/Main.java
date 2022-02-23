@@ -43,7 +43,7 @@ public class Main {
 
         String v;
         try {
-            URL myIP = new URL("https://raw.githubusercontent.com/julihuber0/Wizard/master/version.txt");
+            URL myIP = new URL("https://github.com/julihuber0/Wizard/blob/373b6a5343ff9058a16c9d5cd7c2e8ff281164a3/version.txt");
             BufferedReader in = new BufferedReader(new InputStreamReader(myIP.openStream()));
             v = in.readLine();
             System.out.println(v);

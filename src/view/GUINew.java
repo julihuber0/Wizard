@@ -20,7 +20,7 @@ import model.*;
 import model.Sound;
 
 public class GUINew extends JFrame {
-    public static final String VERSION = "2.0aa";
+    public static final String VERSION = "2.0a";
     public static final String DOWNLOAD_URL = "https://www.dropbox.com/sh/wxo2xpc7du1fu8m/AAB2vmm-cvHPryL0CMLmn-d5a?dl=0";
 
     //Grafische Elemente
