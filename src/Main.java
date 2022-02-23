@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -44,9 +43,10 @@ public class Main {
 
         String v;
         try {
-            URL myIP = new URL("https://raw.githubusercontent.com/julihuber0/Wizard/dc7d12725ce9f83d894ada32716826adcfe2cd0f/version.txt");
+            URL myIP = new URL("https://raw.githubusercontent.com/julihuber0/Wizard/master/version.txt");
             BufferedReader in = new BufferedReader(new InputStreamReader(myIP.openStream()));
             v = in.readLine();
+            System.out.println(v);
             if(!v.equals(GUINew.VERSION)) {
                 int result = Utility.showConfirmDialog("Es ist eine neue Version verfügbar. Jetzt herunterladen?", "Update");
                 if(result == JOptionPane.YES_OPTION) {
