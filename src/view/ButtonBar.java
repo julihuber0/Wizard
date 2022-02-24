@@ -29,7 +29,7 @@ public class ButtonBar extends JPanel{
                     mainGUI.setInitScale(1.0);
                 } else {
                     mainGUI.setInitScale(0.9);
-                    mainGUI.setMinimumSize(new Dimension(1300, 700));
+                    mainGUI.setMinimumSize(new Dimension(1280, 700));
                 }
             }
         });
