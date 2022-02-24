@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class OwnCardsView extends JPanel {
@@ -59,10 +58,11 @@ public class OwnCardsView extends JPanel {
                     if(mainGUI.getInputAllowed()) {
                         CardPanel cp = (CardPanel) e.getSource();
                         if(cp.getPlayable()) {
-                            mainGUI.layCard();
+                            mainGUI.lockInput();
                             mainGUI.getCClient().playCard(cp.getCard());
-                            removeCard(cp);
                             cp.mouseExited();
+                            setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                            removeCard(cp);
                             mainGUI.resetPlayableCards();
                         } else if(!mainGUI.getMuted()){
                             Toolkit.getDefaultToolkit().beep();
