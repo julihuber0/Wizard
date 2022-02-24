@@ -74,7 +74,7 @@ public class Utility {
             e.printStackTrace();
         }
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(-8.0f);
+        gainControl.setValue(-10.0f);
         clip.start();
     }
 

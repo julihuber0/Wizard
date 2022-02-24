@@ -565,6 +565,9 @@ public class GUINew extends JFrame {
             cw.updateChat(chat);
         } else {
             openChat.setIcon(new ImageIcon("./Resources/dot.png"));
+            if(!mute.isSelected()) {
+                Utility.playPingSound();
+            }
         }
     }
 

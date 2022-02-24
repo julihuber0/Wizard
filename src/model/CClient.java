@@ -181,13 +181,13 @@ public class CClient extends Client {
 
             case "CN":
                 System.out.println("Encoding:" + Charset.defaultCharset());
-                playPingSound();
+                //playPingSound();
                 gClient.addMessage(content);
                 break;
 
             case "SP":
-                //gClient.playSound(content);
-                executeSound(content);
+                gClient.playSound(content);
+                //executeSound(content);
                 break;
 
             /*
@@ -236,13 +236,23 @@ public class CClient extends Client {
                 break;
 
             case "TF":
-                String ta = "TA/" + gClient.validateTrump();
-                sendeString(ta);
+                Thread askTrump = new Thread(() -> {
+                    String ta = "TA/" + gClient.validateTrump();
+                    sendeString(ta);
+                });
+                askTrump.start();
+                //String ta = "TA/" + gClient.validateTrump();
+                //sendeString(ta);
                 break;
 
             case "SF":
-                String sa = "SA/" + gClient.validateStitches(Integer.parseInt(content));
-                sendeString(sa);
+                Thread askStitches = new Thread(() -> {
+                    String sa = "SA/" + gClient.validateStitches(Integer.parseInt(content));
+                    sendeString(sa);
+                });
+                askStitches.start();
+                //String sa = "SA/" + gClient.validateStitches(Integer.parseInt(content));
+                //sendeString(sa);
                 break;
 
             default:
@@ -263,18 +273,6 @@ public class CClient extends Client {
     public void playSound(Sound s) {
         sendChatMessage(Sound.toString(s));
         sendeString("PS/"+s+".wav");
-    }
-
-    private void executeSound(String filename) {
-        if(!gClient.getMuted()) {
-            Utility.playSound(filename);
-        }
-    }
-
-    private void playPingSound() {
-        if(!gClient.getMuted()) {
-            Utility.playPingSound();
-        }
     }
 
 }
