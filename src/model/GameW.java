@@ -275,6 +275,7 @@ public class GameW implements Runnable {
                 server.update();
             } else if (currentTrumpCard.getValue() == 14) {
                 Player p = players.get(players.size()-1);
+                currentPlayerID = p.getId();
                 p.selectedTrump = null;
                 currentTrump = null;
                 server.update();
