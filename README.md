@@ -1,11 +1,28 @@
 # Anleitung
 
+## Kapitel
+
+1. [Java-Installation](#java-installation)
+2. [Download](#download)
+3. [Spielstart](#spielstart)
+4. [Spieloberfläche](#spieloberfläche)
+5. [Server-Erstellung](#erstellung-eines-servers)
+6. [Sonstiges](#sonstiges)
+
+---
+
 ## Java-Installation
 
 Damit die Spieldatei ausgeführt werden kann, muss Java (mindestens Java JRE 8) auf dem Computer installiert sein. Ist dies nicht der Fall, muss Java heruntergeladen und installiert werden ([Windows-Download](https://www.oracle.com/java/technologies/downloads/#jdk17-windows), [Mac-Download](https://www.oracle.com/java/technologies/downloads/#jdk17-mac). Dabei wird für Windows der "x64 Installer MSI", für Macs mit Intel Prozessor der "x64 DMG Installer" und bei Macs mit Apple Silicon Prozessor der "ARM 64 DMG Installer" benötigt. Anschließend den Installer ausführen (bei Windows 10/11: erstes Pop Up-Fenster mit "Ja" bestätigen und dann im nächsten Fenster auf "Installieren" klicken, bei MacOs nach dem Öffnen der dmg-Datei auf den Karton im sich öffnenden Fenster doppelklicken, Sicherheitswarnung bestätigen, im nächsten Fenster das Passwort für das Benutzerkonto auf dem Mac eingeben und im anschließenden Dialog auf installieren klicken).
 
 Wenn Wizard über die .exe Datei installiert wurde, kann Java auch über den entsprechenden Startmenü-Eintrag installiert werden!
 Wichtig: Dieser Schritt muss nur einmalig ausgeführt werden!
+
+---
+
+## Download
+
+Um das Spiel herunterzuladen, einfach dem Link folgen oder rechts auf "Releases" klicken. Dann beim oversten Release die Asset-Liste unter der Beschreibung aufklappen und die "Wizard_x.y.z.zip" herunterladen. Dieses zip-Archiv muss unter Windows noch entpackt werden. Dazu einfach Rechtsklick auf das zip-Archiv, "Alle extrahieren" und bestätigen. Im sich anschließend öffnenden Fenster kann dann die "Wizard-Game.jar"-Datei mit einem Doppelklick geöffnet werden. Alternativ wird auch bei vielen Releases für Windows eine ".exe"-Datei angeboten. Dies ist der empfohlene Weg, um die Anwendung auf Windows zu installieren. Dazu einfach die Datei herunterladen, ausführen, alle Anweisungen Schritt für Schritt befolgen und nach erfolgreicher Installation sollte sich eine Verknüpfung zum Spiel auf dem Desktop befinden.
 
 ---
 
@@ -53,7 +70,7 @@ Am Ende des Spiels wird in einem Dialog der Gewinner angezeigt und gefragt, ob e
 
 ---
 
-## Erstellung eines Servers:
+## Erstellung eines Servers
 
 Um einen Server hosten zu können, muss zuerst in der Router-Konfiguration der Port 7654 für TCP und UDP freigegeben 
 werden. Anschließend kann die Datei "Wizard-Server.jar" ausgeführt werden (um den Server mit Konsolenausgabe zu 
