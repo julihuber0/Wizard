@@ -1,16 +1,15 @@
 # Anleitung
 
-Damit die Spieldatei ausgeführt werden kann, muss Java (mindestens Java JRE 8) auf dem Computer installiert sein. Ist dies nicht der Fall,
-liegt im Ordner "Java" in dem jeweiligen Unterordner für das zutreffende Betriebssystem (Windows oder MacOs) eine Java-Installationsdatei,
-über welche Java installiert werden kann (bei Windows 10/11: erstes Pop Up-Fenster mit "Ja" bestätigen und dann im 
-nächsten Fenster auf "Installieren" klicken, bei MacOs nach dem Öffnen der dmg-Datei auf den Karton im sich 
-öffnenden Fenster doppelklicken, Sicherheitswarnung bestätigen, im nächsten Fenster das Passwort für das 
-Benutzerkonto auf dem Mac eingeben und im anschließenden Dialog auf installieren klicken).
+## Java-Installation
+
+Damit die Spieldatei ausgeführt werden kann, muss Java (mindestens Java JRE 8) auf dem Computer installiert sein. Ist dies nicht der Fall, muss Java heruntergeladen und installiert werden ([Windows-Download](https://www.oracle.com/java/technologies/downloads/#jdk17-windows), [Mac-Download](https://www.oracle.com/java/technologies/downloads/#jdk17-mac). Dabei wird für Windows der "x64 Installer MSI", für Macs mit Intel Prozessor der "x64 DMG Installer" und bei Macs mit Apple Silicon Prozessor der "ARM 64 DMG Installer" benötigt. Anschließend den Installer ausführen (bei Windows 10/11: erstes Pop Up-Fenster mit "Ja" bestätigen und dann im nächsten Fenster auf "Installieren" klicken, bei MacOs nach dem Öffnen der dmg-Datei auf den Karton im sich öffnenden Fenster doppelklicken, Sicherheitswarnung bestätigen, im nächsten Fenster das Passwort für das Benutzerkonto auf dem Mac eingeben und im anschließenden Dialog auf installieren klicken).
 
 Wenn Wizard über die .exe Datei installiert wurde, kann Java auch über den entsprechenden Startmenü-Eintrag installiert werden!
 Wichtig: Dieser Schritt muss nur einmalig ausgeführt werden!
 
 ---
+
+## Spielstart
 
 Nach erfolgreicher Java-Installation sollte sich das Symbol bei der "Wizard-Game.jar"-Datei geändert haben (falls nicht, Windows Explorer/Finder
 schließen und Wizard-Verzeichnis neu aufrufen, Computer neu starten) und kann nun geöffnet werden. Wenn das Spiel 
@@ -30,6 +29,8 @@ Sobald der Spielleiter das Spiel im Server startet, beginnt das Spiel. Die Spiel
 nachgelesen werden.
 
 ---
+
+## Spieloberfläche
 
 Die Spieloberfläche ist wie folgt aufgebaut: Oben werden alle Mitspieler aufgereiht, samt Namen, angesagte Stiche, gemachte Stiche und
 aktuelle Punktzahlen. Die eigenen Werte und der eigene Name werden links unten angezeigt. Der Spieler, der aktuell an der Reihe ist, wird
