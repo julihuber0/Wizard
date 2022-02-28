@@ -1,3 +1,5 @@
+<img align="right" src="https://github.com/julihuber0/Wizard/blob/master/Resources/wizardgame.png?raw=true" width="238" height="320">
+
 # Anleitung
 
 ## Kapitel
