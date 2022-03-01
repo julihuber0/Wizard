@@ -148,14 +148,14 @@ public class GameW implements Runnable {
     public Player getWinner() {
         if (gs == GameState.OVER) {
             int maxPoints = Integer.MIN_VALUE;
-            int bestPlayer = -1;
-            for (int i = 0; i < players.size(); i++) {
-                if (players.get(i).getPoints() > maxPoints) {
-                    maxPoints = players.get(i).getPoints();
-                    bestPlayer = i;
+            Player bestPlayer = null;
+            for (Player p: players) {
+                if (p.getPoints() > maxPoints) {
+                    maxPoints = p.getPoints();
+                    bestPlayer = p;
                 }
             }
-            return players.get(bestPlayer);
+            return bestPlayer;
         }
         return null;
     }
@@ -401,7 +401,8 @@ public class GameW implements Runnable {
             startNextRound();
         }
         //TODO: Falscher Gewinner wird angezeigt?
-        //server.gameOver(getWinner().getName(), getWinner().getId());
+        Player winner = getWinner();
+        server.gameOver(winner.getName(), winner.getId());
         server.update();
     }
 

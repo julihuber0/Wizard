@@ -528,10 +528,10 @@ public class GUINew extends JFrame {
             }
         }
         int result = Utility.showConfirmDialog(nameWinner + " hat mit " + winningPoints + " Punkten gewonnen. Erneut spielen?", "Game over.");
-        for(Frame f: Frame.getFrames()) {
-            f.dispose();
-        }
         if(result == JOptionPane.YES_OPTION) {
+            for(Frame f: Frame.getFrames()) {
+                f.dispose();
+            }
             String[] argsNew = new String[0];
             try {
                 Main.main(argsNew);
