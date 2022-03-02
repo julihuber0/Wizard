@@ -72,6 +72,8 @@ public class GUINew extends JFrame {
     private JLabel version = new JLabel(VERSION);
     private JPanel bottom = new JPanel();
     private JPanel lobbyPanel = new JPanel();
+    private JComboBox<String> soundSelector = new JComboBox<>();
+    private String soundPackage = "Bairisch";
 
 
     public GUINew() {
@@ -87,6 +89,9 @@ public class GUINew extends JFrame {
         bottom.add(credits);
         bottom.add(space);
         bottom.add(version);
+
+        soundSelector.addItem("Bairisch");
+        soundSelector.addActionListener(e -> setSoundPackage((String) soundSelector.getSelectedItem()));
 
         add(bottom, BorderLayout.SOUTH);
 
@@ -576,7 +581,11 @@ public class GUINew extends JFrame {
 
     public void playSound(String filename) {
         if(!mute.isSelected()) {
-            Utility.playSound(filename);
+            Utility.playSound(filename, soundPackage);
         }
+    }
+
+    public void setSoundPackage(String soundPackage) {
+        this.soundPackage = soundPackage;
     }
 }

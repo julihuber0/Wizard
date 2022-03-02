@@ -9,6 +9,7 @@ public class ButtonBar extends JPanel{
     private JButton exit = new JButton("Beenden");
     private JLabel cS = new JLabel("Kartengröße:");
     private JComboBox<String> cardSize = new JComboBox<>();
+    private JComboBox<String> soundPackage = new JComboBox<>();
 
     private GUINew mainGUI;
 
@@ -19,6 +20,8 @@ public class ButtonBar extends JPanel{
         cardSize.addItem("Normal");
         cardSize.addItem("Klein");
         cardSize.setSelectedIndex(0);
+
+        soundPackage.addItem("Bairisch");
 
         join.addActionListener(e -> {
             String ipAddress = Utility.askInput("Server-IP-Adresse");

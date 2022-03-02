@@ -54,8 +54,8 @@ public class Utility {
         clip.start();
     }
 
-    public static void playSound(String filename){
-        File f = new File("./Resources/"+filename);
+    public static void playSound(String filename, String soundPackage){
+        File f = new File("./Resources/"+soundPackage+"/"+filename);
         AudioInputStream audioIn = null;
         try {
             audioIn = AudioSystem.getAudioInputStream(f);
