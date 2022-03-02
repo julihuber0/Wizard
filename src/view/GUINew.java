@@ -14,9 +14,26 @@ import java.util.Collections;
 
 import model.*;
 
+/**
+ * The GUINew class manages the new Wizard gui, which was written in Java swing.
+ * It is the parent component and holds all graphical components of the game.
+ */
 public class GUINew extends JFrame {
+
+    /**
+     * The current version of the game.
+     */
     public static final String VERSION = "2.0.0-alpha";
+
+    /**
+     * The URL from which the Wizard game can be downloaded.
+     */
     public static final String DOWNLOAD_URL = "https://github.com/julihuber0/Wizard/releases";
+
+    /**
+     * The list of available sound packages to choose from.
+     */
+    public static final String[] SOUNDPACKS = {"Bairisch", "Hochdeutsch"};
 
     //Grafische Elemente
 
@@ -72,8 +89,8 @@ public class GUINew extends JFrame {
     private JLabel version = new JLabel(VERSION);
     private JPanel bottom = new JPanel();
     private JPanel lobbyPanel = new JPanel();
-    private JComboBox<String> soundSelector = new JComboBox<>();
-    private String soundPackage = "Bairisch";
+    private JComboBox<String> soundSelector = new JComboBox<>(SOUNDPACKS);
+    private int soundPackage = 0;
 
 
     public GUINew() {
@@ -90,8 +107,7 @@ public class GUINew extends JFrame {
         bottom.add(space);
         bottom.add(version);
 
-        soundSelector.addItem("Bairisch");
-        soundSelector.addActionListener(e -> setSoundPackage((String) soundSelector.getSelectedItem()));
+        soundSelector.addActionListener(e -> setSoundPackage(soundSelector.getSelectedIndex()));
 
         add(bottom, BorderLayout.SOUTH);
 
@@ -281,7 +297,6 @@ public class GUINew extends JFrame {
         leftPanel.add(trump);
         leftPanel.add(selfView);
         centerPanel.add(stitchImage);
-        //centerPanel.add(new SeparatorLine());
         Collections.sort(hand);
         ownHand = new OwnCardsView(createCardView(), this);
         centerPanel.add(ownHand);
@@ -291,6 +306,7 @@ public class GUINew extends JFrame {
         add(rightPanel, BorderLayout.EAST);
 
         openChat.setFocusable(false);
+        soundSelector.setSelectedIndex(0);
 
         openChat.addActionListener(e -> {
             if (!isOpened) {
@@ -303,6 +319,7 @@ public class GUINew extends JFrame {
         mute.setIcon(Utility.resizeIcon(new ImageIcon("./Resources/speaker.png"), 35, 35));
         mute.setSelectedIcon(Utility.resizeIcon(new ImageIcon("./Resources/speakerMuted.png"), 35, 35));
 
+        rightPanel.add(soundSelector);
         rightPanel.add(mute);
         rightPanel.add(openChat);
         rightPanel.add(cRound);
@@ -579,13 +596,23 @@ public class GUINew extends JFrame {
         return players.get(relativeID[0]).getName();
     }
 
+    /**
+     * Plays the sound of the given sound file.
+     *
+     * @param filename The filename of the sound file.
+     */
     public void playSound(String filename) {
         if(!mute.isSelected()) {
             Utility.playSound(filename, soundPackage);
         }
     }
 
-    public void setSoundPackage(String soundPackage) {
+    /**
+     * Sets the directory name to the given name.
+     *
+     * @param soundPackage The new directory name.
+     */
+    public void setSoundPackage(int soundPackage) {
         this.soundPackage = soundPackage;
     }
 }

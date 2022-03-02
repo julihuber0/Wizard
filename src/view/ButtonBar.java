@@ -9,19 +9,28 @@ public class ButtonBar extends JPanel{
     private JButton exit = new JButton("Beenden");
     private JLabel cS = new JLabel("Kartengröße:");
     private JComboBox<String> cardSize = new JComboBox<>();
-    private JComboBox<String> soundPackage = new JComboBox<>();
+    private JLabel soundPackage = new JLabel("Soundpaket:");
+    private JComboBox<String> soundSelector = new JComboBox<>(GUINew.SOUNDPACKS);
 
     private GUINew mainGUI;
 
     public ButtonBar(GUINew parent) {
         mainGUI = parent;
-        setLayout(new FlowLayout());
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        JPanel first = new JPanel();
+        first.setLayout(new FlowLayout());
+        add(first);
+
+        JPanel second = new JPanel();
+        second.setLayout(new FlowLayout());
+        add(second);
 
         cardSize.addItem("Normal");
         cardSize.addItem("Klein");
         cardSize.setSelectedIndex(0);
 
-        soundPackage.addItem("Bairisch");
+        soundSelector.setSelectedIndex(0);
 
         join.addActionListener(e -> {
             String ipAddress = Utility.askInput("Server-IP-Adresse");
@@ -34,6 +43,7 @@ public class ButtonBar extends JPanel{
                     mainGUI.setInitScale(0.9);
                     mainGUI.setMinimumSize(new Dimension(1280, 700));
                 }
+                mainGUI.setSoundPackage(soundSelector.getSelectedIndex());
             }
         });
         exit.addActionListener(e -> {
@@ -42,9 +52,11 @@ public class ButtonBar extends JPanel{
             }
         });
 
-        add(join);
-        add(exit);
-        add(cS);
-        add(cardSize);
+        first.add(join);
+        first.add(exit);
+        second.add(cS);
+        second.add(cardSize);
+        second.add(soundPackage);
+        second.add(soundSelector);
     }
 }
