@@ -20,18 +20,62 @@ public class GUINew extends JFrame {
 
     //Grafische Elemente
 
+    /**
+     * The representation of the other players with all their stats.
+     */
     private OtherPlayersView opw;
+
+    /**
+     * The own player representation with all the own stats.
+     */
     private PlayerView selfView;
+
+    /**
+     * The representation of the stitch.
+     */
     private StitchView stitchImage = new StitchView();
+
+    /**
+     * The representation of the own cards.
+     */
     private OwnCardsView ownHand;
+
+    /**
+     * The representation of the lobby with all the player names who have joined yet.
+     */
     private LobbyView lobby = new LobbyView();
+
+    /**
+     * The representation of the trump.
+     */
     private TrumpView trump = new TrumpView();
+
+    /**
+     * The display of the current round.
+     */
     private JLabel cRound = new JLabel();
+
+    /**
+     * The display of the current stitch sum in one stitch round.
+     */
     private JLabel stitchSum = new JLabel();
 
+    /**
+     * The label that holds the game cover image in the main menu.
+     */
     private JLabel title;
+
+
+    /**
+     * The image of the game cover.
+     */
     private ImageIcon cover = new ImageIcon("./Resources/wizardgame.png");
+
+    /**
+     * The button bar in the main menu.
+     */
     private ButtonBar mainButtons;
+
 
     //Elemente des Hauptscoreboards
     private Text[][] eScoreboard = new Text[13][21];
@@ -39,33 +83,130 @@ public class GUINew extends JFrame {
     private Rechteck eScoreboard_line2;
     private Text lastStitch;
 
-    private boolean inputAllowed = false;       //Legt fest, ob der Spieler eine Karte legen darf
-    private boolean[] allowedCards = new boolean[20];       //Speichert, welche Karten aktuell gespielt werden dürfen
-    private int relativeID[] = new int[6];      //Speichert die relativen IDs zur Zuordnung der Spieler im UI
 
+    /**
+     * Whether the input for the player is allowed or not.
+     */
+    private boolean inputAllowed = false;
+
+    /**
+     * Here, it is stored, which cards can be played in the current turn.
+     */
+    private boolean[] allowedCards = new boolean[20];
+
+    /**
+     * Stores the relative IDs for the players to bring them in the right order in the gui based on the own player's
+     * position.
+     */
+    private int relativeID[] = new int[6];
+
+    /**
+     * The CClient to communicate with the server.
+     */
     private CClient cClient;
 
+
     //Nur zur Datenhaltung
-    public ArrayList<Player> players = new ArrayList<>(); //currentPoints, hand, clienthandler sind nicht ausgefüllt
-    public ArrayList<Card> hand = new ArrayList<>();    //Karten auf der Hand
-    public ArrayList<Card> stitch = new ArrayList<>(); //Karten, die aktuell auf dem Tisch liegen
-    public ColorW currentTrump = null;      //aktuelle Trumpffarbe
-    public Card currentTrumpCard = null;    //aktuelle Trumpfkarte
-    public int currentRound = 0;       //aktuelle Runde
-    public int currentPlayerID = 0; //ID des Spielers, der gerade an der Reihe ist
-    public int idSelf = 0; //ID des Spielers, der man selbst ist
+
+    /**
+     * The players in the game, currentPoints, hand, client handler are not set.
+     */
+    public ArrayList<Player> players = new ArrayList<>();
+
+    /**
+     * The cards of the player.
+     */
+    public ArrayList<Card> hand = new ArrayList<>();
+
+    /**
+     * The current stitch.
+     */
+    public ArrayList<Card> stitch = new ArrayList<>();
+
+    /**
+     * The current trump color.
+     */
+    public ColorW currentTrump = null;
+
+    /**
+     * The current trump card.
+     */
+    public Card currentTrumpCard = null;
+
+    /**
+     * The current round.
+     */
+    public int currentRound = 0;
+
+    /**
+     * The ID of the player who's on turn.
+     */
+    public int currentPlayerID = 0;
+
+    /**
+     * The own ID.
+     */
+    public int idSelf = 0;
+
+    /**
+     * The string representation of the last stitch.
+     */
     public String lastStitchString = "";
 
+
+    /**
+     * A list with the last 10 chat messages.
+     */
     private ArrayList<String> chat = new ArrayList<>();
+
+    /**
+     * The window where the chat is displayed.
+     */
     private ChatWindow cw;
+
+    /**
+     * The button that opens the chat window.
+     */
     private JButton openChat = new JButton("Chat");
+
+    /**
+     * Whether the chat window is currently opened or not.
+     */
     private boolean isOpened = false;
+
+    /**
+     * The checkbox where the sound can be muted.
+     */
     private JCheckBox mute = new JCheckBox();
+
+    /**
+     * The initial scale of the cards in the own hand.
+     */
     private double initScale = 1;
+
+    /**
+     * The credits of the creators of this program.
+     */
     private JLabel credits = new JLabel("by Tobias Eder & Julian Huber");
+
+    /**
+     * A space between the credits an the game version.
+     */
     private JLabel space = new JLabel("   -   ");
+
+    /**
+     * Shows the current version of the game.
+     */
     private JLabel version = new JLabel(VERSION);
+
+    /**
+     * The panel that contains all the elements in the main menu in the bottom of the window.
+     */
     private JPanel bottom = new JPanel();
+
+    /**
+     * The panel that contains the names in the lobby.
+     */
     private JPanel lobbyPanel = new JPanel();
 
     /**

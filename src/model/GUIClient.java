@@ -6,6 +6,7 @@ import model.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+@Deprecated(since = "2.0.0")
 public class GUIClient extends Game implements MausReagierbar {
     //Grafische Elemente
     private Maus maus;
