@@ -1,14 +1,14 @@
 package model;
 
 public enum Sound {
-    WARUM, ZEFIX, SCHNELLER;
+    WHY, SWEAR, FASTER;
 
     public static String toString(Sound s) {
-        if(s==WARUM) {
+        if(s==WHY) {
             return "Warum?";
         }
-        if(s==ZEFIX) {
-            return "Zefix!";
+        if(s==SWEAR) {
+            return "$#@%!";
         }
         return "Schneller!";
     }

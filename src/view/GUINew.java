@@ -319,8 +319,8 @@ public class GUINew extends JFrame {
         mute.setIcon(Utility.resizeIcon(new ImageIcon("./Resources/speaker.png"), 35, 35));
         mute.setSelectedIcon(Utility.resizeIcon(new ImageIcon("./Resources/speakerMuted.png"), 35, 35));
 
-        rightPanel.add(soundSelector);
         rightPanel.add(mute);
+        rightPanel.add(soundSelector);
         rightPanel.add(openChat);
         rightPanel.add(cRound);
         rightPanel.add(stitchSum);

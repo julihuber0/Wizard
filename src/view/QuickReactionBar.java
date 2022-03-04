@@ -11,14 +11,14 @@ public class QuickReactionBar extends JPanel {
 
     private JButton faster = new JButton("Schneller!");
     private JButton why = new JButton("Warum!?");
-    private JButton swear = new JButton("Zefix!");
+    private JButton swear = new JButton("$#@%!");
 
     public QuickReactionBar(GUINew gui) {
         setLayout(new FlowLayout());
 
-        faster.addActionListener(e -> gui.getCClient().playSound(Sound.SCHNELLER));
-        why.addActionListener(e -> gui.getCClient().playSound(Sound.WARUM));
-        swear.addActionListener(e -> gui.getCClient().playSound(Sound.ZEFIX));
+        faster.addActionListener(e -> gui.getCClient().playSound(Sound.FASTER));
+        why.addActionListener(e -> gui.getCClient().playSound(Sound.WHY));
+        swear.addActionListener(e -> gui.getCClient().playSound(Sound.SWEAR));
 
         add(faster);
         add(why);
