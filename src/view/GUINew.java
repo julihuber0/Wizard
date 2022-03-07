@@ -231,6 +231,7 @@ public class GUINew extends JFrame {
      */
     private int soundPackage = 0;
 
+    /**
      * The panel that contains the names in the lobby.
      */
     private JPanel lobbyPanel = new JPanel();
