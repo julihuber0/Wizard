@@ -1,6 +1,6 @@
 # Changelog
 
-## v2.0 - 23. Februar 2022
+## v2.0.0-alpha - 23. Februar 2022
 
 **Funktionen**
 - Komplett neue Benutzeroberfläche

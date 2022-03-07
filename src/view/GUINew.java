@@ -14,9 +14,26 @@ import java.util.Collections;
 
 import model.*;
 
+/**
+ * The GUINew class manages the new Wizard gui, which was written in Java swing.
+ * It is the parent component and holds all graphical components of the game.
+ */
 public class GUINew extends JFrame {
+
+    /**
+     * The current version of the game.
+     */
     public static final String VERSION = "2.0.0-alpha";
+
+    /**
+     * The URL from which the Wizard game can be downloaded.
+     */
     public static final String DOWNLOAD_URL = "https://github.com/julihuber0/Wizard/releases";
+
+    /**
+     * The list of available sound packages to choose from.
+     */
+    public static final String[] SOUNDPACKS = {"Bairisch", "Hochdeutsch"};
 
     //Grafische Elemente
 
@@ -205,6 +222,15 @@ public class GUINew extends JFrame {
     private JPanel bottom = new JPanel();
 
     /**
+     * The select-box to choose a soundpack.
+     */
+    private JComboBox<String> soundSelector = new JComboBox<>(SOUNDPACKS);
+
+    /**
+     * The current soundpack ID.
+     */
+    private int soundPackage = 0;
+
      * The panel that contains the names in the lobby.
      */
     private JPanel lobbyPanel = new JPanel();
@@ -225,6 +251,8 @@ public class GUINew extends JFrame {
         bottom.add(credits);
         bottom.add(space);
         bottom.add(version);
+
+        soundSelector.addActionListener(e -> setSoundPackage(soundSelector.getSelectedIndex()));
 
         add(bottom, BorderLayout.SOUTH);
 
@@ -524,6 +552,7 @@ public class GUINew extends JFrame {
         add(rightPanel, BorderLayout.EAST);
 
         openChat.setFocusable(false);
+        soundSelector.setSelectedIndex(0);
 
         openChat.addActionListener(e -> {
             if (!isOpened) {
@@ -537,6 +566,7 @@ public class GUINew extends JFrame {
         mute.setSelectedIcon(Utility.resizeIcon(new ImageIcon("./Resources/speakerMuted.png"), 35, 35));
 
         rightPanel.add(mute);
+        rightPanel.add(soundSelector);
         rightPanel.add(openChat);
         rightPanel.add(cRound);
         rightPanel.add(stitchSum);
@@ -926,9 +956,23 @@ public class GUINew extends JFrame {
         return players.get(relativeID[0]).getName();
     }
 
+    /**
+     * Plays the sound of the given sound file.
+     *
+     * @param filename The filename of the sound file.
+     */
     public void playSound(String filename) {
         if(!mute.isSelected()) {
-            Utility.playSound(filename);
+            Utility.playSound(filename, soundPackage);
         }
+    }
+
+    /**
+     * Sets the directory name to the given name.
+     *
+     * @param soundPackage The new directory name.
+     */
+    public void setSoundPackage(int soundPackage) {
+        this.soundPackage = soundPackage;
     }
 }
