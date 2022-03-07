@@ -1,49 +1,122 @@
 package model;
 
-import ea.*;
-
-import java.io.*;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
+/**
+ * The GameW class has the main game logic.
+ */
 public class GameW implements Runnable {
 
-    public int playerCount;        //Anzahl Mitspieler
-    public int maxRounds;      //Maximale Rundenzahl
-    public int currentRound = 0;       //aktuelle Runde
-    public GameState gs = GameState.WAITING_FOR_NEXT_ROUND;        //aktueller Spielzustand
-    public ArrayList<Player> players = new ArrayList<>();      //Liste, welche alle Spieler beinhaltet
-    public ArrayList<Card> stitch = new ArrayList<>();     //Liste, die den aktuellen Stich hält.
-    public Integer currentTrumpValue = null;    //Wert der aktuellen Trumpfkarte
-    public ColorW currentTrumpColor = null;     //Farbe der aktuellen Trumpfkarte
-    public ColorW currentTrump = null;      //aktuelle Trumpffarbe
-    public CardDeck deck = new CardDeck();     //Kartendeck
+    /**
+     * The number of players in the game.
+     */
+    public int playerCount;
+
+    /**
+     * The maximal round in the game.
+     */
+    public int maxRounds;
+
+    /**
+     * The current round.
+     */
+    public int currentRound = 0;
+
+    /**
+     * The current game state.
+     */
+    public GameState gs = GameState.WAITING_FOR_NEXT_ROUND;
+
+    /**
+     * All players in the game.
+     */
+    public ArrayList<Player> players = new ArrayList<>();
+
+    /**
+     * All cards in the current stitch.
+     */
+    public ArrayList<Card> stitch = new ArrayList<>();
+
+    /**
+     * The number value of the current trump card.
+     */
+    public Integer currentTrumpValue = null;
+
+    /**
+     * The color of the current trump card.
+     */
+    public ColorW currentTrumpColor = null;
+
+    /**
+     * The current trump color.
+     */
+    public ColorW currentTrump = null;
+
+    /**
+     * The whole card deck with all 60 cards.
+     */
+    public CardDeck deck = new CardDeck();
+
+    /**
+     * The player's ID who's on turn.
+     */
     public int currentPlayerID = 0;
+
+    /**
+     * The player's ID who is in the position of the dealer.
+     */
     public int dealerID = -1;
+
+    /**
+     * The server where all the players connect to.
+     */
     private Server server;
+
+    /**
+     * The number of stitches, the last player who has to say his stitches may not be allowed to say.
+     */
     public int forbiddenNumber;
+
+    /**
+     * Whether all stitch numbers are allowed or not (use of forbidden number).
+     */
     public boolean forbidden = true;
 
-
-    private Scanner s = new Scanner(System.in);
-    private int setPlayerCount = -1;
-
+    /**
+     * Creates a new game and a new server for the players to connect to.
+     */
     public GameW() {
         run();
 
         server = new Server(this);
     }
 
+    /**
+     * Sets whether stitches are allowed to fit to the current round or not.
+     *
+     * @param f If the mentioned rule is enabled or not.
+     */
     public void setForbidden(boolean f) {
         forbidden = f;
     }
 
+    /**
+     * Returns the server.
+     *
+     * @return the server.
+     */
     public Server getServer() {
         return server;
     }
 
+    /**
+     * Adds a new player to the game. If another player is added while the current player hasn't passed a name yet, its
+     * name will be temporarily set to "Connecting". Also makes the server notify the clients that a new player was
+     * added.
+     *
+     * @param p The player to be added.
+     */
     public void addPlayer(Player p) {
         if(players.size()==p.getId()) {
             players.add(p);
@@ -66,10 +139,11 @@ public class GameW implements Runnable {
         }
     }
 
-    public void tasteReagieren(int code) {
-    }
-
-    //legt fest, wie viele Spieler mitspielen
+    /**
+     * Sets the number of players for the game. If there are less than 3 or more than 6 players, it throws an exception.
+     *
+     * @param pc The number of players.
+     */
     public void setPlayerCount(int pc) {
         if (pc > 2 && pc < 7) {
             this.playerCount = pc;
@@ -78,7 +152,11 @@ public class GameW implements Runnable {
         }
     }
 
-    //setzt abhängig von der Spielerzahl die maximale Rundenzahl
+    /**
+     * Sets the maximum round corresponding to the current player count.
+     *
+     * @param pc The number of players in the game.
+     */
     public void setMaxRounds(int pc) {
         if (pc > 2 && pc < 7) {
             this.maxRounds = 60 / pc;
@@ -87,7 +165,10 @@ public class GameW implements Runnable {
         }
     }
 
-    //schaltet den Rundenzähler auf die nächste Runde, setzt model.GameState auf OVER, wenn letzte Runde
+    /**
+     * Sets the round counter to the next round and makes the server notify the clients. If we're in the last round, the
+     * game state is set to "OVER".
+     */
     public void nextRound() {
         if (currentRound < maxRounds) {
             currentRound++;
@@ -99,7 +180,11 @@ public class GameW implements Runnable {
         }
     }
 
-    //teilt rundenabhängig Karten an die Spieler aus
+    /**
+     * Distributes dependent on the current round the cards to each player and makes the server update.
+     *
+     * @param round The current round.
+     */
     public void distribute(int round) {
         deck = new CardDeck();
         deck.shuffleDeck();
@@ -115,7 +200,11 @@ public class GameW implements Runnable {
         server.update();
     }
 
-    //gibt den Spieler zurück, dem der aktuelle Stich gehört
+    /**
+     * Returns the player the stitch belongs to when all players played a card.
+     *
+     * @return the player who made the stitch.
+     */
     public Player calculateStitch() {
         Card highestCard = null;
         int highCardPos = -1;
@@ -145,6 +234,11 @@ public class GameW implements Runnable {
         return players.get(highCardPos);
     }
 
+    /**
+     * Returns the winner of the game if the game is over.
+     *
+     * @return the winner.
+     */
     public Player getWinner() {
         if (gs == GameState.OVER) {
             int maxPoints = Integer.MIN_VALUE;
@@ -160,13 +254,21 @@ public class GameW implements Runnable {
         return null;
     }
 
+    /**
+     * Sets the dynamic number of each player.
+     */
     public void setDynNumbers() {
         for (int i = 0; i < players.size(); i++) {
             players.get(i).dynNumber = i;
         }
     }
 
-    //gibt eine neue Liste mit Spielern zurück, bei der der übergebene Spieler an erster Stelle ist
+    /**
+     * Returns a list with all players in the order were the given player is on the first position.
+     *
+     * @param p The player to be on the first position.
+     * @return the list in the right order with the given player on the first position.
+     */
     public ArrayList<Player> getNewFirstPlayer(Player p) {
         setDynNumbers();
         for (Player pl : players) {
@@ -194,7 +296,11 @@ public class GameW implements Runnable {
         return newPlayers;
     }
 
-    //gibt die in diesem Stich erlaubte Farbe zurück
+    /**
+     * Returns the color that must be served in the current stitch.
+     *
+     * @return the color that must be served.
+     */
     public ColorW getAllowed() {
         ColorW allowed = null;
         if (!stitch.isEmpty()) {
@@ -215,6 +321,12 @@ public class GameW implements Runnable {
         return allowed;
     }
 
+    /**
+     * Returns the player of a given ID.
+     *
+     * @param id The ID of a player.
+     * @return the player with the given ID.
+     */
     public Player getPlayerToID(int id) {
         for (Player p : players) {
             if (p.getId() == id) {
@@ -224,7 +336,12 @@ public class GameW implements Runnable {
         return null;
     }
 
-    //gibt eine Liste mit allen erlaubten/spielbaren Karten eines Spielers zurück
+    /**
+     * Returns a list with all cards of the given player's hand that he is allowed to play in the current turn.
+     *
+     * @param p The player, we want the allowed cards from.
+     * @return a list with all the player's allowed cards.
+     */
     public ArrayList<Card> getAllowedCards(Player p) {
         ColorW allowed = getAllowed();
         ArrayList<Card> allowedCards = new ArrayList<>();
@@ -248,6 +365,9 @@ public class GameW implements Runnable {
         return allowedCards;
     }
 
+    /**
+     * Starts the game by setting up the game parameters (player count, max round) and starting the main game logic.
+     */
     public void start() {
         setPlayerCount(players.size());
         setMaxRounds(players.size());
@@ -255,7 +375,11 @@ public class GameW implements Runnable {
         startNextRound();
     }
 
-    //startet die nächste Runde
+    /**
+     * Starts a new round. This method controls the gameplay (distributing all cards, maybe asking a player for trump
+     * color, asking all players for stitch count, consequently asks players for cards to play, decides who made a
+     * stitch, calculates the points for every player, starts then a new round, ends the game).
+     */
     public synchronized void startNextRound() {
         server.startNextRound();
         gs = GameState.RUNNING;
@@ -449,6 +573,9 @@ public class GameW implements Runnable {
         return sorted;
     }
 
+    /**
+     * Makes the server send the last stitch to the clients.
+     */
     public void sendLastStitch() {
         String stitchLS = "LS/";
 
@@ -468,20 +595,10 @@ public class GameW implements Runnable {
         server.sendString(stitchLS);
     }
 
-    public static void writeText(String s){
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("Logfile.txt", true));
-            writer.write(s);
-            writer.close();
-        }
-        catch (IOException e)
-        {
-            System.out.println("Error: Logfile.txt not found.");
-        }
-    }
-
-
     @Override
+    /**
+     * {@inheritDoc}
+     */
     public void run() {
         System.out.println("Fred läuft");
     }
