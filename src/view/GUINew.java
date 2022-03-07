@@ -89,9 +89,16 @@ public class GUINew extends JFrame {
     private JLabel version = new JLabel(VERSION);
     private JPanel bottom = new JPanel();
     private JPanel lobbyPanel = new JPanel();
-    private JComboBox<String> soundSelector = new JComboBox<>(SOUNDPACKS);
-    private int soundPackage = 0;
 
+    /**
+     * The select-box to choose a soundpack.
+     */
+    private JComboBox<String> soundSelector = new JComboBox<>(SOUNDPACKS);
+
+    /**
+     * The current soundpack ID.
+     */
+    private int soundPackage = 0;
 
     public GUINew() {
         setLayout(new BorderLayout());
