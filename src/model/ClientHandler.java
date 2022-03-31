@@ -1,6 +1,7 @@
 package model;
 
 import ea.*;
+import view.ScoreboardWindow;
 
 import java.io.OutputStream;
 import java.nio.charset.Charset;
@@ -142,6 +143,13 @@ public class ClientHandler implements Empfaenger {
         System.out.println(p);
         System.out.println(test);
         System.out.println(Charset.defaultCharset());
+
+        ArrayList<Player> players = new ArrayList<>();
+
+        players.add(new Player("Tobi",1));
+        players.add(new Player("Julian",2));
+
+        ScoreboardWindow sw = new ScoreboardWindow(players);
     }
 
 }
