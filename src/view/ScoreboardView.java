@@ -11,9 +11,9 @@ public class ScoreboardView extends JPanel {
     ArrayList<Player> players;
 
     public ScoreboardView(ArrayList<Player> players) {
-        super(new GridLayout(1, 0, 5, 5));
         this.players = players;
         showScoreboard();
+        setLayout(new BorderLayout(5,5));
     }
 
 
@@ -37,6 +37,6 @@ public class ScoreboardView extends JPanel {
             }
         }
 
-        super.add(new JScrollPane(jt), BorderLayout.CENTER);
+        add(new JScrollPane(jt), BorderLayout.CENTER);
     }
 }
