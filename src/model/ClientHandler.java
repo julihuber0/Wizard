@@ -148,6 +148,16 @@ public class ClientHandler implements Empfaenger {
 
         players.add(new Player("Tobi",1));
         players.add(new Player("Julian",2));
+        players.add(new Player("Hanswurst",3));
+
+        players.get(0).addToSH(2,10);
+        players.get(1).addToSH(0,999);
+        players.get(2).addToSH(1,-10);
+
+        players.get(2).addToSH(2,10);
+        players.get(1).addToSH(0,999);
+        players.get(0).addToSH(1,-10);
+
 
         ScoreboardWindow sw = new ScoreboardWindow(players);
     }
