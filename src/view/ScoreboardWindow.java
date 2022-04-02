@@ -39,8 +39,8 @@ public class ScoreboardWindow {
     }
 
     protected void generateData() {
-        String header[] = new String[players.size()];
-        String data[][] = new String[60/players.size()][players.size()];
+        String[] header = new String[players.size()];
+        String[][] data = new String[60/players.size()][players.size()];
 
         for(int p = 0; p < players.size(); p++){
 
