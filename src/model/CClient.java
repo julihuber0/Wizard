@@ -271,7 +271,7 @@ public class CClient extends Client {
     }
 
     public void playSound(Sound s) {
-        sendChatMessage(Sound.toString(s));
+        sendChatMessage(Sound.toString(s)+Sound.getPunctation(s));
         sendeString("PS/"+Sound.toString(s)+".wav");
     }
 

@@ -4,12 +4,22 @@ public enum Sound {
     WHY, SWEAR, FASTER;
 
     public static String toString(Sound s) {
-        if(s==WHY) {
-            return "Warum?";
+        if (s == WHY) {
+            return "Warum";
         }
-        if(s==SWEAR) {
+        if (s == SWEAR) {
             return "$#@%!";
         }
-        return "Schneller!";
+        return "Schneller";
+    }
+
+    public static String getPunctation(Sound s) {
+        if (s == WHY) {
+            return "?";
+        }
+        if (s == FASTER) {
+            return "!";
+        }
+        return "";
     }
 }
