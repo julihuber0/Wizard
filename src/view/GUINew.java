@@ -185,6 +185,11 @@ public class GUINew extends JFrame {
     private boolean isOpened = false;
 
     /**
+     * The window where the scoreboard is displayed.
+     */
+    private ScoreboardWindow sw;
+
+    /**
      * The button that opens the scoreboard.
      */
     private JButton openScoreboard = new JButton("Scoreboard");
@@ -613,7 +618,14 @@ public class GUINew extends JFrame {
      * Creates and shows a new window with the scoreboard.
      */
     private void createAndShowScoreboard() {
-        ScoreboardWindow sw = new ScoreboardWindow(players);
+        sw = new ScoreboardWindow(players);
+        sw.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                sw = null;
+                scoreboardOpen = false;
+            }
+        });
     }
 
     /**
@@ -801,6 +813,9 @@ public class GUINew extends JFrame {
                     opw.getPlayerView(i).updatePoints();
                 }
             }
+        }
+        if (sw != null) {
+            sw.updateScoreboard(players);
         }
     }
 
