@@ -47,7 +47,9 @@ public class ScoreboardWindow {
         String[][] data = new String[60/players.size()][players.size()+1];
 
         //Alte Board clearen
-        jFrame.remove(jsp);
+        if(jsp != null) {
+            jFrame.remove(jsp);
+        }
 
         //Runde in der 1. Spalte anzeigen
         header[0] = "Runde";
