@@ -27,6 +27,7 @@ public class ScoreboardWindow {
 
     protected void showScoreboard() {
         //JFrame erstellen
+
         jFrame = new JFrame();
         jFrame.setSize(new Dimension(450, 280));
         jFrame.setMinimumSize(new Dimension(1, 1));
@@ -74,6 +75,7 @@ public class ScoreboardWindow {
 
         jt.getColumnModel().getColumn(0).setPreferredWidth(0);
 
+        jFrame.removeAll();
         jFrame.add(new JScrollPane(jt));
     }
 }
