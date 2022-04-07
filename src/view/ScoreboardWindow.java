@@ -14,7 +14,8 @@ public class ScoreboardWindow {
     protected JScrollPane jsp;
 
     public ScoreboardWindow(ArrayList<Player> players) {
-        updateScoreboard(players);
+        this.players = players;
+        showScoreboard();
     }
 
     public void updateScoreboard(ArrayList<Player> players) {
