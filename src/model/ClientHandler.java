@@ -16,7 +16,7 @@ public class ClientHandler implements Empfaenger {
     private Thread t;
 
     /**
-     * Der Name des Client, um den sich dieser Handler kümmert.
+     * Der Name des Clients, um den sich dieser Handler kümmert.
      */
     private String clientname = "";
     private int id;
@@ -138,11 +138,6 @@ public class ClientHandler implements Empfaenger {
     //Nur um schnell was zu testen, falls nötig
     public static void main(String[] args) {
         System.setProperty("file.encoding", "UTF-8");
-        String p = "Ü";
-        String test = "\u00DC";
-        System.out.println(p);
-        System.out.println(test);
-        System.out.println(Charset.defaultCharset());
 
         ArrayList<Player> players = new ArrayList<>();
 

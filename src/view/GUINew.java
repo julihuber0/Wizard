@@ -94,13 +94,6 @@ public class GUINew extends JFrame {
     private ButtonBar mainButtons;
 
 
-    //Elemente des Hauptscoreboards
-    private Text[][] eScoreboard = new Text[13][21];
-    private Rechteck eScoreboard_line1;
-    private Rechteck eScoreboard_line2;
-    private Text lastStitch;
-
-
     /**
      * Whether the input for the player is allowed or not.
      */
@@ -192,6 +185,16 @@ public class GUINew extends JFrame {
     private boolean isOpened = false;
 
     /**
+     * The button that opens the scoreboard.
+     */
+    private JButton openScoreboard = new JButton("Scoreboard");
+
+    /**
+     * Whether the scoreboard window is currently opened or not.
+     */
+    private boolean scoreboardOpen = false;
+
+    /**
      * The checkbox where the sound can be muted.
      */
     private JCheckBox mute = new JCheckBox();
@@ -269,11 +272,13 @@ public class GUINew extends JFrame {
                     ex.printStackTrace();
                 }
             }
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 setCursor(new Cursor(Cursor.HAND_CURSOR));
                 credits.setForeground(new Color(0, 73, 218));
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -316,11 +321,10 @@ public class GUINew extends JFrame {
      * @param ipAddress The ip address the CClient connects to.
      */
     public void setCClient(String ipAddress) {
-        cClient = new CClient(ipAddress,this);
+        cClient = new CClient(ipAddress, this);
         if (cClient.verbindungGescheitert()) {
             Utility.showInfoDialog("Verbindung zu der eingegebenen IP-Adresse fehlgeschlagen!");
-        }
-        else {
+        } else {
             joinGame();
         }
     }
@@ -431,13 +435,12 @@ public class GUINew extends JFrame {
      * @param forbiddenNumber The number the player is not allowed to say if he
      *                        is the last one to say his stitches and the rule
      *                        is enabled. If not, this value must be -1.
-     *
      * @return The number of stitches the player said.
      */
     public int validateStitches(int forbiddenNumber) {
         String stitchesCount = askForStitches(forbiddenNumber);
         int sCount;
-        if(stitchesCount != null) {
+        if (stitchesCount != null) {
             try {
                 sCount = Integer.parseInt(stitchesCount);
             } catch (Exception e) {
@@ -488,6 +491,7 @@ public class GUINew extends JFrame {
 
     /**
      * Returns a specific player by its unique player ID.
+     *
      * @param id The player's ID.
      * @return the player with the given ID.
      */
@@ -553,6 +557,7 @@ public class GUINew extends JFrame {
         add(rightPanel, BorderLayout.EAST);
 
         openChat.setFocusable(false);
+        openScoreboard.setFocusable(false);
         soundSelector.setSelectedIndex(0);
 
         openChat.addActionListener(e -> {
@@ -563,12 +568,20 @@ public class GUINew extends JFrame {
             }
         });
 
+        openScoreboard.addActionListener(e -> {
+            if (!scoreboardOpen) {
+                scoreboardOpen = true;
+                SwingUtilities.invokeLater(() -> createAndShowScoreboard());
+            }
+        });
+
         mute.setIcon(Utility.resizeIcon(new ImageIcon("./Resources/speaker.png"), 35, 35));
         mute.setSelectedIcon(Utility.resizeIcon(new ImageIcon("./Resources/speakerMuted.png"), 35, 35));
 
         rightPanel.add(mute);
         rightPanel.add(soundSelector);
         rightPanel.add(openChat);
+        rightPanel.add(openScoreboard);
         rightPanel.add(cRound);
         rightPanel.add(stitchSum);
     }
@@ -594,6 +607,13 @@ public class GUINew extends JFrame {
                 isOpened = false;
             }
         });
+    }
+
+    /**
+     * Creates and shows a new window with the scoreboard.
+     */
+    private void createAndShowScoreboard() {
+        ScoreboardWindow sw = new ScoreboardWindow(players);
     }
 
     /**
@@ -755,6 +775,7 @@ public class GUINew extends JFrame {
 
     /**
      * Updates the current stitch sum in the gui.
+     *
      * @param sum the new stitch sum.
      */
     public void updateStitchSum(int sum) {
@@ -878,7 +899,7 @@ public class GUINew extends JFrame {
      * closed and a "new gui" is created.
      *
      * @param nameWinner The name of the winner.
-     * @param playerID The winner's ID to determine his points.
+     * @param playerID   The winner's ID to determine his points.
      */
     public void gameOver(String nameWinner, int playerID) {
         int winningPoints = 0;
@@ -888,8 +909,8 @@ public class GUINew extends JFrame {
             }
         }
         int result = Utility.showConfirmDialog(nameWinner + " hat mit " + winningPoints + " Punkten gewonnen. Erneut spielen?", "Game over.");
-        if(result == JOptionPane.YES_OPTION) {
-            for(Frame f: Frame.getFrames()) {
+        if (result == JOptionPane.YES_OPTION) {
+            for (Frame f : Frame.getFrames()) {
                 f.dispose();
             }
             String[] argsNew = new String[0];
@@ -935,7 +956,7 @@ public class GUINew extends JFrame {
             cw.updateChat(chat);
         } else {
             openChat.setIcon(new ImageIcon("./Resources/dot.png"));
-            if(!mute.isSelected()) {
+            if (!mute.isSelected()) {
                 Utility.playPingSound();
             }
         }
@@ -963,7 +984,7 @@ public class GUINew extends JFrame {
      * @param filename The filename of the sound file.
      */
     public void playSound(String filename) {
-        if(!mute.isSelected()) {
+        if (!mute.isSelected()) {
             Utility.playSound(filename, soundPackage);
         }
     }
