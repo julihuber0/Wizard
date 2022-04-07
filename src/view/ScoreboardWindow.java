@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class ScoreboardWindow {
     protected ArrayList<Player> players;
     protected JFrame jFrame;
+    protected JScrollPane jsp;
 
     public ScoreboardWindow(ArrayList<Player> players) {
         updateScoreboard(players);
@@ -18,7 +19,7 @@ public class ScoreboardWindow {
 
     public void updateScoreboard(ArrayList<Player> players) {
         this.players = players;
-        showScoreboard();
+        generateData();
     }
 
     public void addWindowListener(WindowListener l) {
@@ -39,14 +40,14 @@ public class ScoreboardWindow {
         //Daten erstellen
         generateData();
 
-        //Alles zeigen im JFrame
-        jFrame.pack();
-        jFrame.setVisible(true);
     }
 
     protected void generateData() {
         String[] header = new String[players.size()+1];
         String[][] data = new String[60/players.size()][players.size()+1];
+
+        //Alte Board clearen
+        jFrame.remove(jsp);
 
         //Runde in der 1. Spalte anzeigen
         header[0] = "Runde";
@@ -60,7 +61,7 @@ public class ScoreboardWindow {
             //Erste Zeile enthält den Namen des Spielers
             header[p+1] = players.get(p).getName();
 
-            //Stichhistore des Spielers holen und loopen
+            //Stichhistorie des Spielers holen und loopen
             ArrayList<StitchHistory> sh = players.get(p).getSh();
 
             for(int i = 0; i < sh.size();i++){
@@ -75,8 +76,12 @@ public class ScoreboardWindow {
 
         jt.getColumnModel().getColumn(0).setPreferredWidth(0);
 
-        jFrame.removeAll();
-        jFrame.add(new JScrollPane(jt));
+        jsp = new JScrollPane(jt);
+        jFrame.add(jsp);
+
+        //Alles zeigen im JFrame
+        jFrame.pack();
+        jFrame.setVisible(true);
     }
 }
 
