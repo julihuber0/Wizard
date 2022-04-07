@@ -563,7 +563,7 @@ public class GUINew extends JFrame {
 
         openChat.setFocusable(false);
         openScoreboard.setFocusable(false);
-        soundSelector.setSelectedIndex(0);
+        soundSelector.setSelectedIndex(soundPackage);
 
         openChat.addActionListener(e -> {
             if (!isOpened) {
