@@ -5,6 +5,7 @@ import model.StitchHistory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 public class ScoreboardWindow {
@@ -18,6 +19,10 @@ public class ScoreboardWindow {
     public void updateScoreboard(ArrayList<Player> players) {
         this.players = players;
         showScoreboard();
+    }
+
+    public void addWindowListener(WindowListener l) {
+        jFrame.addWindowListener(l);
     }
 
     protected void showScoreboard() {
