@@ -160,6 +160,7 @@ public class ClientHandler implements Empfaenger {
 
 
         ScoreboardWindow sw = new ScoreboardWindow(players);
+        //sw.updateScoreboard(players);
     }
 
 }
