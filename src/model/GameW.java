@@ -524,9 +524,9 @@ public class GameW implements Runnable {
             gs = GameState.WAITING_FOR_NEXT_ROUND;
             startNextRound();
         }
-        //TODO: Falscher Gewinner wird angezeigt?
+        //TODO: Gewinner wird nicht angezeigt
         Player winner = getWinner();
-        server.gameOver(winner.getName(), winner.getId());
+        //server.gameOver(winner.getName(), winner.getId());
         server.update();
     }
 
