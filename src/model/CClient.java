@@ -2,7 +2,6 @@ package model;
 
 import ea.Client;
 import view.GUINew;
-import view.Utility;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;

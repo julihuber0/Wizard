@@ -1,7 +1,6 @@
 package view;
 
-import com.sun.tools.javac.Main;
-import ea.*;
+import view.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -928,12 +927,7 @@ public class GUINew extends JFrame {
             for (Frame f : Frame.getFrames()) {
                 f.dispose();
             }
-            String[] argsNew = new String[0];
-            try {
-                Main.main(argsNew);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            javax.swing.SwingUtilities.invokeLater(() -> Main.createAndShowGUI());
         }
     }
 

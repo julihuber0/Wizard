@@ -29,6 +29,11 @@ public class GameW implements Runnable {
     public GameState gs = GameState.WAITING_FOR_NEXT_ROUND;
 
     /**
+     * Whether the game over flag was already sent.
+     */
+    public boolean gameOverSent = false;
+
+    /**
      * All players in the game.
      */
     public ArrayList<Player> players = new ArrayList<>();
@@ -160,6 +165,7 @@ public class GameW implements Runnable {
     public void setMaxRounds(int pc) {
         if (pc > 2 && pc < 7) {
             this.maxRounds = 60 / pc;
+            //this.maxRounds = 1;
         } else {
             throw new IllegalArgumentException("Die Spielerzahl muss mindestens 3 und darf maximal 6 sein.");
         }
@@ -524,10 +530,12 @@ public class GameW implements Runnable {
             gs = GameState.WAITING_FOR_NEXT_ROUND;
             startNextRound();
         }
-        //TODO: Gewinner wird nicht angezeigt
-        Player winner = getWinner();
-        //server.gameOver(winner.getName(), winner.getId());
-        server.update();
+        if(!gameOverSent) {
+            gameOverSent = true;
+            Player winner = getWinner();
+            server.gameOver(winner.getName(), winner.getId());
+            server.update();
+        }
     }
 
     private void warten(long i) {
