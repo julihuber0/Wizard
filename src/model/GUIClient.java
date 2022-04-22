@@ -77,7 +77,7 @@ public class GUIClient extends Game implements MausReagierbar {
         bg = new Bild(0, 0, "Resources/BG2.jpg");
         sichtbarMachen(bg);
 
-        //Main Menu
+        //view.Main Menu
         join = new Bild(300, 245, "Resources/joinButton.png");
         sichtbarMachen(join);
         maus.anmelden(this, join, 0);
