@@ -10,6 +10,7 @@
 4. [Spieloberfläche](#spieloberfläche)
 5. [Server-Erstellung](#erstellung-eines-servers)
 6. [Sonstiges](#sonstiges)
+7. [Geplante Funktionen für die nächsten Versionen](#geplante-funktionen-für-die-nächsten-versionen)
 
 ## Java-Installation
 
@@ -80,3 +81,10 @@ oder mehr als 6 Spieler beigetreten sind).
 - Die Spiel- oder Serverdatei darf nicht an einen anderen Ort verschoben werden, bzw. muss der "Resources"-Ordner 
   mit verschoben werden, damit die benötigten Bilder noch gefunden werden können
 - Ab und zu kann es sein, dass manche Karten flackern, dies hört normalerweise zeitnah wieder auf und ändert nichts am Spielgeschehen
+
+## Geplante Funktionen für die nächsten Versionen
+
+- Scoreboard (Stich- und Punktezettel) mit Anzeige von letztem Stich
+- Vorgefertigte Serverauswahl für Schnellbeitritt auf häufig verwendete Server
+- Spielneustart nach Spielende
+- Soundpacks mit verschiedenen Sounds für die Schnellreaktionen
