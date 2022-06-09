@@ -1,7 +1,5 @@
 package view;
 
-import view.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -22,7 +20,7 @@ public class GUINew extends JFrame {
     /**
      * The current version of the game.
      */
-    public static final String VERSION = "2.0.0-alpha";
+    public static final String VERSION = "2.0.0";
 
     /**
      * The URL from which the Wizard game can be downloaded.
