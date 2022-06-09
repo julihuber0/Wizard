@@ -23,7 +23,7 @@ public class GUINew extends JFrame {
     /**
      * The current version of the game.
      */
-    public static final String VERSION = "2.0.0-alpha";
+    public static final String VERSION = "2.0.0";
 
     /**
      * The URL from which the Wizard game can be downloaded.
