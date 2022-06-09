@@ -1,5 +1,19 @@
 # Changelog
 
+## v2.0.0 - 9. Juni 2022
+
+**Funktionen**
+- Scoreboard (Stich- und Punktezettel) hinzugefügt
+- Vorgefertigte Serverauswahl im Hauptmenü für häufig verwendete Server hinzugefügt
+- Spielneustart nach Spielende jetzt möglich
+- verschiedene Soundpacks mit unterschiedlichen Sounds für die Schnellreaktionen
+
+**Bugfixes**
+- diverse Bugs mit Schnellreaktionen behoben
+- weitere kleinere Fehler aus der Alpha-Version behoben
+
+---
+
 ## v2.0.0-alpha - 23. Februar 2022
 
 **Funktionen**
