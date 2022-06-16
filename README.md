@@ -10,7 +10,6 @@
 4. [Spieloberfläche](#spieloberfläche)
 5. [Server-Erstellung](#erstellung-eines-servers)
 6. [Sonstiges](#sonstiges)
-7. [Geplante Funktionen für die nächsten Versionen](#geplante-funktionen-für-die-nächsten-versionen)
 
 ## Java-Installation
 
@@ -21,7 +20,8 @@ Wichtig: Dieser Schritt muss nur einmalig ausgeführt werden!
 
 ## Download
 
-Um das Spiel herunterzuladen, einfach dem Link folgen oder rechts auf "Releases" klicken. Dann beim oversten Release die Asset-Liste unter der Beschreibung aufklappen und die "Wizard_x.y.z.zip" herunterladen. Dieses zip-Archiv muss unter Windows noch entpackt werden. Dazu einfach Rechtsklick auf das zip-Archiv, "Alle extrahieren" und bestätigen. Im sich anschließend öffnenden Fenster kann dann die "Wizard-Game.jar"-Datei mit einem Doppelklick geöffnet werden. Alternativ wird auch bei vielen Releases für Windows eine ".exe"-Datei angeboten. Dies ist der empfohlene Weg, um die Anwendung auf Windows zu installieren. Dazu einfach die Datei herunterladen, ausführen, alle Anweisungen Schritt für Schritt befolgen und nach erfolgreicher Installation sollte sich eine Verknüpfung zum Spiel auf dem Desktop befinden.
+Um das Spiel herunterzuladen, einfach dem Link folgen oder rechts auf "Releases" klicken. Dann beim obersten Release 
+die Asset-Liste unter der Beschreibung aufklappen und die "Wizard_x.y.z.zip" herunterladen. Dieses zip-Archiv muss unter Windows noch entpackt werden. Dazu einfach Rechtsklick auf das zip-Archiv, "Alle extrahieren" und bestätigen. Im sich anschließend öffnenden Fenster kann dann die "Wizard-Game.jar"-Datei mit einem Doppelklick geöffnet werden. Alternativ wird auch bei vielen Releases für Windows eine ".exe"-Datei angeboten. Dies ist der empfohlene Weg, um die Anwendung auf Windows zu installieren. Dazu einfach die Datei herunterladen, ausführen, alle Anweisungen Schritt für Schritt befolgen und nach erfolgreicher Installation sollte sich eine Verknüpfung zum Spiel auf dem Desktop befinden.
 
 ## Spielstart
 
