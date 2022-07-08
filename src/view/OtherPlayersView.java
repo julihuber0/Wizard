@@ -11,6 +11,7 @@ public class OtherPlayersView extends JPanel {
     private ArrayList<PlayerView> playerView;
 
     public OtherPlayersView(ArrayList<PlayerView> playerView) {
+        setOpaque(false);
         this.playerView = playerView;
         setLayout(new FlowLayout(FlowLayout.CENTER, 60, 0));
         for(PlayerView pv: playerView) {

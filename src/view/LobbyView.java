@@ -11,10 +11,13 @@ public class LobbyView extends JPanel {
     ArrayList<JLabel> names = new ArrayList<>();
 
     public LobbyView() {
+        setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         for(int i = 0; i<6; i++) {
             JLabel name = new JLabel();
-            name.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+            name.setOpaque(false);
+            name.setFont(new Font("Candara", Font.PLAIN, 35));
+            name.setForeground(Color.WHITE);
             names.add(name);
             add(name);
         }

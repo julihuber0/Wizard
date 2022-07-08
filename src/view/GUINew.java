@@ -84,6 +84,8 @@ public class GUINew extends JFrame {
      * The image of the game cover.
      */
     private ImageIcon cover = new ImageIcon("./Resources/wizardgame.png");
+    private ImageIcon bImage = new ImageIcon("./Resources/BG_large.jpg");
+    private JLabel bg;
 
     /**
      * The button bar in the main menu.
@@ -174,7 +176,12 @@ public class GUINew extends JFrame {
     /**
      * The button that opens the chat window.
      */
-    private JButton openChat = new JButton("Chat");
+    private JLabel openChat = new JLabel("Chat");
+
+    /**
+     * A label with a whitespace to provide some invisible space.
+     */
+    private JLabel blank = new JLabel(" ");
 
     /**
      * Whether the chat window is currently opened or not.
@@ -189,7 +196,7 @@ public class GUINew extends JFrame {
     /**
      * The button that opens the scoreboard.
      */
-    private JButton openScoreboard = new JButton("Scoreboard");
+    private JLabel openScoreboard = new JLabel("Scoreboard");
 
     /**
      * Whether the scoreboard window is currently opened or not.
@@ -212,7 +219,7 @@ public class GUINew extends JFrame {
     private JLabel credits = new JLabel("by Tobias Eder & Julian Huber");
 
     /**
-     * A space between the credits an the game version.
+     * A space between the credits and the game version.
      */
     private JLabel space = new JLabel("   -   ");
 
@@ -245,22 +252,30 @@ public class GUINew extends JFrame {
      * Creates a new gui and sets up the main menu of the game.
      */
     public GUINew() {
-        setLayout(new BorderLayout());
+        //setLayout(new BorderLayout());
+        bg = new JLabel(bImage);
+        add(bg);
+        bg.setLayout(new BorderLayout());
 
         title = new JLabel(cover);
         mainButtons = new ButtonBar(this);
+        mainButtons.setOpaque(false);
 
-        add(title, BorderLayout.NORTH);
-        add(mainButtons, BorderLayout.CENTER);
+        bg.add(title, BorderLayout.NORTH);
+        bg.add(mainButtons, BorderLayout.CENTER);
 
         bottom.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        credits.setForeground(Color.WHITE);
+        space.setForeground(Color.WHITE);
+        version.setForeground(Color.WHITE);
         bottom.add(credits);
         bottom.add(space);
         bottom.add(version);
+        bottom.setOpaque(false);
 
         soundSelector.addActionListener(e -> setSoundPackage(soundSelector.getSelectedIndex()));
 
-        add(bottom, BorderLayout.SOUTH);
+        bg.add(bottom, BorderLayout.SOUTH);
 
         credits.addMouseListener(new MouseAdapter() {
             @Override
@@ -361,7 +376,9 @@ public class GUINew extends JFrame {
 
         lobbyPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
         lobbyPanel.add(lobby);
-        add(lobbyPanel, BorderLayout.CENTER);
+        lobby.setOpaque(false);
+        lobbyPanel.setOpaque(false);
+        bg.add(lobbyPanel, BorderLayout.CENTER);
     }
 
     /**
@@ -540,13 +557,15 @@ public class GUINew extends JFrame {
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new VerticalFlowLayout());
-        add(leftPanel, BorderLayout.WEST);
+        leftPanel.setOpaque(false);
+        bg.add(leftPanel, BorderLayout.WEST);
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        add(centerPanel, BorderLayout.CENTER);
+        centerPanel.setOpaque(false);
+        bg.add(centerPanel, BorderLayout.CENTER);
 
-        add(opw, BorderLayout.NORTH);
+        bg.add(opw, BorderLayout.NORTH);
         leftPanel.add(trump);
         leftPanel.add(selfView);
         centerPanel.add(stitchImage);
@@ -556,34 +575,83 @@ public class GUINew extends JFrame {
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new VerticalFlowLayout());
-        add(rightPanel, BorderLayout.EAST);
+        rightPanel.setOpaque(false);
+        bg.add(rightPanel, BorderLayout.EAST);
 
         openChat.setFocusable(false);
         openScoreboard.setFocusable(false);
         soundSelector.setSelectedIndex(soundPackage);
 
-        openChat.addActionListener(e -> {
-            if (!isOpened) {
-                isOpened = true;
-                openChat.setIcon(null);
-                javax.swing.SwingUtilities.invokeLater(() -> createAndShowChat());
+        openChat.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (!isOpened) {
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    isOpened = true;
+                    openChat.setText("Chat");
+                    javax.swing.SwingUtilities.invokeLater(() -> createAndShowChat());
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                openChat.setFont(new Font("Candara", Font.BOLD, 20));
+                openChat.setForeground(Color.CYAN);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                openChat.setFont(new Font("Candara", Font.PLAIN, 17));
+                openChat.setForeground(Color.WHITE);
             }
         });
 
-        openScoreboard.addActionListener(e -> {
-            if (!scoreboardOpen) {
-                scoreboardOpen = true;
-                SwingUtilities.invokeLater(() -> createAndShowScoreboard());
+        openScoreboard.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (!scoreboardOpen) {
+                    setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                    scoreboardOpen = true;
+                    SwingUtilities.invokeLater(() -> createAndShowScoreboard());
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                openScoreboard.setFont(new Font("Candara", Font.BOLD, 20));
+                openScoreboard.setForeground(Color.CYAN);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                openScoreboard.setFont(new Font("Candara", Font.PLAIN, 17));
+                openScoreboard.setForeground(Color.WHITE);
             }
         });
+
 
         mute.setIcon(Utility.resizeIcon(new ImageIcon("./Resources/speaker.png"), 35, 35));
         mute.setSelectedIcon(Utility.resizeIcon(new ImageIcon("./Resources/speakerMuted.png"), 35, 35));
+
+        cRound.setForeground(Color.WHITE);
+        cRound.setFont(new Font("Candara", Font.PLAIN, 17));
+        stitchSum.setForeground(Color.WHITE);
+        stitchSum.setFont(new Font("Candara", Font.PLAIN, 17));
+        openChat.setForeground(Color.WHITE);
+        openChat.setFont(new Font("Candara", Font.PLAIN, 18));
+        openScoreboard.setForeground(Color.WHITE);
+        openScoreboard.setFont(new Font("Candara", Font.PLAIN, 18));
+        mute.setOpaque(false);
 
         rightPanel.add(mute);
         rightPanel.add(soundSelector);
         rightPanel.add(openChat);
         rightPanel.add(openScoreboard);
+        rightPanel.add(blank);
         rightPanel.add(cRound);
         rightPanel.add(stitchSum);
     }
@@ -962,7 +1030,7 @@ public class GUINew extends JFrame {
         if (cw != null) {
             cw.updateChat(chat);
         } else {
-            openChat.setIcon(new ImageIcon("./Resources/dot.png"));
+            openChat.setText("Chat (*)");
             if (!mute.isSelected()) {
                 Utility.playPingSound();
             }

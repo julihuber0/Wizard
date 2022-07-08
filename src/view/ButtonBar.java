@@ -2,13 +2,15 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ButtonBar extends JPanel {
 
-    private JLabel directJoin = new JLabel("Eigene IP-Adresse:");
+    private JLabel directJoin = new JLabel("IP-Adresse eingeben");
     private JButton join = new JButton("Beitreten");
-    private JButton exit = new JButton("Beenden");
-    private JLabel serverJoin = new JLabel("Serverauswahl:");
+    private JLabel exit = new JLabel("Beenden");
+    private JLabel serverJoin = new JLabel("Ausgewähltem Server betreten");
     private JComboBox<String> serverlist = new JComboBox<>();
     private String[] ipAddresses = {"wizardjw.ddns.net", "wizardjh.ddns.net", "wizardgame.ddns.net"};
     private JButton joinServerList = new JButton("Beitreten");
@@ -25,18 +27,22 @@ public class ButtonBar extends JPanel {
 
         JPanel first = new JPanel();
         first.setLayout(new FlowLayout());
+        first.setOpaque(false);
         add(first);
 
         JPanel second = new JPanel();
         second.setLayout(new FlowLayout());
+        second.setOpaque(false);
         add(second);
 
         JPanel third = new JPanel();
         third.setLayout(new FlowLayout());
+        third.setOpaque(false);
         add(third);
 
         JPanel fourth = new JPanel();
         fourth.setLayout(new FlowLayout());
+        fourth.setOpaque(false);
         add(fourth);
 
         serverlist.addItem("Julian Wohnung");
@@ -50,9 +56,67 @@ public class ButtonBar extends JPanel {
 
         soundSelector.setSelectedIndex(0);
 
-        join.addActionListener(e -> {
-            String ipAddress = Utility.askInput("Server-IP-Adresse");
-            if (ipAddress != null) {
+        directJoin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                String ipAddress = Utility.askInput("Server-IP-Adresse");
+                if (ipAddress != null) {
+                    mainGUI.setCClient(ipAddress);
+                    int size = cardSize.getSelectedIndex();
+                    if (size == 0) {
+                        mainGUI.setInitScale(1.0);
+                    } else {
+                        mainGUI.setInitScale(0.9);
+                        mainGUI.setMinimumSize(new Dimension(1280, 700));
+                    }
+                    mainGUI.setSoundPackage(soundSelector.getSelectedIndex());
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                directJoin.setFont(new Font("Candara", Font.BOLD, 35));
+                directJoin.setForeground(Color.CYAN);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                directJoin.setFont(new Font("Candara", Font.PLAIN, 30));
+                directJoin.setForeground(Color.WHITE);
+            }
+        });
+
+        exit.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                for (Frame frame : Frame.getFrames()) {
+                    frame.dispose();
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                exit.setFont(new Font("Candara", Font.BOLD, 35));
+                exit.setForeground(Color.CYAN);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                exit.setFont(new Font("Candara", Font.PLAIN, 30));
+                exit.setForeground(Color.WHITE);
+            }
+        });
+
+        serverJoin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                String ipAddress = ipAddresses[serverlist.getSelectedIndex()];
                 mainGUI.setCClient(ipAddress);
                 int size = cardSize.getSelectedIndex();
                 if (size == 0) {
@@ -63,30 +127,36 @@ public class ButtonBar extends JPanel {
                 }
                 mainGUI.setSoundPackage(soundSelector.getSelectedIndex());
             }
-        });
-        exit.addActionListener(e -> {
-            for (Frame frame : Frame.getFrames()) {
-                frame.dispose();
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                serverJoin.setFont(new Font("Candara", Font.BOLD, 35));
+                serverJoin.setForeground(Color.CYAN);
             }
-        });
-        joinServerList.addActionListener(e -> {
-            String ipAddress = ipAddresses[serverlist.getSelectedIndex()];
-            mainGUI.setCClient(ipAddress);
-            int size = cardSize.getSelectedIndex();
-            if (size == 0) {
-                mainGUI.setInitScale(1.0);
-            } else {
-                mainGUI.setInitScale(0.9);
-                mainGUI.setMinimumSize(new Dimension(1280, 700));
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                serverJoin.setFont(new Font("Candara", Font.PLAIN, 30));
+                serverJoin.setForeground(Color.WHITE);
             }
-            mainGUI.setSoundPackage(soundSelector.getSelectedIndex());
         });
 
+        directJoin.setForeground(Color.WHITE);
+        directJoin.setFont(new Font("Candara", Font.PLAIN, 30));
+        serverJoin.setForeground(Color.WHITE);
+        serverJoin.setFont(new Font("Candara", Font.PLAIN, 30));
+        cS.setForeground(Color.WHITE);
+        cS.setFont(new Font("Candara", Font.PLAIN, 30));
+        soundPackage.setForeground(Color.WHITE);
+        soundPackage.setFont(new Font("Candara", Font.PLAIN, 30));
+        exit.setForeground(Color.WHITE);
+        exit.setFont(new Font("Candara", Font.PLAIN, 30));
+
         first.add(directJoin);
-        first.add(join);
         second.add(serverJoin);
         second.add(serverlist);
-        second.add(joinServerList);
         third.add(cS);
         third.add(cardSize);
         third.add(soundPackage);

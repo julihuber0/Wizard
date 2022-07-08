@@ -14,6 +14,7 @@ public class CardPanel extends JPanel {
     private double mouseZoom = 1;
 
     public CardPanel(Card c, double scale) {
+        setOpaque(false);
         setCard(c);
         initScale = scale;
     }
@@ -49,6 +50,7 @@ public class CardPanel extends JPanel {
                 g2.drawImage(getCardImage(), 0, 0, (int) (91 * getScaleFactor()), (int) (150 * getScaleFactor()), null);
             }
         }
+        setOpaque(false);
     }
 
     private Image getCardImage() {

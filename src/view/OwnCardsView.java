@@ -17,9 +17,11 @@ public class OwnCardsView extends JPanel {
     private CardPanel emptyCard;
 
     public OwnCardsView(ArrayList<CardPanel> cards, GUINew mainGUI) {
+        setOpaque(false);
         setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         this.mainGUI = mainGUI;
         emptyCard = new CardPanel(new Card(20, ColorW.YELLOW), mainGUI.getInitScale());
+        emptyCard.setOpaque(false);
         add(emptyCard);
         initHand(cards);
 
@@ -49,6 +51,7 @@ public class OwnCardsView extends JPanel {
         cardCount = cards.size();
 
         for(CardPanel c: cards) {
+            c.setOpaque(false);
             if(cards.size()>9) {
                 c.setHalfSize();
             }

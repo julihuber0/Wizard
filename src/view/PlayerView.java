@@ -9,6 +9,8 @@ import java.awt.*;
 public class PlayerView extends JPanel {
 
     private AvatarView avatar = new AvatarView(MarkerColor.NONE);
+
+    private JLabel blank = new JLabel(" ");
     private JLabel name = new JLabel();
     private JLabel saidStitches = new JLabel();
     private JLabel madeStitches = new JLabel();
@@ -18,7 +20,7 @@ public class PlayerView extends JPanel {
 
     public PlayerView(Player p) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //setLayout(new VerticalFlowLayout(FlowLayout.LEFT, FlowLayout.LEFT));
+        setOpaque(false);
 
         this.p = p;
         name.setText(p.getName());
@@ -26,7 +28,20 @@ public class PlayerView extends JPanel {
         madeStitches.setText("Gemacht: -");
         points.setText("Punkte: " + p.getPoints());
 
+        avatar.setOpaque(false);
+        blank.setFont(new Font("Candara", Font.PLAIN, 5));
+        blank.setSize(2,5);
+        name.setFont(new Font("Candara", Font.PLAIN, 15));
+        name.setForeground(Color.WHITE);
+        saidStitches.setFont(new Font("Candara", Font.PLAIN, 15));
+        saidStitches.setForeground(Color.WHITE);
+        madeStitches.setFont(new Font("Candara", Font.PLAIN, 15));
+        madeStitches.setForeground(Color.WHITE);
+        points.setFont(new Font("Candara", Font.PLAIN, 15));
+        points.setForeground(Color.WHITE);
+
         add(avatar);
+        add(blank);
         add(name);
         add(saidStitches);
         add(madeStitches);
