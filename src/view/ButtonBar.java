@@ -8,12 +8,10 @@ import java.awt.event.MouseEvent;
 public class ButtonBar extends JPanel {
 
     private JLabel directJoin = new JLabel("IP-Adresse eingeben");
-    private JButton join = new JButton("Beitreten");
     private JLabel exit = new JLabel("Beenden");
-    private JLabel serverJoin = new JLabel("Ausgewähltem Server betreten");
+    private JLabel serverJoin = new JLabel("Ausgewähltem Server beitreten");
     private JComboBox<String> serverlist = new JComboBox<>();
     private String[] ipAddresses = {"wizardjw.ddns.net", "wizardjh.ddns.net", "wizardgame.ddns.net"};
-    private JButton joinServerList = new JButton("Beitreten");
     private JLabel cS = new JLabel("Kartengröße:");
     private JComboBox<String> cardSize = new JComboBox<>();
     private JLabel soundPackage = new JLabel("Soundpaket:");
