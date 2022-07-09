@@ -28,6 +28,7 @@ public class Main {
         gui.setIconImage(icon.getImage());
         gui.setTitle("Wizard");
         gui.setVisible(true);
+        gui.setResizable(false);
 
         gui.addWindowListener(new WindowAdapter() {
             @Override

@@ -83,8 +83,8 @@ public class GUINew extends JFrame {
     /**
      * The image of the game cover.
      */
-    private ImageIcon cover = new ImageIcon("./Resources/wizardgame.png");
-    private ImageIcon bImage = new ImageIcon("./Resources/BG_large.jpg");
+    private ImageIcon cover = Utility.resizeIcon(new ImageIcon("./Resources/wizard_small.png"), 960, 400);
+    private ImageIcon bImage = Utility.resizeIcon(new ImageIcon("./Resources/BG_game.png"), 1280, 750);
     private JLabel bg;
 
     /**
@@ -252,7 +252,6 @@ public class GUINew extends JFrame {
      * Creates a new gui and sets up the main menu of the game.
      */
     public GUINew() {
-        //setLayout(new BorderLayout());
         bg = new JLabel(bImage);
         add(bg);
         bg.setLayout(new BorderLayout());
@@ -272,6 +271,10 @@ public class GUINew extends JFrame {
         bottom.add(space);
         bottom.add(version);
         bottom.setOpaque(false);
+
+        credits.setFont(new Font("Candara", Font.PLAIN, 15));
+        space.setFont(new Font("Candara", Font.PLAIN, 15));
+        version.setFont(new Font("Candara", Font.PLAIN, 15));
 
         soundSelector.addActionListener(e -> setSoundPackage(soundSelector.getSelectedIndex()));
 
@@ -293,13 +296,13 @@ public class GUINew extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
                 setCursor(new Cursor(Cursor.HAND_CURSOR));
-                credits.setForeground(new Color(0, 73, 218));
+                credits.setForeground(Color.CYAN);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-                credits.setForeground(Color.BLACK);
+                credits.setForeground(Color.WHITE);
             }
         });
     }
@@ -373,6 +376,8 @@ public class GUINew extends JFrame {
         title.setVisible(false);
         mainButtons.setVisible(false);
         bottom.setVisible(false);
+        bImage = Utility.resizeIcon(new ImageIcon("./Resources/BG_lobby.png"), 1280, 750);
+        bg.setIcon(bImage);
 
         lobbyPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 40));
         lobbyPanel.add(lobby);
@@ -554,6 +559,8 @@ public class GUINew extends JFrame {
         setRelativeIDs();
         opw = new OtherPlayersView(createSortedPlayerView());
         selfView = new PlayerView(players.get(relativeID[0]));
+        bImage = Utility.resizeIcon(new ImageIcon("./Resources/BG_game.png"), 1280, 750);
+        bg.setIcon(bImage);
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new VerticalFlowLayout());
