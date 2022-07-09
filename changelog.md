@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.1.0 - 9. Juli 2022
+
+**Funktionen**
+- Neues Interface im Wizard-Theme
+
+---
+
 ## v2.0.0 - 9. Juni 2022
 
 **Funktionen**
