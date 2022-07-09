@@ -83,8 +83,8 @@ public class GUINew extends JFrame {
     /**
      * The image of the game cover.
      */
-    private ImageIcon cover = Utility.resizeIcon(new ImageIcon("./Resources/wizard_small.png"), 960, 400);
-    private ImageIcon bImage = Utility.resizeIcon(new ImageIcon("./Resources/BG_game.png"), 1280, 750);
+    private ImageIcon cover = Utility.resizeIcon(new ImageIcon("./Resources/wizard_small.png"), 768, 360);
+    private ImageIcon bImage = Utility.resizeIcon(new ImageIcon("./Resources/BG_main.png"), 1280, 750);
     private JLabel bg;
 
     /**
