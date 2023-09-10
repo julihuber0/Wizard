@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.1.1 - 10. September 2023
+
+**Bugfixes**
+- Vorgefertigte Serverauswahl aktualisiert
+
 ## v2.1.0 - 9. Juli 2022
 
 **Funktionen**

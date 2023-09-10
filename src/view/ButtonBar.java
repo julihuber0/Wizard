@@ -11,7 +11,7 @@ public class ButtonBar extends JPanel {
     private JLabel exit = new JLabel("Beenden");
     private JLabel serverJoin = new JLabel("Ausgewähltem Server beitreten");
     private JComboBox<String> serverlist = new JComboBox<>();
-    private String[] ipAddresses = {"wizardjw.ddns.net", "wizardjh.ddns.net", "wizardgame.ddns.net"};
+    private String[] ipAddresses = {"julian-pa.ipv64.de", "julianhome.ipv64.de"};
     private JLabel cS = new JLabel("Kartengröße:");
     private JComboBox<String> cardSize = new JComboBox<>();
     private JLabel soundPackage = new JLabel("Soundpaket:");
@@ -43,9 +43,8 @@ public class ButtonBar extends JPanel {
         fourth.setOpaque(false);
         add(fourth);
 
-        serverlist.addItem("Julian Wohnung");
+        serverlist.addItem("Julian Passau");
         serverlist.addItem("Julian Home");
-        serverlist.addItem("Tobias");
         serverlist.setSelectedIndex(0);
 
         cardSize.addItem("Normal");
